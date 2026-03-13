@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTrackRouteType } from "@/lib/featured-tracks";
 import type { School } from "@/lib/schools";
 import styles from "./SchoolCard.module.css";
 
@@ -39,6 +40,11 @@ export function SchoolCard({ school }: Props) {
   const displayHighlights = getDisplayHighlights(school).slice(0, 4);
   const featuredTracks = school.majorProfile?.featuredTracks?.map((item) => item.name).slice(0, 2) ?? [];
   const hasFeaturedTracks = featuredTracks.length > 0;
+  const featuredTrackRoutes = Array.from(
+    new Set(
+      school.majorProfile?.featuredTracks?.map((item) => getTrackRouteType(item)) ?? [],
+    ),
+  ).slice(0, 3);
   const highlightLabel = school.majorRanking.available ? "最强专业榜" : "代表方向";
   const footerBaseText = school.majorRanking.available
     ? hasReports
@@ -99,6 +105,18 @@ export function SchoolCard({ school }: Props) {
               </span>
             ))}
           </div>
+          {featuredTrackRoutes.length > 0 ? (
+            <>
+              <p className={styles.groupLabel}>班型口径</p>
+              <div className={styles.routeTags}>
+                {featuredTrackRoutes.map((item) => (
+                  <span className={styles.routeTag} key={item}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </>
+          ) : null}
         </>
       ) : null}
 

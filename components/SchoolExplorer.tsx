@@ -12,6 +12,9 @@ type Props = {
   regions: string[];
   schoolTypes: string[];
   topics: TopicDefinition[];
+  initialTopicSlug?: TopicDefinition["slug"];
+  hideTopicFilter?: boolean;
+  queryPlaceholder?: string;
 };
 
 export function SchoolExplorer({
@@ -19,11 +22,14 @@ export function SchoolExplorer({
   regions,
   schoolTypes,
   topics,
+  initialTopicSlug,
+  hideTopicFilter = false,
+  queryPlaceholder = "搜学校、城市、专业方向或班型，比如“上海”“微电子”“姚班”",
 }: Props) {
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("全部区域");
   const [schoolType, setSchoolType] = useState("全部类型");
-  const [topic, setTopic] = useState("全部专题");
+  const [topic, setTopic] = useState<string>(initialTopicSlug ?? "全部专题");
   const [trackRoute, setTrackRoute] = useState("全部班型口径");
   const trackRouteOptions = useMemo(() => {
     const values = new Set<string>();
@@ -81,7 +87,7 @@ export function SchoolExplorer({
       <div className={styles.controls}>
         <input
           className={styles.input}
-          placeholder="搜学校、城市、专业方向或班型，比如“上海”“微电子”“姚班”"
+          placeholder={queryPlaceholder}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
@@ -105,18 +111,20 @@ export function SchoolExplorer({
             <option key={item}>{item}</option>
           ))}
         </select>
-        <select
-          className={styles.select}
-          value={topic}
-          onChange={(event) => setTopic(event.target.value)}
-        >
-          <option>全部专题</option>
-          {topics.map((item) => (
-            <option key={item.slug} value={item.slug}>
-            {item.title}
-          </option>
-        ))}
-      </select>
+        {!hideTopicFilter ? (
+          <select
+            className={styles.select}
+            value={topic}
+            onChange={(event) => setTopic(event.target.value)}
+          >
+            <option>全部专题</option>
+            {topics.map((item) => (
+              <option key={item.slug} value={item.slug}>
+                {item.title}
+              </option>
+            ))}
+          </select>
+        ) : null}
         <select
           className={styles.select}
           value={trackRoute}
@@ -129,29 +137,63 @@ export function SchoolExplorer({
         </select>
       </div>
 
-      <div className={styles.topicRow}>
-        <button
-          className={`${styles.topicButton} ${
-            topic === "全部专题" ? styles.topicButtonActive : ""
-          }`}
-          onClick={() => setTopic("全部专题")}
-          type="button"
-        >
-          全部专题
-        </button>
-        {topics.map((item) => (
-          <button
-            className={`${styles.topicButton} ${
-              topic === item.slug ? styles.topicButtonActive : ""
-            }`}
-            key={item.slug}
-            onClick={() => setTopic(item.slug)}
-            type="button"
-          >
-            {item.shortTitle}
-          </button>
-        ))}
-      </div>
+      {!hideTopicFilter ? (
+        <div className={styles.filterGroup}>
+          <p className={styles.filterGroupLabel}>专题快捷筛选</p>
+          <div className={styles.topicRow}>
+            <button
+              className={`${styles.topicButton} ${
+                topic === "全部专题" ? styles.topicButtonActive : ""
+              }`}
+              onClick={() => setTopic("全部专题")}
+              type="button"
+            >
+              全部专题
+            </button>
+            {topics.map((item) => (
+              <button
+                className={`${styles.topicButton} ${
+                  topic === item.slug ? styles.topicButtonActive : ""
+                }`}
+                key={item.slug}
+                onClick={() => setTopic(item.slug)}
+                type="button"
+              >
+                {item.shortTitle}
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      {trackRouteOptions.length > 0 ? (
+        <div className={styles.filterGroup}>
+          <p className={styles.filterGroupLabel}>班型口径快捷筛选</p>
+          <div className={styles.routeRow}>
+            <button
+              className={`${styles.routeButton} ${
+                trackRoute === "全部班型口径" ? styles.routeButtonActive : ""
+              }`}
+              onClick={() => setTrackRoute("全部班型口径")}
+              type="button"
+            >
+              全部班型口径
+            </button>
+            {trackRouteOptions.map((item) => (
+              <button
+                className={`${styles.routeButton} ${
+                  trackRoute === item ? styles.routeButtonActive : ""
+                }`}
+                key={item}
+                onClick={() => setTrackRoute(item)}
+                type="button"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       <p className={styles.count}>当前命中 {filtered.length} 所学校</p>
 

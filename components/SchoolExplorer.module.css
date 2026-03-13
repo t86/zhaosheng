@@ -25,6 +25,25 @@
   gap: 10px;
 }
 
+.routeRow {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filterGroup {
+  margin-top: 16px;
+}
+
+.filterGroupLabel {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .topicButton {
   border: 0;
   padding: 10px 14px;
@@ -35,8 +54,23 @@
   transition: background 0.2s ease;
 }
 
+.routeButton {
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(203, 82, 53, 0.1);
+  color: #9d2d10;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
 .topicButtonActive {
   background: var(--accent);
+  color: #fff8f0;
+}
+
+.routeButtonActive {
+  background: #9d2d10;
   color: #fff8f0;
 }
 

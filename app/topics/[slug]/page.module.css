@@ -34,20 +34,25 @@
   color: var(--muted);
 }
 
+.metaRow {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.metaPill {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(22, 50, 79, 0.08);
+  color: var(--accent-deep);
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .section {
   margin-top: 20px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-@media (max-width: 980px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 720px) {
@@ -58,9 +63,5 @@
   .hero,
   .section {
     padding: 20px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
   }
 }
