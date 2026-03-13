@@ -498,6 +498,21 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
         ],
       },
       {
+        name: "致远学院计算机科学方向（约翰·霍普克罗夫特班）",
+        category: "荣誉方向",
+        route: "校内招生/校内选拔",
+        tags: ["计算机", "系统能力", "理论训练", "致远学院"],
+        note:
+          "这是上交致远学院计算机科学方向中的另一条高辨识度拔尖培养路径。当前抓到的官方口径是校内招生，不应被误读成普通高考直接专业。",
+        sources: [
+          {
+            label: "2025年致远荣誉计划计算机科学方向（ACM班）、约翰班校内招生启动",
+            url: "https://affairs.zhiyuan.sjtu.edu.cn/info/1026/3023.htm",
+            note: "官方页面，明确约翰·霍普克罗夫特班与 ACM 班同属致远荣誉计划计算机科学方向，并按校内招生启动。",
+          },
+        ],
+      },
+      {
         name: "电子信息类（IEEE试点班）",
         category: "试点班",
         route: "上海 2025 综合评价批次直招",
@@ -1162,7 +1177,7 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
     scopeLabel: "第一批：C9 + 华五并集",
     description:
       "以电气、能动、机械为主干，补齐微电子、人工智能和医学方向，当前依据西交本科招生专业页和一流本科专业建设信息整理。",
-    updatedAt: "2026-03-06",
+    updatedAt: "2026-03-13",
     sources: [
       {
         label: "西安交通大学 2025 年招生专业",
@@ -1226,6 +1241,93 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
         name: "工商管理",
         cluster: "管理与经贸",
         tags: ["管理", "经管", "交大传统优势"],
+      },
+    ],
+    featuredTracks: [
+      {
+        name: "少年班",
+        category: "少年班",
+        route: "专项选拔",
+        tags: ["超常教育", "中学-大学衔接", "破格选拔", "西交经典项目"],
+        note:
+          "西交少年班是学校辨识度最高的特殊招生通道之一，选拔逻辑独立于普通本科批次，不应和普通高考志愿并读。",
+        sources: [
+          {
+            label: "西安交通大学少年班简介",
+            url: "https://zs.xjtu.edu.cn/info/1656/6660.htm",
+            note: "本科招生网官方页面，可核对少年班的培养定位与招生入口。",
+          },
+        ],
+      },
+      {
+        name: "工科试验班（钱学森班H）",
+        category: "试验班",
+        route: "新生进校选拔",
+        tags: ["钱学森学院", "工科通识", "交叉培养", "领军人才"],
+        note:
+          "当前抓到的官方口径更接近“新生进校选拔”后的试验班培养，不宜简单按普通高考专业线理解。",
+        sources: [
+          {
+            label: "工科试验班（钱学森班H）简介",
+            url: "https://bjb.xjtu.edu.cn/info/1071/1236.htm",
+            note: "钱学森学院官方简介，说明钱学森班H的培养目标和课程特征。",
+          },
+          {
+            label: "钱学森学院关于公布2025年新生选拔录取名单的通知",
+            url: "https://xsxb.xjtu.edu.cn/info/1002/1371.htm",
+            note: "官方选拔系统通知，说明钱学森学院各类试验班通过新生进校选拔录取。",
+          },
+        ],
+      },
+      {
+        name: "越杰计划",
+        category: "计划班",
+        route: "高考直招 + 新生进校选拔",
+        tags: ["国际化", "奖学金", "校友公益", "复合型精英"],
+        note:
+          "官方指南明确，“越杰大类”新生和其他符合条件的新生都可以进入选拔流程，所以它既有高考阶段的预选入口，也有进校后的再次筛选。",
+        sources: [
+          {
+            label: "2025年“越杰计划”新生选拔指南",
+            url: "https://xsxb.xjtu.edu.cn/info/1002/1345.htm",
+            note: "官方新生选拔系统页面，明确越杰计划的报名范围、考试与奖学金机制。",
+          },
+        ],
+      },
+      {
+        name: "侯宗濂基础医学拔尖班（国家拔尖计划）",
+        category: "拔尖班",
+        route: "校内补充选拔",
+        tags: ["基础医学", "国家拔尖计划", "医学生", "校内选拔"],
+        note:
+          "当前抓到的官方口径是针对已入学学生的补充选拔通知，因此站内按“校内补充选拔”处理，不把它误写成普通高考直接专业。",
+        sources: [
+          {
+            label: "2025年基础医学（国家拔尖计划）补充选拔通知",
+            url: "https://jwc.xjtu.edu.cn/info/1095/9212.htm",
+            note: "教务处官方通知，明确从 2024 级理、工、医类学生中补充选拔进入侯宗濂基础医学拔尖班。",
+          },
+        ],
+      },
+      {
+        name: "珠峰计划（综改试验班）",
+        category: "综改试验班",
+        route: "大一末校内选拔",
+        tags: ["本博一体化", "科研牵引", "问题导向", "优中拔尖"],
+        note:
+          "珠峰计划不是高考填志愿直接进入的班型，而是面向大一末特定培养序列学生再选拔的科研牵引式拔尖培养项目。",
+        sources: [
+          {
+            label: "“珠峰计划”（综改试验班）学生选拔通知",
+            url: "https://jwc.xjtu.edu.cn/info/1092/9180.htm",
+            note: "教务处官方通知，明确珠峰计划面向大一末的钱学森班、少年班、强基计划学生开展选拔。",
+          },
+          {
+            label: "西安交通大学“珠峰计划”（综改试验班）启动",
+            url: "https://news.xjtu.edu.cn/info/1033/214212.htm",
+            note: "学校官方新闻，补充珠峰计划的培养定位与目标。",
+          },
+        ],
       },
     ],
   },

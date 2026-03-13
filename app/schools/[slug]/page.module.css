@@ -150,6 +150,13 @@
   gap: 14px;
 }
 
+.routeGuideGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
 .methodCard {
   margin-top: 18px;
   padding: 18px;
@@ -169,6 +176,13 @@
   padding: 18px;
   border-radius: var(--radius-md);
   background: rgba(248, 250, 252, 0.9);
+  border: 1px solid var(--border);
+}
+
+.routeGuideCard {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 247, 238, 0.84);
   border: 1px solid var(--border);
 }
 
@@ -242,6 +256,17 @@
 .trackCard h3 {
   margin-top: 14px;
   font-size: 22px;
+}
+
+.routeGuideCard strong {
+  display: block;
+  font-size: 18px;
+}
+
+.routeGuideCard p {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .majorTags {
@@ -425,6 +450,7 @@
   .metricGrid,
   .linkGrid,
   .majorGrid,
+  .routeGuideGrid,
   .trackGrid,
   .listCard ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -450,6 +476,7 @@
   .metricGrid,
   .linkGrid,
   .majorGrid,
+  .routeGuideGrid,
   .trackGrid,
   .listCard ul {
     grid-template-columns: 1fr;

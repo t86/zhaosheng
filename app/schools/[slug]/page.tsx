@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
+import { getTrackRouteType, trackRouteGuide } from "@/lib/featured-tracks";
 import { getSchool } from "@/lib/schools";
 import { getShanghaiAdmissionsForSchool } from "@/lib/shanghai-admissions";
 import { getShanghaiFocusSchool } from "@/lib/shanghai-focus";
@@ -35,6 +36,9 @@ export default async function SchoolDetailPage({ params }: PageProps) {
 
   const focusMajors = school.majorProfile?.majors.map((item) => item.name) ?? school.majorHighlights;
   const featuredTracks = school.majorProfile?.featuredTracks ?? [];
+  const presentRouteTypes = Array.from(
+    new Set(featuredTracks.map((track) => getTrackRouteType(track))),
+  );
   const shanghaiRecords = getShanghaiAdmissionsForSchool(slug);
   const shanghaiFocus = getShanghaiFocusSchool(slug);
   const showShanghaiSection = Boolean(shanghaiFocus || shanghaiRecords.length > 0);
@@ -237,11 +241,22 @@ export default async function SchoolDetailPage({ params }: PageProps) {
             <span className={styles.scopePill}>有官方出处</span>
           </div>
 
+          <div className={styles.routeGuideGrid}>
+            {presentRouteTypes.map((routeType) => (
+              <article className={styles.routeGuideCard} key={routeType}>
+                <strong>{routeType}</strong>
+                <p>{trackRouteGuide[routeType].summary}</p>
+                <p className={styles.sourceMeta}>怎么看：{trackRouteGuide[routeType].advice}</p>
+              </article>
+            ))}
+          </div>
+
           <div className={styles.trackGrid}>
             {featuredTracks.map((track) => (
               <article className={styles.trackCard} key={track.name}>
                 <div className={styles.trackTopline}>
                   <span className={styles.trackBadge}>{track.category}</span>
+                  <span className={styles.clusterLabel}>{getTrackRouteType(track)}</span>
                   <span className={styles.routeBadge}>{track.route}</span>
                 </div>
                 <h3>{track.name}</h3>

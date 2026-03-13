@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getShanghaiFocusAdmissions } from "@/lib/shanghai-focus";
+import { trackRouteGuide, trackRouteOrder } from "@/lib/featured-tracks";
 import { schools } from "@/lib/schools";
 import { shanghaiAdmissionsMeta } from "@/lib/shanghai-admissions";
 import styles from "./page.module.css";
@@ -36,8 +37,8 @@ export default function SourcesPage() {
         </Link>
         <h1>数据口径</h1>
         <p>
-          当前站点把数据分成三层。第一层是对 39 所 985 的稳定主表，包含学校标签、区域和办学属性。第二层是学校-专业档案，当前先补
-          9 所核心学校的代表专业方向，并开始单列 `姚班`、`ACM班` 这类有官方出处的特色班型/荣誉方向。第三层是来自学校公开报告的快照型指标，比如本科专业数、毕业去向落实率、深造率和薪资。
+          当前站点把数据分成三层。第一层是对 39 所 985 的稳定主表，包含学校标签、区域和办学属性。第二层是学校-专业档案，当前已补
+          {schoolsWithMajorProfiles.length} 所学校的代表专业方向，并开始单列 `姚班`、`ACM班`、`图灵班` 这类有官方出处的特色班型/荣誉方向。第三层是来自学校公开报告的快照型指标，比如本科专业数、毕业去向落实率、深造率和薪资。
         </p>
       </section>
 
@@ -70,6 +71,19 @@ export default function SourcesPage() {
               <a href={source.url} rel="noreferrer" target="_blank">
                 查看来源 →
               </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2>特色班型录取途径怎么读</h2>
+        <div className={styles.sourceGrid}>
+          {trackRouteOrder.map((routeType) => (
+            <div className={styles.sourceCard} key={routeType}>
+              <strong>{routeType}</strong>
+              <p>{trackRouteGuide[routeType].summary}</p>
+              <p>{trackRouteGuide[routeType].advice}</p>
             </div>
           ))}
         </div>

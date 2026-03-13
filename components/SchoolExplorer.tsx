@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { TopicDefinition } from "@/data/topics";
+import { getTrackRouteType, trackRouteOrder } from "@/lib/featured-tracks";
 import type { School } from "@/lib/schools";
 import { SchoolCard } from "./SchoolCard";
 import styles from "./SchoolExplorer.module.css";
@@ -12,41 +13,6 @@ type Props = {
   schoolTypes: string[];
   topics: TopicDefinition[];
 };
-
-type FeaturedTrack = NonNullable<NonNullable<School["majorProfile"]>["featuredTracks"]>[number];
-
-function getTrackRouteType(track: FeaturedTrack) {
-  if (track.category.includes("荣誉学院") || track.route.includes("培养平台")) {
-    return "培养平台";
-  }
-
-  if (track.route.includes("专项选拔") || track.route.includes("单独招生")) {
-    return "专项选拔";
-  }
-
-  if (track.route.includes("综合选拔")) {
-    return "综合选拔";
-  }
-
-  if (track.route.includes("校内") || track.route.includes("二次选拔") || track.route.includes("学院拔尖")) {
-    return "校内选拔";
-  }
-
-  if (track.route.includes("高考") || track.route.includes("直招") || track.route.includes("综合评价批次")) {
-    return "高考直招";
-  }
-
-  return "其他口径";
-}
-
-const trackRouteOrder = [
-  "高考直招",
-  "综合选拔",
-  "专项选拔",
-  "校内选拔",
-  "培养平台",
-  "其他口径",
-];
 
 export function SchoolExplorer({
   schools,
