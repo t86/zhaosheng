@@ -1,0 +1,85 @@
+.page {
+  padding: 28px 0 80px;
+}
+
+.shell,
+.section {
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.shell h1,
+.section h2 {
+  font-size: clamp(32px, 5vw, 54px);
+}
+
+.shell p,
+.section p,
+.section li {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.back {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.list {
+  margin-top: 14px;
+  padding-left: 18px;
+}
+
+.sourceGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.sourceCard {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid var(--border);
+}
+
+.sourceCard strong {
+  display: block;
+  font-size: 24px;
+}
+
+.sourceCard p {
+  margin-top: 10px;
+}
+
+.sourceCard a {
+  display: inline-flex;
+  margin-top: 12px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding-top: 18px;
+  }
+
+  .shell,
+  .section {
+    padding: 20px;
+  }
+
+  .sourceGrid {
+    grid-template-columns: 1fr;
+  }
+}

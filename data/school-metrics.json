@@ -1,0 +1,38 @@
+{
+  "tsinghua-university": {
+    "updatedAt": "2026-03-06",
+    "qualityReport": {
+      "title": "清华大学 2023-2024 学年本科教学质量报告",
+      "url": "https://www.tsinghua.edu.cn/__local/C/9B/FD/BA078DEA9FD003289CCF5BADF97_A846EFE9_88225.pdf",
+      "yearLabel": "2023-2024学年",
+      "undergraduateMajorCount": "91"
+    }
+  },
+  "peking-university": {
+    "updatedAt": "2026-03-06",
+    "qualityReport": {
+      "title": "北京大学本科教学质量报告（2022-2023 学年）",
+      "url": "http://www.dean.pku.edu.cn/userfiles/upload/msgshow/202401101119374887.pdf",
+      "yearLabel": "2022-2023学年",
+      "undergraduateMajorCount": "134"
+    }
+  },
+  "beijing-normal-university": {
+    "updatedAt": "2026-03-06",
+    "employmentReport": {
+      "title": "北京师范大学 2024 届毕业生就业质量报告",
+      "url": "https://xxgk.bnu.edu.cn/docs/2025-10/604fb8d4d549495185121d50d447155e.pdf",
+      "yearLabel": "2024届",
+      "overallDestinationRate": "超95%"
+    }
+  },
+  "xian-jiaotong-university": {
+    "updatedAt": "2026-03-06",
+    "employmentReport": {
+      "title": "《西安交通大学 2023 年毕业生就业质量报告》发布",
+      "url": "https://news.xjtu.edu.cn/info/1219/205622.htm",
+      "yearLabel": "2023年",
+      "overallDestinationRate": "98.5%"
+    }
+  }
+}
