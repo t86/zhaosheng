@@ -78,6 +78,9 @@ export default function SourcesPage() {
 
       <section className={styles.section}>
         <h2>特色班型录取途径怎么读</h2>
+        <p>
+          页面里的“更适合 / 报前确认”属于站内解释层，依据的是班型名称、标签、录取口径和官方培养定位，不是学校官方承诺。真正填报前，仍然要回到招生简章、学院通知和当年选拔办法。
+        </p>
         <div className={styles.sourceGrid}>
           {trackRouteOrder.map((routeType) => (
             <div className={styles.sourceCard} key={routeType}>

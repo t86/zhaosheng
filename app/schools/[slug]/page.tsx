@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
-import { getTrackRouteType, trackRouteGuide } from "@/lib/featured-tracks";
+import {
+  getTrackFitProfile,
+  getTrackRouteType,
+  trackRouteGuide,
+} from "@/lib/featured-tracks";
 import { getSchool } from "@/lib/schools";
 import { getShanghaiAdmissionsForSchool } from "@/lib/shanghai-admissions";
 import { getShanghaiFocusSchool } from "@/lib/shanghai-focus";
@@ -252,40 +256,63 @@ export default async function SchoolDetailPage({ params }: PageProps) {
           </div>
 
           <div className={styles.trackGrid}>
-            {featuredTracks.map((track) => (
-              <article className={styles.trackCard} key={track.name}>
-                <div className={styles.trackTopline}>
-                  <span className={styles.trackBadge}>{track.category}</span>
-                  <span className={styles.clusterLabel}>{getTrackRouteType(track)}</span>
-                  <span className={styles.routeBadge}>{track.route}</span>
-                </div>
-                <h3>{track.name}</h3>
-                <div className={styles.trackTags}>
-                  {track.tags.map((tag) => (
-                    <span className={styles.trackTag} key={tag}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                {track.note ? <p className={styles.trackNote}>{track.note}</p> : null}
-                <div className={styles.trackSources}>
-                  {track.sources.map((source) => (
-                    <div className={styles.profileSource} key={`${track.name}-${source.url}`}>
-                      <strong>{source.label}</strong>
-                      <p>{source.note}</p>
-                      <a
-                        className={styles.profileLink}
-                        href={source.url}
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        查看来源 →
-                      </a>
+            {featuredTracks.map((track) => {
+              const fitProfile = getTrackFitProfile(track);
+
+              return (
+                <article className={styles.trackCard} key={track.name}>
+                  <div className={styles.trackTopline}>
+                    <span className={styles.trackBadge}>{track.category}</span>
+                    <span className={styles.clusterLabel}>{getTrackRouteType(track)}</span>
+                    <span className={styles.routeBadge}>{track.route}</span>
+                  </div>
+                  <h3>{track.name}</h3>
+                  <div className={styles.trackTags}>
+                    {track.tags.map((tag) => (
+                      <span className={styles.trackTag} key={tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  {track.note ? <p className={styles.trackNote}>{track.note}</p> : null}
+                  <div className={styles.trackProfileGrid}>
+                    <div className={styles.trackProfileCard}>
+                      <strong>更适合</strong>
+                      <ul className={styles.trackProfileList}>
+                        {fitProfile.fitFor.map((item) => (
+                          <li key={`${track.name}-fit-${item}`}>{item}</li>
+                        ))}
+                      </ul>
                     </div>
-                  ))}
-                </div>
-              </article>
-            ))}
+                    <div className={styles.trackProfileCard}>
+                      <strong>报前确认</strong>
+                      <ul className={styles.trackProfileList}>
+                        {fitProfile.watchOut.map((item) => (
+                          <li key={`${track.name}-watch-${item}`}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <p className={styles.trackBasis}>{fitProfile.basis}</p>
+                  <div className={styles.trackSources}>
+                    {track.sources.map((source) => (
+                      <div className={styles.profileSource} key={`${track.name}-${source.url}`}>
+                        <strong>{source.label}</strong>
+                        <p>{source.note}</p>
+                        <a
+                          className={styles.profileLink}
+                          href={source.url}
+                          rel="noreferrer"
+                          target="_blank"
+                        >
+                          查看来源 →
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
           <p className={styles.note}>
