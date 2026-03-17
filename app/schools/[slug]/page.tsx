@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
+import { getMajorLineAnalysesForSchool } from "@/data/major-line-analyses";
 import {
   getTrackFitProfile,
   getTrackRouteType,
@@ -30,6 +31,21 @@ function getFitNote(schoolType: string) {
   }
 }
 
+function getProfileSourceTypeLabel(sourceType?: "official" | "official_story" | "non_official") {
+  switch (sourceType) {
+    case "official_story":
+      return "官方宣传/故事";
+    case "non_official":
+      return "非官方整理";
+    default:
+      return "官方来源";
+  }
+}
+
+function getOutcomeModeLabel(mode?: "stat" | "reference") {
+  return mode === "reference" ? "参考画像" : "统计口径";
+}
+
 export default async function SchoolDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const school = getSchool(slug);
@@ -47,6 +63,10 @@ export default async function SchoolDetailPage({ params }: PageProps) {
   const shanghaiFocus = getShanghaiFocusSchool(slug);
   const showShanghaiSection = Boolean(shanghaiFocus || shanghaiRecords.length > 0);
   const ranking = school.majorRanking;
+  const majorLineAnalyses = getMajorLineAnalysesForSchool({
+    schoolSlug: school.slug,
+    majors: school.majorProfile?.majors ?? [],
+  });
   const rankingScopeLabel = !ranking.available
     ? "当前待补"
     : ranking.confidence === "high"
@@ -233,6 +253,158 @@ export default async function SchoolDetailPage({ params }: PageProps) {
         </p>
       </section>
 
+      {majorLineAnalyses.length > 0 ? (
+        <section className={styles.section}>
+          <div className={styles.majorHeader}>
+            <div>
+              <h2>专业线分析</h2>
+              <p className={styles.majorLead}>
+                站内把“最强专业”拆成四层：校内强项、全国位置、培养强度和出口质量。这里优先展开当前学校里证据最完整的高频专业线。
+              </p>
+            </div>
+            <span className={styles.scopePill}>解释型对比</span>
+          </div>
+
+          <div className={styles.lineFrameworkGrid}>
+            <article className={styles.lineFrameworkCard}>
+              <strong>校内强项</strong>
+              <p>看它是不是学校里排在前列的代表专业，是否还有荣誉班、实验班或学院平台继续加码。</p>
+            </article>
+            <article className={styles.lineFrameworkCard}>
+              <strong>全国位置</strong>
+              <p>页面用“全国顶级”“第一梯队”“C9 强项”这类标签做站内解释，不等于官方排名。</p>
+            </article>
+            <article className={styles.lineFrameworkCard}>
+              <strong>培养强度</strong>
+              <p>重点看本博贯通、姚班/图灵班/ACM 班、科技英才班和国家急需平台。</p>
+            </article>
+            <article className={styles.lineFrameworkCard}>
+              <strong>出口质量</strong>
+              <p>重点看本科后是读研、直博、出国、进院所医院，还是去头部研发岗位，而不是只看平均就业。</p>
+            </article>
+          </div>
+
+          <div className={styles.lineGrid}>
+            {majorLineAnalyses.map((line) => {
+              const comparisonGroups = [
+                {
+                  label: "更高目标",
+                  items: line.comparison.higherTargets,
+                  empty: "当前已经在这条线的头部池里，更该比较具体班型、导师和城市资源。",
+                },
+                {
+                  label: "同层可比",
+                  items: line.comparison.peerSchools,
+                  empty: "当前站内还没补到更合适的同层对手。",
+                },
+                {
+                  label: "分数不够替代",
+                  items: line.comparison.alternativeSchools,
+                  empty: "这条线在站内 985 池里没有明显更友好的静态替代，具体还要回到省份位次表。",
+                },
+              ];
+
+              return (
+                <article className={styles.lineCard} key={`${school.slug}-${line.key}`}>
+                  <div className={styles.trackTopline}>
+                    <span className={styles.trackBadge}>专业线</span>
+                    <span className={styles.clusterLabel}>{line.analysis.nationalPosition}</span>
+                  </div>
+                  <h3>{line.label}</h3>
+                  <p className={styles.lineIntro}>{line.intro}</p>
+                  <div className={styles.majorTags}>
+                    {line.matchedMajors.map((majorName) => (
+                      <span className={styles.majorTag} key={`${line.key}-${majorName}`}>
+                        {majorName}
+                      </span>
+                    ))}
+                  </div>
+                  <p className={styles.lineSummary}>{line.analysis.strengthSummary}</p>
+                  <p className={styles.trackBasis}>怎么比：{line.comparisonBasis}</p>
+
+                  <div className={styles.lineInsightGrid}>
+                    <div className={styles.lineInsightCard}>
+                      <strong>为什么强</strong>
+                      <ul className={styles.trackProfileList}>
+                        {line.analysis.whyStrong.map((item) => (
+                          <li key={`${line.key}-why-${item}`}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className={styles.lineInsightCard}>
+                      <strong>本科主流出口</strong>
+                      <p className={styles.lineOutcomeSummary}>
+                        {line.analysis.graduateOutcomeSummary}
+                      </p>
+                      <ul className={styles.trackProfileList}>
+                        {line.analysis.graduateOutcomeHighlights.map((item) => (
+                          <li key={`${line.key}-outcome-${item}`}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className={styles.lineCompareGrid}>
+                    {comparisonGroups.map((group) => (
+                      <div className={styles.lineCompareCard} key={`${line.key}-${group.label}`}>
+                        <strong>{group.label}</strong>
+                        {group.items.length > 0 ? (
+                          <ul className={styles.compareList}>
+                            {group.items.map((item) => {
+                              const targetSchool = getSchool(item.schoolSlug);
+
+                              if (!targetSchool) {
+                                return null;
+                              }
+
+                              return (
+                                <li className={styles.compareItem} key={`${line.key}-${group.label}-${item.schoolSlug}`}>
+                                  <Link href={`/schools/${targetSchool.slug}`}>{targetSchool.name}</Link>
+                                  <p className={styles.compareReason}>{item.reason}</p>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        ) : (
+                          <p className={styles.note}>{group.empty}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  <p className={styles.trackBasis}>替代规则：{line.replacementRule}</p>
+                  <p className={styles.trackBasis}>{line.analysis.note}</p>
+
+                  <div className={styles.trackSources}>
+                    {line.analysis.sources.map((source) => (
+                      <div className={styles.profileSource} key={`${line.key}-${source.url}`}>
+                        <strong>{source.label}</strong>
+                        <p className={styles.sourceType}>
+                          {getProfileSourceTypeLabel(source.sourceType)}
+                        </p>
+                        <p>{source.note}</p>
+                        <a
+                          className={styles.profileLink}
+                          href={source.url}
+                          rel="noreferrer"
+                          target="_blank"
+                        >
+                          查看来源 →
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <p className={styles.note}>
+            这里的跨校对比和“分数不够替代”都属于站内解释层，不等于个性化志愿建议。真正下结论前，还要回到你所在省份的位次、选科和城市偏好。
+          </p>
+        </section>
+      ) : null}
+
       {featuredTracks.length > 0 ? (
         <section className={styles.section}>
           <div className={styles.majorHeader}>
@@ -258,6 +430,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
           <div className={styles.trackGrid}>
             {featuredTracks.map((track) => {
               const fitProfile = getTrackFitProfile(track);
+              const graduateOutcome = track.graduateOutcome;
 
               return (
                 <article className={styles.trackCard} key={track.name}>
@@ -294,10 +467,59 @@ export default async function SchoolDetailPage({ params }: PageProps) {
                     </div>
                   </div>
                   <p className={styles.trackBasis}>{fitProfile.basis}</p>
+                  {graduateOutcome ? (
+                    <div className={styles.trackOutcomeCard}>
+                      <div className={styles.trackOutcomeHeader}>
+                        <strong>本科毕业去向</strong>
+                        <span className={styles.trackOutcomeBadge}>
+                          {getOutcomeModeLabel(graduateOutcome.mode)}
+                        </span>
+                      </div>
+                      <p className={styles.trackOutcomeSummary}>{graduateOutcome.summary}</p>
+                      <ul className={styles.trackProfileList}>
+                        {graduateOutcome.highlights.map((item) => (
+                          <li key={`${track.name}-outcome-${item}`}>{item}</li>
+                        ))}
+                      </ul>
+                      {graduateOutcome.note ? (
+                        <p className={styles.trackOutcomeNote}>{graduateOutcome.note}</p>
+                      ) : null}
+                      {graduateOutcome.updatedAt ? (
+                        <p className={styles.trackBasis}>
+                          公开统计口径截至 {graduateOutcome.updatedAt}
+                        </p>
+                      ) : null}
+                      <div className={styles.trackSources}>
+                        {graduateOutcome.sources.map((source) => (
+                          <div
+                            className={styles.profileSource}
+                            key={`${track.name}-outcome-source-${source.url}`}
+                          >
+                            <strong>{source.label}</strong>
+                            <p className={styles.sourceType}>
+                              {getProfileSourceTypeLabel(source.sourceType)}
+                            </p>
+                            <p>{source.note}</p>
+                            <a
+                              className={styles.profileLink}
+                              href={source.url}
+                              rel="noreferrer"
+                              target="_blank"
+                            >
+                              查看来源 →
+                            </a>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
                   <div className={styles.trackSources}>
                     {track.sources.map((source) => (
                       <div className={styles.profileSource} key={`${track.name}-${source.url}`}>
                         <strong>{source.label}</strong>
+                        <p className={styles.sourceType}>
+                          {getProfileSourceTypeLabel(source.sourceType)}
+                        </p>
                         <p>{source.note}</p>
                         <a
                           className={styles.profileLink}

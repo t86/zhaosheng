@@ -157,6 +157,19 @@
   gap: 12px;
 }
 
+.lineFrameworkGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.lineGrid {
+  margin-top: 18px;
+  display: grid;
+  gap: 14px;
+}
+
 .methodCard {
   margin-top: 18px;
   padding: 18px;
@@ -183,6 +196,20 @@
   padding: 18px;
   border-radius: var(--radius-md);
   background: rgba(255, 247, 238, 0.84);
+  border: 1px solid var(--border);
+}
+
+.lineFrameworkCard {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 247, 238, 0.84);
+  border: 1px solid var(--border);
+}
+
+.lineCard {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: rgba(246, 249, 255, 0.88);
   border: 1px solid var(--border);
 }
 
@@ -258,12 +285,28 @@
   font-size: 22px;
 }
 
+.lineCard h3 {
+  margin-top: 14px;
+  font-size: 24px;
+}
+
 .routeGuideCard strong {
   display: block;
   font-size: 18px;
 }
 
 .routeGuideCard p {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.lineFrameworkCard strong {
+  display: block;
+  font-size: 17px;
+}
+
+.lineFrameworkCard p {
   margin-top: 10px;
   color: var(--muted);
   line-height: 1.7;
@@ -313,10 +356,73 @@
   line-height: 1.7;
 }
 
+.lineIntro,
+.lineSummary {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .majorReason {
   margin-top: 10px;
   color: var(--muted);
   font-size: 14px;
+  line-height: 1.7;
+}
+
+.lineInsightGrid,
+.lineCompareGrid {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.lineInsightGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lineCompareGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lineInsightCard,
+.lineCompareCard {
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(22, 50, 79, 0.08);
+}
+
+.lineInsightCard strong,
+.lineCompareCard strong {
+  display: block;
+  font-size: 14px;
+}
+
+.lineOutcomeSummary {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.compareList {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.compareItem + .compareItem {
+  margin-top: 12px;
+}
+
+.compareItem a {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.compareReason {
+  margin-top: 6px;
+  color: var(--muted);
   line-height: 1.7;
 }
 
@@ -369,6 +475,50 @@
   line-height: 1.7;
 }
 
+.trackOutcomeCard {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 247, 238, 0.78);
+  border: 1px solid rgba(203, 82, 53, 0.14);
+}
+
+.trackOutcomeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.trackOutcomeCard strong {
+  display: block;
+  font-size: 16px;
+}
+
+.trackOutcomeBadge {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(203, 82, 53, 0.12);
+  color: #9d2d10;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.trackOutcomeSummary {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.trackOutcomeNote {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
 .profileSource {
   padding: 18px;
   border-radius: var(--radius-md);
@@ -385,6 +535,13 @@
   margin-top: 8px;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.sourceType {
+  margin-top: 8px;
+  color: #9d2d10;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .profileLink {
@@ -486,7 +643,10 @@
   .factGrid,
   .metricGrid,
   .linkGrid,
+  .lineFrameworkGrid,
   .majorGrid,
+  .lineInsightGrid,
+  .lineCompareGrid,
   .routeGuideGrid,
   .trackGrid,
   .trackProfileGrid,
@@ -513,7 +673,10 @@
   .factGrid,
   .metricGrid,
   .linkGrid,
+  .lineFrameworkGrid,
   .majorGrid,
+  .lineInsightGrid,
+  .lineCompareGrid,
   .routeGuideGrid,
   .trackGrid,
   .trackProfileGrid,
