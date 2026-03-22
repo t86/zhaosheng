@@ -14,8 +14,8 @@
   overflow: hidden;
   padding: 36px;
   background:
-    linear-gradient(135deg, rgba(10, 27, 46, 0.96), rgba(21, 50, 84, 0.9)),
-    radial-gradient(circle at top right, rgba(240, 200, 141, 0.22), transparent 28%);
+    linear-gradient(135deg, rgba(10, 27, 46, 0.97), rgba(21, 50, 84, 0.92)),
+    radial-gradient(circle at top right, rgba(240, 200, 141, 0.2), transparent 28%);
   color: #f8f1e6;
   animation: riseIn 0.45s ease;
 }
@@ -24,28 +24,27 @@
 .hero::after {
   content: "";
   position: absolute;
-  inset: auto;
   pointer-events: none;
 }
 
 .hero::before {
-  right: -48px;
-  top: -48px;
-  width: 220px;
-  height: 220px;
+  right: -60px;
+  top: -56px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(240, 200, 141, 0.3), transparent 72%);
+  background: radial-gradient(circle, rgba(240, 200, 141, 0.28), transparent 72%);
 }
 
 .hero::after {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 120px;
+  height: 136px;
   background-image: linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 22px 22px;
-  mask-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.85));
+  background-size: 24px 24px;
+  mask-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.86));
 }
 
 .back {
@@ -74,8 +73,8 @@
   position: relative;
   z-index: 1;
   margin-top: 18px;
-  max-width: 900px;
-  font-size: clamp(38px, 6vw, 72px);
+  max-width: 980px;
+  font-size: clamp(40px, 6vw, 72px);
   line-height: 0.94;
 }
 
@@ -83,7 +82,7 @@
   position: relative;
   z-index: 1;
   margin-top: 18px;
-  max-width: 820px;
+  max-width: 860px;
   color: rgba(248, 241, 230, 0.82);
   font-size: 18px;
   line-height: 1.75;
@@ -98,19 +97,66 @@
   gap: 12px;
 }
 
-.heroPill {
+.heroPill,
+.metaPill,
+.laneBadge,
+.sectionKicker {
   display: inline-flex;
   padding: 8px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(248, 241, 230, 0.14);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(248, 241, 230, 0.92);
   font-size: 13px;
   font-weight: 700;
 }
 
+.heroPill,
+.metaPill {
+  border: 1px solid rgba(248, 241, 230, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(248, 241, 230, 0.92);
+}
+
 .heroNote {
   font-size: 14px;
+}
+
+.anchorGrid {
+  position: relative;
+  z-index: 1;
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.anchorCard {
+  display: block;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.anchorCard span {
+  color: #f0d3a3;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.anchorCard strong {
+  display: block;
+  margin-top: 10px;
+  color: #f8f1e6;
+  font-size: 20px;
+}
+
+.anchorCard p {
+  margin-top: 10px;
+  color: rgba(248, 241, 230, 0.76);
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 .section {
@@ -127,20 +173,46 @@
   gap: 20px;
 }
 
+.sectionKicker {
+  background: rgba(203, 82, 53, 0.1);
+  color: var(--accent-deep);
+}
+
 .sectionHeader h2 {
+  margin-top: 12px;
   font-size: clamp(30px, 4vw, 50px);
 }
 
 .sectionHeader p {
   margin-top: 10px;
-  max-width: 760px;
+  max-width: 780px;
   color: var(--muted);
   line-height: 1.75;
 }
 
+.sectionMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 10px;
+}
+
+.sectionMeta .metaPill {
+  border-color: rgba(22, 50, 79, 0.12);
+  background: rgba(22, 50, 79, 0.06);
+  color: var(--accent-deep);
+}
+
+.caption {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 .headerLink {
   display: inline-flex;
-  flex-shrink: 0;
+  align-items: center;
   color: var(--accent);
   font-weight: 700;
 }
@@ -164,7 +236,7 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4);
 }
 
 .studentLayout {
@@ -188,17 +260,25 @@
   letter-spacing: 0.08em;
 }
 
+.chartViewport,
+.familyTrackViewport {
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
 .chartShell {
   position: relative;
-  padding: 24px 24px 12px;
-  border-radius: 26px;
+  min-width: 980px;
+  padding: 24px 24px 18px;
+  border-radius: 28px;
   background:
-    linear-gradient(180deg, rgba(15, 29, 47, 0.98), rgba(19, 39, 65, 0.92)),
-    linear-gradient(135deg, rgba(240, 200, 141, 0.08), rgba(203, 82, 53, 0.1));
+    linear-gradient(180deg, rgba(15, 29, 47, 0.99), rgba(19, 39, 65, 0.93)),
+    linear-gradient(135deg, rgba(240, 200, 141, 0.08), rgba(203, 82, 53, 0.08));
   overflow: hidden;
 }
 
-.chartShell::before {
+.chartShell::before,
+.flowShell::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -216,13 +296,8 @@
   z-index: 1;
 }
 
-.topBand {
-  min-height: 240px;
-}
-
 .bottomBand {
-  min-height: 136px;
-  margin-top: 26px;
+  margin-top: 28px;
 }
 
 .axisBand {
@@ -250,14 +325,19 @@
   background: radial-gradient(circle at center, rgba(99, 180, 255, 0.24), transparent 72%);
 }
 
-.axisLine::after {
+.axisLine::after,
+.familyTrackLine::after,
+.flowRibbon::after {
   content: "";
   position: absolute;
   right: -2px;
-  top: -5px;
-  border-left: 20px solid #73d9ff;
+  border-left: 18px solid #73d9ff;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
+}
+
+.axisLine::after {
+  top: -5px;
 }
 
 .axisMarker {
@@ -280,13 +360,53 @@
 
 .axisMarker strong {
   color: #f3efe8;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
+  white-space: nowrap;
+}
+
+.dualLaneMeta {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.laneMetaCard,
+.takeawayCard,
+.sourceCard,
+.familyLane,
+.preludeCard {
+  border-radius: 22px;
+  border: 1px solid var(--border);
+}
+
+.laneMetaCard {
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.laneBadge {
+  background: rgba(22, 50, 79, 0.08);
+  color: var(--accent-deep);
+}
+
+.laneMetaCard p,
+.takeawayCard p,
+.sourceCard p,
+.noteList li,
+.familyLabel p,
+.preludeCard span,
+.flowGroup li {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.75;
 }
 
 .milestoneCard,
 .familyEvent,
-.mobileCard {
+.mobileCard,
+.flowStage {
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -294,21 +414,30 @@
 
 .milestoneCard {
   position: absolute;
-  width: 172px;
+  width: 168px;
   transform: translateX(-50%);
   padding: 14px 14px 12px;
 }
 
-.bottomCard {
-  width: 164px;
+.compactCard {
+  width: 158px;
 }
 
 .milestoneCard strong,
 .familyEvent strong,
 .mobileCard strong,
 .takeawayCard strong,
-.sourceCard strong {
+.sourceCard strong,
+.preludeCard strong,
+.flowStage h3,
+.flowGroup strong {
   display: block;
+}
+
+.milestoneCard strong,
+.familyEvent strong,
+.mobileCard strong,
+.preludeCard strong {
   font-size: 16px;
 }
 
@@ -382,46 +511,37 @@
 
 .familyLane {
   padding: 18px;
-  border-radius: 24px;
   background: rgba(255, 255, 255, 0.68);
-  border: 1px solid var(--border);
 }
 
 .familyLabel h3 {
   font-size: 26px;
 }
 
-.familyLabel p {
-  margin-top: 8px;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
 .familyTrackShell {
   position: relative;
+  min-width: 900px;
+  min-height: 116px;
   margin-top: 16px;
-  min-height: 112px;
   padding-top: 12px;
 }
 
-.familyTrackLine {
+.familyTrackLine,
+.flowRibbon {
   position: absolute;
   left: 0;
   right: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(47, 127, 218, 0.86), rgba(99, 180, 255, 0.9));
+}
+
+.familyTrackLine {
   top: 48px;
   height: 7px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(47, 127, 218, 0.8), rgba(99, 180, 255, 0.86));
 }
 
 .familyTrackLine::after {
-  content: "";
-  position: absolute;
-  right: -1px;
   top: -5px;
-  border-left: 16px solid rgba(99, 180, 255, 0.86);
-  border-top: 9px solid transparent;
-  border-bottom: 9px solid transparent;
 }
 
 .familyEvent {
@@ -432,36 +552,125 @@
   padding: 12px 14px;
 }
 
+.insightGrid,
 .takeawayGrid {
+  margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
 .takeawayCard,
 .sourceCard {
   padding: 20px;
-  border-radius: 22px;
   background: rgba(255, 255, 255, 0.78);
-  border: 1px solid var(--border);
-}
-
-.takeawayCard p,
-.sourceCard p,
-.noteList li {
-  margin-top: 10px;
-  color: var(--muted);
-  line-height: 1.75;
 }
 
 .sourceCard {
   margin-top: 18px;
-  background: rgba(255, 247, 235, 0.9);
+  background: rgba(255, 247, 235, 0.92);
 }
 
 .noteList {
   margin-top: 12px;
   padding-left: 18px;
+}
+
+.preludeGrid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.preludeCard {
+  padding: 18px;
+}
+
+.flowShell {
+  position: relative;
+  overflow: hidden;
+  margin-top: 22px;
+  padding: 78px 22px 24px;
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(15, 29, 47, 0.99), rgba(19, 39, 65, 0.93)),
+    linear-gradient(135deg, rgba(240, 200, 141, 0.08), rgba(203, 82, 53, 0.08));
+}
+
+.flowRibbon {
+  top: 42px;
+  height: 10px;
+}
+
+.flowRibbon::after {
+  top: -5px;
+}
+
+.flowCallout {
+  position: relative;
+  z-index: 1;
+  max-width: 440px;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: rgba(240, 200, 141, 0.16);
+  border: 1px solid rgba(240, 200, 141, 0.2);
+  color: #f0d3a3;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.flowGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.flowStage {
+  padding: 18px 16px;
+}
+
+.flowDate {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.26);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.flowStage h3 {
+  margin-top: 12px;
+  font-size: 24px;
+}
+
+.flowGroupList {
+  margin-top: 14px;
+  display: grid;
+  gap: 14px;
+}
+
+.flowGroup strong {
+  font-size: 14px;
+}
+
+.flowGroup ul {
+  margin-top: 8px;
+  padding-left: 18px;
+}
+
+.flowGroup li + li {
+  margin-top: 4px;
+}
+
+@media (max-width: 1280px) {
+  .anchorGrid,
+  .flowGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 1080px) {
@@ -473,12 +682,19 @@
     writing-mode: horizontal-tb;
     justify-content: start;
   }
+
+  .dualLaneMeta,
+  .insightGrid,
+  .takeawayGrid,
+  .preludeGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 920px) {
-  .chartShell,
+  .chartViewport,
   .studentLayout .sideLabel,
-  .familyTrackShell {
+  .familyTrackViewport {
     display: none;
   }
 
@@ -513,8 +729,17 @@
     align-items: start;
   }
 
+  .sectionMeta {
+    justify-content: start;
+  }
+
+  .anchorGrid,
+  .dualLaneMeta,
   .mobileGrid,
-  .takeawayGrid {
+  .insightGrid,
+  .takeawayGrid,
+  .preludeGrid,
+  .flowGrid {
     grid-template-columns: 1fr;
   }
 }

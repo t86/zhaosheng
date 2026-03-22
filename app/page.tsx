@@ -55,28 +55,26 @@ export default function Home() {
             <h2>高三下时间线</h2>
           </div>
           <p>
-            把你提供的 2024 规划图整理成可浏览时间轴，重点把强基、综评、港校和录取节点放到一张图里统一看。
+            把你提供的多张规划图整理成时间线库，既能看总览，也能看上海 6-7 月、7-8 月和 2025 录取流程。
           </p>
         </div>
         <Link className={styles.timelineCard} href="/timeline">
           <div className={styles.timelineCardTopline}>
             <span className={styles.timelineBadge}>新补内容</span>
-            <strong>高三下决策时间线</strong>
+            <strong>高三时间线库</strong>
           </div>
           <p>
-            学生准备和家长准备分成两层泳道。桌面端是横向图表，手机端会自动折叠成月度卡片。
+            现在已经拆成 4 段：高三下总览、上海 6-7 月、上海 7-8 月、2025 上海录取流程。桌面端是横向图表，手机端会自动折叠成卡片。
           </p>
           <div className={styles.timelinePreview}>
-            <span style={{ left: "18%" }}>3月</span>
-            <span style={{ left: "31%" }}>4月</span>
-            <span style={{ left: "47%" }}>5月</span>
-            <span style={{ left: "61%" }}>6月</span>
-            <span style={{ left: "74%" }}>7月</span>
-            <i style={{ left: "38%" }} />
-            <i style={{ left: "49%" }} />
-            <i style={{ left: "61%" }} />
-            <i style={{ left: "81%" }} />
-            <i style={{ left: "91%" }} />
+            <span style={{ left: "15%" }}>总览</span>
+            <span style={{ left: "37%" }}>6-7月</span>
+            <span style={{ left: "59%" }}>7-8月</span>
+            <span style={{ left: "84%" }}>2025</span>
+            <i style={{ left: "18%" }} />
+            <i style={{ left: "41%" }} />
+            <i style={{ left: "63%" }} />
+            <i style={{ left: "86%" }} />
           </div>
           <div className={styles.timelineHint}>打开时间线 →</div>
         </Link>
