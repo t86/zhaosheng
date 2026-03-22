@@ -52,6 +52,39 @@ export default function Home() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div>
+            <h2>高三下时间线</h2>
+          </div>
+          <p>
+            把你提供的 2024 规划图整理成可浏览时间轴，重点把强基、综评、港校和录取节点放到一张图里统一看。
+          </p>
+        </div>
+        <Link className={styles.timelineCard} href="/timeline">
+          <div className={styles.timelineCardTopline}>
+            <span className={styles.timelineBadge}>新补内容</span>
+            <strong>高三下决策时间线</strong>
+          </div>
+          <p>
+            学生准备和家长准备分成两层泳道。桌面端是横向图表，手机端会自动折叠成月度卡片。
+          </p>
+          <div className={styles.timelinePreview}>
+            <span style={{ left: "18%" }}>3月</span>
+            <span style={{ left: "31%" }}>4月</span>
+            <span style={{ left: "47%" }}>5月</span>
+            <span style={{ left: "61%" }}>6月</span>
+            <span style={{ left: "74%" }}>7月</span>
+            <i style={{ left: "38%" }} />
+            <i style={{ left: "49%" }} />
+            <i style={{ left: "61%" }} />
+            <i style={{ left: "81%" }} />
+            <i style={{ left: "91%" }} />
+          </div>
+          <div className={styles.timelineHint}>打开时间线 →</div>
+        </Link>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
             <h2>专题入口</h2>
           </div>
           <p>

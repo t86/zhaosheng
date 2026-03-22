@@ -182,6 +182,114 @@
   gap: 16px;
 }
 
+.timelineCard {
+  position: relative;
+  display: block;
+  margin-top: 22px;
+  min-height: 220px;
+  padding: 24px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(135deg, rgba(14, 30, 49, 0.96), rgba(24, 54, 87, 0.9)),
+    radial-gradient(circle at top right, rgba(240, 200, 141, 0.18), transparent 28%);
+  box-shadow: 0 24px 64px rgba(10, 18, 30, 0.18);
+}
+
+.timelineCard::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 44px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2f7fda, #63b4ff 65%, #73d9ff);
+}
+
+.timelineCard::after {
+  content: "";
+  position: absolute;
+  right: 22px;
+  bottom: 39px;
+  border-left: 18px solid #73d9ff;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.timelineCardTopline {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.timelineBadge {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(240, 200, 141, 0.14);
+  color: #f0d3a3;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.timelineCardTopline strong {
+  color: #f7f1e8;
+  font-size: 30px;
+}
+
+.timelineCard p {
+  position: relative;
+  z-index: 1;
+  margin-top: 14px;
+  max-width: 680px;
+  color: rgba(247, 241, 232, 0.8);
+  line-height: 1.7;
+}
+
+.timelinePreview {
+  position: relative;
+  z-index: 1;
+  margin-top: 38px;
+  height: 62px;
+}
+
+.timelinePreview span,
+.timelinePreview i {
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.timelinePreview span {
+  bottom: 0;
+  color: rgba(247, 241, 232, 0.9);
+  font-size: 13px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.timelinePreview i {
+  bottom: 28px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #f5d29f;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
+}
+
+.timelineHint {
+  position: absolute;
+  right: 24px;
+  bottom: 18px;
+  color: #f0d3a3;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .methodCard {
   padding: 20px;
   border-radius: var(--radius-md);
@@ -237,6 +345,10 @@
   .topicGrid,
   .methodGrid {
     grid-template-columns: 1fr;
+  }
+
+  .timelineCard {
+    min-height: 260px;
   }
 
   .sectionHeader {
