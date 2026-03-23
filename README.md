@@ -25,6 +25,7 @@ pnpm dev
 pnpm lint
 pnpm build
 pnpm collect:data
+pnpm deploy:ecs
 ```
 
 `pnpm collect:data` 会运行 `scripts/enrich_school_metrics.py`，尝试从公开网页中补充：
@@ -37,6 +38,32 @@ pnpm collect:data
 - 薪资快照
 
 注意：学校公开报告分散在不同官网和信息公开页，且搜索引擎会对批量抓取限流，所以当前脚本更适合作为“持续补数工具”，不是一次性跑满 39 校的全自动采集器。
+
+## 部署
+
+当前线上服务器使用 `systemd` 托管，默认目标是 SSH 配置里的 `ecs-47`，服务名 `zhaosheng.service`，线上目录 `/opt/apps/zhaosheng`。
+
+```bash
+pnpm deploy:ecs
+```
+
+这个脚本会依次执行：
+
+1. 本地 `pnpm lint`
+2. 本地 `pnpm build`
+3. 打包当前工作区源码并上传服务器
+4. 服务器执行 `pnpm install --frozen-lockfile` 和 `pnpm build`
+5. 重启 `zhaosheng.service` 并用 `curl http://127.0.0.1/selection` 验活
+
+如需改目标机或服务参数，可通过环境变量覆盖：
+
+```bash
+DEPLOY_HOST=ecs-47 \
+REMOTE_APP_DIR=/opt/apps/zhaosheng \
+REMOTE_SERVICE=zhaosheng.service \
+REMOTE_NODE_BIN=/opt/node-v20.19.0-linux-x64/bin \
+pnpm deploy:ecs
+```
 
 ## 数据结构
 

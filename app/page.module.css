@@ -290,6 +290,103 @@
   font-weight: 700;
 }
 
+.selectionCard {
+  position: relative;
+  display: block;
+  margin-top: 22px;
+  min-height: 220px;
+  padding: 24px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(140deg, rgba(40, 24, 50, 0.96), rgba(14, 74, 74, 0.9)),
+    radial-gradient(circle at top left, rgba(234, 183, 85, 0.16), transparent 30%);
+  box-shadow: 0 24px 64px rgba(10, 18, 30, 0.18);
+}
+
+.selectionCard::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 44px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f0b74c, #50c7b7 58%, #4e8df5);
+}
+
+.selectionCard::after {
+  content: "";
+  position: absolute;
+  right: 22px;
+  bottom: 39px;
+  border-left: 18px solid #4e8df5;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.selectionCardTopline {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.selectionBadge {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 216, 139, 0.14);
+  color: #f8d89e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.selectionCardTopline strong {
+  color: #f6f4ee;
+  font-size: 30px;
+}
+
+.selectionCard p {
+  position: relative;
+  z-index: 1;
+  margin-top: 14px;
+  max-width: 720px;
+  color: rgba(246, 244, 238, 0.82);
+  line-height: 1.7;
+}
+
+.selectionPreview {
+  position: relative;
+  z-index: 1;
+  margin-top: 38px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.selectionPreview span {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(246, 244, 238, 0.94);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.selectionHint {
+  position: absolute;
+  right: 24px;
+  bottom: 18px;
+  color: #f8d89e;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .methodCard {
   padding: 20px;
   border-radius: var(--radius-md);
@@ -348,6 +445,10 @@
   }
 
   .timelineCard {
+    min-height: 260px;
+  }
+
+  .selectionCard {
     min-height: 260px;
   }
 

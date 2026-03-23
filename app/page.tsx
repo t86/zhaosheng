@@ -83,6 +83,33 @@ export default function Home() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div>
+            <h2>强基与综评</h2>
+          </div>
+          <p>
+            把你提供的强基批、综评批图片整理成专题页，拆开显示规则、模式、学校案例、分数线和面试建议。
+          </p>
+        </div>
+        <Link className={styles.selectionCard} href="/selection">
+          <div className={styles.selectionCardTopline}>
+            <span className={styles.selectionBadge}>新补专题</span>
+            <strong>强基与综评板块</strong>
+          </div>
+          <p>
+            现在已经包含强基三种模式、复旦 / 武大 / 东南案例、上海 11 所综评高校、交大综评流程与 2025 入围线。
+          </p>
+          <div className={styles.selectionPreview}>
+            <span>强基模式</span>
+            <span>学校案例</span>
+            <span>综评流程</span>
+            <span>入围线</span>
+          </div>
+          <div className={styles.selectionHint}>打开专题 →</div>
+        </Link>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
             <h2>专题入口</h2>
           </div>
           <p>
