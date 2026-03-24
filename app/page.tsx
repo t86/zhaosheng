@@ -95,7 +95,7 @@ export default function Home() {
             <strong>强基与综评板块</strong>
           </div>
           <p>
-            现在已经包含强基三种模式、复旦 / 武大 / 东南案例、上海 11 所综评高校、交大综评流程与 2025 入围线。
+            现在已经包含 28 所强基高校总览、强基三种模式、复旦 / 武大 / 东南案例、上海 11 所综评高校、交大综评流程与 2025 入围线。
           </p>
           <div className={styles.selectionPreview}>
             <span>强基模式</span>

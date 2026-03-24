@@ -193,15 +193,21 @@ export default function SelectionPage() {
         <div className={styles.sectionHeader}>
           <div>
             <span className={styles.sectionKicker}>强基板块</span>
-            <h2>先看规则，再看模式</h2>
+            <h2>先看总览，再看规则和模式</h2>
             <p>
-              强基批真正要分清的不是“要不要报”，而是 `出分前校测 / 出分后只面试 / 出分后笔试 + 面试`
-              三种模式，以及入围算法究竟是不是裸高考分。
+              这组图片先补齐了 `28 所学校总览 / 报名时间 / 只能报 1 所 / 提前测试 12 所` 这层底图；
+              再往下才是 `出分前校测 / 出分后只面试 / 出分后笔试 + 面试` 三种模式，以及入围算法究竟是不是裸高考分。
             </p>
           </div>
         </div>
 
         <div className={styles.disclaimerCard}>{qiangji.disclaimer}</div>
+
+        <div className={styles.panelGridThree}>
+          {qiangji.overviewPanels.map((panel) => (
+            <BulletCard key={panel.title} panel={panel} />
+          ))}
+        </div>
 
         <div className={styles.panelGridTwo}>
           {qiangji.comparePanels.map((panel) => (
