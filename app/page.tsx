@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { topicDefinitions } from "@/data/topics";
 import { SchoolExplorer } from "@/components/SchoolExplorer";
+import { topicDefinitions } from "@/data/topics";
+import { getShanghaiAdmissionsCoverage } from "@/lib/shanghai-admissions";
 import {
   getCoverageStats,
   getRegions,
@@ -9,113 +10,305 @@ import {
 } from "@/lib/schools";
 import styles from "./page.module.css";
 
+const heroQuestions = [
+  {
+    title: "先定路径",
+    description: "普通批、综评、强基该押哪条线，决定了后面看的页面顺序。",
+  },
+  {
+    title: "先看组线",
+    description: "上海同一所 985 会拆成多个院校专业组，不能只看校名。",
+  },
+  {
+    title: "先排风险",
+    description: "物化卡口、校区、学费、合作办学和调剂风险，比“学校总数”更关键。",
+  },
+];
+
+const quickRules = [
+  {
+    value: "24",
+    label: "普通批平行志愿",
+    note: "每个院校专业组内仍要继续排专业顺序。",
+  },
+  {
+    value: "4",
+    label: "综评批平行志愿",
+    note: "要先进入公示合格名单，且通常要过特殊类型控制线。",
+  },
+  {
+    value: "4",
+    label: "组内专业志愿",
+    note: "真正决定去向的是专业组和专业顺序，不只是学校名。",
+  },
+];
+
+const priorityPanels = [
+  {
+    title: "分数段与位次感",
+    description: "家长先想知道孩子大概摸到哪一档 985，而不是先看百科式学校介绍。",
+  },
+  {
+    title: "选科能报哪些组",
+    description: "上海是院校专业组逻辑，物理、化学要求会直接决定能不能进池。",
+  },
+  {
+    title: "同校不同组差多少",
+    description: "同一所学校的不同组线和方向差异很大，必须横向比较而不是只看校名。",
+  },
+  {
+    title: "专业去向值不值",
+    description: "保研、深造、就业城市、实验班和转专业空间，才是最后愿不愿去的关键。",
+  },
+  {
+    title: "隐性风险点",
+    description: "校区、合作办学、语种、体检、单科要求和服从调剂，都是常见失误区。",
+  },
+  {
+    title: "节点别撞车",
+    description: "强基、综评、港校和普通批在 6-7 月会并行，真正难的是确认顺序。",
+  },
+];
+
+const routeCards = [
+  {
+    kicker: "普通批主线",
+    title: "先把上海近 5 年组线看透",
+    description:
+      "对 985 目标家庭来说，普通批仍然是主战场。首页应该先把“校名”翻译成“院校专业组”。",
+    bullets: [
+      "先看 2021-2025 官方组线，再看学校层标签。",
+      "按院校专业组理解风险，比看单个学校平均分更贴近真实填报。",
+      "适合先按冲、稳、保做组线池，再下钻到具体学校页。",
+    ],
+    href: "/admissions/shanghai",
+    actionLabel: "查看上海组线 →",
+    tone: "ink",
+  },
+  {
+    kicker: "综评路径",
+    title: "上海家长绕不开综评判断",
+    description:
+      "如果目标集中在交复同济等学校，综评不是附属内容，而是要尽早准备的核心路径。",
+    bullets: [
+      "先看自己是不是该把时间花在材料、面试和排序上。",
+      "综评更像“分数 + 面试”的竞争，不是低分保底通道。",
+      "适合在出分前后反复回看规则、入围线和学校案例。",
+    ],
+    href: "/selection",
+    actionLabel: "查看强基与综评 →",
+    tone: "teal",
+  },
+  {
+    kicker: "强基路径",
+    title: "强基是单校重仓，不是广撒网",
+    description:
+      "目标清北华五和顶尖 985 的家庭，会非常在意强基校测节奏和确认顺序。",
+    bullets: [
+      "强基更适合单校攻坚，先判断值不值得提前押注。",
+      "校测时间和综评、港校、普通批常常撞在一起。",
+      "首页要把它放进路径判断，而不是孤立成单独资料页。",
+    ],
+    href: "/selection",
+    actionLabel: "先看强基模式 →",
+    tone: "amber",
+  },
+];
+
+const featureCards = [
+  {
+    kicker: "上海官方数据",
+    title: "院校专业组数据库",
+    description: "先用官方公开的组线判断学校池，再决定是否进入学校详情和专业层。",
+    stats: ["2021-2025 年", "普通批 + Q 组", "只用官方来源"],
+    href: "/admissions/shanghai",
+    actionLabel: "打开上海组线页 →",
+    tone: "blue",
+  },
+  {
+    kicker: "家长高频页面",
+    title: "强基与综评判断台",
+    description: "把流程、模式、入围线、学校案例和面试准备拆开，避免全堆成一页。",
+    stats: ["强基模式", "学校案例", "综评入围线"],
+    href: "/selection",
+    actionLabel: "打开专题页 →",
+    tone: "plum",
+  },
+  {
+    kicker: "高三下节奏",
+    title: "3-7 月关键时间线",
+    description: "把强基、综评、志愿填报和录取时间放到同一条线里，方便家长排优先级。",
+    stats: ["高三下总览", "上海 6-7 月", "2025 录取流程"],
+    href: "/timeline",
+    actionLabel: "打开时间线 →",
+    tone: "slate",
+  },
+];
+
 export default function Home() {
   const coverage = getCoverageStats();
+  const shanghaiCoverage = getShanghaiAdmissionsCoverage();
+  const yearStart = shanghaiCoverage.years[0];
+  const yearEnd = shanghaiCoverage.years.at(-1);
 
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
-        <span className={styles.eyebrow}>985 高校专题站 · 面向高考志愿参考</span>
-        <h1>先把 39 所 985 看透，再决定下一步怎么报。</h1>
-        <p>
-          这是一版只聚焦 985 的学校层数据站。当前优先展示学校标签、专业档案、区域分布和已经挂接上的公开报告快照，
-          方便你先做学校池筛选，再决定是否进入更细的省份录取和专业组推荐。
-        </p>
-        <div className={styles.heroMeta}>
-          <span className={styles.eyebrow}>只看 985，不混入 211 和双一流扩展池</span>
-          <span className={styles.eyebrow}>专题切片包括 C9、华东五校、军工 985 等</span>
+        <div className={styles.heroLayout}>
+          <div className={styles.heroCopy}>
+            <span className={styles.eyebrow}>上海高三家长版 · 985 志愿判断台</span>
+            <h1>先判断哪条路能进 985，再决定学校和专业组怎么报。</h1>
+            <p className={styles.heroLead}>
+              这一版首页不再先讲学校总数，而是先回答家长真正关心的 4 件事：
+              `走哪条路径`、`先看哪些组线`、`选科卡口在哪里`、`哪些风险必须提前排除`。
+              学校池、专题页和时间线仍然都在，但顺序按真实决策流重排。
+            </p>
+
+            <div className={styles.heroActions}>
+              <Link className={styles.primaryAction} href="/admissions/shanghai">
+                先看上海近 5 年组线 →
+              </Link>
+              <Link className={styles.secondaryAction} href="/selection">
+                看强基与综评 →
+              </Link>
+              <Link className={styles.secondaryAction} href="/timeline">
+                看高三下时间线 →
+              </Link>
+            </div>
+
+            <div className={styles.heroPills}>
+              <span>{coverage.schoolCount} 所 985 主池</span>
+              <span>
+                {yearStart}-{yearEnd} 官方组线
+              </span>
+              <span>{shanghaiCoverage.totalRecords} 条上海公开记录</span>
+            </div>
+          </div>
+
+          <aside className={styles.heroPanel}>
+            <div className={styles.panelTopline}>
+              <span className={styles.panelBadge}>进站先看</span>
+              <strong>上海家长最常问的 3 件事</strong>
+            </div>
+
+            <div className={styles.questionList}>
+              {heroQuestions.map((item) => (
+                <article className={styles.questionCard} key={item.title}>
+                  <h2>{item.title}</h2>
+                  <p>{item.description}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className={styles.ruleGrid}>
+              {quickRules.map((item) => (
+                <div className={styles.ruleCard} key={item.label}>
+                  <strong>{item.value}</strong>
+                  <span>{item.label}</span>
+                  <p>{item.note}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className={styles.panelNote}>
+              截至 2026 年 3 月 25 日，上海 2026 秋季统一高考完整投档录取办法我还没有看到公开定稿，
+              当前时间节奏与志愿结构先按 2025 官方规则展示，后续再补 2026 版。
+            </p>
+          </aside>
         </div>
-        <div className={styles.stats}>
-          <div className={styles.statCard}>
-            <span>学校总数</span>
-            <strong>{coverage.schoolCount}</strong>
-          </div>
-          <div className={styles.statCard}>
-            <span>专题数</span>
-            <strong>{coverage.topicCount}</strong>
-          </div>
-          <div className={styles.statCard}>
-            <span>专业档案覆盖</span>
-            <strong>{coverage.majorProfileCovered}</strong>
-          </div>
-          <div className={styles.statCard}>
-            <span>就业快照覆盖</span>
-            <strong>{coverage.employmentCovered}</strong>
-          </div>
-        </div>
-        <p className={styles.heroNote}>
-          当前已补 {coverage.majorProfileCovered} 所学校的专业档案，并开始按 `高考直招 / 专项选拔 / 校内选拔 / 综合选拔 / 培养平台`
-          区分特色班型口径。报告型指标依旧只在挂到学校公开的本科教学质量报告或就业质量报告后才展示。
-        </p>
       </section>
 
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div>
-            <h2>高三下时间线</h2>
+            <h2>首页应该先回答什么</h2>
           </div>
           <p>
-            把你提供的多张规划图整理成时间线库，既能看总览，也能看上海 6-7 月、7-8 月和 2025 录取流程。
+            如果目标是 985 及以上，首页不该先平铺学校，而要先告诉家长什么信息最值得花时间看。
           </p>
         </div>
-        <Link className={styles.timelineCard} href="/timeline">
-          <div className={styles.timelineCardTopline}>
-            <span className={styles.timelineBadge}>新补内容</span>
-            <strong>高三时间线库</strong>
-          </div>
-          <p>
-            现在已经拆成 4 段：高三下总览、上海 6-7 月、上海 7-8 月、2025 上海录取流程。桌面端是横向图表，手机端会自动折叠成卡片。
-          </p>
-          <div className={styles.timelinePreview}>
-            <span style={{ left: "15%" }}>总览</span>
-            <span style={{ left: "37%" }}>6-7月</span>
-            <span style={{ left: "59%" }}>7-8月</span>
-            <span style={{ left: "84%" }}>2025</span>
-            <i style={{ left: "18%" }} />
-            <i style={{ left: "41%" }} />
-            <i style={{ left: "63%" }} />
-            <i style={{ left: "86%" }} />
-          </div>
-          <div className={styles.timelineHint}>打开时间线 →</div>
-        </Link>
+
+        <div className={styles.priorityGrid}>
+          {priorityPanels.map((item) => (
+            <article className={styles.priorityCard} key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div>
-            <h2>强基与综评</h2>
+            <h2>先判断路径，再下钻学校</h2>
           </div>
           <p>
-            把你提供的强基批、综评批图片整理成专题页，拆开显示规则、模式、学校案例、分数线和面试建议。
+            对上海家庭来说，普通批、综评、强基不是三个平行专题，而是三条不同的决策路径。
           </p>
         </div>
-        <Link className={styles.selectionCard} href="/selection">
-          <div className={styles.selectionCardTopline}>
-            <span className={styles.selectionBadge}>新补专题</span>
-            <strong>强基与综评板块</strong>
-          </div>
-          <p>
-            现在已经包含 28 所强基高校总览、强基三种模式、复旦 / 武大 / 东南案例、上海 11 所综评高校、交大综评流程与 2025 入围线。
-          </p>
-          <div className={styles.selectionPreview}>
-            <span>强基模式</span>
-            <span>学校案例</span>
-            <span>综评流程</span>
-            <span>入围线</span>
-          </div>
-          <div className={styles.selectionHint}>打开专题 →</div>
-        </Link>
+
+        <div className={styles.routeGrid}>
+          {routeCards.map((card) => (
+            <article className={styles.routeCard} data-tone={card.tone} key={card.title}>
+              <span className={styles.routeKicker}>{card.kicker}</span>
+              <h3>{card.title}</h3>
+              <p className={styles.routeLead}>{card.description}</p>
+              <ul className={styles.routeList}>
+                {card.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+              <Link className={styles.routeLink} href={card.href}>
+                {card.actionLabel}
+              </Link>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div>
-            <h2>专题入口</h2>
+            <h2>高价值入口前置</h2>
           </div>
           <p>
-            首页不是“39 所平铺”。先按专题切进去，会更接近家长和学生实际做筛选时的思路。
+            首页先把家长会反复打开的内容放上来，后面再进入专题切片和学校池筛选。
           </p>
         </div>
+
+        <div className={styles.featureGrid}>
+          {featureCards.map((card) => (
+            <Link
+              className={styles.featureCard}
+              data-tone={card.tone}
+              href={card.href}
+              key={card.title}
+            >
+              <span className={styles.featureKicker}>{card.kicker}</span>
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+              <div className={styles.featureStats}>
+                {card.stats.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+              <div className={styles.featureLink}>{card.actionLabel}</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>按目标方向切学校池</h2>
+          </div>
+          <p>
+            专题入口保留，但不再抢首屏。它更适合在你已经判断完路径之后，拿来缩小学校比较范围。
+          </p>
+        </div>
+
         <div className={styles.topicGrid}>
           {topicDefinitions.map((topic) => (
             <Link className={styles.topicCard} href={`/topics/${topic.slug}`} key={topic.slug}>
@@ -131,10 +324,10 @@ export default function Home() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div>
-            <h2>学校筛选器</h2>
+            <h2>学校池筛选器</h2>
           </div>
           <p>
-            先按区域、学校类型、专题标签、专业方向和班型口径缩小池子。这一步更适合作为“学校层志愿池”而不是最终投档建议。
+            这一步不再承担首页主导叙事，而是作为第二层工具：按区域、学校类型、专题标签和专业方向快速收窄目标池。
           </p>
         </div>
         <SchoolExplorer
@@ -148,26 +341,26 @@ export default function Home() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div>
-            <h2>这轮数据怎么用</h2>
+            <h2>这站现在怎么用最省时间</h2>
           </div>
-          <p>
-            这一版强调“可浏览、可继续补数、可扩展成志愿系统”，不是把学校信息堆成百科页面。
-          </p>
+          <p>先做判断，再做筛选，最后再回看学校细节和数据口径。</p>
         </div>
+
         <div className={styles.methodGrid}>
           <div className={styles.methodCard}>
-            <strong>1. 先做学校池</strong>
-            <p>先用学校标签、区域和专业档案，把备选学校压到 8 到 12 所，再进入专业和省份录取规则层。</p>
+            <strong>1. 先看路径</strong>
+            <p>先判断普通批、综评、强基哪个是主线，别把三条线的准备节奏混在一起。</p>
           </div>
           <div className={styles.methodCard}>
-            <strong>2. 只信公开来源</strong>
-            <p>就业率、深造率和本科专业数这类字段，只在挂上公开报告来源时才显示，避免凭印象做排序。</p>
+            <strong>2. 再看组线</strong>
+            <p>先看上海官方院校专业组线，把学校池压缩到可决策的范围，再进学校详情页。</p>
           </div>
           <div className={styles.methodCard}>
-            <strong>3. 为下一轮留接口</strong>
-            <p>后续可以继续接入省份位次、专业组选科要求和历年录取线，直接升级为真正的志愿推荐工具。</p>
+            <strong>3. 最后补细节</strong>
+            <p>最后再补专业档案、就业去向、校区和数据来源，不把精力浪费在无关学校上。</p>
           </div>
         </div>
+
         <div className={styles.linkRow}>
           <Link className={styles.footerLink} href="/admissions/shanghai">
             查看上海 2021-2025 官方投档线 →
