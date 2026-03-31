@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { buildShanghaiCompareCard } from "@/lib/shanghai-admissions-compare";
 import { getShanghaiAdmissionsInsight } from "@/lib/shanghai-admissions-insights";
 import type { School } from "@/lib/schools";
 import type { ShanghaiAdmissionRecord } from "@/lib/shanghai-admissions";
@@ -33,6 +34,7 @@ export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
   const [year, setYear] = useState("all");
   const [tagFilter, setTagFilter] = useState("all");
   const [query, setQuery] = useState("");
+  const [compareSlugs, setCompareSlugs] = useState<string[]>([]);
 
   const filtered = useMemo(() => {
     return summaries
@@ -73,6 +75,27 @@ export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
             summary.filteredRecords.some((record) => record.groupName.includes(query))),
       );
   }, [query, schoolSlug, summaries, tagFilter, year]);
+
+  const compareCards = useMemo(() => {
+    return compareSlugs
+      .map((slug) => summaries.find((summary) => summary.school.slug === slug))
+      .filter((summary): summary is SchoolAdmissionsSummary => Boolean(summary))
+      .map((summary) => buildShanghaiCompareCard(summary));
+  }, [compareSlugs, summaries]);
+
+  function toggleCompare(slug: string) {
+    setCompareSlugs((current) => {
+      if (current.includes(slug)) {
+        return current.filter((item) => item !== slug);
+      }
+
+      if (current.length >= 4) {
+        return current;
+      }
+
+      return [...current, slug];
+    });
+  }
 
   return (
     <div className={styles.wrap}>
@@ -120,7 +143,84 @@ export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
         </select>
       </div>
 
-      <p className={styles.count}>当前命中 {filtered.length} 所学校</p>
+      <p className={styles.count}>
+        当前命中 {filtered.length} 所学校
+        {compareCards.length > 0 ? ` · 已加入对比 ${compareCards.length}/4` : ""}
+      </p>
+
+      {compareCards.length > 0 ? (
+        <section className={styles.compareTray}>
+          <div className={styles.compareHeader}>
+            <div>
+              <h3>已选学校对比</h3>
+              <p>这一栏只对比当前站内已经核到的公开组线、阈值、Q 组和学校官网补口径，不替代位次判断。</p>
+            </div>
+            <button
+              className={styles.clearButton}
+              type="button"
+              onClick={() => setCompareSlugs([])}
+            >
+              清空对比
+            </button>
+          </div>
+
+          <div className={styles.compareGrid}>
+            {compareCards.map((card) => (
+              <article className={styles.compareCard} key={card.schoolSlug}>
+                <div className={styles.compareTopline}>
+                  <div>
+                    <strong>{card.schoolName}</strong>
+                    <p>{card.schoolMeta}</p>
+                  </div>
+                  <span className={styles.compareLeadTag}>{card.readMethodTag}</span>
+                </div>
+
+                {card.tags.length > 0 ? (
+                  <div className={styles.tagRow}>
+                    {card.tags.map((tag) => (
+                      <span className={styles.tag} data-tone={tag.tone} key={`${card.schoolSlug}-${tag.label}`}>
+                        {tag.label}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+
+                <div className={styles.compareFacts}>
+                  <div className={styles.compareFact}>
+                    <span>最新年份</span>
+                    <strong>{card.latestYear}</strong>
+                  </div>
+                  <div className={styles.compareFact}>
+                    <span>精确组线</span>
+                    <strong>{card.exactLines}</strong>
+                  </div>
+                  <div className={styles.compareFact}>
+                    <span>阈值记录</span>
+                    <strong>{card.thresholdLines}</strong>
+                  </div>
+                  <div className={styles.compareFact}>
+                    <span>Q组记录</span>
+                    <strong>{card.qGroupLines}</strong>
+                  </div>
+                  <div className={styles.compareFact}>
+                    <span>官网补口径</span>
+                    <strong>{card.officialSupplement}</strong>
+                  </div>
+                  <div className={styles.compareFact}>
+                    <span>最新快照</span>
+                    <strong>{card.latestSnapshot}</strong>
+                  </div>
+                </div>
+
+                <p className={styles.compareNote}>{card.readMethod}</p>
+                <Link className={styles.link} href={card.detailHref}>
+                  学校详情 →
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <div className={styles.sections}>
         {filtered.map((summary) => (
@@ -133,9 +233,25 @@ export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
                   {summary.records.length} 条
                 </p>
               </div>
-              <Link className={styles.link} href={`/schools/${summary.school.slug}`}>
-                学校详情 →
-              </Link>
+              <div className={styles.actions}>
+                <button
+                  className={styles.compareButton}
+                  type="button"
+                  disabled={
+                    !compareSlugs.includes(summary.school.slug) && compareSlugs.length >= 4
+                  }
+                  onClick={() => toggleCompare(summary.school.slug)}
+                >
+                  {compareSlugs.includes(summary.school.slug)
+                    ? "移出对比"
+                    : compareSlugs.length >= 4
+                      ? "对比已满"
+                      : "加入对比"}
+                </button>
+                <Link className={styles.link} href={`/schools/${summary.school.slug}`}>
+                  学校详情 →
+                </Link>
+              </div>
             </div>
 
             {summary.insight ? (
