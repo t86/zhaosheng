@@ -158,7 +158,8 @@
 
 .ruleGrid,
 .checkGrid,
-.resourceGrid {
+.resourceGrid,
+.dataStatusGrid {
   margin-top: 18px;
   display: grid;
   gap: 14px;
@@ -171,7 +172,8 @@
 
 .ruleCard,
 .checkCard,
-.resourceCard {
+.resourceCard,
+.dataStatusCard {
   padding: 20px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
@@ -220,7 +222,8 @@
 }
 
 .checkGrid,
-.resourceGrid {
+.resourceGrid,
+.dataStatusGrid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -255,6 +258,93 @@
 
 .resourceCard {
   display: block;
+}
+
+.dataStatusCard {
+  background: rgba(248, 250, 252, 0.9);
+}
+
+.dataStatusTopline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dataStatusTopline strong {
+  font-size: 24px;
+}
+
+.dataStatusTopline span {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(203, 82, 53, 0.12);
+  color: #9d2d10;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.dataStatusFacts {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dataStatusFacts div {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 247, 238, 0.76);
+  border: 1px solid rgba(21, 23, 28, 0.06);
+}
+
+.dataStatusFacts small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dataStatusFacts p {
+  margin-top: 8px;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.dataStatusCard p {
+  margin-top: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.importReadyNote {
+  margin-top: 16px;
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(21, 23, 28, 0.08);
+  background: rgba(22, 50, 79, 0.05);
+}
+
+.importReadyNote strong {
+  display: block;
+  color: var(--accent-deep);
+  font-size: 15px;
+}
+
+.importReadyNote p {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.dataStatusCard a {
+  display: inline-flex;
+  margin-top: 14px;
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .resourceCard span {
@@ -389,6 +479,7 @@
   .ruleGrid,
   .checkGrid,
   .resourceGrid,
+  .dataStatusGrid,
   .stats,
   .missingRow,
   .sourceGrid {
@@ -414,9 +505,14 @@
   .ruleGrid,
   .checkGrid,
   .resourceGrid,
+  .dataStatusGrid,
   .stats,
   .missingRow,
   .sourceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dataStatusFacts {
     grid-template-columns: 1fr;
   }
 

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
 import { ShanghaiAdmissionsExplorer } from "@/components/ShanghaiAdmissionsExplorer";
 import { shanghaiDecisionGuide } from "@/data/shanghai-decision-guide";
+import { getShanghaiHighValueDataStatus } from "@/lib/shanghai-high-value-data";
+import { getShanghaiHighValueImportManifest } from "@/lib/shanghai-high-value-imports";
 import { getShanghaiFocusAdmissions } from "@/lib/shanghai-focus";
 import { schools, schoolsBySlug } from "@/lib/schools";
 import {
@@ -14,6 +16,8 @@ import styles from "./page.module.css";
 
 export default function ShanghaiAdmissionsPage() {
   const coverage = getShanghaiAdmissionsCoverage();
+  const highValueDataStatus = getShanghaiHighValueDataStatus();
+  const highValueImportManifest = getShanghaiHighValueImportManifest();
   const focusSchools = getShanghaiFocusAdmissions().map((item) => ({
     ...item,
     school: item.schoolSlug ? schoolsBySlug.get(item.schoolSlug) : undefined,
@@ -262,11 +266,44 @@ export default function ShanghaiAdmissionsPage() {
         </div>
 
         <div className={styles.gapCard}>
-          <strong>当前最关键但尚未接入的两层数据</strong>
+          <strong>当前最关键但尚未接入的三层数据</strong>
           <p>
             上海市教育考试院在 2025 本科阶段志愿填报特别提醒里，明确把《2024 年上海市普通高等学校招生各专业录取人数及考分》列为核心参考资料，
             其中包含最低分、平均分和平均分位次；而《2025 年上海市普通高等学校招生专业目录》则用于核对在沪招生院校、专业和计划数。本站当前先公开接入的是可回链的考试院组线，
-            还没有把这两层书册数据结构化进来，所以这页更适合先做学校池和风险判断，而不是直接替代最终冲稳保决策。
+            还没有把这三层书册数据结构化进来，所以这页更适合先做学校池和风险判断，而不是直接替代最终冲稳保决策。
+          </p>
+        </div>
+
+        <div className={styles.dataStatusGrid}>
+          {highValueDataStatus.map((item) => (
+            <article className={styles.dataStatusCard} key={item.metricLabel}>
+              <div className={styles.dataStatusTopline}>
+                <strong>{item.metricLabel}</strong>
+                <span>{item.statusLabel}</span>
+              </div>
+              <div className={styles.dataStatusFacts}>
+                <div>
+                  <small>已导入</small>
+                  <p>{item.importedCount}</p>
+                </div>
+                <div>
+                  <small>覆盖学校</small>
+                  <p>{item.coverageLabel}</p>
+                </div>
+              </div>
+              <p>{item.summary}</p>
+              <a href={item.sourceUrl} rel="noreferrer" target="_blank">
+                {item.sourceTitle} →
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.importReadyNote}>
+          <strong>导入入口已预留</strong>
+          <p>
+            仓库已经为 {highValueImportManifest.length} 份上海官方资料留好了结构化数据槽位。后续只在逐条核对《各专业录取人数及考分》和
+            《招生专业目录》后再导入，不会先把未核实的平均分位次、专业录取人数或计划数直接挂到页面上。
           </p>
         </div>
 
