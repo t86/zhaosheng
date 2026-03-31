@@ -4,7 +4,7 @@
 
 .controls {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 12px;
 }
 
@@ -35,6 +35,91 @@
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.78);
+}
+
+.insightBlock {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(21, 23, 28, 0.08);
+  background: linear-gradient(180deg, rgba(248, 242, 232, 0.96), rgba(255, 255, 255, 0.84));
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.tag[data-tone="ink"] {
+  background: rgba(22, 50, 79, 0.08);
+  color: #16324f;
+}
+
+.tag[data-tone="teal"] {
+  background: rgba(26, 102, 93, 0.12);
+  color: #15544b;
+}
+
+.tag[data-tone="amber"] {
+  background: rgba(203, 82, 53, 0.12);
+  color: #9d2d10;
+}
+
+.tag[data-tone="rose"] {
+  background: rgba(117, 44, 91, 0.12);
+  color: #752c5b;
+}
+
+.metaGrid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metaCard {
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(21, 23, 28, 0.06);
+}
+
+.metaCard span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.metaCard strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+.insightLead,
+.insightNote {
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+.insightLead {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.insightNote {
+  color: var(--muted);
 }
 
 .schoolHeader {
@@ -105,6 +190,10 @@
 @media (max-width: 840px) {
   .controls {
     grid-template-columns: 1fr;
+  }
+
+  .metaGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .schoolHeader {

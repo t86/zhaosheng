@@ -265,6 +265,58 @@
   line-height: 1.75;
 }
 
+.truthLayout {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.4fr);
+  gap: 16px;
+}
+
+.statusCard {
+  padding: 22px;
+  border-radius: 24px;
+  background:
+    linear-gradient(165deg, rgba(14, 29, 48, 0.98), rgba(26, 56, 84, 0.94)),
+    radial-gradient(circle at top right, rgba(240, 200, 141, 0.18), transparent 28%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 56px rgba(10, 18, 30, 0.18);
+  color: #f7f1e8;
+}
+
+.statusKicker {
+  display: inline-flex;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(240, 200, 141, 0.16);
+  color: #f0d3a3;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.statusCard h3 {
+  margin-top: 16px;
+  font-size: 30px;
+}
+
+.statusCard p {
+  margin-top: 14px;
+  color: rgba(247, 241, 232, 0.82);
+  line-height: 1.8;
+}
+
+.statusList {
+  margin-top: 16px;
+  padding-left: 18px;
+  color: rgba(247, 241, 232, 0.82);
+  line-height: 1.75;
+}
+
+.statusList li + li {
+  margin-top: 10px;
+}
+
+.officialRuleGrid,
+.checkGrid,
 .priorityGrid,
 .routeGrid,
 .methodGrid {
@@ -273,8 +325,76 @@
   gap: 16px;
 }
 
+.officialRuleGrid {
+  margin-top: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.officialRuleCard {
+  padding: 22px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 241, 231, 0.9));
+  border: 1px solid rgba(21, 23, 28, 0.08);
+}
+
+.officialRuleCard strong {
+  display: block;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--accent-deep);
+}
+
+.officialRuleCard span {
+  display: block;
+  margin-top: 10px;
+  color: rgba(21, 23, 28, 0.72);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.officialRuleCard p {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.sourceLinkRow {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+}
+
+.sourceLinkRow a {
+  color: var(--accent-deep);
+  font-weight: 800;
+}
+
 .priorityGrid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.checkGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.checkCard {
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px solid rgba(21, 23, 28, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 240, 230, 0.9));
+}
+
+.checkCard h3 {
+  font-size: 24px;
+}
+
+.checkCard p {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.75;
 }
 
 .priorityCard {
@@ -560,6 +680,9 @@
 
 @media (max-width: 1100px) {
   .heroLayout,
+  .truthLayout,
+  .officialRuleGrid,
+  .checkGrid,
   .priorityGrid,
   .routeGrid,
   .featureGrid,
@@ -584,6 +707,9 @@
   }
 
   .heroLayout,
+  .truthLayout,
+  .officialRuleGrid,
+  .checkGrid,
   .priorityGrid,
   .routeGrid,
   .featureGrid,

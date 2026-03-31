@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { getShanghaiAdmissionsInsight } from "@/lib/shanghai-admissions-insights";
 import type { School } from "@/lib/schools";
 import type { ShanghaiAdmissionRecord } from "@/lib/shanghai-admissions";
 import styles from "./ShanghaiAdmissionsExplorer.module.css";
@@ -30,6 +31,7 @@ function getSourceLabel(sourceType: ShanghaiAdmissionRecord["sourceType"]) {
 export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
   const [schoolSlug, setSchoolSlug] = useState("all");
   const [year, setYear] = useState("all");
+  const [tagFilter, setTagFilter] = useState("all");
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
@@ -42,6 +44,7 @@ export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
         return {
           ...summary,
           filteredRecords,
+          insight: getShanghaiAdmissionsInsight(summary.school.slug, summary.records),
         };
       })
       .filter(
@@ -49,12 +52,27 @@ export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
           (schoolSlug === "all" || summary.school.slug === schoolSlug) &&
           (schoolSlug !== "all" || summary.records.length > 0) &&
           (schoolSlug === "all" ? summary.filteredRecords.length > 0 : true) &&
+          (tagFilter === "all" ||
+            summary.insight?.tags.some((tag) => {
+              switch (tagFilter) {
+                case "exact":
+                  return tag.label === "含精确组线";
+                case "threshold":
+                  return tag.label === "含 580+ 阈值";
+                case "q-group":
+                  return tag.label === "含 Q 组";
+                case "official":
+                  return tag.label === "学校官网补口径";
+                default:
+                  return true;
+              }
+            })) &&
           (!query ||
             summary.school.name.includes(query) ||
             summary.school.city.includes(query) ||
             summary.filteredRecords.some((record) => record.groupName.includes(query))),
       );
-  }, [query, schoolSlug, summaries, year]);
+  }, [query, schoolSlug, summaries, tagFilter, year]);
 
   return (
     <div className={styles.wrap}>
@@ -76,6 +94,17 @@ export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
               {summary.school.name}
             </option>
           ))}
+        </select>
+        <select
+          className={styles.select}
+          value={tagFilter}
+          onChange={(event) => setTagFilter(event.target.value)}
+        >
+          <option value="all">全部读法标签</option>
+          <option value="exact">含精确组线</option>
+          <option value="threshold">含 580+ 阈值</option>
+          <option value="q-group">含 Q 组</option>
+          <option value="official">学校官网补口径</option>
         </select>
         <select
           className={styles.select}
@@ -108,6 +137,38 @@ export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
                 学校详情 →
               </Link>
             </div>
+
+            {summary.insight ? (
+              <div className={styles.insightBlock}>
+                <div className={styles.tagRow}>
+                  {summary.insight.tags.map((tag) => (
+                    <span className={styles.tag} data-tone={tag.tone} key={`${summary.school.slug}-${tag.label}`}>
+                      {tag.label}
+                    </span>
+                  ))}
+                </div>
+                <div className={styles.metaGrid}>
+                  <div className={styles.metaCard}>
+                    <span>覆盖年份</span>
+                    <strong>{summary.insight.yearsCovered.join(" / ")}</strong>
+                  </div>
+                  <div className={styles.metaCard}>
+                    <span>精确组线</span>
+                    <strong>{summary.insight.exactRecordCount}</strong>
+                  </div>
+                  <div className={styles.metaCard}>
+                    <span>阈值记录</span>
+                    <strong>{summary.insight.thresholdRecordCount}</strong>
+                  </div>
+                  <div className={styles.metaCard}>
+                    <span>Q组记录</span>
+                    <strong>{summary.insight.qGroupCount}</strong>
+                  </div>
+                </div>
+                <p className={styles.insightLead}>{summary.insight.headline}</p>
+                <p className={styles.insightNote}>{summary.insight.note}</p>
+              </div>
+            ) : null}
 
             {summary.filteredRecords.length > 0 ? (
               <div className={styles.tableWrap}>

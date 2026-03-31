@@ -105,6 +105,107 @@
   font-size: 30px;
 }
 
+.riskSummaryCard {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: rgba(246, 249, 255, 0.88);
+  border: 1px solid var(--border);
+}
+
+.riskStatus,
+.riskTag {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--risk-border, var(--border));
+  background: var(--risk-bg, rgba(21, 23, 28, 0.05));
+  color: var(--risk-text, var(--text));
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.riskTagRow {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.riskHeadline {
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.riskGrid,
+.riskChecklistGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.riskCard,
+.checkCard {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.riskCard {
+  border-color: var(--risk-border, var(--border));
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.riskCard h3 {
+  font-size: 20px;
+}
+
+.riskDetail {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.checkCard {
+  background: rgba(255, 247, 238, 0.78);
+}
+
+.checkCard strong {
+  display: block;
+  font-size: 16px;
+}
+
+.checkCard p {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.riskToneTeal {
+  --risk-bg: rgba(33, 122, 106, 0.12);
+  --risk-text: #16695b;
+  --risk-border: rgba(33, 122, 106, 0.18);
+}
+
+.riskToneAmber {
+  --risk-bg: rgba(203, 123, 0, 0.12);
+  --risk-text: #8c4d00;
+  --risk-border: rgba(203, 123, 0, 0.18);
+}
+
+.riskToneRose {
+  --risk-bg: rgba(179, 64, 89, 0.12);
+  --risk-text: #8c2640;
+  --risk-border: rgba(179, 64, 89, 0.18);
+}
+
+.riskToneInk {
+  --risk-bg: rgba(22, 50, 79, 0.1);
+  --risk-text: var(--accent-deep);
+  --risk-border: rgba(22, 50, 79, 0.18);
+}
+
 .majorHeader {
   display: flex;
   align-items: start;
@@ -645,6 +746,8 @@
   .linkGrid,
   .lineFrameworkGrid,
   .majorGrid,
+  .riskGrid,
+  .riskChecklistGrid,
   .lineInsightGrid,
   .lineCompareGrid,
   .routeGuideGrid,
@@ -675,6 +778,8 @@
   .linkGrid,
   .lineFrameworkGrid,
   .majorGrid,
+  .riskGrid,
+  .riskChecklistGrid,
   .lineInsightGrid,
   .lineCompareGrid,
   .routeGuideGrid,

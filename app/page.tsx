@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SchoolExplorer } from "@/components/SchoolExplorer";
+import { shanghaiDecisionGuide } from "@/data/shanghai-decision-guide";
 import { topicDefinitions } from "@/data/topics";
 import { getShanghaiAdmissionsCoverage } from "@/lib/shanghai-admissions";
 import {
@@ -22,24 +23,6 @@ const heroQuestions = [
   {
     title: "先排风险",
     description: "物化卡口、校区、学费、合作办学和调剂风险，比“学校总数”更关键。",
-  },
-];
-
-const quickRules = [
-  {
-    value: "24",
-    label: "普通批平行志愿",
-    note: "每个院校专业组内仍要继续排专业顺序。",
-  },
-  {
-    value: "4",
-    label: "综评批平行志愿",
-    note: "要先进入公示合格名单，且通常要过特殊类型控制线。",
-  },
-  {
-    value: "4",
-    label: "组内专业志愿",
-    note: "真正决定去向的是专业组和专业顺序，不只是学校名。",
   },
 ];
 
@@ -201,20 +184,81 @@ export default function Home() {
             </div>
 
             <div className={styles.ruleGrid}>
-              {quickRules.map((item) => (
+              {shanghaiDecisionGuide.quickRules.map((item) => (
                 <div className={styles.ruleCard} key={item.label}>
                   <strong>{item.value}</strong>
                   <span>{item.label}</span>
-                  <p>{item.note}</p>
+                  <p>{item.detail}</p>
                 </div>
               ))}
             </div>
 
             <p className={styles.panelNote}>
-              截至 2026 年 3 月 25 日，上海 2026 秋季统一高考完整投档录取办法我还没有看到公开定稿，
-              当前时间节奏与志愿结构先按 2025 官方规则展示，后续再补 2026 版。
+              {shanghaiDecisionGuide.status.summary}
             </p>
           </aside>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>上海官方规则先读</h2>
+          </div>
+          <p>
+            这一组全部按上海市教育考试院公开口径整理，先把本科批次结构、投档单位和填报边界看清，再决定怎么用站内学校池。
+          </p>
+        </div>
+
+        <div className={styles.truthLayout}>
+          <article className={styles.statusCard}>
+            <span className={styles.statusKicker}>{shanghaiDecisionGuide.status.kicker}</span>
+            <h3>{shanghaiDecisionGuide.status.title}</h3>
+            <p>{shanghaiDecisionGuide.status.summary}</p>
+            <ul className={styles.statusList}>
+              {shanghaiDecisionGuide.status.bullets.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+
+          <div className={styles.officialRuleGrid}>
+            {shanghaiDecisionGuide.verifiedRules.map((item) => (
+              <article className={styles.officialRuleCard} key={`${item.label}-${item.value}`}>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+                <p>{item.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.sourceLinkRow}>
+          {shanghaiDecisionGuide.sources.map((source) => (
+            <a href={source.url} key={source.url} rel="noreferrer" target="_blank">
+              {source.label} →
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>填报前先核对这 4 件事</h2>
+          </div>
+          <p>
+            这一组不是经验贴，而是把考试院在 2025 官方问答和特别提醒里反复强调的检查动作，拆成家长更容易执行的清单。
+          </p>
+        </div>
+
+        <div className={styles.checkGrid}>
+          {shanghaiDecisionGuide.checks.map((item) => (
+            <article className={styles.checkCard} key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
         </div>
       </section>
 

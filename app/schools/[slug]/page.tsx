@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
 import { getMajorLineAnalysesForSchool } from "@/data/major-line-analyses";
+import { buildSchoolRiskCard, type SchoolRiskTone } from "@/lib/school-risk-card";
 import {
   getTrackFitProfile,
   getTrackRouteType,
@@ -46,6 +47,19 @@ function getOutcomeModeLabel(mode?: "stat" | "reference") {
   return mode === "reference" ? "参考画像" : "统计口径";
 }
 
+function getRiskToneClassName(tone: SchoolRiskTone) {
+  switch (tone) {
+    case "teal":
+      return styles.riskToneTeal;
+    case "amber":
+      return styles.riskToneAmber;
+    case "rose":
+      return styles.riskToneRose;
+    default:
+      return styles.riskToneInk;
+  }
+}
+
 export default async function SchoolDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const school = getSchool(slug);
@@ -61,6 +75,13 @@ export default async function SchoolDetailPage({ params }: PageProps) {
   );
   const shanghaiRecords = getShanghaiAdmissionsForSchool(slug);
   const shanghaiFocus = getShanghaiFocusSchool(slug);
+  const schoolRiskCard = buildSchoolRiskCard({
+    slug,
+    name: school.name,
+    majorProfile: school.majorProfile,
+    shanghaiRecords,
+    shanghaiFocus,
+  });
   const showShanghaiSection = Boolean(shanghaiFocus || shanghaiRecords.length > 0);
   const ranking = school.majorRanking;
   const majorLineAnalyses = getMajorLineAnalysesForSchool({
@@ -160,6 +181,76 @@ export default async function SchoolDetailPage({ params }: PageProps) {
         <p className={styles.note}>
           这里显示的是学校层快照，不是省份、专业组或位次建议。真正做志愿时，必须再叠加你所在省份的招生计划和选科规则。
         </p>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.majorHeader}>
+          <div>
+            <h2>上海报考风险卡</h2>
+            <p className={styles.majorLead}>
+              这块只汇总站内当前已经核到的上海公开口径和项目层提醒，不把学校线、类别线、专业组线和招生章程限制混成一层。
+            </p>
+          </div>
+          <span className={`${styles.riskStatus} ${getRiskToneClassName(schoolRiskCard.statusTone)}`}>
+            {schoolRiskCard.statusLabel}
+          </span>
+        </div>
+
+        <div className={styles.riskSummaryCard}>
+          <p className={styles.riskHeadline}>{schoolRiskCard.headline}</p>
+          <p className={styles.note}>{schoolRiskCard.summary}</p>
+          {schoolRiskCard.badges.length > 0 ? (
+            <div className={styles.riskTagRow}>
+              {schoolRiskCard.badges.map((badge) => (
+                <span
+                  className={`${styles.riskTag} ${getRiskToneClassName(badge.tone)}`}
+                  key={badge.label}
+                >
+                  {badge.label}
+                </span>
+              ))}
+            </div>
+          ) : null}
+        </div>
+
+        <div className={styles.riskGrid}>
+          {schoolRiskCard.evidences.map((evidence) => (
+            <article
+              className={`${styles.riskCard} ${getRiskToneClassName(evidence.tone)}`}
+              key={evidence.title}
+            >
+              <h3>{evidence.title}</h3>
+              <p className={styles.riskDetail}>{evidence.detail}</p>
+              <p className={styles.sourceMeta}>{evidence.source.note}</p>
+              <a
+                className={styles.profileLink}
+                href={evidence.source.url}
+                rel="noreferrer"
+                target="_blank"
+              >
+                查看来源 →
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <h3 className={styles.subheading}>填报前必须回原文核对</h3>
+        <div className={styles.riskChecklistGrid}>
+          {schoolRiskCard.checks.map((check) => (
+            <article className={styles.checkCard} key={check.title}>
+              <strong>{check.title}</strong>
+              <p>{check.description}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.inlineLinks}>
+          {schoolRiskCard.officialLinks.map((link) => (
+            <a href={link.url} key={link.url} rel="noreferrer" target="_blank">
+              {link.label} →
+            </a>
+          ))}
+        </div>
       </section>
 
       <section className={styles.section}>
