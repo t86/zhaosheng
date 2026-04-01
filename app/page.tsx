@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SchoolExplorer } from "@/components/SchoolExplorer";
+import { getFeaturedHotDirections, getHotDirectionCategories } from "@/lib/hot-directions";
 import { shanghaiDecisionGuide } from "@/data/shanghai-decision-guide";
 import { topicDefinitions } from "@/data/topics";
 import { getShanghaiAdmissionsCoverage } from "@/lib/shanghai-admissions";
@@ -131,6 +132,8 @@ const featureCards = [
 export default function Home() {
   const coverage = getCoverageStats();
   const shanghaiCoverage = getShanghaiAdmissionsCoverage();
+  const featuredDirections = getFeaturedHotDirections();
+  const hotDirectionCategories = getHotDirectionCategories();
   const yearStart = shanghaiCoverage.years[0];
   const yearEnd = shanghaiCoverage.years.at(-1);
 
@@ -340,6 +343,49 @@ export default function Home() {
               <div className={styles.featureLink}>{card.actionLabel}</div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>未来 10 年热门方向猜想</h2>
+          </div>
+          <p>
+            这不是官方结论，而是把政策点名、产业热度和家长讨论压缩成一个更适合开始讨论的入口。真正填志愿时，还是要回到学校、专业组和风险卡。
+          </p>
+        </div>
+
+        <div className={styles.directionPreviewGrid}>
+          {featuredDirections.map((direction) => (
+            <article className={styles.directionPreviewCard} key={direction.slug}>
+              <div className={styles.directionPreviewTopline}>
+                <span>#{direction.rank}</span>
+                <h3>{direction.name}</h3>
+              </div>
+              <p>{direction.oneLiner}</p>
+              <div className={styles.directionPreviewPills}>
+                {direction.entryPaths.slice(0, 3).map((item) => (
+                  <span key={`${direction.slug}-${item}`}>{item}</span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.directionCategoryRow}>
+          {hotDirectionCategories.map((category) => (
+            <Link className={styles.directionCategoryLink} href={`/directions#${category.slug}`} key={category.slug}>
+              <strong>{category.name}</strong>
+              <span>{category.description}</span>
+            </Link>
+          ))}
+        </div>
+
+        <div className={styles.directionFooter}>
+          <Link className={styles.footerLink} href="/directions">
+            查看完整 Top 10 与争议方向 →
+          </Link>
         </div>
       </section>
 

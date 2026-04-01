@@ -1,0 +1,257 @@
+.page {
+  padding: 28px 0 80px;
+}
+
+.hero,
+.section {
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.hero {
+  background:
+    radial-gradient(circle at top right, rgba(22, 50, 79, 0.16), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(203, 82, 53, 0.14), transparent 24%),
+    linear-gradient(150deg, rgba(255, 249, 240, 0.96), rgba(242, 233, 219, 0.92));
+}
+
+.back {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+
+.eyebrow {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(22, 50, 79, 0.08);
+  color: var(--accent-deep);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.hero h1 {
+  margin-top: 18px;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 0.96;
+}
+
+.lead,
+.disclaimer,
+.sectionHeader p,
+.factBlock p,
+.dualGrid p,
+.controversyCard p,
+.categoryHeader p,
+.methodCard p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.lead {
+  margin-top: 18px;
+  max-width: 780px;
+  font-size: 18px;
+}
+
+.disclaimer {
+  margin-top: 14px;
+  max-width: 760px;
+}
+
+.anchorRow,
+.pillGroup,
+.schoolLinks,
+.categoryRow,
+.referenceRow {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.anchorRow a,
+.schoolLinks a,
+.referenceRow a {
+  color: var(--accent-deep);
+  font-weight: 800;
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.sectionHeader h2 {
+  font-size: clamp(28px, 4vw, 42px);
+}
+
+.sectionHeader p {
+  max-width: 640px;
+}
+
+.cardGrid,
+.controversyGrid,
+.methodGrid {
+  margin-top: 22px;
+  display: grid;
+  gap: 16px;
+}
+
+.cardGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.directionCard,
+.controversyCard,
+.categoryCard,
+.methodCard {
+  padding: 22px;
+  border-radius: 24px;
+  border: 1px solid rgba(21, 23, 28, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 241, 231, 0.9));
+}
+
+.cardTopline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rank {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #16324f, #2d567f);
+  color: #f7f1e8;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cardTopline h3,
+.controversyCard h3,
+.categoryHeader h3 {
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+.oneLiner {
+  margin-top: 16px;
+  color: rgba(21, 23, 28, 0.78);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.factBlock {
+  margin-top: 18px;
+}
+
+.factBlock strong,
+.methodCard strong {
+  display: block;
+  color: var(--accent-deep);
+  font-size: 16px;
+}
+
+.factBlock p {
+  margin-top: 8px;
+}
+
+.dualGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.dualGrid div {
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(22, 50, 79, 0.05);
+  border: 1px solid rgba(21, 23, 28, 0.06);
+}
+
+.dualGrid small {
+  display: block;
+  color: var(--accent-deep);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dualGrid p {
+  margin-top: 8px;
+}
+
+.entryPill,
+.categoryPill {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 245, 232, 0.92);
+  border: 1px solid rgba(21, 23, 28, 0.08);
+  color: rgba(21, 23, 28, 0.78);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.categoryStack {
+  margin-top: 22px;
+  display: grid;
+  gap: 16px;
+}
+
+.categoryHeader p {
+  margin-top: 10px;
+}
+
+.categoryPill {
+  color: var(--accent-deep);
+  background: rgba(22, 50, 79, 0.06);
+}
+
+.controversyGrid,
+.methodGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.methodCard p {
+  margin-top: 10px;
+}
+
+@media (max-width: 980px) {
+  .cardGrid,
+  .controversyGrid,
+  .methodGrid,
+  .dualGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding-top: 18px;
+  }
+
+  .hero,
+  .section {
+    padding: 20px;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
