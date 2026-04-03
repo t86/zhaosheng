@@ -17,6 +17,13 @@ export type HotDirectionSlug =
 
 export type HotDirectionCategorySlug = "academic-elite" | "stable-career" | "future-bet";
 
+export type HotDirectionCandidateRecord = {
+  schoolSlug: string;
+  entryLabel: string;
+  rationale: string;
+  tags: string[];
+};
+
 export type HotDirectionRecord = {
   slug: HotDirectionSlug;
   rank?: number;
@@ -28,6 +35,7 @@ export type HotDirectionRecord = {
   studentLens: string;
   entryPaths: string[];
   schoolSlugs: string[];
+  candidatePrograms: HotDirectionCandidateRecord[];
 };
 
 export type HotDirectionCategoryDefinition = {
@@ -49,6 +57,38 @@ export const hotDirectionMainRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己能不能接受高强度数理和编程训练，以及是否愿意长期迭代。",
     entryPaths: ["人工智能", "计算机科学与技术", "自动化", "电子信息工程"],
     schoolSlugs: ["tsinghua-university", "shanghai-jiao-tong-university", "zhejiang-university"],
+    candidatePrograms: [
+      {
+        schoolSlug: "tsinghua-university",
+        entryLabel: "自动化类（通用人工智能/数学与人工智能实验班）",
+        rationale: "平台强度和学科交叉能力都在第一梯队，更像 AI 顶尖培养入口。",
+        tags: ["平台强", "入口清晰", "学霸向"],
+      },
+      {
+        schoolSlug: "shanghai-jiao-tong-university",
+        entryLabel: "人工智能（拔尖英才试点班）",
+        rationale: "本科入口直接、校内交叉资源重，适合把 AI 当主线深挖的人。",
+        tags: ["平台强", "本研贯通", "上海关注高"],
+      },
+      {
+        schoolSlug: "zhejiang-university",
+        entryLabel: "人工智能（图灵班）",
+        rationale: "AI 本科培养辨识度高，算法和工程两端都比较强。",
+        tags: ["入口清晰", "算法强", "读研友好"],
+      },
+      {
+        schoolSlug: "beihang-university",
+        entryLabel: "工科试验班类（计算与智能科学类）",
+        rationale: "更适合想把 AI 和工程应用一起学的人，本科入口也不算窄。",
+        tags: ["工程强", "航空航天场景", "大类培养"],
+      },
+      {
+        schoolSlug: "nanjing-university",
+        entryLabel: "人工智能/智能科学方向",
+        rationale: "基础学科底子厚，适合更偏算法、模型和继续深造的路线。",
+        tags: ["基础强", "学术气质", "读研友好"],
+      },
+    ],
   },
   {
     slug: "embodied-robotics",
@@ -61,6 +101,38 @@ export const hotDirectionMainRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己更喜欢算法、控制、机械设计还是系统集成，因为这决定后续路线。",
     entryPaths: ["机器人工程", "自动化", "机械设计制造及其自动化", "控制科学与工程相关入口"],
     schoolSlugs: ["harbin-institute-of-technology", "beihang-university", "zhejiang-university"],
+    candidatePrograms: [
+      {
+        schoolSlug: "harbin-institute-of-technology",
+        entryLabel: "工科试验班（AI+先进技术领军班）/自动化",
+        rationale: "机器人底层能力强，控制、机械和 AI 的组合培养很有代表性。",
+        tags: ["平台强", "硬科技", "系统能力强"],
+      },
+      {
+        schoolSlug: "beihang-university",
+        entryLabel: "工科试验班类（计算与智能科学类）",
+        rationale: "兼顾智能、控制和工程场景，是具身智能比较稳的本科入口。",
+        tags: ["工程强", "场景多", "大类培养"],
+      },
+      {
+        schoolSlug: "zhejiang-university",
+        entryLabel: "机械工程（机器人控制模块）",
+        rationale: "不是只靠专业名字，而是靠成熟的机械+控制+算法组合。",
+        tags: ["入口真实", "制造强", "交叉培养"],
+      },
+      {
+        schoolSlug: "shanghai-jiao-tong-university",
+        entryLabel: "自动化",
+        rationale: "控制和机器人链条完整，后续衔接智能系统和工业场景都顺。",
+        tags: ["平台强", "控制强", "产业结合"],
+      },
+      {
+        schoolSlug: "wuhan-university",
+        entryLabel: "机器人工程",
+        rationale: "本科入口名字直观，适合希望尽早锁定方向的家庭。",
+        tags: ["入口清晰", "新增热度", "方向辨识度高"],
+      },
+    ],
   },
   {
     slug: "integrated-circuits",
@@ -73,6 +145,38 @@ export const hotDirectionMainRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己能不能接受偏硬件、偏物理、偏实验室的训练节奏。",
     entryPaths: ["微电子科学与工程", "集成电路设计与集成系统", "电子科学与技术"],
     schoolSlugs: ["fudan-university", "tsinghua-university", "university-of-science-and-technology-of-china"],
+    candidatePrograms: [
+      {
+        schoolSlug: "fudan-university",
+        entryLabel: "集成电路科学与工程",
+        rationale: "本科入口新而明确，方向贴合度和产业关注度都很强。",
+        tags: ["入口清晰", "上海热度高", "产业链强"],
+      },
+      {
+        schoolSlug: "shanghai-jiao-tong-university",
+        entryLabel: "微电子科学与工程",
+        rationale: "平台大、工科底盘厚，芯片方向的培养辨识度很高。",
+        tags: ["平台强", "工科强", "读研友好"],
+      },
+      {
+        schoolSlug: "tsinghua-university",
+        entryLabel: "电子信息类（集成电路方向）",
+        rationale: "天花板级平台，适合把芯片当长期学术和产业路线来走。",
+        tags: ["平台顶级", "门槛高", "学霸向"],
+      },
+      {
+        schoolSlug: "peking-university",
+        entryLabel: "电子信息类/集成电路学院",
+        rationale: "更偏顶尖平台和科研资源，对读研读博链条很友好。",
+        tags: ["平台顶级", "科研强", "读研友好"],
+      },
+      {
+        schoolSlug: "university-of-electronic-science-and-technology-of-china",
+        entryLabel: "微电子科学与工程",
+        rationale: "电子信息底盘硬，芯片链条足够完整，性价比也高。",
+        tags: ["行业强", "入口真实", "工程导向"],
+      },
+    ],
   },
   {
     slug: "new-energy-storage",
@@ -85,6 +189,38 @@ export const hotDirectionMainRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己更偏材料、电气、能动还是工程应用，不同分支体验差异很大。",
     entryPaths: ["能源与动力工程", "新能源科学与工程", "电气工程及其自动化", "储能科学与工程"],
     schoolSlugs: ["xian-jiaotong-university", "zhejiang-university", "huazhong-university-of-science-and-technology"],
+    candidatePrograms: [
+      {
+        schoolSlug: "xian-jiaotong-university",
+        entryLabel: "新能源科学与工程",
+        rationale: "方向贴合度高，能源和电气底盘强，适合把新能源当硬工程路线。",
+        tags: ["入口清晰", "平台强", "工程导向"],
+      },
+      {
+        schoolSlug: "tsinghua-university",
+        entryLabel: "能源与动力工程",
+        rationale: "平台上限极高，适合想往大能源系统和高端研发走的人。",
+        tags: ["平台顶级", "长线赛道", "学霸向"],
+      },
+      {
+        schoolSlug: "huazhong-university-of-science-and-technology",
+        entryLabel: "能源与动力工程",
+        rationale: "工科训练扎实，新能源与装备场景衔接自然。",
+        tags: ["工科强", "产业结合", "就业面广"],
+      },
+      {
+        schoolSlug: "zhejiang-university",
+        entryLabel: "能源与环境系统工程",
+        rationale: "适合想把能源、系统优化和工程应用一起做的人。",
+        tags: ["交叉培养", "平台强", "读研友好"],
+      },
+      {
+        schoolSlug: "shanghai-jiao-tong-university",
+        entryLabel: "能源与动力工程",
+        rationale: "在大城市语境里讨论度高，家长和学生都更容易理解这条路径。",
+        tags: ["平台强", "城市优势", "工程导向"],
+      },
+    ],
   },
   {
     slug: "cybersecurity",
@@ -97,6 +233,38 @@ export const hotDirectionMainRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己是否真的喜欢底层系统、攻防和长期更新知识体系。",
     entryPaths: ["网络空间安全", "信息安全", "计算机科学与技术", "密码科学与技术相关方向"],
     schoolSlugs: ["university-of-electronic-science-and-technology-of-china", "huazhong-university-of-science-and-technology", "xidian-university"],
+    candidatePrograms: [
+      {
+        schoolSlug: "wuhan-university",
+        entryLabel: "网络空间安全（本硕博试验班）",
+        rationale: "本科入口非常直给，培养路径也比一般安全专业更完整。",
+        tags: ["入口清晰", "本硕博链条", "方向辨识度高"],
+      },
+      {
+        schoolSlug: "university-of-electronic-science-and-technology-of-china",
+        entryLabel: "计算机类（网络空间安全）",
+        rationale: "电子信息底盘强，网络安全放在整体计算机体系里更稳。",
+        tags: ["行业强", "工程强", "就业面广"],
+      },
+      {
+        schoolSlug: "beihang-university",
+        entryLabel: "工科试验班类（信息科学与技术类）",
+        rationale: "更适合把安全放到更大的信息系统和工程场景里理解。",
+        tags: ["平台强", "工程导向", "大类培养"],
+      },
+      {
+        schoolSlug: "harbin-institute-of-technology",
+        entryLabel: "信息安全",
+        rationale: "工科硬度高，适合想走更偏底层和系统能力路线的人。",
+        tags: ["工科强", "底层能力", "读研友好"],
+      },
+      {
+        schoolSlug: "shanghai-jiao-tong-university",
+        entryLabel: "信息类（含信息安全分流）",
+        rationale: "大类入口更适合高分段家庭，后续向安全和计算链条延展性强。",
+        tags: ["平台强", "分流弹性", "城市优势"],
+      },
+    ],
   },
   {
     slug: "smart-manufacturing",
@@ -109,6 +277,38 @@ export const hotDirectionMainRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己是否接受偏工程、偏控制、偏制造现场的问题类型。",
     entryPaths: ["自动化", "智能制造工程", "机械工程", "测控技术与仪器"],
     schoolSlugs: ["zhejiang-university", "beihang-university", "huazhong-university-of-science-and-technology"],
+    candidatePrograms: [
+      {
+        schoolSlug: "zhejiang-university",
+        entryLabel: "自动化",
+        rationale: "自动化传统强，往智能制造和工业控制延展都很顺。",
+        tags: ["平台强", "控制强", "就业稳"],
+      },
+      {
+        schoolSlug: "shanghai-jiao-tong-university",
+        entryLabel: "自动化",
+        rationale: "学校平台和产业连接强，适合偏大工业和系统集成路线。",
+        tags: ["平台强", "产业结合", "城市优势"],
+      },
+      {
+        schoolSlug: "harbin-institute-of-technology",
+        entryLabel: "自动化",
+        rationale: "工科底盘硬，更适合接受强工程训练的人。",
+        tags: ["工科强", "系统能力强", "读研友好"],
+      },
+      {
+        schoolSlug: "xian-jiaotong-university",
+        entryLabel: "自动化",
+        rationale: "大工业语境下的自动化能力强，属于典型稳路线。",
+        tags: ["工程导向", "就业稳", "平台强"],
+      },
+      {
+        schoolSlug: "huazhong-university-of-science-and-technology",
+        entryLabel: "机械设计制造及其自动化",
+        rationale: "制造底子厚，和智能制造场景结合得比较自然。",
+        tags: ["制造强", "应用强", "稳就业"],
+      },
+    ],
   },
   {
     slug: "biomedicine",
@@ -121,6 +321,38 @@ export const hotDirectionMainRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己对生物、化学和实验是否有真实兴趣，不能只看行业故事。",
     entryPaths: ["生物科学", "生物技术", "药学", "生物医学工程", "基础医学相关方向"],
     schoolSlugs: ["peking-university", "zhejiang-university", "fudan-university"],
+    candidatePrograms: [
+      {
+        schoolSlug: "peking-university",
+        entryLabel: "药学（六年制）",
+        rationale: "顶尖平台叠加长学制，更适合把创新药当长期路线的人。",
+        tags: ["平台顶级", "长周期", "读研友好"],
+      },
+      {
+        schoolSlug: "fudan-university",
+        entryLabel: "药学",
+        rationale: "上海生物医药语境里辨识度高，家长和学生都更容易理解它的价值。",
+        tags: ["上海热度高", "产业结合", "平台强"],
+      },
+      {
+        schoolSlug: "zhejiang-university",
+        entryLabel: "药学",
+        rationale: "理工医交叉氛围强，更适合后续往生物医药深水区走。",
+        tags: ["交叉培养", "平台强", "读研友好"],
+      },
+      {
+        schoolSlug: "shanghai-jiao-tong-university",
+        entryLabel: "生物医学工程",
+        rationale: "更偏医工交叉，不是传统药学路线，但适合做创新医疗设备和交叉研发。",
+        tags: ["医工交叉", "平台强", "方向差异化"],
+      },
+      {
+        schoolSlug: "sun-yat-sen-university",
+        entryLabel: "药学",
+        rationale: "华南医药产业链结合更强，是区域竞争力很高的一类选择。",
+        tags: ["区域强", "产业结合", "平台强"],
+      },
+    ],
   },
   {
     slug: "clinical-medicine",
@@ -133,6 +365,38 @@ export const hotDirectionMainRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己是否真的接受高强度学习、临床训练和职业压力。",
     entryPaths: ["临床医学", "八年制本博连读", "5+3 一体化", "基础医学交叉平台"],
     schoolSlugs: ["peking-university", "fudan-university", "shanghai-jiao-tong-university"],
+    candidatePrograms: [
+      {
+        schoolSlug: "peking-university",
+        entryLabel: "临床医学（八年制）",
+        rationale: "顶级医学平台和临床资源，属于高分段最稳定的长线选项之一。",
+        tags: ["平台顶级", "职业确定性", "长学制"],
+      },
+      {
+        schoolSlug: "fudan-university",
+        entryLabel: "临床医学（八年制）",
+        rationale: "上海医学院体系强，适合看重大平台和医学资源密度的家庭。",
+        tags: ["平台顶级", "上海热度高", "临床资源强"],
+      },
+      {
+        schoolSlug: "shanghai-jiao-tong-university",
+        entryLabel: "临床医学（八年制）",
+        rationale: "交医辨识度高，长期职业确定性和资源平台都很强。",
+        tags: ["平台顶级", "职业确定性", "上海关注高"],
+      },
+      {
+        schoolSlug: "zhejiang-university",
+        entryLabel: "临床医学（八年制）",
+        rationale: "综合校平台大，适合既看医学又看学校整体资源的人。",
+        tags: ["综合平台", "长学制", "读研友好"],
+      },
+      {
+        schoolSlug: "sichuan-university",
+        entryLabel: "临床医学（八年制）",
+        rationale: "华西体系在医学圈辨识度高，是全国范围内很稳的一档。",
+        tags: ["医学强校", "临床资源强", "稳路线"],
+      },
+    ],
   },
   {
     slug: "low-altitude-aerospace",
@@ -145,6 +409,38 @@ export const hotDirectionMainRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己更偏飞行器、控制、软件还是系统工程，别只追概念。",
     entryPaths: ["飞行器设计与工程", "无人驾驶航空器系统工程", "自动化", "电子信息工程"],
     schoolSlugs: ["beihang-university", "northwestern-polytechnical-university", "harbin-institute-of-technology"],
+    candidatePrograms: [
+      {
+        schoolSlug: "beihang-university",
+        entryLabel: "工科试验班类（航空航天类）",
+        rationale: "空天底盘和低空相关场景结合最自然，是这个方向最稳的本科入口之一。",
+        tags: ["平台强", "场景贴合", "方向辨识度高"],
+      },
+      {
+        schoolSlug: "northwestern-polytechnical-university",
+        entryLabel: "航空航天类",
+        rationale: "传统航空航天强校，适合把低空放回飞行器和系统工程主线里理解。",
+        tags: ["航空强", "工程导向", "就业稳"],
+      },
+      {
+        schoolSlug: "harbin-institute-of-technology",
+        entryLabel: "航空航天类",
+        rationale: "硬核工科底色明显，更适合愿意走装备和系统路线的人。",
+        tags: ["工科强", "装备强", "学霸向"],
+      },
+      {
+        schoolSlug: "tsinghua-university",
+        entryLabel: "航空航天类",
+        rationale: "平台资源上限极高，适合把空天和智能系统作为长线方向。",
+        tags: ["平台顶级", "学霸向", "长线赛道"],
+      },
+      {
+        schoolSlug: "beijing-institute-of-technology",
+        entryLabel: "宇航与机电类",
+        rationale: "入口更偏装备和系统，适合看重应用场景和工程能力的家庭。",
+        tags: ["工程强", "系统能力强", "入口真实"],
+      },
+    ],
   },
   {
     slug: "quantum-technology",
@@ -157,6 +453,38 @@ export const hotDirectionMainRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己是不是能接受极强的数理门槛和更长的科研路径。",
     entryPaths: ["量子信息科学", "物理学", "电子信息科学与技术", "数学与应用数学"],
     schoolSlugs: ["university-of-science-and-technology-of-china", "tsinghua-university", "zhejiang-university"],
+    candidatePrograms: [
+      {
+        schoolSlug: "university-of-science-and-technology-of-china",
+        entryLabel: "量子信息科学",
+        rationale: "量子科技最典型也最直接的本科入口，平台辨识度非常高。",
+        tags: ["入口清晰", "平台顶级", "学霸向"],
+      },
+      {
+        schoolSlug: "beihang-university",
+        entryLabel: "量子科技先锋计划",
+        rationale: "把量子当未来方向做前置培养，适合想追新赛道但仍看重学校平台的人。",
+        tags: ["新项目", "平台强", "未来赛道"],
+      },
+      {
+        schoolSlug: "tsinghua-university",
+        entryLabel: "物理学类（量子信息培养）",
+        rationale: "更像高门槛科研路线，适合顶尖学霸型学生。",
+        tags: ["平台顶级", "数理门槛高", "科研导向"],
+      },
+      {
+        schoolSlug: "fudan-university",
+        entryLabel: "物理学类/量子与智能英才班",
+        rationale: "量子和智能的交叉叙事很强，适合想走前沿交叉路线的人。",
+        tags: ["交叉培养", "上海热度高", "读研友好"],
+      },
+      {
+        schoolSlug: "nanjing-university",
+        entryLabel: "物理学类（量子方向）",
+        rationale: "基础物理底子厚，更适合能接受长科研路径的学生。",
+        tags: ["基础强", "科研导向", "学霸向"],
+      },
+    ],
   },
 ];
 
@@ -171,6 +499,7 @@ export const hotDirectionControversyRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己是否接受医疗训练体系和细致高强度的操作要求。",
     entryPaths: ["口腔医学", "长学制医学培养项目"],
     schoolSlugs: ["sichuan-university", "peking-university", "wuhan-university"],
+    candidatePrograms: [],
   },
   {
     slug: "brain-computer-interface",
@@ -182,6 +511,7 @@ export const hotDirectionControversyRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己是否适合神经科学、电子、算法和医学交叉。",
     entryPaths: ["生物医学工程", "电子信息工程", "人工智能", "基础医学"],
     schoolSlugs: ["zhejiang-university", "tsinghua-university", "shanghai-jiao-tong-university"],
+    candidatePrograms: [],
   },
   {
     slug: "new-materials",
@@ -193,6 +523,7 @@ export const hotDirectionControversyRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己是否喜欢偏实验、偏基础、偏制造端的问题。",
     entryPaths: ["材料科学与工程", "高分子材料与工程", "新能源材料与器件"],
     schoolSlugs: ["tsinghua-university", "beijing-institute-of-technology", "central-south-university"],
+    candidatePrograms: [],
   },
   {
     slug: "fintech",
@@ -204,6 +535,7 @@ export const hotDirectionControversyRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己更偏金融逻辑还是技术能力，不然容易两头不到岸。",
     entryPaths: ["金融学", "数据科学与大数据技术", "统计学", "计算机科学与技术"],
     schoolSlugs: ["renmin-university-of-china", "fudan-university", "xiamen-university"],
+    candidatePrograms: [],
   },
   {
     slug: "marine-intelligent-equipment",
@@ -215,6 +547,7 @@ export const hotDirectionControversyRecords: HotDirectionRecord[] = [
     studentLens: "学生要想清楚自己是否接受偏行业、偏装备、偏工程的长期路线。",
     entryPaths: ["船舶与海洋工程", "交通运输", "自动化", "机械工程"],
     schoolSlugs: ["shanghai-jiao-tong-university", "tongji-university", "ocean-university-of-china"],
+    candidatePrograms: [],
   },
 ];
 

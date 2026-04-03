@@ -3,6 +3,7 @@ import {
   hotDirectionControversyRecords,
   hotDirectionMainRecords,
   hotDirectionTopicMeta,
+  type HotDirectionCandidateRecord,
   type HotDirectionCategoryDefinition,
   type HotDirectionRecord,
 } from "@/data/hot-directions";
@@ -13,8 +14,13 @@ export type HotDirectionSchoolLink = {
   name: string;
 };
 
-export type HotDirectionView = HotDirectionRecord & {
+export type HotDirectionCandidateView = Omit<HotDirectionCandidateRecord, "schoolSlug"> & {
+  school: HotDirectionSchoolLink;
+};
+
+export type HotDirectionView = Omit<HotDirectionRecord, "candidatePrograms"> & {
   schoolLinks: HotDirectionSchoolLink[];
+  candidatePrograms: HotDirectionCandidateView[];
 };
 
 export type HotDirectionCategoryView = HotDirectionCategoryDefinition & {
@@ -30,9 +36,29 @@ function attachSchoolLinks(record: HotDirectionRecord): HotDirectionView {
       name: school.name,
     }));
 
+  const candidatePrograms = record.candidatePrograms
+    .map((candidate) => {
+      const school = schoolsBySlug.get(candidate.schoolSlug);
+      if (!school) {
+        return null;
+      }
+
+      return {
+        entryLabel: candidate.entryLabel,
+        rationale: candidate.rationale,
+        tags: candidate.tags,
+        school: {
+          slug: school.slug,
+          name: school.name,
+        },
+      };
+    })
+    .filter((candidate): candidate is HotDirectionCandidateView => Boolean(candidate));
+
   return {
     ...record,
     schoolLinks,
+    candidatePrograms,
   };
 }
 

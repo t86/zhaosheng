@@ -41,3 +41,23 @@ test("keeps homepage preview limited to six directions in rank order", () => {
     [1, 2, 3, 4, 5, 6],
   );
 });
+
+test("exposes ranked candidate pools for each main direction", () => {
+  const topic = getHotDirectionTopic();
+  const aiDirection = topic.mainDirections.find((item) => item.slug === "artificial-intelligence");
+  const clinicalDirection = topic.mainDirections.find((item) => item.slug === "clinical-medicine");
+
+  assert.ok(topic.mainDirections.every((item) => item.candidatePrograms.length >= 5));
+  assert.equal(aiDirection?.candidatePrograms[0]?.school.slug, "tsinghua-university");
+  assert.equal(clinicalDirection?.candidatePrograms.length, 5);
+});
+
+test("keeps candidate recommendations attached to known in-site schools", () => {
+  const topic = getHotDirectionTopic();
+
+  assert.ok(
+    topic.mainDirections.every((item) =>
+      item.candidatePrograms.every((candidate) => candidate.school.name.length > 0),
+    ),
+  );
+});

@@ -46,6 +46,8 @@
 .sectionHeader p,
 .factBlock p,
 .dualGrid p,
+.candidateHeader p,
+.candidateRationale,
 .controversyCard p,
 .categoryHeader p,
 .methodCard p {
@@ -231,6 +233,116 @@
   margin-top: 10px;
 }
 
+.candidateBlock {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(22, 50, 79, 0.04);
+  border: 1px solid rgba(21, 23, 28, 0.07);
+}
+
+.candidateHeader {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.candidateHeader strong {
+  color: var(--accent-deep);
+  font-size: 16px;
+}
+
+.candidateHeader p {
+  max-width: 420px;
+  font-size: 13px;
+}
+
+.candidateList {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+  list-style: none;
+}
+
+.candidateItem {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.candidateRank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(22, 50, 79, 0.1);
+  color: var(--accent-deep);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.candidateBody {
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(21, 23, 28, 0.07);
+}
+
+.candidateTitle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  line-height: 1.5;
+}
+
+.candidateTitle a {
+  color: var(--accent-deep);
+  font-weight: 800;
+}
+
+.candidateTitle span {
+  color: rgba(21, 23, 28, 0.78);
+  font-weight: 700;
+}
+
+.candidateRationale {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.candidateTags {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.candidateTag {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 245, 232, 0.92);
+  border: 1px solid rgba(21, 23, 28, 0.08);
+  color: rgba(21, 23, 28, 0.74);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.candidateMore {
+  margin-top: 14px;
+}
+
+.candidateMore summary {
+  cursor: pointer;
+  color: var(--accent-deep);
+  font-weight: 800;
+}
+
 @media (max-width: 980px) {
   .cardGrid,
   .controversyGrid,
@@ -251,6 +363,11 @@
   }
 
   .sectionHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .candidateHeader {
     flex-direction: column;
     align-items: stretch;
   }

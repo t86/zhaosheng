@@ -69,6 +69,71 @@ export default function HotDirectionsPage() {
                 ))}
               </div>
 
+              <div className={styles.candidateBlock}>
+                <div className={styles.candidateHeader}>
+                  <strong>方向候选池</strong>
+                  <p>按方向贴合度、学校平台和本科培养辨识度排序，不是录取分排序。</p>
+                </div>
+
+                <ol className={styles.candidateList}>
+                  {direction.candidatePrograms.slice(0, 5).map((candidate, index) => (
+                    <li
+                      className={styles.candidateItem}
+                      key={`${direction.slug}-${candidate.school.slug}-${candidate.entryLabel}`}
+                    >
+                      <span className={styles.candidateRank}>{index + 1}</span>
+                      <div className={styles.candidateBody}>
+                        <p className={styles.candidateTitle}>
+                          <Link href={`/schools/${candidate.school.slug}`}>{candidate.school.name}</Link>
+                          <span>{candidate.entryLabel}</span>
+                        </p>
+                        <p className={styles.candidateRationale}>{candidate.rationale}</p>
+                        <div className={styles.candidateTags}>
+                          {candidate.tags.map((tag) => (
+                            <span className={styles.candidateTag} key={`${direction.slug}-${candidate.school.slug}-${tag}`}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+
+                {direction.candidatePrograms.length > 5 ? (
+                  <details className={styles.candidateMore}>
+                    <summary>展开另外 {direction.candidatePrograms.length - 5} 个候选</summary>
+                    <ol className={styles.candidateList} start={6}>
+                      {direction.candidatePrograms.slice(5).map((candidate, index) => (
+                        <li
+                          className={styles.candidateItem}
+                          key={`${direction.slug}-more-${candidate.school.slug}-${candidate.entryLabel}`}
+                        >
+                          <span className={styles.candidateRank}>{index + 6}</span>
+                          <div className={styles.candidateBody}>
+                            <p className={styles.candidateTitle}>
+                              <Link href={`/schools/${candidate.school.slug}`}>{candidate.school.name}</Link>
+                              <span>{candidate.entryLabel}</span>
+                            </p>
+                            <p className={styles.candidateRationale}>{candidate.rationale}</p>
+                            <div className={styles.candidateTags}>
+                              {candidate.tags.map((tag) => (
+                                <span
+                                  className={styles.candidateTag}
+                                  key={`${direction.slug}-more-${candidate.school.slug}-${tag}`}
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ol>
+                  </details>
+                ) : null}
+              </div>
+
               {direction.schoolLinks.length > 0 ? (
                 <div className={styles.schoolLinks}>
                   {direction.schoolLinks.map((school) => (
