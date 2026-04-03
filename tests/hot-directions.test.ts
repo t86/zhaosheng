@@ -61,3 +61,22 @@ test("keeps candidate recommendations attached to known in-site schools", () => 
     ),
   );
 });
+
+test("normalizes candidate pools with official-entry mode tags and includes peking university in ai top five", () => {
+  const topic = getHotDirectionTopic();
+  const aiDirection = topic.mainDirections.find((item) => item.slug === "artificial-intelligence");
+  const lowAltitudeDirection = topic.mainDirections.find((item) => item.slug === "low-altitude-aerospace");
+  const allowedModes = new Set(["高考直报", "大类分流", "培养项目", "方向映射"]);
+
+  assert.ok(
+    topic.mainDirections.every((item) =>
+      item.candidatePrograms.every((candidate) => allowedModes.has(candidate.tags[0] ?? "")),
+    ),
+  );
+  assert.ok(
+    aiDirection?.candidatePrograms.slice(0, 5).some((candidate) => candidate.school.slug === "peking-university"),
+  );
+  assert.ok(
+    lowAltitudeDirection?.candidatePrograms.every((candidate) => (candidate.tags[0] ?? "") !== "高考直报"),
+  );
+});
