@@ -10,6 +10,13 @@ test("exposes headline strong-foundation school cards and status panels", () => 
   assert.ok(selectionGuide.qiangji.headlineSchoolCards.every((item) => typeof item.status === "string"));
 });
 
+test("marks 2025 official coverage separately from 2026 pending updates", () => {
+  const statuses = selectionGuide.qiangji.statusPanels.map((item) => item.title);
+
+  assert.deepEqual(statuses, ["2025 官方完整口径", "2026 待更新"]);
+  assert.match(selectionGuide.qiangji.headlineSchoolCards[3]?.takeaway ?? "", /上海/);
+});
+
 test("keeps focused cases separate from summary notes", () => {
   assert.deepEqual(
     selectionGuide.qiangji.focusSchoolCases.map((item) => item.school),
