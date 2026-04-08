@@ -15,6 +15,9 @@ test("marks 2025 official coverage separately from 2026 pending updates", () => 
   const sjtuCard = selectionGuide.qiangji.headlineSchoolCards.find(
     (item) => item.school === "上海交通大学",
   );
+  const ustcCard = selectionGuide.qiangji.headlineSchoolCards.find(
+    (item) => item.school === "中国科学技术大学",
+  );
 
   assert.deepEqual(statuses, ["2025 官方完整口径", "2026 待更新"]);
   assert.match(selectionGuide.qiangji.disclaimer, /2025/);
@@ -23,6 +26,8 @@ test("marks 2025 official coverage separately from 2026 pending updates", () => 
   assert.equal(sjtuCard?.coverageLevel, "stable-2025");
   assert.equal(sjtuCard?.updateStatus, "pending-2026");
   assert.match(sjtuCard?.takeaway ?? "", /上海/);
+  assert.equal(ustcCard?.coverageLevel, "stable-2025");
+  assert.match(ustcCard?.qualificationRule ?? "", /简章/);
 });
 
 test("keeps focused cases separate from summary notes", () => {

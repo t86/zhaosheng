@@ -278,7 +278,7 @@ export const selectionGuide = {
       },
       {
         school: "中国科学技术大学",
-        coverageLevel: "official-2025",
+        coverageLevel: "stable-2025",
         updateStatus: "pending-2026",
         status: "2025 录取标准公示已公开；2026 招生细则待更新。",
         majorRange: "2025 公示已能看到数学类、物理学类等基础学科专业，并细分部分培养方向。",
