@@ -62,6 +62,8 @@ export type HeadlineSchoolNote = {
 
 export type HeadlineSchoolCard = {
   school: string;
+  coverageLevel: "official-2025" | "stable-2025";
+  updateStatus: "pending-2026";
   status: string;
   majorRange: string;
   qualificationRule: string;
@@ -186,7 +188,7 @@ export const selectionGuide = {
   ] satisfies BulletPanel[],
   qiangji: {
     disclaimer:
-      "本区分两类信息：一类是图片里明确可见的时间线、公式、学校名单和分数线；另一类是图片里的经验判断，比如“适合谁”“机会”“风险”，这些属于图片观点。",
+      "本区既保留旧资料里的图片整理结果，也补入 2025 年学校招生网、强基简章和官方通知中已公开的稳定信息；涉及 2026 的部分统一标记为待更新，不把未发布规则写成定案。",
     statusPanels: [
       {
         title: "2025 官方完整口径",
@@ -204,6 +206,8 @@ export const selectionGuide = {
     headlineSchoolCards: [
       {
         school: "清华大学",
+        coverageLevel: "official-2025",
+        updateStatus: "pending-2026",
         status: "2025 简章与测试安排已公开；2026 规则待新简章。",
         majorRange: "基础理科学术类、基础理科工程衔接类、基础文科类。",
         qualificationRule: "按高考成绩分省分学科类 6 倍入围；竞赛国决银牌及以上可申请破格。",
@@ -214,6 +218,8 @@ export const selectionGuide = {
       },
       {
         school: "北京大学",
+        coverageLevel: "official-2025",
+        updateStatus: "pending-2026",
         status: "2025 简章已公开；2026 规则暂不提前外推。",
         majorRange: "按专业组组织，覆盖数学、物理、化学、生物及部分基础文科方向。",
         qualificationRule: "按分省分专业组计划数 6 倍入围；竞赛国决银牌及以上可申请破格。",
@@ -224,6 +230,8 @@ export const selectionGuide = {
       },
       {
         school: "复旦大学",
+        coverageLevel: "official-2025",
+        updateStatus: "pending-2026",
         status: "2025 简章与测试结果页都已公开；2026 先不写成定案。",
         majorRange: "2025 招生专业（类）覆盖古文字学、基础数理化生及医学相关方向。",
         qualificationRule: "A 类面向综合素质优秀考生；B 类面向竞赛国决金银牌考生，且不能兼报其他高校强基。",
@@ -234,6 +242,8 @@ export const selectionGuide = {
       },
       {
         school: "上海交通大学",
+        coverageLevel: "stable-2025",
+        updateStatus: "pending-2026",
         status: "2025 简章已公开；2026 新规未出前先保留 2025 口径。",
         majorRange:
           "2025 已公开口径可见数学与应用数学、物理学、化学、生物科学、生物医学工程等基础学科或交叉方向。",
@@ -244,6 +254,8 @@ export const selectionGuide = {
       },
       {
         school: "浙江大学",
+        coverageLevel: "stable-2025",
+        updateStatus: "pending-2026",
         status: "2025 本博衔接培养方案已公开；招生细则仍以当年简章为准。",
         majorRange: "2025 级已公开多份强基专业培养方案，覆盖数学、物理、化学、生物、历史等基础学科方向。",
         qualificationRule: "当前稳定信息偏培养端；正式入围与录取规则仍等学校当年强基简章。",
@@ -253,6 +265,8 @@ export const selectionGuide = {
       },
       {
         school: "南京大学",
+        coverageLevel: "stable-2025",
+        updateStatus: "pending-2026",
         status: "2025 官方政策解读已公开；2026 仍待新简章。",
         majorRange:
           "数学与应用数学、信息与计算科学、物理学、化学、生物科学、汉语言文学（古文字学）、历史学、哲学。",
@@ -264,6 +278,8 @@ export const selectionGuide = {
       },
       {
         school: "中国科学技术大学",
+        coverageLevel: "official-2025",
+        updateStatus: "pending-2026",
         status: "2025 录取标准公示已公开；2026 招生细则待更新。",
         majorRange: "2025 公示已能看到数学类、物理学类等基础学科专业，并细分部分培养方向。",
         qualificationRule: "正式入围条件仍以 2025 强基简章为准；当前最稳定的是录取结果口径。",
@@ -389,11 +405,11 @@ export const selectionGuide = {
     ] satisfies HeadlineSchoolNote[],
     hongKongReminder: {
       title: "港大上海平台提醒",
-      subtitle: "只写已公开教研与科研教学安排，不把它说成内地独立招生校区。",
+      subtitle: "只写已公开教研与科研教学安排，不把它表述成内地常规本科招生校址。",
       tone: "soft",
       bullets: [
         "港大官方新闻公开的是计算与数据科学学院“上海教研基地”与“一院两校区”教学安排。",
-        "更稳妥的理解是：这是在沪科研教学平台 / 教学基地，不等同于面向内地高考单独招生的独立校区。",
+        "更稳妥的理解是：这是在沪科研教学平台 / 教学基地，不等同于面向内地高考单列招生的本地校区。",
         "如果后续出现新的内地招生口径，仍以港大和相关主管部门正式发布为准。",
       ],
       note: "这里刻意避免使用“大陆校区招生”之类表述，减少误读。",
