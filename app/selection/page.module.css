@@ -118,7 +118,10 @@
 .anchorGrid,
 .panelGridTwo,
 .panelGridThree,
-.exampleGrid {
+.exampleGrid,
+.statusGrid,
+.headlineMatrix,
+.headlineNoteGrid {
   margin-top: 24px;
   display: grid;
   gap: 14px;
@@ -214,6 +217,21 @@
   gap: 20px;
 }
 
+.sectionHeaderCompact {
+  margin-top: 18px;
+}
+
+.sectionHeaderCompact h3 {
+  margin-top: 10px;
+  font-size: clamp(22px, 3vw, 34px);
+}
+
+.sectionHeaderCompact p {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .sectionKicker,
 .caseEyebrow {
   background: rgba(22, 50, 79, 0.08);
@@ -282,9 +300,14 @@
 .panelCard,
 .modeCard,
 .exampleCard,
-.caseInfoCard {
+.caseInfoCard,
+.headlineNoteCard {
   padding: 20px;
   background: rgba(255, 255, 255, 0.84);
+}
+
+.statusCard {
+  padding: 20px;
 }
 
 .panelCard strong,
@@ -309,6 +332,12 @@
   font-size: 14px;
 }
 
+.statusSubtitle {
+  display: inline-flex;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
 .bulletList {
   margin-top: 14px;
   padding-left: 18px;
@@ -327,6 +356,109 @@
 
 .modeGrid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.statusGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.headlineMatrix {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.headlineNoteGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.headlineCard {
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow);
+}
+
+.headlineCardHeader {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.headlineCardHeader h3 {
+  margin-top: 10px;
+  font-size: 28px;
+}
+
+.headlineNoteCard {
+  border-radius: 24px;
+  border: 1px solid var(--border);
+}
+
+.headlineNoteCard strong {
+  display: block;
+  font-size: 22px;
+}
+
+.headlineBadge,
+.headlineUpdate {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.headlineBadge {
+  background: rgba(22, 50, 79, 0.08);
+  color: var(--accent-deep);
+}
+
+.headlineUpdate {
+  background: rgba(238, 194, 104, 0.16);
+  color: #8a5b12;
+  white-space: nowrap;
+}
+
+.headlineStatus {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.headlineMetaList {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.headlineMetaItem {
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(22, 50, 79, 0.04);
+}
+
+.headlineMetaItem dt {
+  color: var(--accent-deep);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.headlineMetaItem dd {
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.headlineTakeaway {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(22, 50, 79, 0.08);
+  font-weight: 700;
+  line-height: 1.7;
 }
 
 .modeHeader {
@@ -508,7 +640,9 @@
   .anchorGrid,
   .modeGrid,
   .panelGridThree,
-  .exampleGrid {
+  .exampleGrid,
+  .headlineMatrix,
+  .headlineNoteGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -534,9 +668,12 @@
   .anchorGrid,
   .panelGridTwo,
   .panelGridThree,
+  .statusGrid,
   .modeGrid,
   .caseInfoGrid,
-  .exampleGrid {
+  .exampleGrid,
+  .headlineMatrix,
+  .headlineNoteGrid {
     grid-template-columns: 1fr;
   }
 }

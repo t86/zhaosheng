@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { selectionGuide } from "../data/selection-guides";
+import { readFileSync } from "node:fs";
+import { selectionGuide } from "../data/selection-guides.ts";
 
 test("exposes headline strong-foundation school cards and status panels", () => {
   assert.equal(selectionGuide.qiangji.statusPanels.length, 2);
@@ -15,19 +16,45 @@ test("marks 2025 official coverage separately from 2026 pending updates", () => 
   const sjtuCard = selectionGuide.qiangji.headlineSchoolCards.find(
     (item) => item.school === "上海交通大学",
   );
+  const tsinghuaCard = selectionGuide.qiangji.headlineSchoolCards.find(
+    (item) => item.school === "清华大学",
+  );
   const ustcCard = selectionGuide.qiangji.headlineSchoolCards.find(
     (item) => item.school === "中国科学技术大学",
   );
 
-  assert.deepEqual(statuses, ["2025 官方完整口径", "2026 待更新"]);
-  assert.match(selectionGuide.qiangji.disclaimer, /2025/);
-  assert.match(selectionGuide.qiangji.disclaimer, /官方/);
-  assert.match(selectionGuide.qiangji.disclaimer, /图片整理/);
+  assert.deepEqual(statuses, ["截至 2026-04-15 已发布 2026 简章", "截至 2026-04-15 暂按 2025 稳定口径"]);
+  assert.match(selectionGuide.qiangji.disclaimer, /2026-04-15/);
+  assert.match(selectionGuide.qiangji.disclaimer, /清华/);
+  assert.match(selectionGuide.qiangji.disclaimer, /复旦/);
+  assert.match(selectionGuide.qiangji.disclaimer, /浙大/);
   assert.equal(sjtuCard?.coverageLevel, "stable-2025");
   assert.equal(sjtuCard?.updateStatus, "pending-2026");
-  assert.match(sjtuCard?.takeaway ?? "", /上海/);
+  assert.match(sjtuCard?.takeaway ?? "", /2025/);
+  assert.equal(tsinghuaCard?.coverageLevel, "official-2026");
+  assert.equal(tsinghuaCard?.updateStatus, "official-2026");
+  assert.match(tsinghuaCard?.status ?? "", /2026/);
   assert.equal(ustcCard?.coverageLevel, "stable-2025");
   assert.match(ustcCard?.qualificationRule ?? "", /简章/);
+});
+
+test("adds explicit who-should-apply and preparation guidance for strong foundation readers", () => {
+  const audienceTitles = selectionGuide.qiangji.audiencePanels.map((item) => item.title);
+  const prepTitles = selectionGuide.qiangji.preparationPanels.map((item) => item.title);
+  const allAudienceText = selectionGuide.qiangji.audiencePanels
+    .flatMap((item) => [item.title, item.subtitle ?? "", ...item.bullets, item.note ?? ""])
+    .join(" ");
+  const allPrepText = selectionGuide.qiangji.preparationPanels
+    .flatMap((item) => [item.title, item.subtitle ?? "", ...item.bullets, item.note ?? ""])
+    .join(" ");
+
+  assert.deepEqual(audienceTitles, ["什么样的孩子更适合强基", "什么样的孩子不太适合强基", "报名前先问孩子的 3 个问题"]);
+  assert.deepEqual(prepTitles, ["先定学校与专业方向", "按校测模式准备", "把材料、体测和时间线排实", "高考后只做确认，不临时起意"]);
+  assert.match(allAudienceText, /单校重仓/);
+  assert.match(allAudienceText, /长期深造/);
+  assert.match(allPrepText, /体育测试/);
+  assert.match(allPrepText, /报名材料/);
+  assert.match(allPrepText, /校测/);
 });
 
 test("keeps focused cases separate from summary notes", () => {
@@ -55,4 +82,15 @@ test("adds an HKU reminder with Shanghai teaching-base wording", () => {
   assert.match(reminderText, /上海教研基地/);
   assert.doesNotMatch(reminderText, /正式校区/);
   assert.doesNotMatch(reminderText, /独立招生校区/);
+});
+
+test("updates homepage and timeline copy to foreground Shanghai top-score strong foundation judgment", () => {
+  const homeSource = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const timelineSource = readFileSync(new URL("../app/timeline/page.tsx", import.meta.url), "utf8");
+
+  assert.match(homeSource, /上海高分家庭/);
+  assert.match(homeSource, /单校判断/);
+  assert.match(homeSource, /适合什么样的孩子/);
+  assert.match(timelineSource, /强基准备不是 6 月才开始/);
+  assert.match(timelineSource, /高二下/);
 });

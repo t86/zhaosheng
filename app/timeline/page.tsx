@@ -25,7 +25,7 @@ const sectionNav = [
     href: "#overview",
     label: "总览",
     title: "高三下总览",
-    description: "3 月到 7 月的强基、综评、港校与录取总节奏。",
+    description: "3 月到 7 月的强基、综评、港校与录取总节奏，以及强基准备不是 6 月才开始。",
   },
   {
     href: `#${shanghaiJuneJulyTimeline.id}`,
@@ -217,7 +217,8 @@ export default function TimelinePage() {
         <h1>把强基、综评、港校和录取节点，按阶段拆开看。</h1>
         <p>
           这页不再只有一张总览图，而是把你给的 4 组时间表拆成 `总览节奏`、`上海 6-7 月细表`、`上海
-          7-8 月录取跟踪` 和 `2025 上海录取流程` 四段，方便按阶段查看。
+          7-8 月录取跟踪` 和 `2025 上海录取流程` 四段，方便按阶段查看。对强基家庭尤其重要的是：
+          强基准备不是 6 月才开始，很多从高二下到高三上的学校判断、校测积累和体测准备，都会直接影响后面的确认动作。
         </p>
         <div className={styles.heroMeta}>
           <span className={styles.heroPill}>已整理 4 张时间表</span>

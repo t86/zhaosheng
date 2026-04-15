@@ -3,6 +3,8 @@ import Link from "next/link";
 import {
   selectionGuide,
   type BulletPanel,
+  type HeadlineSchoolNote,
+  type HeadlineSchoolCard,
   type GuideTimelineCase,
   type SchoolMode,
   type SelectionTone,
@@ -38,6 +40,86 @@ function BulletCard({ panel }: { panel: BulletPanel }) {
         ))}
       </ul>
       {panel.note ? <p className={styles.panelNote}>{panel.note}</p> : null}
+    </article>
+  );
+}
+
+function StatusCard({ panel }: { panel: BulletPanel }) {
+  return (
+    <article className={`${styles.statusCard} ${getToneClassName(panel.tone)}`}>
+      <strong>{panel.title}</strong>
+      {panel.subtitle ? <span className={styles.statusSubtitle}>{panel.subtitle}</span> : null}
+      <ul className={styles.bulletList}>
+        {panel.bullets.map((item) => (
+          <li key={`${panel.title}-${item}`}>{item}</li>
+        ))}
+      </ul>
+      {panel.note ? <p className={styles.panelNote}>{panel.note}</p> : null}
+    </article>
+  );
+}
+
+function HeadlineSchoolMatrixCard({ card }: { card: HeadlineSchoolCard }) {
+  return (
+    <article className={styles.headlineCard}>
+      <div className={styles.headlineCardHeader}>
+        <div>
+          <span className={styles.headlineBadge}>
+            {card.coverageLevel === "official-2026"
+              ? "2026 官方简章"
+              : card.coverageLevel === "official-2025"
+                ? "2025 官方完整口径"
+                : "2025 稳定口径"}
+          </span>
+          <h3>{card.school}</h3>
+          <p className={styles.headlineStatus}>{card.status}</p>
+        </div>
+        <span className={styles.headlineUpdate}>
+          {card.updateStatus === "official-2026" ? "2026 已发布" : "2026 待更新"}
+        </span>
+      </div>
+
+      <dl className={styles.headlineMetaList}>
+        <div className={styles.headlineMetaItem}>
+          <dt>专业范围</dt>
+          <dd>{card.majorRange}</dd>
+        </div>
+        <div className={styles.headlineMetaItem}>
+          <dt>入围口径</dt>
+          <dd>{card.qualificationRule}</dd>
+        </div>
+        <div className={styles.headlineMetaItem}>
+          <dt>校测结构</dt>
+          <dd>{card.assessment}</dd>
+        </div>
+        <div className={styles.headlineMetaItem}>
+          <dt>破格/例外</dt>
+          <dd>{card.exceptionRule}</dd>
+        </div>
+        <div className={styles.headlineMetaItem}>
+          <dt>更适合</dt>
+          <dd>{card.bestFor}</dd>
+        </div>
+        <div className={styles.headlineMetaItem}>
+          <dt>准备重点</dt>
+          <dd>{card.prepFocus}</dd>
+        </div>
+      </dl>
+
+      <div className={styles.headlineTakeaway}>{card.takeaway}</div>
+    </article>
+  );
+}
+
+function HeadlineSchoolNoteCard({ note }: { note: HeadlineSchoolNote }) {
+  return (
+    <article className={styles.headlineNoteCard}>
+      <strong>{note.school}</strong>
+      <ul className={styles.bulletList}>
+        {note.notes.map((item) => (
+          <li key={`${note.school}-${item}`}>{item}</li>
+        ))}
+      </ul>
     </article>
   );
 }
@@ -193,15 +275,71 @@ export default function SelectionPage() {
         <div className={styles.sectionHeader}>
           <div>
             <span className={styles.sectionKicker}>强基板块</span>
-            <h2>先看总览，再看规则和模式</h2>
+            <h2>先判断孩子适不适合强基，再看学校和准备</h2>
             <p>
-              这组图片先补齐了 `28 所学校总览 / 报名时间 / 只能报 1 所 / 提前测试 12 所` 这层底图；
-              再往下才是 `出分前校测 / 出分后只面试 / 出分后笔试 + 面试` 三种模式，以及入围算法究竟是不是裸高考分。
+              这部分先回答上海高分家庭最常见的三个问题：`孩子适不适合强基`、`清北华五分别更适合什么样的孩子`、
+              `如果决定冲强基，前面几个月到底该准备什么`。学校规则和案例仍然保留，但顺序改成先判断、再择校、最后执行。
             </p>
           </div>
         </div>
 
         <div className={styles.disclaimerCard}>{qiangji.disclaimer}</div>
+
+        <div className={styles.sectionHeaderCompact}>
+          <div>
+            <span className={styles.sectionKicker}>状态区</span>
+            <h3>截至 2026-04-15：哪些学校已出 2026 简章</h3>
+            <p>先按最新已发布的官方简章读规则；还没出新简章的学校，继续沿用 2025 稳定口径判断。</p>
+          </div>
+        </div>
+
+        <div className={styles.statusGrid}>
+          {qiangji.statusPanels.map((panel) => (
+            <StatusCard key={panel.title} panel={panel} />
+          ))}
+        </div>
+
+        <div className={styles.sectionHeaderCompact}>
+          <div>
+            <span className={styles.sectionKicker}>先做判断</span>
+            <h3>什么样的孩子更适合强基</h3>
+            <p>先看匹配度，再看学校名。对上海高分家庭来说，这一步比比较案例更重要。</p>
+          </div>
+        </div>
+
+        <div className={styles.panelGridThree}>
+          {qiangji.audiencePanels.map((panel) => (
+            <BulletCard key={panel.title} panel={panel} />
+          ))}
+        </div>
+
+        <div className={styles.sectionHeaderCompact}>
+          <div>
+            <span className={styles.sectionKicker}>头部学校矩阵</span>
+            <h3>清北华五强基速览</h3>
+            <p>这里把学校规则、适合什么样的孩子和准备重点放在同一屏，方便先做单校判断，再看案例。</p>
+          </div>
+        </div>
+
+        <div className={styles.headlineMatrix}>
+          {qiangji.headlineSchoolCards.map((card) => (
+            <HeadlineSchoolMatrixCard key={card.school} card={card} />
+          ))}
+        </div>
+
+        <div className={styles.sectionHeaderCompact}>
+          <div>
+            <span className={styles.sectionKicker}>准备清单</span>
+            <h3>如果决定冲强基，需要先准备什么</h3>
+            <p>把学校、校测、材料、体测和时间线拆开准备，能减少高考后一周的临场混乱。</p>
+          </div>
+        </div>
+
+        <div className={styles.panelGridTwo}>
+          {qiangji.preparationPanels.map((panel) => (
+            <BulletCard key={panel.title} panel={panel} />
+          ))}
+        </div>
 
         <div className={styles.panelGridThree}>
           {qiangji.overviewPanels.map((panel) => (
@@ -238,15 +376,41 @@ export default function SelectionPage() {
         <div className={styles.sectionHeader}>
           <div>
             <span className={styles.sectionKicker}>强基案例</span>
-            <h2>复旦、武大、东南三张 2025 图，拆成可读时间线</h2>
-            <p>这三所学校正好覆盖了出分前笔试、出分后按高考分入围、双确认流程等不同口径。</p>
+            <h2>复旦、清华、上交三所 2025 重点案例，拆成可读时间线</h2>
+            <p>这三所学校正好覆盖出分前笔试、分省入围、系统确认和综合成绩公式等关键差异。</p>
           </div>
         </div>
 
         <div className={styles.caseList}>
-          {qiangji.schoolCases.map((item) => (
+          {qiangji.focusSchoolCases.map((item) => (
             <TimelineCase item={item} key={item.school} />
           ))}
+        </div>
+
+        <div className={styles.sectionHeaderCompact}>
+          <div>
+            <span className={styles.sectionKicker}>补充说明</span>
+            <h3>北大、浙大、南大、中科大先看摘要</h3>
+            <p>这四所学校不展开整条时间线，先保留对家长更有用的规则摘要，后续再按需补完整案例。</p>
+          </div>
+        </div>
+
+        <div className={styles.headlineNoteGrid}>
+          {qiangji.headlineSchoolNotes.map((note) => (
+            <HeadlineSchoolNoteCard key={note.school} note={note} />
+          ))}
+        </div>
+
+        <div className={styles.sectionHeaderCompact}>
+          <div>
+            <span className={styles.sectionKicker}>港校提醒</span>
+            <h3>港大上海平台只作补充提醒</h3>
+            <p>这里仅保留港大在沪教研与教学协同的公开口径，不把它写成强基主线内容。</p>
+          </div>
+        </div>
+
+        <div className={styles.panelGridOne}>
+          <BulletCard panel={qiangji.hongKongReminder} />
         </div>
       </section>
 
