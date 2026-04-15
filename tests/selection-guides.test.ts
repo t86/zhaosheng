@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { selectionGuide } from "../data/selection-guides.ts";
 
 test("exposes headline strong-foundation school cards and status panels", () => {
-  assert.equal(selectionGuide.qiangji.statusPanels.length, 2);
+  assert.equal(selectionGuide.qiangji.statusPanels.length, 1);
   assert.ok(selectionGuide.qiangji.statusPanels.every((item) => Array.isArray(item.bullets)));
   assert.equal(selectionGuide.qiangji.headlineSchoolCards.length, 7);
   assert.equal(selectionGuide.qiangji.headlineSchoolCards[0]?.school, "清华大学");
@@ -16,6 +16,12 @@ test("marks 2025 official coverage separately from 2026 pending updates", () => 
   const sjtuCard = selectionGuide.qiangji.headlineSchoolCards.find(
     (item) => item.school === "上海交通大学",
   );
+  const pkuCard = selectionGuide.qiangji.headlineSchoolCards.find(
+    (item) => item.school === "北京大学",
+  );
+  const njuCard = selectionGuide.qiangji.headlineSchoolCards.find(
+    (item) => item.school === "南京大学",
+  );
   const tsinghuaCard = selectionGuide.qiangji.headlineSchoolCards.find(
     (item) => item.school === "清华大学",
   );
@@ -23,19 +29,26 @@ test("marks 2025 official coverage separately from 2026 pending updates", () => 
     (item) => item.school === "中国科学技术大学",
   );
 
-  assert.deepEqual(statuses, ["截至 2026-04-15 已发布 2026 简章", "截至 2026-04-15 暂按 2025 稳定口径"]);
+  assert.deepEqual(statuses, ["截至 2026-04-15 已发布 2026 简章"]);
   assert.match(selectionGuide.qiangji.disclaimer, /2026-04-15/);
   assert.match(selectionGuide.qiangji.disclaimer, /清华/);
   assert.match(selectionGuide.qiangji.disclaimer, /复旦/);
   assert.match(selectionGuide.qiangji.disclaimer, /浙大/);
-  assert.equal(sjtuCard?.coverageLevel, "stable-2025");
-  assert.equal(sjtuCard?.updateStatus, "pending-2026");
-  assert.match(sjtuCard?.takeaway ?? "", /2025/);
+  assert.match(selectionGuide.qiangji.disclaimer, /北大/);
+  assert.match(selectionGuide.qiangji.disclaimer, /上交/);
+  assert.match(selectionGuide.qiangji.disclaimer, /南大/);
+  assert.match(selectionGuide.qiangji.disclaimer, /中科大/);
+  assert.equal(sjtuCard?.coverageLevel, "official-2026");
+  assert.equal(sjtuCard?.updateStatus, "official-2026");
+  assert.match(sjtuCard?.status ?? "", /2026/);
+  assert.equal(pkuCard?.coverageLevel, "official-2026");
+  assert.equal(njuCard?.coverageLevel, "official-2026");
   assert.equal(tsinghuaCard?.coverageLevel, "official-2026");
   assert.equal(tsinghuaCard?.updateStatus, "official-2026");
   assert.match(tsinghuaCard?.status ?? "", /2026/);
-  assert.equal(ustcCard?.coverageLevel, "stable-2025");
-  assert.match(ustcCard?.qualificationRule ?? "", /简章/);
+  assert.equal(ustcCard?.coverageLevel, "official-2026");
+  assert.equal(ustcCard?.updateStatus, "official-2026");
+  assert.match(ustcCard?.qualificationRule ?? "", /2026|4 倍|综合面试/);
 });
 
 test("adds explicit who-should-apply and preparation guidance for strong foundation readers", () => {

@@ -289,7 +289,7 @@ export default function SelectionPage() {
           <div>
             <span className={styles.sectionKicker}>状态区</span>
             <h3>截至 2026-04-15：哪些学校已出 2026 简章</h3>
-            <p>先按最新已发布的官方简章读规则；还没出新简章的学校，继续沿用 2025 稳定口径判断。</p>
+            <p>清华、北大、复旦、上交、浙大、南大、中科大都已切到 2026 官方口径，先按今年规则做判断。</p>
           </div>
         </div>
 
