@@ -30,11 +30,13 @@ fi
 
 cd "${ROOT_DIR}"
 
+PNPM_CMD="${PNPM_CMD:-corepack pnpm}"
+
 echo "1/5 Lint"
-pnpm lint
+${PNPM_CMD} lint
 
 echo "2/5 Build"
-pnpm build
+${PNPM_CMD} build
 
 echo "3/5 Pack"
 COPYFILE_DISABLE=1 tar \

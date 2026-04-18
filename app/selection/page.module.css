@@ -143,7 +143,9 @@
 .noteCard,
 .caseInfoCard,
 .formulaCard,
-.tableShell {
+.tableShell,
+.qiangjiDetailCard,
+.qiangjiDataStats article {
   border-radius: 24px;
   border: 1px solid var(--border);
 }
@@ -461,6 +463,151 @@
   line-height: 1.7;
 }
 
+.qiangjiDataStats {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.qiangjiDataStats article {
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(238, 245, 244, 0.88));
+}
+
+.qiangjiDataStats span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.qiangjiDataStats strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--accent-deep);
+  font-size: 34px;
+}
+
+.qiangjiSummaryTable {
+  min-width: 1200px;
+}
+
+.qiangjiSummaryTable td,
+.qiangjiSummaryTable th {
+  max-width: 220px;
+  vertical-align: top;
+}
+
+.qiangjiDetailGrid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.qiangjiDetailCard {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.qiangjiDetailCard summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.qiangjiDetailCard summary::-webkit-details-marker {
+  display: none;
+}
+
+.qiangjiDetailCard summary span {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.qiangjiDetailCard summary strong {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(22, 50, 79, 0.08);
+  color: var(--accent-deep);
+  font-size: 12px;
+}
+
+.qiangjiDetailBody {
+  padding: 0 20px 20px;
+}
+
+.qiangjiMetaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.qiangjiMetaGrid span,
+.qiangjiRuleBox,
+.majorChip {
+  line-height: 1.65;
+}
+
+.qiangjiMetaGrid span {
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(22, 50, 79, 0.05);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.qiangjiRuleBox {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255, 247, 235, 0.88);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.qiangjiRuleBox p + p {
+  margin-top: 8px;
+}
+
+.majorChipList {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.majorChip {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 280px;
+  padding: 9px 11px;
+  border-radius: 16px;
+  background: rgba(22, 50, 79, 0.06);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.majorChip em,
+.majorChip b {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.disciplineTable {
+  min-width: 980px;
+}
+
 .modeHeader {
   display: flex;
   align-items: start;
@@ -642,7 +789,9 @@
   .panelGridThree,
   .exampleGrid,
   .headlineMatrix,
-  .headlineNoteGrid {
+  .headlineNoteGrid,
+  .qiangjiDataStats,
+  .qiangjiDetailGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -673,7 +822,10 @@
   .caseInfoGrid,
   .exampleGrid,
   .headlineMatrix,
-  .headlineNoteGrid {
+  .headlineNoteGrid,
+  .qiangjiDataStats,
+  .qiangjiDetailGrid,
+  .qiangjiMetaGrid {
     grid-template-columns: 1fr;
   }
 }

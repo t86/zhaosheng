@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { selectionGuide } from "../data/selection-guides.ts";
+import { qiangjiShanghai2026 } from "../data/qiangji-shanghai-2026.ts";
 
 test("exposes headline strong-foundation school cards and status panels", () => {
   assert.equal(selectionGuide.qiangji.statusPanels.length, 1);
@@ -106,4 +107,22 @@ test("updates homepage and timeline copy to foreground Shanghai top-score strong
   assert.match(homeSource, /适合什么样的孩子/);
   assert.match(timelineSource, /强基准备不是 6 月才开始/);
   assert.match(timelineSource, /高二下/);
+});
+
+test("imports 2026 Shanghai strong foundation spreadsheet data into selection page", () => {
+  const selectionPageSource = readFileSync(new URL("../app/selection/page.tsx", import.meta.url), "utf8");
+  const tsinghua = qiangjiShanghai2026.schools.find((item) => item.school === "清华大学");
+  const fudan = qiangjiShanghai2026.schools.find((item) => item.school === "复旦大学");
+  const disciplineSchools = qiangjiShanghai2026.disciplineRatings.map((item) => item.school);
+
+  assert.equal(qiangjiShanghai2026.stats.schoolCount, 29);
+  assert.equal(qiangjiShanghai2026.stats.majorRowCount, 253);
+  assert.equal(qiangjiShanghai2026.stats.disciplineSchoolCount, 29);
+  assert.equal(qiangjiShanghai2026.stats.timingCounts["出分前校测"], 12);
+  assert.equal(qiangjiShanghai2026.stats.timingCounts["出分后校测"], 15);
+  assert.ok(tsinghua?.majors.some((item) => item.major === "数学与应用数学"));
+  assert.ok(fudan?.majors.some((item) => item.major.includes("信息与计算科学")));
+  assert.ok(disciplineSchools.includes("北京大学"));
+  assert.match(selectionPageSource, /qiangjiShanghai2026/);
+  assert.match(selectionPageSource, /2026 对沪招生汇总/);
 });

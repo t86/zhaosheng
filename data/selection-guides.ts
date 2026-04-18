@@ -93,9 +93,9 @@ export const selectionGuide = {
       "这页既整理了图片里明确给出的流程、计划数、入围线和专业组，也保留了图片里的经验判断。涉及“适合谁、优缺点、策略建议”的部分，我都按“图片观点”显示，不冒充学校官方口径。",
     stats: [
       { label: "强基模式", value: "3 类" },
+      { label: "2026 对沪强基", value: "29 所" },
       { label: "强基案例", value: "复旦 / 武大 / 东南" },
       { label: "上海综评高校", value: "11 所" },
-      { label: "交大综评案例", value: "1 套完整流程" },
     ] satisfies SelectionStat[],
     anchors: [
       {
@@ -103,6 +103,12 @@ export const selectionGuide = {
         label: "强基",
         title: "强基规则与模式",
         description: "先看普通考生 / 破格考生，再看交复南、清北传统、只面试三种模式。",
+      },
+      {
+        href: "#qiangji-shanghai-2026",
+        label: "2026",
+        title: "对沪招生汇总",
+        description: "导入 29 所对沪强基高校、253 条专业/方向明细和学科评估对照。",
       },
       {
         href: "#qiangji-cases",

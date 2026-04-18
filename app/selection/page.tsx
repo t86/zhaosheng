@@ -9,7 +9,16 @@ import {
   type SchoolMode,
   type SelectionTone,
 } from "@/data/selection-guides";
+import {
+  qiangjiShanghai2026,
+  type QiangjiDisciplineRating,
+  type QiangjiShanghaiSchool,
+} from "@/data/qiangji-shanghai-2026";
 import styles from "./page.module.css";
+
+const shanghaiQiangjiSchools = qiangjiShanghai2026.schools as readonly QiangjiShanghaiSchool[];
+const shanghaiQiangjiDisciplineRatings =
+  qiangjiShanghai2026.disciplineRatings as readonly QiangjiDisciplineRating[];
 
 export const metadata: Metadata = {
   title: "强基与综评 | 985 高校志愿参考库",
@@ -121,6 +130,133 @@ function HeadlineSchoolNoteCard({ note }: { note: HeadlineSchoolNote }) {
         ))}
       </ul>
     </article>
+  );
+}
+
+function shortText(value: string, fallback = "-") {
+  const normalized = value.replace(/\n/g, " / ").trim();
+  return normalized || fallback;
+}
+
+function getSchoolPlan2026(school: QiangjiShanghaiSchool) {
+  const explicitPlans = school.majors.map((major) => major.plan2026).filter(Boolean);
+  if (explicitPlans.length === 0) {
+    return "-";
+  }
+
+  const numericPlans = explicitPlans
+    .map((item) => Number(item))
+    .filter((item) => Number.isFinite(item));
+
+  if (numericPlans.length === explicitPlans.length) {
+    return String(numericPlans.reduce((sum, item) => sum + item, 0));
+  }
+
+  return explicitPlans.slice(0, 3).join(" / ");
+}
+
+function ShanghaiQiangjiSchoolSummaryTable() {
+  return (
+    <div className={styles.tableShell}>
+      <table className={`${styles.cutoffTable} ${styles.qiangjiSummaryTable}`}>
+        <thead>
+          <tr>
+            <th>学校</th>
+            <th>校测节奏</th>
+            <th>专业/方向</th>
+            <th>2026 人数</th>
+            <th>入围倍数</th>
+            <th>确认时间</th>
+            <th>校测时间</th>
+            <th>笔面试</th>
+          </tr>
+        </thead>
+        <tbody>
+          {shanghaiQiangjiSchools.map((school) => (
+            <tr key={school.rawName}>
+              <th>{school.school}</th>
+              <td>{school.timing}</td>
+              <td>{school.majors.length}</td>
+              <td>{getSchoolPlan2026(school)}</td>
+              <td>{shortText(school.shortlistRatio)}</td>
+              <td>{shortText(school.confirmationTime)}</td>
+              <td>{shortText(school.assessmentTime)}</td>
+              <td>{shortText(school.assessmentFormat)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function ShanghaiQiangjiSchoolDetails() {
+  return (
+    <div className={styles.qiangjiDetailGrid}>
+      {shanghaiQiangjiSchools.map((school) => (
+        <details className={styles.qiangjiDetailCard} key={school.rawName}>
+          <summary>
+            <span>{school.school}</span>
+            <strong>{school.majors.length} 个专业/方向</strong>
+          </summary>
+          <div className={styles.qiangjiDetailBody}>
+            <div className={styles.qiangjiMetaGrid}>
+              <span>节奏：{school.timing}</span>
+              <span>2026 人数：{getSchoolPlan2026(school)}</span>
+              <span>入围倍数：{shortText(school.shortlistRatio)}</span>
+              <span>确认：{shortText(school.confirmationTime)}</span>
+              <span>校测：{shortText(school.assessmentTime)}</span>
+              <span>形式：{shortText(school.assessmentFormat)}</span>
+            </div>
+            {school.breakthroughRule || school.scoreFormula ? (
+              <div className={styles.qiangjiRuleBox}>
+                {school.breakthroughRule ? <p>破格/报名提醒：{shortText(school.breakthroughRule)}</p> : null}
+                {school.scoreFormula ? <p>入围/综合成绩：{shortText(school.scoreFormula)}</p> : null}
+              </div>
+            ) : null}
+            <div className={styles.majorChipList}>
+              {school.majors.map((major) => (
+                <span className={styles.majorChip} key={`${school.rawName}-${major.major}`}>
+                  {major.major}
+                  {major.subjectOrCollege ? <em>{major.subjectOrCollege}</em> : null}
+                  {major.plan2026 ? <b>{major.plan2026} 人</b> : null}
+                </span>
+              ))}
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  );
+}
+
+function DisciplineRatingTable() {
+  const subjects = shanghaiQiangjiDisciplineRatings[0]?.ratings.map((item) => item.subject) ?? [];
+
+  return (
+    <div className={styles.tableShell}>
+      <table className={`${styles.cutoffTable} ${styles.disciplineTable}`}>
+        <thead>
+          <tr>
+            <th>学校</th>
+            {subjects.map((subject) => (
+              <th key={subject}>{subject}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {shanghaiQiangjiDisciplineRatings.map((row) => (
+            <tr key={row.school}>
+              <th>{row.school}</th>
+              {subjects.map((subject) => {
+                const rating = row.ratings.find((item) => item.subject === subject)?.rating ?? "-";
+                return <td key={`${row.school}-${subject}`}>{rating}</td>;
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -298,6 +434,49 @@ export default function SelectionPage() {
             <StatusCard key={panel.title} panel={panel} />
           ))}
         </div>
+
+        <div className={styles.sectionHeaderCompact} id="qiangji-shanghai-2026">
+          <div>
+            <span className={styles.sectionKicker}>2026 对沪招生汇总</span>
+            <h3>29 所强基高校对上海招生表</h3>
+            <p>
+              这块来自你提供的 Excel《{qiangjiShanghai2026.sourceFile}》，已整理成学校总览、专业/方向明细和学科评估对照。
+              这份表适合做志愿池初筛，最终报名仍要回到高校 2026 简章和阳光高考系统。
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.qiangjiDataStats}>
+          <article>
+            <span>对沪强基高校</span>
+            <strong>{qiangjiShanghai2026.stats.schoolCount}</strong>
+          </article>
+          <article>
+            <span>专业/方向明细</span>
+            <strong>{qiangjiShanghai2026.stats.majorRowCount}</strong>
+          </article>
+          <article>
+            <span>出分前校测</span>
+            <strong>{qiangjiShanghai2026.stats.timingCounts["出分前校测"]}</strong>
+          </article>
+          <article>
+            <span>出分后校测</span>
+            <strong>{qiangjiShanghai2026.stats.timingCounts["出分后校测"]}</strong>
+          </article>
+        </div>
+
+        <ShanghaiQiangjiSchoolSummaryTable />
+        <ShanghaiQiangjiSchoolDetails />
+
+        <div className={styles.sectionHeaderCompact}>
+          <div>
+            <span className={styles.sectionKicker}>学科实力对照</span>
+            <h3>按强基专业/类看学科评估</h3>
+            <p>同一个强基专业名，背后学校学科底盘差异很大；这张表用来帮助筛掉“只看学校名”的错觉。</p>
+          </div>
+        </div>
+
+        <DisciplineRatingTable />
 
         <div className={styles.sectionHeaderCompact}>
           <div>
