@@ -119,6 +119,15 @@ const featureCards = [
     tone: "plum",
   },
   {
+    kicker: "视频来源笔记",
+    title: "专业建议笔记库",
+    description: "把视频里的专业体感判断整理成可回看的笔记，适合先建立方向感，再回到学校和专业组核对。",
+    stats: ["视频笔记", "专业体感判断", "持续补录"],
+    href: "/advice",
+    actionLabel: "打开专业建议 →",
+    tone: "amber",
+  },
+  {
     kicker: "高三下节奏",
     title: "3-7 月关键时间线",
     description: "把强基、综评、志愿填报和录取时间放到同一条线里，方便家长排优先级。",
