@@ -128,10 +128,10 @@ export default function ShanghaiAdmissionsPage() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div>
-            <h2>填报前先核对的 4 件事</h2>
+            <h2>填报前先核对这些事</h2>
           </div>
           <p>
-            这一组把考试院在 2025 答记者问和特别提醒里反复强调的动作，整理成可以执行的清单。
+            这一组把考试院 2026 实施办法和官方提醒里反复强调的动作，整理成可以执行的清单。
           </p>
         </div>
 
