@@ -281,6 +281,27 @@ export default function TimelinePage() {
 
         <div className={styles.sectionHeader}>
           <div>
+            <span className={styles.sectionKicker}>高三家长执行清单</span>
+            <h2>按出分、填报、校测和等级考倒排动作</h2>
+            <p>这组清单把官方日期转成家长要盯的动作，重点是英语一考后的精力重排和小三门确认。</p>
+          </div>
+        </div>
+
+        <div className={styles.takeawayGrid}>
+          {shanghaiEarlyExamFocus.parentActionChecklist.map((item) => (
+            <article className={styles.takeawayCard} key={`${item.period}-${item.title}`}>
+              <strong>{item.period}｜{item.title}</strong>
+              <ul className={styles.noteList}>
+                {item.items.map((action) => (
+                  <li key={action}>{action}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.sectionHeader}>
+          <div>
             <span className={styles.sectionKicker}>春考决策卡</span>
             <h2>先判断春招值不值得继续走</h2>
             <p>出分后先看门槛、专业池、志愿数量和章程硬限制，再决定是否把春招推进到校测和确认阶段。</p>

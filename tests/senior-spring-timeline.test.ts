@@ -61,6 +61,24 @@ test("surfaces spring pre-admission and waitlist confirmation rules", () => {
   assert.match(confirmationText, /截止时间后.*不得修改/);
 });
 
+test("surfaces a parent action checklist from score release through grade exam", () => {
+  const checklistText = shanghaiEarlyExamFocus.parentActionChecklist
+    .map((item) => `${item.period} ${item.title} ${item.items.join(" ")}`)
+    .join(" ");
+
+  assert.match(checklistText, /1月21日.*出分/);
+  assert.match(checklistText, /英语一考.*目标分/);
+  assert.match(checklistText, /6月外语.*保温/);
+  assert.match(checklistText, /语文.*数学.*小三门/);
+  assert.match(checklistText, /1月30日-31日.*2个专业志愿/);
+  assert.match(checklistText, /2月5日.*自主测试资格线/);
+  assert.match(checklistText, /2月6日-7日.*测试时间.*地点/);
+  assert.match(checklistText, /准考证.*身份证/);
+  assert.match(checklistText, /3月26日10:00至3月28日16:00/);
+  assert.match(checklistText, /4月7日至4月11日.*确认/);
+  assert.match(checklistText, /5月5日-6日.*提前45分钟/);
+});
+
 test("surfaces Shanghai grade-exam subject schedule and cautions", () => {
   const gradeExamText = shanghaiEarlyExamFocus.gradeExamCards
     .map((item) => `${item.title} ${item.body}`)
@@ -93,6 +111,7 @@ test("links early-exam focus to official Shanghai sources and renders page entry
   assert.match(timelineSource, /春考\/小三门/);
   assert.match(timelineSource, /春考决策卡/);
   assert.match(timelineSource, /预录取\/候补确认/);
+  assert.match(timelineSource, /高三家长执行清单/);
   assert.match(homeSource, /春考/);
   assert.match(homeSource, /外语一考/);
   assert.match(homeSource, /小三门/);
