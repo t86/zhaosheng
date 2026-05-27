@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   seniorSpringTimeline,
+  shanghaiEarlyExamFocus,
   shanghaiAdmissionFlow2025,
   shanghaiJuneJulyTimeline,
   shanghaiJulyAugustTimeline,
@@ -21,6 +22,12 @@ export const metadata: Metadata = {
 const splitTimelines = [shanghaiJuneJulyTimeline, shanghaiJulyAugustTimeline];
 
 const sectionNav = [
+  {
+    href: `#${shanghaiEarlyExamFocus.id}`,
+    label: "春考/小三门",
+    title: "春考与等级考",
+    description: "先把 1 月外语一考、春考校测和 5 月小三门排清楚，再进入 6-7 月志愿节奏。",
+  },
   {
     href: "#overview",
     label: "总览",
@@ -214,19 +221,19 @@ export default function TimelinePage() {
           ← 返回首页
         </Link>
         <span className={styles.kicker}>高三时间线库</span>
-        <h1>把强基、综评、港校和录取节点，按阶段拆开看。</h1>
+        <h1>先盯春考、小三门，再把强基、综评和录取节点拆开看。</h1>
         <p>
-          这页不再只有一张总览图，而是把你给的 4 组时间表拆成 `总览节奏`、`上海 6-7 月细表`、`上海
-          7-8 月录取跟踪` 和 `2025 上海录取流程` 四段，方便按阶段查看。对强基家庭尤其重要的是：
+          这页先补上海官方口径里的 `春考 / 外语一考 / 小三门等级考`，再把你给的 4 组时间表拆成
+          `总览节奏`、`上海 6-7 月细表`、`上海 7-8 月录取跟踪` 和 `2025 上海录取流程`。对强基家庭尤其重要的是：
           强基准备不是 6 月才开始，很多从高二下到高三上的学校判断、校测积累和体测准备，都会直接影响后面的确认动作。
         </p>
         <div className={styles.heroMeta}>
-          <span className={styles.heroPill}>已整理 4 张时间表</span>
-          <span className={styles.heroPill}>图片整理版</span>
-          <span className={styles.heroPill}>非官方统一日历</span>
+          <span className={styles.heroPill}>春考与外语一考</span>
+          <span className={styles.heroPill}>小三门等级考</span>
+          <span className={styles.heroPill}>3-7 月时间线</span>
         </div>
         <p className={styles.heroNote}>
-          你给的图片里既有 `2024 规划示例`，也有 `2025 时间表`。我在页面里分别标清来源，不把它们混成一套官方日历。
+          页面里会分别标清 `上海考试院官方节点` 和 `你提供图片整理版`，不把两种口径混成一套日历。
         </p>
 
         <div className={styles.anchorGrid}>
@@ -237,6 +244,102 @@ export default function TimelinePage() {
               <p>{item.description}</p>
             </a>
           ))}
+        </div>
+      </section>
+
+      <section className={styles.section} id={shanghaiEarlyExamFocus.id}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <span className={styles.sectionKicker}>{shanghaiEarlyExamFocus.kicker}</span>
+            <h2>{shanghaiEarlyExamFocus.title}</h2>
+            <p>{shanghaiEarlyExamFocus.summary}</p>
+          </div>
+          <div className={styles.sectionMeta}>
+            <span className={styles.metaPill}>上海考试院官方口径</span>
+            <span className={styles.metaPill}>2026 节点</span>
+          </div>
+        </div>
+
+        <div className={styles.preludeGrid}>
+          {shanghaiEarlyExamFocus.milestones.map((item) => (
+            <article className={`${styles.preludeCard} ${getToneClassName(item.tone)}`} key={`${item.date}-${item.title}`}>
+              <strong>{item.title}</strong>
+              <span>{item.date}</span>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.takeawayGrid}>
+          {shanghaiEarlyExamFocus.strategyCards.map((item) => (
+            <article className={styles.takeawayCard} key={item.title}>
+              <strong>{item.title}</strong>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.sectionHeader}>
+          <div>
+            <span className={styles.sectionKicker}>春考决策卡</span>
+            <h2>先判断春招值不值得继续走</h2>
+            <p>出分后先看门槛、专业池、志愿数量和章程硬限制，再决定是否把春招推进到校测和确认阶段。</p>
+          </div>
+        </div>
+
+        <div className={styles.takeawayGrid}>
+          {shanghaiEarlyExamFocus.springDecisionCards.map((item) => (
+            <article className={styles.takeawayCard} key={item.title}>
+              <strong>{item.title}</strong>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.sectionHeader}>
+          <div>
+            <span className={styles.sectionKicker}>预录取/候补确认</span>
+            <h2>3 月确认动作按资格状态处理</h2>
+            <p>预录取、候补和双资格的网上确认规则不同，家长要先按孩子拿到的资格状态分流。</p>
+          </div>
+        </div>
+
+        <div className={styles.takeawayGrid}>
+          {shanghaiEarlyExamFocus.confirmationCards.map((item) => (
+            <article className={styles.takeawayCard} key={item.title}>
+              <strong>{item.title}</strong>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.takeawayGrid}>
+          {shanghaiEarlyExamFocus.gradeExamCards.map((item) => (
+            <article className={styles.takeawayCard} key={item.title}>
+              <strong>{item.title}</strong>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.sourceCard}>
+          <strong>春考和小三门注意事项</strong>
+          <ul className={styles.noteList}>
+            {shanghaiEarlyExamFocus.warnings.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <ul className={styles.noteList}>
+            {shanghaiEarlyExamFocus.sources.map((source) => (
+              <li key={source.url}>
+                <a href={source.url} rel="noreferrer" target="_blank">
+                  {source.label} →
+                </a>
+                <br />
+                {source.note}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
