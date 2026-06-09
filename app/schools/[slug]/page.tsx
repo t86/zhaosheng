@@ -70,6 +70,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
 
   const focusMajors = school.majorProfile?.majors.map((item) => item.name) ?? school.majorHighlights;
   const featuredTracks = school.majorProfile?.featuredTracks ?? [];
+  const admissionsContact = school.majorProfile?.admissionsContact;
   const presentRouteTypes = Array.from(
     new Set(featuredTracks.map((track) => getTrackRouteType(track))),
   );
@@ -730,6 +731,41 @@ export default async function SchoolDetailPage({ params }: PageProps) {
           <p className={styles.note}>
             如果你需要的是“某个本科专业的精确最低分”，还要继续补上海版《招生各专业录取人数及考分》或学校公开到专业层的材料；当前这批学校稳定公开的通常还是学校线、分类线或专业组线。
           </p>
+        </section>
+      ) : null}
+
+      {admissionsContact ? (
+        <section className={styles.section}>
+          <div className={styles.majorHeader}>
+            <div>
+              <h2>招生咨询入口</h2>
+              <p className={styles.majorLead}>{admissionsContact.summary}</p>
+            </div>
+            <span className={styles.scopePill}>更新于 {admissionsContact.updatedAt}</span>
+          </div>
+
+          <div className={styles.linkGrid}>
+            {admissionsContact.items.map((item) => (
+              <div className={styles.linkCard} key={`${admissionsContact.title}-${item.label}`}>
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+                {item.note ? <p className={styles.sourceMeta}>{item.note}</p> : null}
+                {item.href ? (
+                  <a className={styles.sourceLink} href={item.href} rel="noreferrer" target="_blank">
+                    打开入口 →
+                  </a>
+                ) : null}
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.inlineLinks}>
+            {admissionsContact.sources.map((source) => (
+              <a href={source.url} key={`${admissionsContact.title}-${source.url}`} rel="noreferrer" target="_blank">
+                {source.label} →
+              </a>
+            ))}
+          </div>
         </section>
       ) : null}
 

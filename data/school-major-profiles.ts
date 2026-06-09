@@ -5,6 +5,21 @@ export type MajorProfileSource = {
   sourceType?: "official" | "official_story" | "non_official";
 };
 
+export type AdmissionContactItem = {
+  label: string;
+  value: string;
+  href?: string;
+  note?: string;
+};
+
+export type SchoolAdmissionContact = {
+  title: string;
+  summary: string;
+  updatedAt: string;
+  items: AdmissionContactItem[];
+  sources: MajorProfileSource[];
+};
+
 export type MajorProfileEntry = {
   name: string;
   cluster: string;
@@ -36,6 +51,7 @@ export type SchoolMajorProfile = {
   sources: MajorProfileSource[];
   majors: MajorProfileEntry[];
   featuredTracks?: FeaturedTrackEntry[];
+  admissionsContact?: SchoolAdmissionContact;
 };
 
 export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = {
@@ -378,7 +394,7 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
     scopeLabel: "第一批：C9 + 华五并集",
     description:
       "把基础学科、医学、人文社科和集成电路相关方向一起展示，避免只看到文理医而漏掉复旦的新工科布局。",
-    updatedAt: "2026-03-13",
+    updatedAt: "2026-06-09",
     sources: [
       {
         label: "复旦大学 2024 本科招生专业页面",
@@ -460,6 +476,79 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
         tags: ["数学", "理科底座", "交叉"],
       },
     ],
+    admissionsContact: {
+      title: "复旦大学招生咨询入口",
+      summary:
+        "高考出分和填报前，复旦相关政策、分省宣传组安排、院系咨询和临时提醒应优先回到复旦招生网及官方渠道核对。",
+      updatedAt: "2026-06-09",
+      items: [
+        {
+          label: "招生咨询呼叫中心",
+          value: "021-5566 6668",
+          href: "tel:+862155666668",
+          note: "复旦招生网咨询热线页核验，同时页面提示各院系往年录取分数、人数等先查招生网，课程设置等问题咨询相关院系。",
+        },
+        {
+          label: "电子邮箱",
+          value: "admission@fudan.edu.cn",
+          href: "mailto:admission@fudan.edu.cn",
+          note: "复旦招生网电子邮箱页核验。",
+        },
+        {
+          label: "复旦招生公众号/官方微信",
+          value: "复旦招生（微信号：fudanzs）",
+          note: "复旦招生网咨询热线页展示官方微信号；招生提示中提醒关注“复旦招生”公众号获取最新招生信息。",
+        },
+        {
+          label: "复旦招生小红书",
+          value: "复旦招生",
+          note: "按招生提示补录；站内仅作为关注渠道提醒，具体账号以平台认证和复旦招生官方发布为准。",
+        },
+        {
+          label: "复旦大学主页",
+          value: "www.fudan.edu.cn",
+          href: "https://www.fudan.edu.cn/",
+          note: "用于回到学校主站核对学校层信息。",
+        },
+        {
+          label: "复旦大学上海医学院主页",
+          value: "shmc.fudan.edu.cn",
+          href: "https://shmc.fudan.edu.cn/",
+          note: "用于核对复旦上医相关院系、培养和招生信息。",
+        },
+        {
+          label: "复旦大学招生网",
+          value: "www.ao.fudan.edu.cn",
+          href: "https://ao.fudan.edu.cn/",
+          note: "本科招生政策、招生动态、招生计划、录取分数和分省咨询信息的首要核对入口。",
+        },
+        {
+          label: "分省招生宣传组",
+          value: "线上联系方式以复旦招生官方渠道实时发布为准",
+          note: "考生如需了解分省具体情况，应回到复旦招生网、公众号等官方渠道查看对应省份宣传组联系方式。",
+        },
+      ],
+      sources: [
+        {
+          label: "复旦大学招生网",
+          url: "https://ao.fudan.edu.cn/",
+          note: "官方招生网首页，集中发布招生政策、招生动态、招生计划、录取分数和联系我们入口。",
+          sourceType: "official",
+        },
+        {
+          label: "复旦大学招生办公室咨询热线",
+          url: "https://ao.fudan.edu.cn/36340/list.htm",
+          note: "官方咨询热线页，核对招生咨询电话、咨询时间、官方微信号和部分院系咨询电话。",
+          sourceType: "official",
+        },
+        {
+          label: "复旦大学招生办公室电子邮箱",
+          url: "https://ao.fudan.edu.cn/36341/main.psp",
+          note: "官方电子邮箱页，核对 admission@fudan.edu.cn。",
+          sourceType: "official",
+        },
+      ],
+    },
     featuredTracks: [
       {
         name: "相辉计划",
