@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "year": 2026,
+    "schoolSlug": "zhejiang-university",
+    "schoolName": "浙江大学",
+    "groupName": "上海市综合评价",
+    "majorName": "综合评价招生",
+    "plannedCount": 5,
+    "sourceLabel": "浙江大学2026年上海市综合评价招生简章",
+    "sourceUrl": "https://zdzsc.zju.edu.cn/2026/0511/c87333a3161364/page.htm"
+  },
+  {
+    "year": 2026,
+    "schoolSlug": "south-china-university-of-technology",
+    "schoolName": "华南理工大学",
+    "groupName": "上海市“631”综合评价",
+    "majorName": "机器人工程、智能制造工程、微电子科学与工程、集成电路、人工智能等前沿新工科（广州国际校区，物理且化学）",
+    "plannedCount": 16,
+    "sourceLabel": "华南理工大学2026年上海市综合评价招生简章",
+    "sourceUrl": "https://xxgk.scut.edu.cn/2026/0403/c132a48728/page.htm"
+  }
+]

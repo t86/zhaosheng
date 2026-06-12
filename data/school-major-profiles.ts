@@ -1,3 +1,12 @@
+import { beijing_aProfiles } from "@/data/major-profiles/beijing-a";
+import { beijing_bProfiles } from "@/data/major-profiles/beijing-b";
+import { tianjin_dongbeiProfiles } from "@/data/major-profiles/tianjin-dongbei";
+import { shanghaiProfiles } from "@/data/major-profiles/shanghai";
+import { huadong_aProfiles } from "@/data/major-profiles/huadong-a";
+import { huadong_huazhongProfiles } from "@/data/major-profiles/huadong-huazhong";
+import { huazhong_huananProfiles } from "@/data/major-profiles/huazhong-huanan";
+import { xibuProfiles } from "@/data/major-profiles/xibu";
+
 export type MajorProfileSource = {
   label: string;
   url: string;
@@ -2010,4 +2019,12 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
       },
     ],
   },
+  ...beijing_aProfiles,
+  ...beijing_bProfiles,
+  ...tianjin_dongbeiProfiles,
+  ...shanghaiProfiles,
+  ...huadong_aProfiles,
+  ...huadong_huazhongProfiles,
+  ...huazhong_huananProfiles,
+  ...xibuProfiles,
 };
