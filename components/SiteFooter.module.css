@@ -1,0 +1,83 @@
+.footer {
+  margin-top: 64px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.inner {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr auto;
+  gap: 32px;
+  padding: 40px 0 24px;
+}
+
+.brand {
+  font-family:
+    "Source Han Serif SC",
+    "Songti SC",
+    "STSong",
+    "Noto Serif CJK SC",
+    serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.tagline {
+  margin-top: 10px;
+  max-width: 32ch;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.link {
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.link:hover {
+  color: var(--accent);
+}
+
+.sourceBlock {
+  display: flex;
+  align-items: flex-start;
+}
+
+.sourceLink {
+  color: var(--accent-deep);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.sourceLink:hover {
+  color: var(--accent);
+}
+
+.disclaimer {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 18px 0 36px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 32px 0 20px;
+  }
+}

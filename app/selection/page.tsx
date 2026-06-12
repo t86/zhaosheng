@@ -21,8 +21,8 @@ const shanghaiQiangjiDisciplineRatings =
   qiangjiShanghai2026.disciplineRatings as readonly QiangjiDisciplineRating[];
 
 export const metadata: Metadata = {
-  title: "强基与综评 | 985 高校志愿参考库",
-  description: "把强基批和上海综评批的规则、模式、学校案例、入围线和面试建议拆成结构化板块。",
+  title: "强基计划与综合评价（上海考生版）",
+  description: "面向上海高三家长与考生，把强基批和上海综评批的规则、模式、学校案例、入围线和面试建议拆成结构化板块。",
 };
 
 function getToneClassName(tone: SelectionTone) {
@@ -331,7 +331,7 @@ function TimelineCase({ item }: { item: GuideTimelineCase }) {
       {item.formula ? <div className={styles.formulaCard}>{item.formula}</div> : null}
 
       <div className={styles.noteCard}>
-        <strong>图片备注</strong>
+        <strong>数据备注</strong>
         <ul className={styles.bulletList}>
           {item.notes.map((note) => (
             <li key={`${item.school}-${note}`}>{note}</li>
@@ -381,6 +381,26 @@ export default function SelectionPage() {
             </a>
           ))}
         </div>
+
+        <nav className={styles.pathToc} aria-label="两条升学路径目录">
+          <span className={styles.pathTocTitle}>两条路，先看清区别再往下读</span>
+          <div className={styles.pathTocGrid}>
+            <a className={styles.pathTocCard} href="#qiangji">
+              <span className={styles.pathTocLabel}>路径一</span>
+              <strong>强基计划</strong>
+              <p>
+                高考分数为主、校测加权的“拔尖基础学科专项”：录取后大多锁定数理化生、历史哲学等基础学科，适合愿意长期深耕、可接受专业范围受限的孩子。
+              </p>
+            </a>
+            <a className={styles.pathTocCard} href="#zongping">
+              <span className={styles.pathTocLabel}>路径二</span>
+              <strong>综合评价</strong>
+              <p>
+                上海本地的“多一次录取机会”：在高考成绩基础上叠加校测/面试加权，专业选择更宽，更看重综合素质与面试表现和志愿顺序。
+              </p>
+            </a>
+          </div>
+        </nav>
       </section>
 
       <section className={styles.section}>
@@ -389,7 +409,7 @@ export default function SelectionPage() {
             <span className={styles.sectionKicker}>决策整理</span>
             <h2>先判断该主攻强基，还是主攻综评</h2>
             <p>
-              这部分不是重复图片信息，而是把前面那些规则、流程和案例压成一个更容易执行的判断框架。
+              这部分不是重复前面的规则信息，而是把那些规则、流程和案例压成一个更容易执行的判断框架。
             </p>
           </div>
         </div>
@@ -413,8 +433,9 @@ export default function SelectionPage() {
             <span className={styles.sectionKicker}>强基板块</span>
             <h2>先判断孩子适不适合强基，再看学校和准备</h2>
             <p>
-              这部分先回答上海高分家庭最常见的三个问题：`孩子适不适合强基`、`清北华五分别更适合什么样的孩子`、
-              `如果决定冲强基，前面几个月到底该准备什么`。学校规则和案例仍然保留，但顺序改成先判断、再择校、最后执行。
+              这部分先回答上海高分家庭最常见的三个问题：<strong>孩子适不适合强基</strong>、
+              <strong>清北华五分别更适合什么样的孩子</strong>、<strong>如果决定冲强基，前面几个月到底该准备什么</strong>。
+              学校规则和案例仍然保留，但顺序改成先判断、再择校、最后执行。
             </p>
           </div>
         </div>
@@ -424,8 +445,11 @@ export default function SelectionPage() {
         <div className={styles.sectionHeaderCompact}>
           <div>
             <span className={styles.sectionKicker}>状态区</span>
-            <h3>截至 2026-04-15：哪些学校已出 2026 简章</h3>
-            <p>清华、北大、复旦、上交、浙大、南大、中科大都已切到 2026 官方口径，先按今年规则做判断。</p>
+            <h3>哪些学校已出 2026 简章</h3>
+            <p>
+              清华、北大、复旦、上交、浙大、南大、中科大都已切到 2026 官方口径，先按今年规则做判断。信息整理自 2026
+              年各校公开简章，校测安排请以各校最新通知为准。
+            </p>
           </div>
         </div>
 
@@ -440,7 +464,7 @@ export default function SelectionPage() {
             <span className={styles.sectionKicker}>2026 对沪招生汇总</span>
             <h3>29 所强基高校对上海招生表</h3>
             <p>
-              这块来自你提供的 Excel《{qiangjiShanghai2026.sourceFile}》，已整理成学校总览、专业/方向明细和学科评估对照。
+              来源：上海市教育考试院及各校 2026 公开简章，详见数据来源页；已整理成学校总览、专业/方向明细和学科评估对照。
               这份表适合做志愿池初筛，最终报名仍要回到高校 2026 简章和阳光高考系统。
             </p>
           </div>
@@ -598,7 +622,7 @@ export default function SelectionPage() {
           <div>
             <span className={styles.sectionKicker}>强基延伸</span>
             <h2>工科方向、锁档、出路和备考</h2>
-            <p>这部分更偏“怎么看”和“怎么准备”，属于图片里的经验判断和案例解释层。</p>
+            <p>这部分更偏“怎么看”和“怎么准备”，属于经验判断和案例解释层。</p>
           </div>
         </div>
 
@@ -634,7 +658,8 @@ export default function SelectionPage() {
             <span className={styles.sectionKicker}>综评板块</span>
             <h2>上海综评更像“多一次录取机会 + 面试加权系统”</h2>
             <p>
-              你给的综评图片核心就三件事：`哪些学校在上海做综评`、`交大这类学校怎么走流程`、`为什么面试和志愿顺序不能随便填`。
+              上海综评的核心就三件事：<strong>哪些学校在上海做综评</strong>、<strong>交大这类学校怎么走流程</strong>、
+              <strong>为什么面试和志愿顺序不能随便填</strong>。
             </p>
           </div>
         </div>
@@ -660,7 +685,7 @@ export default function SelectionPage() {
             <span className={styles.sectionKicker}>交大综评案例</span>
             <h2>把交大综评流程和专业组拆开看</h2>
             <p>
-              交大这组图片信息最全，既有流程，也有规则、入围线、面试、不同专业组的专业分布，所以直接做成案例页骨架。
+              交大这组信息最全，既有流程，也有规则、入围线、面试、不同专业组的专业分布，所以直接做成案例页骨架。
             </p>
           </div>
         </div>
@@ -692,7 +717,7 @@ export default function SelectionPage() {
           <div>
             <span className={styles.sectionKicker}>2025 分数线</span>
             <h2>上海综评批入围线</h2>
-            <p>这张表直接按你图片里的 2025 分数线重排，方便横向看哪一组最高、哪一组更低。</p>
+            <p>这张表按各校公开的 2025 入围线重排，方便横向看哪一组最高、哪一组更低。</p>
           </div>
         </div>
 
@@ -720,7 +745,7 @@ export default function SelectionPage() {
         </div>
 
         <div className={styles.noteCard}>
-          <strong>图片备注</strong>
+          <strong>数据备注</strong>
           <ul className={styles.bulletList}>
             {zongping.cutoffTable.notes.map((item) => (
               <li key={item}>{item}</li>

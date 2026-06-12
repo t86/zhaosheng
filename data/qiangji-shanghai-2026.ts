@@ -36,7 +36,7 @@ export type QiangjiDisciplineRating = {
 
 export const qiangjiShanghai2026 = {
   "sourceFile": "26年强基计划汇总（对沪招生）.xlsx",
-  "sourceNote": "来自用户提供的 Excel《26年强基计划汇总（对沪招生）》；站内保留为资料整理口径，执行报名仍以高校 2026 官方简章和阳光高考平台为准。",
+  "sourceNote": "整理自《26年强基计划汇总（对沪招生）》汇总资料；站内保留为资料整理口径，执行报名仍以高校 2026 官方简章和阳光高考平台为准。",
   "stats": {
     "schoolCount": 29,
     "majorRowCount": 253,

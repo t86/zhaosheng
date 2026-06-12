@@ -12,28 +12,17 @@ import {
   type SplitTimeline,
   type TimelineTone,
 } from "@/data/senior-spring-timeline";
+import TimelineNow from "@/components/TimelineNow";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "高三时间线库 | 985 高校志愿参考库",
-  description: "把高三下的总览节奏、上海 6-7 月、7-8 月安排和 2025 录取流程放到同一套图表里看。",
+  title: "高三时间线 · 上海高考 6-7 月节奏与录取流程 | 985 高校志愿参考库",
+  description: "按当前时间点定位现在该做什么：高考出分、志愿填报、强基校测、综评校测排在第一屏，已结束的春考、外语一考和小三门下沉到阶段回顾。",
 };
 
 const splitTimelines = [shanghaiJuneJulyTimeline, shanghaiJulyAugustTimeline];
 
 const sectionNav = [
-  {
-    href: `#${shanghaiEarlyExamFocus.id}`,
-    label: "春考/小三门",
-    title: "春考与等级考",
-    description: "先把 1 月外语一考、春考校测和 5 月小三门排清楚，再进入 6-7 月志愿节奏。",
-  },
-  {
-    href: "#overview",
-    label: "总览",
-    title: "高三下总览",
-    description: "3 月到 7 月的强基、综评、港校与录取总节奏，以及强基准备不是 6 月才开始。",
-  },
   {
     href: `#${shanghaiJuneJulyTimeline.id}`,
     label: "上海 6-7 月",
@@ -51,6 +40,18 @@ const sectionNav = [
     label: "2025 流程",
     title: "上海批次流程",
     description: "按批次看强基、综评、零志愿、提前批和普通批分别在哪一天。",
+  },
+  {
+    href: "#overview",
+    label: "总览",
+    title: "高三下总览",
+    description: "3 月到 7 月的强基、综评、港校与录取总节奏，以及强基准备不是 6 月才开始。",
+  },
+  {
+    href: `#${shanghaiEarlyExamFocus.id}`,
+    label: "已完成阶段",
+    title: "春考与等级考回顾",
+    description: "1 月外语一考、春考校测和 5 月小三门已结束，下沉到页尾备查。",
   },
 ];
 
@@ -120,8 +121,8 @@ function SplitTimelineSection({ timeline }: { timeline: SplitTimeline }) {
           <p>{timeline.summary}</p>
         </div>
         <div className={styles.sectionMeta}>
-          <span className={styles.metaPill}>按图片整理</span>
-          <span className={styles.metaPill}>图源来自你提供的图片</span>
+          <span className={styles.metaPill}>按公开节点整理</span>
+          <span className={styles.metaPill}>来源：上海市教育考试院公开数据</span>
         </div>
       </div>
 
@@ -214,6 +215,125 @@ export default function TimelinePage() {
   );
   const familyTracks: FamilyTrack[] = seniorSpringTimeline.familyTracks;
 
+  const springReview = (
+    <section className={styles.section} id={shanghaiEarlyExamFocus.id}>
+      <div className={styles.sectionHeader}>
+        <div>
+          <span className={styles.sectionKicker}>{shanghaiEarlyExamFocus.kicker}</span>
+          <h2>{shanghaiEarlyExamFocus.title}</h2>
+          <p>{shanghaiEarlyExamFocus.summary}</p>
+        </div>
+        <div className={styles.sectionMeta}>
+          <span className={styles.metaPill}>上海考试院官方口径</span>
+          <span className={styles.metaPill}>2026 节点</span>
+        </div>
+      </div>
+
+      <div className={styles.preludeGrid}>
+        {shanghaiEarlyExamFocus.milestones.map((item) => (
+          <article className={`${styles.preludeCard} ${getToneClassName(item.tone)}`} key={`${item.date}-${item.title}`}>
+            <strong>{item.title}</strong>
+            <span>{item.date}</span>
+            <p>{item.detail}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className={styles.takeawayGrid}>
+        {shanghaiEarlyExamFocus.strategyCards.map((item) => (
+          <article className={styles.takeawayCard} key={item.title}>
+            <strong>{item.title}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className={styles.sectionHeader}>
+        <div>
+          <span className={styles.sectionKicker}>高三家长执行清单</span>
+          <h2>按出分、填报、校测和等级考倒排动作</h2>
+          <p>这组清单把官方日期转成家长要盯的动作，重点是英语一考后的精力重排和小三门确认。</p>
+        </div>
+      </div>
+
+      <div className={styles.takeawayGrid}>
+        {shanghaiEarlyExamFocus.parentActionChecklist.map((item) => (
+          <article className={styles.takeawayCard} key={`${item.period}-${item.title}`}>
+            <strong>{item.period}｜{item.title}</strong>
+            <ul className={styles.noteList}>
+              {item.items.map((action) => (
+                <li key={action}>{action}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+
+      <div className={styles.sectionHeader}>
+        <div>
+          <span className={styles.sectionKicker}>春考决策卡</span>
+          <h2>先判断春招值不值得继续走</h2>
+          <p>出分后先看门槛、专业池、志愿数量和章程硬限制，再决定是否把春招推进到校测和确认阶段。</p>
+        </div>
+      </div>
+
+      <div className={styles.takeawayGrid}>
+        {shanghaiEarlyExamFocus.springDecisionCards.map((item) => (
+          <article className={styles.takeawayCard} key={item.title}>
+            <strong>{item.title}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className={styles.sectionHeader}>
+        <div>
+          <span className={styles.sectionKicker}>预录取/候补确认</span>
+          <h2>3 月确认动作按资格状态处理</h2>
+          <p>预录取、候补和双资格的网上确认规则不同，家长要先按孩子拿到的资格状态分流。</p>
+        </div>
+      </div>
+
+      <div className={styles.takeawayGrid}>
+        {shanghaiEarlyExamFocus.confirmationCards.map((item) => (
+          <article className={styles.takeawayCard} key={item.title}>
+            <strong>{item.title}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className={styles.takeawayGrid}>
+        {shanghaiEarlyExamFocus.gradeExamCards.map((item) => (
+          <article className={styles.takeawayCard} key={item.title}>
+            <strong>{item.title}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className={styles.sourceCard}>
+        <strong>春考和小三门注意事项</strong>
+        <ul className={styles.noteList}>
+          {shanghaiEarlyExamFocus.warnings.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <ul className={styles.noteList}>
+          {shanghaiEarlyExamFocus.sources.map((source) => (
+            <li key={source.url}>
+              <a href={source.url} rel="noreferrer" target="_blank">
+                {source.label} →
+              </a>
+              <br />
+              {source.note}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
@@ -221,11 +341,12 @@ export default function TimelinePage() {
           ← 返回首页
         </Link>
         <span className={styles.kicker}>高三时间线库</span>
-        <h1>先盯春考、小三门，再把强基、综评和录取节点拆开看。</h1>
+        <h1>先看现在该做什么：6-7 月出分、志愿、强基与综评校测一屏盯清。</h1>
         <p>
-          这页先补上海官方口径里的 `春考 / 外语一考 / 小三门等级考`，再把你给的 4 组时间表拆成
-          `总览节奏`、`上海 6-7 月细表`、`上海 7-8 月录取跟踪` 和 `2025 上海录取流程`。对强基家庭尤其重要的是：
-          强基准备不是 6 月才开始，很多从高二下到高三上的学校判断、校测积累和体测准备，都会直接影响后面的确认动作。
+          这页先按当前时间点定位“现在该做什么”，把 <strong>高考出分、志愿填报、强基校测、综评校测</strong>
+          这些 6-7 月的动作放到第一屏；已经结束的<strong>春考 / 外语一考 / 小三门等级考</strong>下沉到页尾的“已完成阶段回顾”。
+          四组时间表分别是<strong>总览节奏</strong>、<strong>上海 6-7 月细表</strong>、<strong>上海 7-8 月录取跟踪</strong>和
+          <strong>2025 上海录取流程</strong>。对强基家庭尤其重要的是：强基准备不是 6 月才开始，很多从高二下到高三上的学校判断、校测积累和体测准备，都会直接影响后面的确认动作。
         </p>
         <div className={styles.heroMeta}>
           <span className={styles.heroPill}>春考与外语一考</span>
@@ -233,7 +354,11 @@ export default function TimelinePage() {
           <span className={styles.heroPill}>3-7 月时间线</span>
         </div>
         <p className={styles.heroNote}>
-          页面里会分别标清 `上海考试院官方节点` 和 `你提供图片整理版`，不把两种口径混成一套日历。
+          页面里会分别标清<strong>上海考试院官方节点</strong>和<strong>公开数据整理版</strong>，不把两种口径混成一套日历。详见
+          <Link className={styles.headerLink} href="/sources">
+            数据来源页
+          </Link>
+          。
         </p>
 
         <div className={styles.anchorGrid}>
@@ -247,122 +372,11 @@ export default function TimelinePage() {
         </div>
       </section>
 
-      <section className={styles.section} id={shanghaiEarlyExamFocus.id}>
-        <div className={styles.sectionHeader}>
-          <div>
-            <span className={styles.sectionKicker}>{shanghaiEarlyExamFocus.kicker}</span>
-            <h2>{shanghaiEarlyExamFocus.title}</h2>
-            <p>{shanghaiEarlyExamFocus.summary}</p>
-          </div>
-          <div className={styles.sectionMeta}>
-            <span className={styles.metaPill}>上海考试院官方口径</span>
-            <span className={styles.metaPill}>2026 节点</span>
-          </div>
-        </div>
+      <TimelineNow />
 
-        <div className={styles.preludeGrid}>
-          {shanghaiEarlyExamFocus.milestones.map((item) => (
-            <article className={`${styles.preludeCard} ${getToneClassName(item.tone)}`} key={`${item.date}-${item.title}`}>
-              <strong>{item.title}</strong>
-              <span>{item.date}</span>
-              <p>{item.detail}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className={styles.takeawayGrid}>
-          {shanghaiEarlyExamFocus.strategyCards.map((item) => (
-            <article className={styles.takeawayCard} key={item.title}>
-              <strong>{item.title}</strong>
-              <p>{item.body}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className={styles.sectionHeader}>
-          <div>
-            <span className={styles.sectionKicker}>高三家长执行清单</span>
-            <h2>按出分、填报、校测和等级考倒排动作</h2>
-            <p>这组清单把官方日期转成家长要盯的动作，重点是英语一考后的精力重排和小三门确认。</p>
-          </div>
-        </div>
-
-        <div className={styles.takeawayGrid}>
-          {shanghaiEarlyExamFocus.parentActionChecklist.map((item) => (
-            <article className={styles.takeawayCard} key={`${item.period}-${item.title}`}>
-              <strong>{item.period}｜{item.title}</strong>
-              <ul className={styles.noteList}>
-                {item.items.map((action) => (
-                  <li key={action}>{action}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-
-        <div className={styles.sectionHeader}>
-          <div>
-            <span className={styles.sectionKicker}>春考决策卡</span>
-            <h2>先判断春招值不值得继续走</h2>
-            <p>出分后先看门槛、专业池、志愿数量和章程硬限制，再决定是否把春招推进到校测和确认阶段。</p>
-          </div>
-        </div>
-
-        <div className={styles.takeawayGrid}>
-          {shanghaiEarlyExamFocus.springDecisionCards.map((item) => (
-            <article className={styles.takeawayCard} key={item.title}>
-              <strong>{item.title}</strong>
-              <p>{item.body}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className={styles.sectionHeader}>
-          <div>
-            <span className={styles.sectionKicker}>预录取/候补确认</span>
-            <h2>3 月确认动作按资格状态处理</h2>
-            <p>预录取、候补和双资格的网上确认规则不同，家长要先按孩子拿到的资格状态分流。</p>
-          </div>
-        </div>
-
-        <div className={styles.takeawayGrid}>
-          {shanghaiEarlyExamFocus.confirmationCards.map((item) => (
-            <article className={styles.takeawayCard} key={item.title}>
-              <strong>{item.title}</strong>
-              <p>{item.body}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className={styles.takeawayGrid}>
-          {shanghaiEarlyExamFocus.gradeExamCards.map((item) => (
-            <article className={styles.takeawayCard} key={item.title}>
-              <strong>{item.title}</strong>
-              <p>{item.body}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className={styles.sourceCard}>
-          <strong>春考和小三门注意事项</strong>
-          <ul className={styles.noteList}>
-            {shanghaiEarlyExamFocus.warnings.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <ul className={styles.noteList}>
-            {shanghaiEarlyExamFocus.sources.map((source) => (
-              <li key={source.url}>
-                <a href={source.url} rel="noreferrer" target="_blank">
-                  {source.label} →
-                </a>
-                <br />
-                {source.note}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {splitTimelines.map((timeline) => (
+        <SplitTimelineSection key={timeline.id} timeline={timeline} />
+      ))}
 
       <section className={styles.section} id="overview">
         <div className={styles.sectionHeader}>
@@ -374,7 +388,7 @@ export default function TimelinePage() {
             </p>
           </div>
           <div className={styles.sectionMeta}>
-            <span className={styles.metaPill}>按 2024 规划示例整理</span>
+            <span className={styles.metaPill}>参考 2024 届考生的真实安排</span>
             <Link className={styles.headerLink} href="/sources">
               查看数据口径 →
             </Link>
@@ -456,7 +470,7 @@ export default function TimelinePage() {
             <span className={styles.sectionKicker}>家长准备泳道</span>
             <h2>把更早的校测和港校节奏单独拎出来</h2>
             <p>
-              图片下半区不是“高考后再看学校”，而是提醒家长从 3 月开始就同步搜集信息、跑宣讲会、跟进港校和实验型大学的流程。
+              这条泳道不是“高考后再看学校”，而是提醒家长从 3 月开始就同步搜集信息、跑宣讲会、跟进港校和实验型大学的流程。
             </p>
           </div>
         </div>
@@ -501,10 +515,6 @@ export default function TimelinePage() {
         </div>
       </section>
 
-      {splitTimelines.map((timeline) => (
-        <SplitTimelineSection key={timeline.id} timeline={timeline} />
-      ))}
-
       <section className={styles.section} id={shanghaiAdmissionFlow2025.id}>
         <div className={styles.sectionHeader}>
           <div>
@@ -514,7 +524,7 @@ export default function TimelinePage() {
           </div>
           <div className={styles.sectionMeta}>
             <span className={styles.metaPill}>上海批次流程图</span>
-            <span className={styles.metaPill}>图源来自你提供的图片</span>
+            <span className={styles.metaPill}>来源：上海市教育考试院公开数据</span>
           </div>
         </div>
 
@@ -600,12 +610,21 @@ export default function TimelinePage() {
           <strong>整理说明</strong>
           <p>{seniorSpringTimeline.warning}</p>
           <ul className={styles.noteList}>
-            <li>这页只整理了图片里清晰可见的节点，不额外补猜你没有提供的日期。</li>
-            <li>时间线页现在同时包含总览图、上海 6-7 月、上海 7-8 月和 2025 流程图，口径以各自图片标题为准。</li>
-            <li>如果你后面继续给我更多年份或更多省份的图，我可以把这页升级成按地区和年份切换的时间线库。</li>
+            <li>这页只整理上海市教育考试院公开数据里清晰可见的节点，不额外补猜未公布的日期。</li>
+            <li>时间线页现在同时包含总览图、上海 6-7 月、上海 7-8 月和 2025 流程图，口径以各自来源标题为准。</li>
+            <li>后续若有更多年份或更多省份的公开节点，这页会升级成按地区和年份切换的时间线库。</li>
           </ul>
         </div>
       </section>
+
+      <details className={styles.reviewDetails}>
+        <summary className={styles.reviewSummary}>
+          <span>已完成阶段回顾</span>
+          <strong>春考 / 外语一考 / 小三门等级考</strong>
+          <p>这些节点集中在 1 月到 5 月，目前已结束，收进折叠区供回看与备查。点击展开。</p>
+        </summary>
+        <div className={styles.reviewBody}>{springReview}</div>
+      </details>
     </main>
   );
 }

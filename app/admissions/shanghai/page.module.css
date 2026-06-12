@@ -410,6 +410,36 @@
   line-height: 1.75;
 }
 
+.governanceDetails {
+  margin-top: 22px;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(21, 23, 28, 0.08);
+  background: rgba(251, 244, 230, 0.55);
+}
+
+.governanceDetails > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--muted);
+  list-style: revert;
+}
+
+.governanceDetails[open] > summary {
+  margin-bottom: 16px;
+  color: inherit;
+}
+
+.governanceBody > p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.governanceBody > .dataStatusGrid,
+.governanceBody > .importReadyNote {
+  margin-top: 16px;
+}
+
 .focusCard {
   padding: 20px;
   border-radius: var(--radius-md);

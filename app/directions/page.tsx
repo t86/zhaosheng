@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { hotDirectionReferenceLinks } from "@/data/hot-directions";
 import { getHotDirectionTopic } from "@/lib/hot-directions";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: "热门方向 | 985 高校志愿参考库",
+  description:
+    "把未来 10 年值得讨论的热门方向整理成方向标签，帮上海高三家长先判断要不要深挖，再回到学校与上海专业组线。",
+};
 
 export default function HotDirectionsPage() {
   const topic = getHotDirectionTopic();
@@ -153,7 +160,7 @@ export default function HotDirectionsPage() {
           <div>
             <h2>争议补位</h2>
           </div>
-          <p>这些方向有人会强推，但我暂时不把它们放进主榜。原因不是不重要，而是热度更圈层化、路径更窄或兑现周期更长。</p>
+          <p>这些方向有人会强推，但本页暂时不把它们放进主榜。原因不是不重要，而是热度更圈层化、路径更窄或兑现周期更长。</p>
         </div>
 
         <div className={styles.controversyGrid}>
@@ -223,6 +230,11 @@ export default function HotDirectionsPage() {
               {item.label} →
             </a>
           ))}
+        </div>
+
+        <div className={styles.referenceRow}>
+          <Link href="/schools">去学校库按方向筛选 →</Link>
+          <Link href="/admissions/shanghai#explorer">回上海数据页按校查分 →</Link>
         </div>
       </section>
     </main>

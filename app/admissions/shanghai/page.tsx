@@ -12,7 +12,14 @@ import {
   shanghaiAdmissionsMeta,
   shanghaiAdmissionsMissingSchools,
 } from "@/lib/shanghai-admissions";
+import type { Metadata } from "next";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: "上海近 5 年院校专业组投档线查询 | 查分数",
+  description:
+    "按学校和年份筛选上海市教育考试院公开的 2021-2025 本科普通批平行志愿投档线（院校专业组口径），并附官方规则、填报核对清单和原始来源。",
+};
 
 export default function ShanghaiAdmissionsPage() {
   const coverage = getShanghaiAdmissionsCoverage();
@@ -81,6 +88,63 @@ export default function ShanghaiAdmissionsPage() {
             <p key={note}>{note}</p>
           ))}
         </div>
+      </section>
+
+      <section className={styles.section} id="explorer">
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>上海近 5 年组线（可按学校和年份筛选）</h2>
+          </div>
+          <p>
+            这是本页的核心查询工具。Q组与考试院单独公布的组别也一并列进来了，避免把 2025 这类拆表年份漏掉。
+          </p>
+        </div>
+
+        <ShanghaiAdmissionsExplorer summaries={summaries} years={coverage.years} />
+
+        <details className={styles.governanceDetails}>
+          <summary>数据口径与尚未接入的三层数据（点击展开）</summary>
+          <div className={styles.governanceBody}>
+            <p>
+              本站当前公开接入的是可回链的上海市教育考试院组线，口径为“院校专业组”，更适合先做学校池和风险判断，而不是直接替代最终冲稳保决策。
+              上海市教育考试院在 2025 本科阶段志愿填报特别提醒里，明确把《2024 年上海市普通高等学校招生各专业录取人数及考分》列为核心参考资料，
+              其中包含最低分、平均分和平均分位次；《2025 年上海市普通高等学校招生专业目录》则用于核对在沪招生院校、专业和计划数。这三层书册数据尚未结构化进来。
+            </p>
+
+            <div className={styles.dataStatusGrid}>
+              {highValueDataStatus.map((item) => (
+                <article className={styles.dataStatusCard} key={item.metricLabel}>
+                  <div className={styles.dataStatusTopline}>
+                    <strong>{item.metricLabel}</strong>
+                    <span>{item.statusLabel}</span>
+                  </div>
+                  <div className={styles.dataStatusFacts}>
+                    <div>
+                      <small>已导入</small>
+                      <p>{item.importedCount}</p>
+                    </div>
+                    <div>
+                      <small>覆盖学校</small>
+                      <p>{item.coverageLabel}</p>
+                    </div>
+                  </div>
+                  <p>{item.summary}</p>
+                  <a href={item.sourceUrl} rel="noreferrer" target="_blank">
+                    {item.sourceTitle} →
+                  </a>
+                </article>
+              ))}
+            </div>
+
+            <div className={styles.importReadyNote}>
+              <strong>导入入口已预留</strong>
+              <p>
+                仓库已经为 {highValueImportManifest.length} 份上海官方资料留好了结构化数据槽位。后续只在逐条核对《各专业录取人数及考分》和
+                《招生专业目录》后再导入，不会先把未核实的平均分位次、专业录取人数或计划数直接挂到页面上。
+              </p>
+            </div>
+          </div>
+        </details>
       </section>
 
       <section className={styles.section}>
@@ -253,61 +317,6 @@ export default function ShanghaiAdmissionsPage() {
             </div>
           ))}
         </div>
-      </section>
-
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <div>
-            <h2>上海近 5 年组线</h2>
-          </div>
-          <p>
-            可按学校和年份筛选。Q组与考试院单独公布的组别也一并列进来了，避免把 2025 这类拆表年份漏掉。
-          </p>
-        </div>
-
-        <div className={styles.gapCard}>
-          <strong>当前最关键但尚未接入的三层数据</strong>
-          <p>
-            上海市教育考试院在 2025 本科阶段志愿填报特别提醒里，明确把《2024 年上海市普通高等学校招生各专业录取人数及考分》列为核心参考资料，
-            其中包含最低分、平均分和平均分位次；而《2025 年上海市普通高等学校招生专业目录》则用于核对在沪招生院校、专业和计划数。本站当前先公开接入的是可回链的考试院组线，
-            还没有把这三层书册数据结构化进来，所以这页更适合先做学校池和风险判断，而不是直接替代最终冲稳保决策。
-          </p>
-        </div>
-
-        <div className={styles.dataStatusGrid}>
-          {highValueDataStatus.map((item) => (
-            <article className={styles.dataStatusCard} key={item.metricLabel}>
-              <div className={styles.dataStatusTopline}>
-                <strong>{item.metricLabel}</strong>
-                <span>{item.statusLabel}</span>
-              </div>
-              <div className={styles.dataStatusFacts}>
-                <div>
-                  <small>已导入</small>
-                  <p>{item.importedCount}</p>
-                </div>
-                <div>
-                  <small>覆盖学校</small>
-                  <p>{item.coverageLabel}</p>
-                </div>
-              </div>
-              <p>{item.summary}</p>
-              <a href={item.sourceUrl} rel="noreferrer" target="_blank">
-                {item.sourceTitle} →
-              </a>
-            </article>
-          ))}
-        </div>
-
-        <div className={styles.importReadyNote}>
-          <strong>导入入口已预留</strong>
-          <p>
-            仓库已经为 {highValueImportManifest.length} 份上海官方资料留好了结构化数据槽位。后续只在逐条核对《各专业录取人数及考分》和
-            《招生专业目录》后再导入，不会先把未核实的平均分位次、专业录取人数或计划数直接挂到页面上。
-          </p>
-        </div>
-
-        <ShanghaiAdmissionsExplorer summaries={summaries} years={coverage.years} />
       </section>
 
       <section className={styles.section}>

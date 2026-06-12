@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getShanghaiFocusAdmissions } from "@/lib/shanghai-focus";
 import { trackRouteGuide, trackRouteOrder } from "@/lib/featured-tracks";
 import { schools } from "@/lib/schools";
 import { shanghaiAdmissionsMeta } from "@/lib/shanghai-admissions";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: "数据来源与口径说明 | 上海 985 高考资讯站",
+  description:
+    "汇总本站各数据板块的来源、采用原则、整理截止时间与官方回链，涵盖 985 主表、专业档案、公开报告、上海投档线、强基与综合评价数据。",
+};
 
 const schoolsWithMajorProfiles = schools.filter((school) => school.majorProfile);
 const schoolsWithReports = schools.filter(
@@ -38,8 +45,8 @@ export default function SourcesPage() {
         <h1>数据口径</h1>
         <p>
           当前站点把数据分成四层。第一层是对 39 所 985 的稳定主表，包含学校标签、区域和办学属性。第二层是学校-专业档案，当前已补
-          {schoolsWithMajorProfiles.length} 所学校的代表专业方向，并开始单列 `姚班`、`ACM班`、`图灵班` 这类有官方出处的特色班型/荣誉方向。对于少数官方明确披露班型整体去向的项目，页面也会补充本科毕业去向概览。第三层是“专业线分析”，把 `计算机 / 临床医学 / 集成电路 / 经济学 / 航空航天` 这类高频专业线拆成全国位置、培养强度、毕业出口和替代学校。第四层是来自学校公开报告的快照型指标，比如本科专业数、毕业去向落实率、深造率和薪资。
-          另外，站内还加了一类“时间线专题页”，其中春考、外语一考和小三门等级考节点优先使用上海考试院官方口径；你提供的上海高三规划图片则做结构化整理，并会显式标注 `图片整理 / 非官方统一时间表`。
+          {schoolsWithMajorProfiles.length} 所学校的代表专业方向，并开始单列<strong>姚班</strong>、<strong>ACM班</strong>、<strong>图灵班</strong>这类有官方出处的特色班型/荣誉方向。对于少数官方明确披露班型整体去向的项目，页面也会补充本科毕业去向概览。第三层是“专业线分析”，把<strong>计算机 / 临床医学 / 集成电路 / 经济学 / 航空航天</strong>这类高频专业线拆成全国位置、培养强度、毕业出口和替代学校。第四层是来自学校公开报告的快照型指标，比如本科专业数、毕业去向落实率、深造率和薪资。
+          另外，站内还加了一类“时间线专题页”，其中春考、外语一考和小三门等级考节点优先使用上海市教育考试院官方口径；上海高三规划相关的资料整理则做结构化呈现，并会显式标注<strong>资料整理 / 非官方统一时间表</strong>。
         </p>
       </section>
 
@@ -48,10 +55,10 @@ export default function SourcesPage() {
         <ol className={styles.list}>
           <li>只做 985，不混入 211、双一流或行业强校扩展池。</li>
           <li>专业档案只在找到学校官网、招生页或本科教育公开信息后才补，不靠主观印象硬填。</li>
-          <li>`姚班`、`ACM班`、试验班、荣誉方向会单列展示，不和普通本科专业混写。</li>
-          <li>特色班型会继续区分 `高考直招 / 综合选拔 / 专项选拔 / 校内选拔 / 培养平台`，避免把招生口径不同的项目混在一起比较。</li>
+          <li><strong>姚班</strong>、<strong>ACM班</strong>、试验班、荣誉方向会单列展示，不和普通本科专业混写。</li>
+          <li>特色班型会继续区分<strong>高考直招 / 综合选拔 / 专项选拔 / 校内选拔 / 培养平台</strong>，避免把招生口径不同的项目混在一起比较。</li>
           <li>特色班毕业去向只挂学校官方已经明确披露的班型层整体口径，不做逐届逐人的补猜，也不拿少量样本冒充全量名单。</li>
-          <li>当只能拿到宣传故事、非官方整理，或者官方没有公开班级层统计时，页面会显式标注 `官方宣传/故事`、`非官方整理` 或“参考画像”，不和官方统计口径混为一谈。</li>
+          <li>当只能拿到宣传故事、非官方整理，或者官方没有公开班级层统计时，页面会显式标注<strong>官方宣传/故事</strong>、<strong>非官方整理</strong>或“参考画像”，不和官方统计口径混为一谈。</li>
           <li>专业线分析里的“更高目标 / 同层可比 / 分数不够替代”属于站内解释层，只在已有 985 学校池里做静态推荐，不等于个性化志愿建议。</li>
           <li>时间线专题页里的春考、外语一考和小三门等级考使用上海考试院官方节点；图片整理部分默认只还原图片里清晰可见的节点，不会把图片示意冒充成官方统一日历。</li>
           <li>就业、深造和薪资不做猜测，没有挂到公开来源就留空。</li>
@@ -183,6 +190,39 @@ export default function SourcesPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2>强基与综合评价数据来源</h2>
+        <div className={styles.sourceGrid}>
+          <div className={styles.sourceCard}>
+            <strong>强基计划数据（对沪招生汇总）</strong>
+            <p>
+              整理自 2026 年各高校强基计划招生简章及官方公开发布，覆盖 29 所对沪招生高校、253 条专业/方向明细与学科评估对照。
+              站内保留为资料整理口径，实际报名仍以高校 2026 官方简章和阳光高考平台为准。
+            </p>
+            <Link href="/selection#qiangji">查看强基板块 →</Link>
+          </div>
+          <div className={styles.sourceCard}>
+            <strong>综合评价数据（上海综评批）</strong>
+            <p>
+              整理自上海综评批的流程、计划数、2025 入围线与专业组等公开信息，涉及“适合谁、优缺点、策略建议”的部分按经验判断单独标注，
+              不冒充学校官方统一招生承诺。真正填报前仍以各校招生简章和当年选拔办法为准。
+            </p>
+            <Link href="/selection#zongping">查看综评板块 →</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2>各数据板块整理截止时间</h2>
+        <ol className={styles.list}>
+          <li>985 主表、专业档案、公开报告快照：以各板块页面标注为准。</li>
+          <li>上海 2021-2025 官方投档线：以各原始 PDF 公布年份为准，详见上方来源回链。</li>
+          <li>强基计划数据：整理截至 2026-04-15（以强基·综评页标注为准）。</li>
+          <li>综合评价数据：整理截至 2026-04-15（以强基·综评页标注为准）。</li>
+          <li>时间线专题（春考、外语一考、小三门等级考等）：以各时间线页面标注为准。</li>
+        </ol>
       </section>
 
       <section className={styles.section}>
