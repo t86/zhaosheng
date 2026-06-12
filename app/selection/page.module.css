@@ -206,6 +206,68 @@
   line-height: 1.65;
 }
 
+.pathToc {
+  position: relative;
+  z-index: 1;
+  margin-top: 26px;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(247, 241, 232, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.pathTocTitle {
+  display: block;
+  color: #f0d3a3;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.pathTocGrid {
+  margin-top: 16px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pathTocCard {
+  display: block;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(247, 241, 232, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.pathTocCard:hover {
+  border-color: rgba(240, 211, 163, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pathTocLabel {
+  display: block;
+  color: rgba(247, 241, 232, 0.7);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pathTocCard strong {
+  display: block;
+  margin-top: 8px;
+  color: #f7f1e8;
+  font-size: 20px;
+}
+
+.pathTocCard p {
+  margin-top: 10px;
+  color: rgba(247, 241, 232, 0.8);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 .section {
   margin-top: 22px;
   padding: 28px;
@@ -825,7 +887,8 @@
   .headlineNoteGrid,
   .qiangjiDataStats,
   .qiangjiDetailGrid,
-  .qiangjiMetaGrid {
+  .qiangjiMetaGrid,
+  .pathTocGrid {
     grid-template-columns: 1fr;
   }
 }

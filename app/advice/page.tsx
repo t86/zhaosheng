@@ -107,6 +107,19 @@ export default function AdvicePage() {
           </div>
         </section>
       ) : null}
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>下一步</h2>
+          </div>
+          <p>看完专业体感判断，再回到学校库和上海数据页，把方向落到具体院校与专业组。</p>
+        </div>
+        <div className={styles.nextStepLinks}>
+          <Link href="/schools">去学校库按方向筛选 →</Link>
+          <Link href="/admissions/shanghai#explorer">回上海数据页按校查分 →</Link>
+        </div>
+      </section>
     </main>
   );
 }

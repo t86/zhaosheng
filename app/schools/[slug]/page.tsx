@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
@@ -58,6 +59,22 @@ function getRiskToneClassName(tone: SchoolRiskTone) {
     default:
       return styles.riskToneInk;
   }
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const school = getSchool(slug);
+
+  if (!school) {
+    return {
+      title: "学校未找到 | 985 高校志愿参考库",
+    };
+  }
+
+  return {
+    title: `${school.name} — 上海考生报考参考`,
+    description: `${school.name}（${school.city} · ${school.schoolType}）的上海公开录取口径、专业方向与报考风险提醒，帮上海高三家长做志愿前的初筛。`,
+  };
 }
 
 export default async function SchoolDetailPage({ params }: PageProps) {
@@ -183,6 +200,93 @@ export default async function SchoolDetailPage({ params }: PageProps) {
           这里显示的是学校层快照，不是省份、专业组或位次建议。真正做志愿时，必须再叠加你所在省份的招生计划和选科规则。
         </p>
       </section>
+
+      {showShanghaiSection ? (
+        <section className={styles.section}>
+          <div className={styles.majorHeader}>
+            <div>
+              <h2>上海 2021-2025 官方公开线</h2>
+              <p className={styles.majorLead}>
+                这里把学校官网公开线和上海市教育考试院专业组线拆开显示。它们都是真实口径，但粒度不同，不能直接当成“单个专业最低分”。
+              </p>
+            </div>
+            <Link className={styles.scopeLink} href="/admissions/shanghai">
+              查看上海完整表 →
+            </Link>
+          </div>
+
+          {shanghaiFocus ? (
+            <>
+              <h3 className={styles.subheading}>学校官网公开线</h3>
+              <p className={styles.note}>{shanghaiFocus.note}</p>
+              {shanghaiFocus.records.length > 0 ? (
+                <ShanghaiOfficialRecordsTable records={shanghaiFocus.records} />
+              ) : (
+                <p className={styles.note}>当前只保留了官方入口，这轮还没并入学校详情页的分数表。</p>
+              )}
+              <div className={styles.inlineLinks}>
+                {shanghaiFocus.sources.map((source) => (
+                  <a href={source.url} key={source.url} rel="noreferrer" target="_blank">
+                    {source.label} →
+                  </a>
+                ))}
+              </div>
+            </>
+          ) : null}
+
+          {shanghaiRecords.length > 0 ? (
+            <>
+              <h3 className={styles.subheading}>上海考试院专业组线</h3>
+              <div className={styles.tableWrap}>
+                <table className={styles.scoreTable}>
+                  <thead>
+                    <tr>
+                      <th>年份</th>
+                      <th>组别</th>
+                      <th>投档线</th>
+                      <th>口径</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {shanghaiRecords.map((record) => (
+                      <tr key={`${record.year}-${record.groupCode}-${record.sourceType}`}>
+                        <td>{record.year}</td>
+                        <td>
+                          <strong>{record.groupName}</strong>
+                          <span className={styles.tableMeta}>{record.groupCode}</span>
+                        </td>
+                        <td>{record.score}</td>
+                        <td>
+                          <a
+                            className={styles.tableLink}
+                            href={record.sourceUrl}
+                            rel="noreferrer"
+                            target="_blank"
+                          >
+                            {record.sourceType === "regular"
+                              ? "普通批"
+                              : record.sourceType === "q-group"
+                                ? "Q组"
+                                : "单独公布"}
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          ) : null}
+
+          <p className={styles.note}>
+            如果你需要的是“某个本科专业的精确最低分”，还要继续补上海版《招生各专业录取人数及考分》或学校公开到专业层的材料；当前这批学校稳定公开的通常还是学校线、分类线或专业组线。
+          </p>
+
+          <div className={styles.inlineLinks}>
+            <Link href="/admissions/shanghai#explorer">在数据页按校筛选 →</Link>
+          </div>
+        </section>
+      ) : null}
 
       <section className={styles.section}>
         <div className={styles.majorHeader}>
@@ -630,7 +734,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
           </div>
 
           <p className={styles.note}>
-            如果你是冲着 `姚班`、`ACM班` 这类项目来的，不能只看学校名或专业名。先确认它到底是高考直招、综合选拔，还是入校后二次选拔。
+            如果你是冲着 <strong>姚班</strong>、<strong>ACM班</strong> 这类项目来的，不能只看学校名或专业名。先确认它到底是高考直招、综合选拔，还是入校后二次选拔。
           </p>
         </section>
       ) : null}
@@ -650,89 +754,6 @@ export default async function SchoolDetailPage({ params }: PageProps) {
           ) : null}
         </div>
       </section>
-
-      {showShanghaiSection ? (
-        <section className={styles.section}>
-          <div className={styles.majorHeader}>
-            <div>
-              <h2>上海 2021-2025 官方公开线</h2>
-              <p className={styles.majorLead}>
-                这里把学校官网公开线和上海市教育考试院专业组线拆开显示。它们都是真实口径，但粒度不同，不能直接当成“单个专业最低分”。
-              </p>
-            </div>
-            <Link className={styles.scopeLink} href="/admissions/shanghai">
-              查看上海完整表 →
-            </Link>
-          </div>
-
-          {shanghaiFocus ? (
-            <>
-              <h3 className={styles.subheading}>学校官网公开线</h3>
-              <p className={styles.note}>{shanghaiFocus.note}</p>
-              {shanghaiFocus.records.length > 0 ? (
-                <ShanghaiOfficialRecordsTable records={shanghaiFocus.records} />
-              ) : (
-                <p className={styles.note}>当前只保留了官方入口，这轮还没并入学校详情页的分数表。</p>
-              )}
-              <div className={styles.inlineLinks}>
-                {shanghaiFocus.sources.map((source) => (
-                  <a href={source.url} key={source.url} rel="noreferrer" target="_blank">
-                    {source.label} →
-                  </a>
-                ))}
-              </div>
-            </>
-          ) : null}
-
-          {shanghaiRecords.length > 0 ? (
-            <>
-              <h3 className={styles.subheading}>上海考试院专业组线</h3>
-              <div className={styles.tableWrap}>
-                <table className={styles.scoreTable}>
-                  <thead>
-                    <tr>
-                      <th>年份</th>
-                      <th>组别</th>
-                      <th>投档线</th>
-                      <th>口径</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {shanghaiRecords.map((record) => (
-                      <tr key={`${record.year}-${record.groupCode}-${record.sourceType}`}>
-                        <td>{record.year}</td>
-                        <td>
-                          <strong>{record.groupName}</strong>
-                          <span className={styles.tableMeta}>{record.groupCode}</span>
-                        </td>
-                        <td>{record.score}</td>
-                        <td>
-                          <a
-                            className={styles.tableLink}
-                            href={record.sourceUrl}
-                            rel="noreferrer"
-                            target="_blank"
-                          >
-                            {record.sourceType === "regular"
-                              ? "普通批"
-                              : record.sourceType === "q-group"
-                                ? "Q组"
-                                : "单独公布"}
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </>
-          ) : null}
-
-          <p className={styles.note}>
-            如果你需要的是“某个本科专业的精确最低分”，还要继续补上海版《招生各专业录取人数及考分》或学校公开到专业层的材料；当前这批学校稳定公开的通常还是学校线、分类线或专业组线。
-          </p>
-        </section>
-      ) : null}
 
       {admissionsContact ? (
         <section className={styles.section}>

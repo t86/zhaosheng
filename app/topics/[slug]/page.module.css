@@ -55,6 +55,24 @@
   margin-top: 20px;
 }
 
+.nextStepLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nextStepLinks a {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--accent-deep);
+  font-weight: 700;
+  text-decoration: none;
+}
+
 @media (max-width: 720px) {
   .page {
     padding-top: 18px;
