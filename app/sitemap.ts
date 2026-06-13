@@ -11,6 +11,7 @@ const staticPaths = [
   "/timeline",
   "/schools",
   "/directions",
+  "/salary",
   "/sources",
   "/advice",
 ];

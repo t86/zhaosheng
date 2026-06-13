@@ -732,8 +732,12 @@ export default async function SchoolDetailPage({ params }: PageProps) {
           </div>
 
           <p className={styles.note}>
-            数据整理自学校公开的就业质量报告，统计口径以 {graduateOutcome.reportYear} 届为主；
-            专业级薪资若标注“第三方机构”，为非学校官方估算，仅供量级参考，请以官方就业报告为准。
+            数据整理自学校公开的就业质量报告，统计口径以 {graduateOutcome.reportYear} 届为主。
+            学校官方报告普遍不公布专业级薪资，想看不同专业方向的薪资量级，可参考{" "}
+            <Link className={styles.profileLink} href="/salary">
+              专业薪资参考页 →
+            </Link>
+            （全国本科第三方口径，非本校精确值）。
           </p>
         </section>
       ) : null}

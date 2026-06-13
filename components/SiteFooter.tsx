@@ -7,6 +7,7 @@ const columnLinks = [
   { href: "/timeline", label: "时间线" },
   { href: "/schools", label: "学校库" },
   { href: "/directions", label: "热门方向" },
+  { href: "/salary", label: "专业薪资" },
   { href: "/sources", label: "数据来源" },
 ];
 
