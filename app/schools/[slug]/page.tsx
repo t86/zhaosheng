@@ -48,6 +48,21 @@ function getOutcomeModeLabel(mode?: "stat" | "reference") {
   return mode === "reference" ? "参考画像" : "统计口径";
 }
 
+function getOutcomeSourceTypeLabel(
+  sourceType?: "official" | "official_story" | "third_party" | "non_official",
+) {
+  switch (sourceType) {
+    case "official_story":
+      return "官方报道";
+    case "third_party":
+      return "第三方机构";
+    case "non_official":
+      return "网络参考";
+    default:
+      return "学校官方";
+  }
+}
+
 function getRiskToneClassName(tone: SchoolRiskTone) {
   switch (tone) {
     case "teal":
@@ -86,6 +101,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
   }
 
   const focusMajors = school.majorProfile?.majors.map((item) => item.name) ?? school.majorHighlights;
+  const graduateOutcome = school.graduateOutcome;
   const featuredTracks = school.majorProfile?.featuredTracks ?? [];
   const admissionsContact = school.majorProfile?.admissionsContact;
   const presentRouteTypes = Array.from(
@@ -597,6 +613,127 @@ export default async function SchoolDetailPage({ params }: PageProps) {
 
           <p className={styles.note}>
             这里的跨校对比和“分数不够替代”都属于站内解释层，不等于个性化志愿建议。真正下结论前，还要回到你所在省份的位次、选科和城市偏好。
+          </p>
+        </section>
+      ) : null}
+
+      {graduateOutcome ? (
+        <section className={styles.section}>
+          <div className={styles.majorHeader}>
+            <div>
+              <h2>毕业生去向与深造/就业</h2>
+              <p className={styles.majorLead}>{graduateOutcome.overview.summary}</p>
+            </div>
+            <span className={styles.scopePill}>
+              {graduateOutcome.reportLabel}
+            </span>
+          </div>
+
+          {graduateOutcome.overview.stats.length > 0 ? (
+            <div className={styles.metricGrid}>
+              {graduateOutcome.overview.stats.map((stat) => (
+                <div className={styles.metricCard} key={`outcome-stat-${stat.label}`}>
+                  <span>{stat.label}</span>
+                  <strong>{stat.value}</strong>
+                  {stat.note ? <p className={styles.sourceMeta}>{stat.note}</p> : null}
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          <div className={styles.outcomeFlowGrid}>
+            {graduateOutcome.industries && graduateOutcome.industries.length > 0 ? (
+              <div className={styles.listCard}>
+                <h3 className={styles.subheading}>主要就业行业</h3>
+                <ul className={styles.outcomeFlowList}>
+                  {graduateOutcome.industries.map((flow) => (
+                    <li key={`industry-${flow.name}`}>
+                      <span>{flow.name}</span>
+                      {flow.share ? <strong>{flow.share}</strong> : null}
+                      {flow.note ? <em className={styles.sourceMeta}>{flow.note}</em> : null}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {graduateOutcome.regions && graduateOutcome.regions.length > 0 ? (
+              <div className={styles.listCard}>
+                <h3 className={styles.subheading}>主要就业地域</h3>
+                <ul className={styles.outcomeFlowList}>
+                  {graduateOutcome.regions.map((flow) => (
+                    <li key={`region-${flow.name}`}>
+                      <span>{flow.name}</span>
+                      {flow.share ? <strong>{flow.share}</strong> : null}
+                      {flow.note ? <em className={styles.sourceMeta}>{flow.note}</em> : null}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+
+          {graduateOutcome.keyEmployers && graduateOutcome.keyEmployers.length > 0 ? (
+            <div className={styles.listCard}>
+              <h3 className={styles.subheading}>报告点名的重点就业单位</h3>
+              <div className={styles.trackTags}>
+                {graduateOutcome.keyEmployers.map((employer) => (
+                  <span className={styles.trackTag} key={`employer-${employer}`}>
+                    {employer}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          {graduateOutcome.byMajor && graduateOutcome.byMajor.length > 0 ? (
+            <div className={styles.outcomeMajorGrid}>
+              {graduateOutcome.byMajor.map((major) => (
+                <article className={styles.outcomeMajorCard} key={`outcome-major-${major.name}`}>
+                  <div className={styles.outcomeMajorHead}>
+                    <h3>{major.name}</h3>
+                    {major.advanceRate ? (
+                      <span className={styles.outcomeRate}>深造率 {major.advanceRate}</span>
+                    ) : null}
+                  </div>
+                  {major.outcomeNote ? (
+                    <p className={styles.outcomeMajorNote}>{major.outcomeNote}</p>
+                  ) : null}
+                  {major.salary ? (
+                    <p className={styles.outcomeSalary}>
+                      <strong>{major.salary.value}</strong>
+                      <span className={styles.outcomeSalaryTag}>
+                        {getOutcomeSourceTypeLabel(major.salary.sourceType)}
+                        {major.salary.year ? `· ${major.salary.year}` : ""}
+                      </span>
+                      <em className={styles.sourceMeta}>{major.salary.sourceLabel}</em>
+                    </p>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          ) : null}
+
+          {graduateOutcome.salaryNote ? (
+            <p className={styles.note}>薪资口径：{graduateOutcome.salaryNote}</p>
+          ) : null}
+
+          <div className={styles.trackSources}>
+            {graduateOutcome.sources.map((source) => (
+              <div className={styles.profileSource} key={`outcome-source-${source.url}`}>
+                <strong>{source.label}</strong>
+                <p className={styles.sourceType}>{getOutcomeSourceTypeLabel(source.sourceType)}</p>
+                <p>{source.note}</p>
+                <a className={styles.profileLink} href={source.url} rel="noreferrer" target="_blank">
+                  查看来源 →
+                </a>
+              </div>
+            ))}
+          </div>
+
+          <p className={styles.note}>
+            数据整理自学校公开的就业质量报告，统计口径以 {graduateOutcome.reportYear} 届为主；
+            专业级薪资若标注“第三方机构”，为非学校官方估算，仅供量级参考，请以官方就业报告为准。
           </p>
         </section>
       ) : null}

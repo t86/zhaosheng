@@ -4,6 +4,8 @@ import {
   schoolMajorProfiles,
   type SchoolMajorProfile,
 } from "@/data/school-major-profiles";
+import { graduateOutcomesBySlug } from "@/data/graduate-outcomes";
+import type { SchoolGraduateOutcome } from "@/data/graduate-outcomes/types";
 import schoolMetrics from "@/data/school-metrics.json";
 import schoolSeed from "@/data/school-seed.json";
 import { topicDefinitionMap, topicDefinitions } from "@/data/topics";
@@ -82,6 +84,7 @@ export type School = SchoolSeedRecord & {
   }[];
   majorProfile?: SchoolMajorProfile;
   majorRanking: SchoolMajorRanking;
+  graduateOutcome?: SchoolGraduateOutcome;
   qualityReport?: ReportSnapshot;
   employmentReport?: ReportSnapshot;
   dataAvailability: {
@@ -183,11 +186,13 @@ function buildMajorRanking(
 export const schools: School[] = seedRecords.map((school) => {
   const metric = metricsBySlug[school.slug] ?? {};
   const majorProfile = schoolMajorProfiles[school.slug];
+  const graduateOutcome = graduateOutcomesBySlug[school.slug];
 
   return {
     ...school,
     majorProfile,
     majorRanking: buildMajorRanking(school, majorProfile),
+    graduateOutcome,
     qualityReport: metric.qualityReport,
     employmentReport: metric.employmentReport,
     collectionError: metric.error,
