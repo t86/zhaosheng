@@ -10,6 +10,7 @@ import {
   trackRouteGuide,
 } from "@/lib/featured-tracks";
 import { getSchool } from "@/lib/schools";
+import { matchMajorSalaries } from "@/lib/major-salary-match";
 import { getShanghaiAdmissionsForSchool } from "@/lib/shanghai-admissions";
 import { getShanghaiFocusSchool } from "@/lib/shanghai-focus";
 import styles from "./page.module.css";
@@ -102,6 +103,9 @@ export default async function SchoolDetailPage({ params }: PageProps) {
 
   const focusMajors = school.majorProfile?.majors.map((item) => item.name) ?? school.majorHighlights;
   const graduateOutcome = school.graduateOutcome;
+  const majorSalaryMatches = matchMajorSalaries(
+    school.majorProfile?.majors.map((item) => item.name) ?? [],
+  );
   const featuredTracks = school.majorProfile?.featuredTracks ?? [];
   const admissionsContact = school.majorProfile?.admissionsContact;
   const presentRouteTypes = Array.from(
@@ -716,6 +720,51 @@ export default async function SchoolDetailPage({ params }: PageProps) {
 
           {graduateOutcome.salaryNote ? (
             <p className={styles.note}>薪资口径：{graduateOutcome.salaryNote}</p>
+          ) : null}
+
+          {majorSalaryMatches.length > 0 ? (
+            <div className={styles.salaryRefCard}>
+              <div className={styles.salaryRefHead}>
+                <strong>王牌专业 · 全国同类专业薪资/就业景气参考</strong>
+                <span className={styles.salaryRefTag}>全国本科 · 麦可思 2024 届</span>
+              </div>
+              <p className={styles.salaryRefLead}>
+                学校官方不公布专业薪资。下面把该校王牌专业对应到全国本科同名专业的第三方参考——
+                是<strong>全国量级</strong>，不是本校该专业的实际收入。
+              </p>
+              <div className={styles.salaryRefGrid}>
+                {majorSalaryMatches.map((match) => (
+                  <div className={styles.salaryRefRow} key={`salary-${match.major}`}>
+                    <span className={styles.salaryRefMajor}>{match.major}</span>
+                    {match.signal ? (
+                      <span
+                        className={
+                          match.signal.signal === "green"
+                            ? styles.salaryRefGreen
+                            : styles.salaryRefRed
+                        }
+                      >
+                        {match.signal.signal === "green" ? "绿牌" : "红牌"}
+                      </span>
+                    ) : null}
+                    {match.national ? (
+                      <strong className={styles.salaryRefSalary}>
+                        全国同专业月收入约 {match.national.monthly.toLocaleString()} 元
+                        <em>（高薪榜第 {match.national.rank} 位）</em>
+                      </strong>
+                    ) : (
+                      <span className={styles.salaryRefMuted}>就业景气信号，无榜单薪资</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <p className={styles.note}>
+                完整口径、高薪专业榜与红绿牌见{" "}
+                <Link className={styles.profileLink} href="/salary">
+                  专业薪资参考页 →
+                </Link>
+              </p>
+            </div>
           ) : null}
 
           <div className={styles.trackSources}>

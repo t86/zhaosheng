@@ -2,6 +2,107 @@
   padding: 28px 0 80px;
 }
 
+.salaryRefCard {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: rgba(22, 50, 79, 0.05);
+  border: 1px solid var(--border);
+}
+
+.salaryRefHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.salaryRefHead strong {
+  font-size: 16px;
+}
+
+.salaryRefTag {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(180, 120, 20, 0.12);
+  color: #8a5a00;
+  font-size: 12px;
+}
+
+.salaryRefLead {
+  margin: 10px 0 14px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.salaryRefGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.salaryRefRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm, 10px);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border);
+}
+
+.salaryRefMajor {
+  font-weight: 700;
+  min-width: 160px;
+}
+
+.salaryRefGreen {
+  display: inline-flex;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(31, 122, 68, 0.12);
+  color: #1f7a44;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.salaryRefRed {
+  display: inline-flex;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(178, 59, 46, 0.12);
+  color: #b23b2e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.salaryRefSalary {
+  font-size: 15px;
+  color: var(--accent-deep);
+}
+
+.salaryRefSalary em {
+  font-style: normal;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.salaryRefMuted {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .salaryRefMajor {
+    min-width: 0;
+    flex-basis: 100%;
+  }
+}
+
 .shell,
 .section {
   padding: 28px;
