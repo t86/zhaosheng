@@ -96,6 +96,67 @@
   color: var(--muted);
 }
 
+.entryCard {
+  margin: 14px 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm, 10px);
+  background: rgba(31, 95, 139, 0.06);
+  border: 1px solid var(--border);
+}
+
+.entryHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.entryHead strong {
+  font-size: 14px;
+  color: var(--accent-deep);
+}
+
+.entryChannels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.entryChannel {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-deep);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.entrySummary {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.entryTiming {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.entrySources {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.entryLink {
+  color: var(--accent-deep);
+  font-weight: 600;
+  font-size: 13px;
+}
+
 @media (max-width: 720px) {
   .salaryRefMajor {
     min-width: 0;

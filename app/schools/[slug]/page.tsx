@@ -11,6 +11,7 @@ import {
 } from "@/lib/featured-tracks";
 import { getSchool } from "@/lib/schools";
 import { matchMajorSalaries } from "@/lib/major-salary-match";
+import { getHonorsEntry } from "@/data/honors-admission";
 import { getShanghaiAdmissionsForSchool } from "@/lib/shanghai-admissions";
 import { getShanghaiFocusSchool } from "@/lib/shanghai-focus";
 import styles from "./page.module.css";
@@ -817,6 +818,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
             {featuredTracks.map((track) => {
               const fitProfile = getTrackFitProfile(track);
               const graduateOutcome = track.graduateOutcome;
+              const honorsEntry = getHonorsEntry(school.slug, track.name);
 
               return (
                 <article className={styles.trackCard} key={track.name}>
@@ -834,6 +836,40 @@ export default async function SchoolDetailPage({ params }: PageProps) {
                     ))}
                   </div>
                   {track.note ? <p className={styles.trackNote}>{track.note}</p> : null}
+
+                  {honorsEntry ? (
+                    <div className={styles.entryCard}>
+                      <div className={styles.entryHead}>
+                        <strong>怎么进</strong>
+                        <div className={styles.entryChannels}>
+                          {honorsEntry.channels.map((channel) => (
+                            <span className={styles.entryChannel} key={channel}>
+                              {channel}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <p className={styles.entrySummary}>{honorsEntry.summary}</p>
+                      {honorsEntry.timing ? (
+                        <p className={styles.entryTiming}>选拔时间：{honorsEntry.timing}</p>
+                      ) : null}
+                      {honorsEntry.sources.length > 0 ? (
+                        <div className={styles.entrySources}>
+                          {honorsEntry.sources.map((source) => (
+                            <a
+                              className={styles.entryLink}
+                              href={source.url}
+                              key={source.url}
+                              rel="noreferrer"
+                              target="_blank"
+                            >
+                              {source.label} →
+                            </a>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
                   <div className={styles.trackProfileGrid}>
                     <div className={styles.trackProfileCard}>
                       <strong>更适合</strong>
