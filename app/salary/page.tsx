@@ -173,6 +173,8 @@ export default function SalaryPage() {
           <p>有了薪资量级直觉，再回到学校与专业，把方向落到具体院校。</p>
         </div>
         <div className={styles.nextStepLinks}>
+          <Link href="/careers">按未来去向找方向（毕业都去哪）→</Link>
+          <Link href="/directions#quiz">不确定方向？做个方向自测 →</Link>
           <Link href="/schools">去学校库按方向筛选 →</Link>
           <Link href="/admissions/shanghai#explorer">回上海数据页按校查分 →</Link>
         </div>

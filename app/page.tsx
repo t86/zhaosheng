@@ -104,14 +104,15 @@ export default function Home() {
             <p className={styles.heroLead}>
               上海考 985 主要有普通批、综合评价、强基三条路。先判断哪条是主线，再用近 5
               年官方院校专业组线、学校库和高三下时间线，把学校和专业组的选择压缩到能决策的范围。
+              还完全没头绪也没关系——可以先从“没方向？从这开始”一步步来。
             </p>
 
             <div className={styles.heroActions}>
-              <Link className={styles.primaryAction} href="/admissions/shanghai#explorer">
-                先看上海近 5 年组线 →
+              <Link className={styles.primaryAction} href="/start">
+                没方向？从这开始 →
               </Link>
-              <Link className={styles.secondaryAction} href="/timeline">
-                看高三下时间线 →
+              <Link className={styles.secondaryAction} href="/admissions/shanghai#explorer">
+                已有目标，直接查组线 →
               </Link>
             </div>
 
@@ -143,6 +144,45 @@ export default function Home() {
             <p className={styles.panelNote}>{shanghaiDecisionGuide.status.summary}</p>
           </aside>
         </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>没方向？先回答你最想先搞清的那个问题</h2>
+          </div>
+          <p>
+            很多家长一上来不是“走哪条路”，而是这三个问题。先点你最关心的那个，把无限的选择一步步缩小。
+          </p>
+        </div>
+
+        <div className={styles.triageGrid}>
+          <Link className={styles.triageCard} href="/admissions/shanghai#explorer">
+            <span className={styles.triageKicker}>问题一</span>
+            <h3>这个分能上什么档？</h3>
+            <p>输入高考分，先看够得着哪些学校和专业组（冲 / 稳 / 保）。</p>
+            <span className={styles.triageLink}>按分数看现实区间 →</span>
+          </Link>
+          <Link className={styles.triageCard} href="/directions#quiz">
+            <span className={styles.triageKicker}>问题二</span>
+            <h3>孩子适合什么专业？</h3>
+            <p>三四道题，把十几个热门方向缩小到值得继续看的几个。</p>
+            <span className={styles.triageLink}>做个方向自测 →</span>
+          </Link>
+          <Link className={styles.triageCard} href="/careers">
+            <span className={styles.triageKicker}>问题三</span>
+            <h3>以后能干嘛？</h3>
+            <p>从“想进大厂 / 体制 / 金融 / 医疗 / 做科研”倒推方向和学校。</p>
+            <span className={styles.triageLink}>按未来去向找方向 →</span>
+          </Link>
+        </div>
+
+        <p className={styles.triageFoot}>
+          想要一条完整的路径？看{" "}
+          <Link className={styles.inlineLink} href="/start">
+            从这里开始 · 陪孩子定方向四步走 →
+          </Link>
+        </p>
       </section>
 
       <section className={styles.section}>

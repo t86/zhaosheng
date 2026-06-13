@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DirectionQuiz from "@/components/DirectionQuiz";
 import { hotDirectionReferenceLinks } from "@/data/hot-directions";
 import { getHotDirectionTopic } from "@/lib/hot-directions";
 import styles from "./page.module.css";
@@ -25,10 +26,22 @@ export default function HotDirectionsPage() {
         <p className={styles.disclaimer}>{topic.disclaimer}</p>
 
         <div className={styles.anchorRow}>
+          <a href="#quiz">没方向先自测</a>
           <a href="#main-top-ten">看主榜</a>
           <a href="#controversy">看争议补位</a>
           <a href="#categories">看三种视角</a>
         </div>
+      </section>
+
+      <section className={styles.section} id="quiz">
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>没方向？先从三四个问题开始</h2>
+          </div>
+          <p>十几个方向看花眼很正常。先花两分钟做个轻量自测，把范围收敛到 3-5 个值得继续看的方向，再去翻下面的主榜。</p>
+        </div>
+
+        <DirectionQuiz directions={topic.mainDirections} />
       </section>
 
       <section className={styles.section} id="main-top-ten">

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
 import { ShanghaiAdmissionsExplorer } from "@/components/ShanghaiAdmissionsExplorer";
+import { ScoreLocator } from "@/components/ScoreLocator";
 import { shanghaiDecisionGuide } from "@/data/shanghai-decision-guide";
 import { getShanghaiHighValueDataStatus } from "@/lib/shanghai-high-value-data";
 import { getShanghaiHighValueImportManifest } from "@/lib/shanghai-high-value-imports";
@@ -99,6 +100,8 @@ export default function ShanghaiAdmissionsPage() {
             这是本页的核心查询工具。Q组与考试院单独公布的组别也一并列进来了，避免把 2025 这类拆表年份漏掉。
           </p>
         </div>
+
+        <ScoreLocator />
 
         <ShanghaiAdmissionsExplorer summaries={summaries} years={coverage.years} />
 

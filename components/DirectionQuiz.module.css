@@ -1,0 +1,273 @@
+.quiz {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.declare {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: rgba(203, 82, 53, 0.07);
+  border: 1px solid rgba(21, 23, 28, 0.08);
+}
+
+.declareTag {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(22, 50, 79, 0.1);
+  color: var(--accent-deep);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.declare p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.resetBtn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--accent-deep);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.resetBtn:hover {
+  background: rgba(22, 50, 79, 0.06);
+}
+
+.questionList {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.questionItem {
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(21, 23, 28, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 241, 231, 0.9));
+}
+
+.questionHead {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.questionNo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #16324f, #2d567f);
+  color: #f7f1e8;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.questionPrompt {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+}
+
+.questionHelper {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.optionRow {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.optionBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(21, 23, 28, 0.1);
+  background: rgba(255, 245, 232, 0.7);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.optionBtn:hover {
+  border-color: rgba(22, 50, 79, 0.35);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.optionBtnActive {
+  border-color: var(--accent-deep);
+  background: rgba(22, 50, 79, 0.08);
+  box-shadow: 0 0 0 1px var(--accent-deep) inset;
+}
+
+.optionLabel {
+  font-size: 16px;
+  font-weight: 800;
+  color: rgba(21, 23, 28, 0.86);
+}
+
+.optionBtnActive .optionLabel {
+  color: var(--accent-deep);
+}
+
+.optionHint {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.resultBlock {
+  padding: 22px;
+  border-radius: 24px;
+  border: 1px solid rgba(21, 23, 28, 0.08);
+  background: rgba(22, 50, 79, 0.05);
+}
+
+.resultHint {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.resultHead strong {
+  display: block;
+  font-size: 20px;
+  color: var(--accent-deep);
+  letter-spacing: -0.01em;
+}
+
+.resultHead p {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.resultGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.resultCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(21, 23, 28, 0.07);
+}
+
+.resultName {
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.resultOneLiner {
+  color: rgba(21, 23, 28, 0.78);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.resultSchools {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resultSchools small {
+  color: var(--accent-deep);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.resultSchoolRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.resultSchoolPill {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 245, 232, 0.92);
+  border: 1px solid rgba(21, 23, 28, 0.08);
+  color: rgba(21, 23, 28, 0.74);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.resultLink {
+  margin-top: auto;
+  color: var(--accent-deep);
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.resultFoot {
+  margin-top: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.resultFoot a {
+  color: var(--accent-deep);
+  font-weight: 800;
+}
+
+@media (max-width: 720px) {
+  .resultGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .questionItem,
+  .resultBlock {
+    padding: 18px;
+  }
+}

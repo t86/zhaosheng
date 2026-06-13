@@ -1,0 +1,254 @@
+.page {
+  padding: 28px 0 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero,
+.section {
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.hero {
+  background:
+    radial-gradient(circle at top right, rgba(22, 50, 79, 0.12), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(203, 82, 53, 0.1), transparent 24%),
+    linear-gradient(150deg, rgba(255, 249, 240, 0.98), rgba(242, 233, 219, 0.94));
+}
+
+.back {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+
+.eyebrow {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(22, 50, 79, 0.08);
+  color: var(--accent-deep);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.hero h1 {
+  margin-top: 18px;
+  font-size: clamp(28px, 4.2vw, 48px);
+  line-height: 1.08;
+}
+
+.lead {
+  margin-top: 18px;
+  max-width: 780px;
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.note {
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.anchorCard {
+  margin-top: 22px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 26px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border);
+}
+
+.anchorCard span {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.anchorCard strong {
+  font-size: 36px;
+  color: var(--accent-deep);
+}
+
+.anchorCard p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.sectionHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.sectionHeader h2 {
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+.sectionHeader p {
+  max-width: 520px;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.disclaimerCard {
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: rgba(203, 82, 53, 0.06);
+  border: 1px solid var(--border);
+}
+
+.disclaimerCard strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent-deep);
+}
+
+.disclaimerCard p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.pathGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pathCard {
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.pathCard[open] {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.pathSummary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.pathSummary::-webkit-details-marker {
+  display: none;
+}
+
+.pathEmoji {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pathTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pathTitle strong {
+  font-size: 18px;
+}
+
+.pathTagline {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.pathCount {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--accent-deep);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.schoolList {
+  list-style: none;
+  margin: 0;
+  padding: 4px 20px 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.schoolItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(22, 50, 79, 0.04);
+  border: 1px solid var(--border);
+}
+
+.schoolName {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+
+.schoolDirection {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.schoolSignal {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.nextStepLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.nextStepLinks a {
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .schoolList {
+    grid-template-columns: 1fr;
+  }
+
+  .pathSummary {
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .pathEmoji {
+    font-size: 24px;
+  }
+}
