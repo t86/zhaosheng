@@ -286,7 +286,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
                     <span>保研率{advancement.tuimianComputed ? "（估算）" : ""}</span>
                     <strong>{advancement.tuimianRate}%</strong>
                     <em>
-                      {advancement.tuimianComputed && advancement.tuimianBasis
+                      {advancement.tuimianBasis
                         ? advancement.tuimianBasis
                         : `${tuimianTier(advancement.tuimianRate)}档${
                             tuimianRank ? ` · 收录校第 ${tuimianRank.rank}/${tuimianRank.total}` : ""
