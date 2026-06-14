@@ -11,6 +11,8 @@ export type AdvancementStat = {
   schoolName: string;
   cohort: string; // 数据届次，如「2024届」；none 表示未查到
   tuimianRate: number | null; // 保研率/推免率 %
+  tuimianComputed?: boolean; // true=按官方推免公示人数÷本科毕业人数反算（非报告直给）
+  tuimianBasis?: string; // 反算依据，如「推免 1651 / 本科 3971」
   advanceRate: number | null; // 深造率/升学率 %（推免+考研+出国）
   abroadRate: number | null; // 出国(境)率 %
   note?: string;

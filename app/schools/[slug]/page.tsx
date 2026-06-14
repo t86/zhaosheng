@@ -283,11 +283,14 @@ export default async function SchoolDetailPage({ params }: PageProps) {
               <div className={styles.advStatRow}>
                 {advancement.tuimianRate != null ? (
                   <div className={styles.advStat}>
-                    <span>保研率</span>
+                    <span>保研率{advancement.tuimianComputed ? "（估算）" : ""}</span>
                     <strong>{advancement.tuimianRate}%</strong>
                     <em>
-                      {tuimianTier(advancement.tuimianRate)}档
-                      {tuimianRank ? ` · 收录校第 ${tuimianRank.rank}/${tuimianRank.total}` : ""}
+                      {advancement.tuimianComputed && advancement.tuimianBasis
+                        ? advancement.tuimianBasis
+                        : `${tuimianTier(advancement.tuimianRate)}档${
+                            tuimianRank ? ` · 收录校第 ${tuimianRank.rank}/${tuimianRank.total}` : ""
+                          }`}
                     </em>
                   </div>
                 ) : null}

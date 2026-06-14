@@ -80,7 +80,14 @@ export function AdvancementTable({ rows }: { rows: AdvancementStat[] }) {
                   </td>
                   <td>
                     {row.tuimianRate != null ? (
-                      <span className={`${styles.rate} ${tierClass(tTier)}`}>{row.tuimianRate}%</span>
+                      <span className={styles.rateCell}>
+                        <span className={`${styles.rate} ${tierClass(tTier)}`}>{row.tuimianRate}%</span>
+                        {row.tuimianComputed ? (
+                          <span className={styles.estTag} title={row.tuimianBasis}>
+                            估算
+                          </span>
+                        ) : null}
+                      </span>
                     ) : (
                       <span className={styles.na}>—</span>
                     )}
@@ -119,8 +126,8 @@ export function AdvancementTable({ rows }: { rows: AdvancementStat[] }) {
         </table>
       </div>
       <p className={styles.foot}>
-        “—” 表示该校官方未单独公布该项。保研率=推免率（推荐免试），深造率=推免+考研+出国合计。
-        不同学校口径与年份不完全一致，仅供量级横向参考。
+        “—” 表示该校官方未单独公布该项。标“估算”的保研率为按官方推免公示人数 ÷ 本科毕业人数反算（鼠标悬停看依据），其余为就业报告直接公布。
+        保研率=推免率（推荐免试），深造率=推免+考研+出国合计。不同学校口径与年份不完全一致，仅供量级横向参考。
       </p>
     </div>
   );

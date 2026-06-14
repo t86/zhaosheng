@@ -97,6 +97,21 @@
   color: var(--muted);
 }
 
+.rateCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.estTag {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(120, 120, 120, 0.12);
+  color: var(--muted);
+  cursor: help;
+}
+
 .plain {
   font-weight: 600;
 }
