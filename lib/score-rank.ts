@@ -3,7 +3,9 @@ import table from "@/data/shanghai/score-rank-table.json";
 // 上海高考"位次/等效分"换算。基于各年成绩分布表（一分一段）：
 // cumulative = 该分数及以上累计人数 = 该分的最低位次。
 // 2021-2024 逐分，2025 为每 10 分锚点（线性插值，结果为近似）。
-// 位次法的意义：分数年年波动，位次更稳定；用同一把"位次尺子"跨年对照才不会被裸分误导。
+// 重要：官方成绩分布表顶端只公布到约 615-623 分（约全市前 50 名）"及以上"为一个桶，
+// 再往上不逐分公布——因此高分段（约 620 分以上）无法精确定位位次，本工具对超出范围的
+// 输入一律返回 null（如实显示"无法定位"），不向上外推、不假装能算。
 
 type Row = [number, number]; // [score, cumulative]
 
@@ -26,19 +28,24 @@ export function isYearSparse(year: number): boolean {
   return YEAR_META[String(year)]?.sparse ?? false;
 }
 
-// 分数 → 该年最低位次（线性插值；超出锚点范围则取边界）
+// 该年成绩分布表覆盖的分数上限（最高锚点）。超过它就无法定位位次。
+export function getTopScore(year: number): number | null {
+  const rows = RANK_TABLE[String(year)];
+  return rows && rows.length ? rows[0][0] : null;
+}
+
+// 分数 → 该年最低位次（线性插值）。超出数据范围（高于最高锚点或低于最低锚点）返回 null。
 export function scoreToRank(year: number, score: number): number | null {
   const rows = RANK_TABLE[String(year)];
   if (!rows || rows.length === 0) {
     return null;
   }
-  // rows 按 score 从高到低
-  if (score >= rows[0][0]) {
-    return rows[0][1];
+  if (score > rows[0][0]) {
+    return null; // 高于成绩分布表上限，官方未公布、不外推
   }
   const last = rows[rows.length - 1];
-  if (score <= last[0]) {
-    return last[1];
+  if (score < last[0]) {
+    return null; // 低于数据范围
   }
   for (let i = 0; i < rows.length - 1; i++) {
     const hi = rows[i]; // 高分、位次小
@@ -48,21 +55,21 @@ export function scoreToRank(year: number, score: number): number | null {
       return Math.round(hi[1] + frac * (lo[1] - hi[1]));
     }
   }
-  return null;
+  return rows[0][1]; // score === 最高锚点
 }
 
-// 位次 → 该年对应分数（线性插值）
+// 位次 → 该年对应分数（线性插值）。位次优于最高锚点（即在前 ~50 名内、超出数据）返回 null。
 export function rankToScore(year: number, rank: number): number | null {
   const rows = RANK_TABLE[String(year)];
   if (!rows || rows.length === 0) {
     return null;
   }
-  if (rank <= rows[0][1]) {
-    return rows[0][0];
+  if (rank < rows[0][1]) {
+    return null; // 比该年最高锚点还靠前，超出数据范围
   }
   const last = rows[rows.length - 1];
-  if (rank >= last[1]) {
-    return last[0];
+  if (rank > last[1]) {
+    return null; // 超出数据范围（太靠后）
   }
   for (let i = 0; i < rows.length - 1; i++) {
     const hi = rows[i]; // 位次小、分高
@@ -72,10 +79,10 @@ export function rankToScore(year: number, rank: number): number | null {
       return Math.round(hi[0] - frac * (hi[0] - lo[0]));
     }
   }
-  return null;
+  return rows[0][0];
 }
 
-// 等效分：某年某分 → 另一年同位次大约对应多少分
+// 等效分：某年某分 → 另一年同位次大约对应多少分（任一端超范围返回 null）
 export function equivalentScore(fromYear: number, score: number, toYear: number): number | null {
   const rank = scoreToRank(fromYear, score);
   if (rank == null) {
@@ -84,15 +91,17 @@ export function equivalentScore(fromYear: number, score: number, toYear: number)
   return rankToScore(toYear, rank);
 }
 
-// 一个分数在所有可用年份的等效分 + 位次（用于横向展示"同一竞争位置逐年是多少分"）
+// 一个分数对应的位次，在各年的等效分（同一位次=同一竞争位置）。
+// 位次恒定（就是 baseRank）；某年若该位次超出数据范围，score 为 null。
 export function equivalentAcrossYears(
   baseYear: number,
   score: number,
-): { year: number; score: number | null; rank: number | null }[] {
-  const rank = scoreToRank(baseYear, score);
-  return rankYears.map((year) => ({
+): { baseRank: number | null; rows: { year: number; score: number | null; controlLine: number | null }[] } {
+  const baseRank = scoreToRank(baseYear, score);
+  const rows = rankYears.map((year) => ({
     year,
-    score: year === baseYear ? score : equivalentScore(baseYear, score, year),
-    rank: rank == null ? null : scoreToRank(year, equivalentScore(baseYear, score, year) ?? score),
+    score: baseRank == null ? null : year === baseYear ? score : rankToScore(year, baseRank),
+    controlLine: getControlLine(year),
   }));
+  return { baseRank, rows };
 }

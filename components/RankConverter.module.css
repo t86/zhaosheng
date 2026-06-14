@@ -66,6 +66,21 @@
   color: var(--muted);
 }
 
+.outRange {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-md, 8px);
+  background: rgba(180, 120, 20, 0.08);
+  border: 1px solid var(--border);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.na {
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .tableScroll {
   margin-top: 12px;
   overflow-x: auto;
