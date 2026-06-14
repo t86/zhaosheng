@@ -2,7 +2,8 @@ import Link from "next/link";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
 import { ShanghaiAdmissionsExplorer } from "@/components/ShanghaiAdmissionsExplorer";
 import { ScoreLocator } from "@/components/ScoreLocator";
-import { shanghaiDecisionGuide } from "@/data/shanghai-decision-guide";
+import { RankConverter } from "@/components/RankConverter";
+import { shanghaiDecisionGuide, shanghaiFillStrategy } from "@/data/shanghai-decision-guide";
 import { getShanghaiHighValueDataStatus } from "@/lib/shanghai-high-value-data";
 import { getShanghaiHighValueImportManifest } from "@/lib/shanghai-high-value-imports";
 import { getShanghaiFocusAdmissions } from "@/lib/shanghai-focus";
@@ -103,7 +104,54 @@ export default function ShanghaiAdmissionsPage() {
 
         <ScoreLocator />
 
+        <RankConverter />
+
+        <div className={styles.bridgeNote}>
+          看到冲 / 稳 / 保清单只是第一步。平行志愿真正要做的，是把这三档<strong>合并成一张从高到低的 24 行有序表</strong>，
+          并对每个组决定 4 个专业的顺序和是否服从调剂。
+          <a href="#fill-strategy">往下看“这 24 个志愿到底怎么填” →</a>
+        </div>
+
         <ShanghaiAdmissionsExplorer summaries={summaries} years={coverage.years} />
+
+        <div className={styles.adjustCard}>
+          <strong>勾“服从调剂”前，先做这三步自检</strong>
+          <ol>
+            <li>打开这个院校专业组对应的《招生专业目录》，看清组里到底捆了<strong>哪些专业</strong>（不是只看组名和分数）。</li>
+            <li>圈出组里你<strong>最不能接受</strong>的那个专业，问自己：被调剂到它，也认吗？</li>
+            <li>认，就勾服从（能防退档）；不认，就别勾这个组、换一个组内专业你都能接受的——而不是赌不会被调剂。</li>
+          </ol>
+          <p className={styles.note}>
+            调剂只在被投档的这个组内进行：组内 4 个专业没录上又不服从，会被退档；服从则可能被调到组内任意专业。
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.section} id="fill-strategy">
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>这 24 个志愿到底怎么填</h2>
+          </div>
+          <p>
+            上海普通批可填 24 个院校专业组、每组 4 个专业 + 是否服从调剂。看清楚候选只是上半场，下面是把它落成一张志愿表的五步。
+          </p>
+        </div>
+
+        <div className={styles.fillGrid}>
+          {shanghaiFillStrategy.map((item) => (
+            <article className={styles.fillCard} key={item.step}>
+              <span className={styles.fillNo}>{item.step}</span>
+              <h3>{item.title}</h3>
+              <p className={styles.fillAction}>{item.action}</p>
+              <p className={styles.fillWhy}>为什么：{item.why}</p>
+            </article>
+          ))}
+        </div>
+
+        <p className={styles.note}>
+          以上为依据上海 2026 普通批实施办法整理的填报方法，不替你决定具体志愿；正式填报请以当年官方招生专业目录、志愿表样表和实施办法为准。更深的避坑案例见{" "}
+          <a href="/pitfalls">填志愿十大常见错误</a>。
+        </p>
 
         <details className={styles.governanceDetails}>
           <summary>数据口径与尚未接入的三层数据（点击展开）</summary>

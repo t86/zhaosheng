@@ -3,7 +3,10 @@ import styles from "./SiteFooter.module.css";
 
 const columnLinks = [
   { href: "/start", label: "没方向？从这开始" },
-  { href: "/admissions/shanghai", label: "查分数" },
+  { href: "/admissions/shanghai", label: "查分数·填志愿" },
+  { href: "/compare", label: "学校对比" },
+  { href: "/pitfalls", label: "避坑清单" },
+  { href: "/tradeoffs", label: "怎么取舍" },
   { href: "/selection", label: "强基·综评" },
   { href: "/timeline", label: "时间线" },
   { href: "/schools", label: "学校库" },

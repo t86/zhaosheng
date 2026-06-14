@@ -1,0 +1,66 @@
+.figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--border);
+  padding: 12px;
+}
+
+.grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.axisLabel {
+  fill: var(--muted);
+  font-size: 13px;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dot {
+  fill: var(--surface-strong);
+  stroke-width: 2.5;
+}
+
+.pointLabel {
+  fill: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.seriesLabel {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.caption {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 720px) {
+  .axisLabel,
+  .pointLabel {
+    font-size: 16px;
+  }
+
+  .seriesLabel {
+    font-size: 17px;
+  }
+}
