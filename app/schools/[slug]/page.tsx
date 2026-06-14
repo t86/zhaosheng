@@ -13,6 +13,13 @@ import { getSchool } from "@/lib/schools";
 import { matchMajorSalaries } from "@/lib/major-salary-match";
 import { getHonorsEntry } from "@/data/honors-admission";
 import { getSchoolDepth, getTrackCurriculum } from "@/data/school-depth";
+import {
+  advanceTier,
+  getAdvanceRank,
+  getAdvancementStat,
+  getTuimianRank,
+  tuimianTier,
+} from "@/lib/advancement";
 import { getShanghaiAdmissionsForSchool } from "@/lib/shanghai-admissions";
 import { getShanghaiFocusSchool } from "@/lib/shanghai-focus";
 import styles from "./page.module.css";
@@ -105,6 +112,9 @@ export default async function SchoolDetailPage({ params }: PageProps) {
 
   const focusMajors = school.majorProfile?.majors.map((item) => item.name) ?? school.majorHighlights;
   const schoolDepth = getSchoolDepth(school.slug);
+  const advancement = getAdvancementStat(school.slug);
+  const tuimianRank = getTuimianRank(school.slug);
+  const advanceRank = getAdvanceRank(school.slug);
   const graduateOutcome = school.graduateOutcome;
   const majorSalaryMatches = matchMajorSalaries(
     school.majorProfile?.majors.map((item) => item.name) ?? [],
@@ -260,6 +270,48 @@ export default async function SchoolDetailPage({ params }: PageProps) {
               </ul>
             </div>
           </div>
+
+          {advancement &&
+          (advancement.tuimianRate != null || advancement.advanceRate != null) ? (
+            <div className={styles.advCard}>
+              <div className={styles.advHead}>
+                <strong>深造与保研（{advancement.cohort}）</strong>
+                <Link className={styles.advCompareLink} href="/advancement">
+                  和其他 985 横向比 →
+                </Link>
+              </div>
+              <div className={styles.advStatRow}>
+                {advancement.tuimianRate != null ? (
+                  <div className={styles.advStat}>
+                    <span>保研率</span>
+                    <strong>{advancement.tuimianRate}%</strong>
+                    <em>
+                      {tuimianTier(advancement.tuimianRate)}档
+                      {tuimianRank ? ` · 收录校第 ${tuimianRank.rank}/${tuimianRank.total}` : ""}
+                    </em>
+                  </div>
+                ) : null}
+                {advancement.advanceRate != null ? (
+                  <div className={styles.advStat}>
+                    <span>深造率</span>
+                    <strong>{advancement.advanceRate}%</strong>
+                    <em>
+                      {advanceTier(advancement.advanceRate)}档
+                      {advanceRank ? ` · 收录校第 ${advanceRank.rank}/${advanceRank.total}` : ""}
+                    </em>
+                  </div>
+                ) : null}
+                {advancement.abroadRate != null ? (
+                  <div className={styles.advStat}>
+                    <span>出国率</span>
+                    <strong>{advancement.abroadRate}%</strong>
+                    <em>境外深造</em>
+                  </div>
+                ) : null}
+              </div>
+              {advancement.note ? <p className={styles.sourceMeta}>{advancement.note}</p> : null}
+            </div>
+          ) : null}
 
           <div className={styles.trackSources}>
             {schoolDepth.sources.map((source) => (

@@ -8,6 +8,7 @@ const staticPaths = [
   "/",
   "/start",
   "/careers",
+  "/advancement",
   "/admissions/shanghai",
   "/selection",
   "/timeline",
