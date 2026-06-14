@@ -12,6 +12,7 @@ import {
 import { getSchool } from "@/lib/schools";
 import { matchMajorSalaries } from "@/lib/major-salary-match";
 import { getHonorsEntry } from "@/data/honors-admission";
+import { getSchoolDepth, getTrackCurriculum } from "@/data/school-depth";
 import { getShanghaiAdmissionsForSchool } from "@/lib/shanghai-admissions";
 import { getShanghaiFocusSchool } from "@/lib/shanghai-focus";
 import styles from "./page.module.css";
@@ -103,6 +104,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
   }
 
   const focusMajors = school.majorProfile?.majors.map((item) => item.name) ?? school.majorHighlights;
+  const schoolDepth = getSchoolDepth(school.slug);
   const graduateOutcome = school.graduateOutcome;
   const majorSalaryMatches = matchMajorSalaries(
     school.majorProfile?.majors.map((item) => item.name) ?? [],
@@ -221,6 +223,62 @@ export default async function SchoolDetailPage({ params }: PageProps) {
           这里显示的是学校层快照，不是省份、专业组或位次建议。真正做志愿时，必须再叠加你所在省份的招生计划和选科规则。
         </p>
       </section>
+
+      {schoolDepth ? (
+        <section className={styles.section}>
+          <div className={styles.majorHeader}>
+            <div>
+              <h2>学校特色 · 优势与短板</h2>
+              {schoolDepth.tagline ? (
+                <p className={styles.majorLead}>{schoolDepth.tagline}</p>
+              ) : null}
+            </div>
+            <span className={styles.scopePill}>客观参考</span>
+          </div>
+
+          <div className={styles.prosConsGrid}>
+            <div className={styles.prosCard}>
+              <h3 className={styles.subheading}>优势 · 最强</h3>
+              <ul className={styles.depthList}>
+                {schoolDepth.strengths.map((item) => (
+                  <li key={`strength-${item.title}`}>
+                    <strong>{item.title}</strong>
+                    <span>{item.detail}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={styles.consCard}>
+              <h3 className={styles.subheading}>短板 · 要权衡</h3>
+              <ul className={styles.depthList}>
+                {schoolDepth.watchouts.map((item) => (
+                  <li key={`watchout-${item.title}`}>
+                    <strong>{item.title}</strong>
+                    <span>{item.detail}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className={styles.trackSources}>
+            {schoolDepth.sources.map((source) => (
+              <a
+                className={styles.profileLink}
+                href={source.url}
+                key={`depth-source-${source.url}`}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {source.label} →
+              </a>
+            ))}
+          </div>
+          <p className={styles.note}>
+            优势与短板基于学科评估、双一流学科、地域与行业地位等公开信息整理，短板均为“要权衡”的中性提醒，不构成对学校的负面评价；请结合孩子的兴趣与目标判断。
+          </p>
+        </section>
+      ) : null}
 
       {showShanghaiSection ? (
         <section className={styles.section}>
@@ -792,6 +850,46 @@ export default async function SchoolDetailPage({ params }: PageProps) {
         </section>
       ) : null}
 
+      {schoolDepth ? (
+        <section className={styles.section}>
+          <div className={styles.majorHeader}>
+            <div>
+              <h2>转专业与多向发展</h2>
+              <p className={styles.majorLead}>
+                进了不喜欢的专业能不能转、想多方向发展甚至将来转行，这所学校给不给支撑。
+              </p>
+            </div>
+            <span className={`${styles.scopePill} ${styles.freedomPill}`}>
+              转专业{schoolDepth.transferMajor.freedom}
+            </span>
+          </div>
+
+          <div className={styles.listCard}>
+            <h3 className={styles.subheading}>转专业政策</h3>
+            <p className={styles.depthPara}>{schoolDepth.transferMajor.detail}</p>
+          </div>
+
+          {schoolDepth.multiPath.length > 0 ? (
+            <div className={styles.multiPathGrid}>
+              {schoolDepth.multiPath.map((item) => (
+                <div className={styles.multiPathCard} key={`multipath-${item.title}`}>
+                  <strong>{item.title}</strong>
+                  <p>{item.detail}</p>
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          <div className={styles.crossfieldCard}>
+            <strong>想多方向发展 / 转行，现实怎么看</strong>
+            <p>{schoolDepth.crossfield}</p>
+          </div>
+          <p className={styles.note}>
+            转专业、辅修、双学位等政策逐年可能调整，报考前请以目标年份学校教务处和培养方案的最新规定为准。
+          </p>
+        </section>
+      ) : null}
+
       {featuredTracks.length > 0 ? (
         <section className={styles.section}>
           <div className={styles.majorHeader}>
@@ -819,6 +917,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
               const fitProfile = getTrackFitProfile(track);
               const graduateOutcome = track.graduateOutcome;
               const honorsEntry = getHonorsEntry(school.slug, track.name);
+              const curriculum = getTrackCurriculum(school.slug, track.name);
 
               return (
                 <article className={styles.trackCard} key={track.name}>
@@ -836,6 +935,34 @@ export default async function SchoolDetailPage({ params }: PageProps) {
                     ))}
                   </div>
                   {track.note ? <p className={styles.trackNote}>{track.note}</p> : null}
+
+                  {curriculum &&
+                  (curriculum.coreCourses.length > 0 || curriculum.trainingFeatures.length > 0) ? (
+                    <div className={styles.curriculumCard}>
+                      {curriculum.coreCourses.length > 0 ? (
+                        <div className={styles.curriculumBlock}>
+                          <strong>代表性核心课</strong>
+                          <div className={styles.courseTags}>
+                            {curriculum.coreCourses.map((course) => (
+                              <span className={styles.courseTag} key={`course-${course}`}>
+                                {course}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null}
+                      {curriculum.trainingFeatures.length > 0 ? (
+                        <div className={styles.curriculumBlock}>
+                          <strong>培养特点</strong>
+                          <ul className={styles.trackProfileList}>
+                            {curriculum.trainingFeatures.map((feature) => (
+                              <li key={`feature-${feature}`}>{feature}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
 
                   {honorsEntry ? (
                     <div className={styles.entryCard}>

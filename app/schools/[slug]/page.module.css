@@ -2,6 +2,149 @@
   padding: 28px 0 80px;
 }
 
+.prosConsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.prosCard,
+.consCard {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.prosCard {
+  background: rgba(31, 122, 68, 0.06);
+}
+
+.consCard {
+  background: rgba(180, 120, 20, 0.07);
+}
+
+.depthList {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.depthList li {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.depthList li strong {
+  font-size: 15px;
+}
+
+.depthList li span {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.depthPara {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.freedomPill {
+  background: rgba(31, 95, 139, 0.12);
+  color: var(--accent-deep);
+}
+
+.multiPathGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.multiPathCard {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--border);
+}
+
+.multiPathCard strong {
+  font-size: 15px;
+}
+
+.multiPathCard p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.crossfieldCard {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: rgba(22, 50, 79, 0.05);
+  border: 1px solid var(--border);
+}
+
+.crossfieldCard strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.crossfieldCard p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.curriculumCard {
+  margin: 12px 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm, 10px);
+  background: rgba(31, 95, 139, 0.05);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.curriculumBlock strong {
+  font-size: 13px;
+  color: var(--accent-deep);
+}
+
+.courseTags {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.courseTag {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border);
+  font-size: 13px;
+}
+
+@media (max-width: 720px) {
+  .prosConsGrid,
+  .multiPathGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .salaryRefCard {
   margin-top: 18px;
   padding: 20px;
