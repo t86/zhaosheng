@@ -166,8 +166,8 @@ export default function ShanghaiAdmissionsPage() {
               本站当前公开接入的是可回链的上海市教育考试院组线，口径为“院校专业组”，更适合先做学校池和风险判断。
               本次已把用户提供的考试院版《2025 年上海市普通高等学校招生各专业录取人数及考分》首批结构化到站内，
               当前覆盖 {majorAdmissionSummary.schoolCount} 所重点学校、{majorAdmissionSummary.recordCount} 条专业层记录。
-              表内保留“≥580”“≤4096”等官方阈值标签，不把被隐藏的高分最低分反推成具体分数；在沪计划数仍需等待
-              《2026 年上海市普通高等学校招生专业目录》核对。
+              表内保留“≥580”“≤4096”等官方阈值标签，不把被隐藏的高分最低分反推成具体分数；在沪计划数仍需按
+              《2026 年上海市普通高等学校招生专业目录》和高校简章继续核对。
             </p>
 
             <div className={styles.dataStatusGrid}>
@@ -199,7 +199,7 @@ export default function ShanghaiAdmissionsPage() {
               <strong>导入口径说明</strong>
               <p>
                 仓库仍保留 {highValueImportManifest.length} 份上海高价值资料的数据槽位。专业录取考分已经先导入重点学校池；
-                招生专业目录和计划数尚未导入，后续会在逐条核对后再上站。
+                计划数当前只保留少量综合评价简章样例，还没有按全量招生专业目录系统导入，后续会在逐条核对后再上站。
               </p>
             </div>
 

@@ -63,9 +63,9 @@ const manifest: ShanghaiHighValueImportManifestEntry[] = [
     id: "major-plans",
     title: "在沪计划数",
     description:
-      "承接《2025 年上海市普通高等学校招生专业目录》里的学校、专业组或专业层招生计划数。",
+      "承接当年《上海市普通高等学校招生专业目录》和高校简章里的学校、专业组或专业层招生计划数。",
     targetFile: "data/shanghai/high-value/major-plans.json",
-    sourceTitle: "《2025 年上海市普通高等学校招生专业目录》",
+    sourceTitle: "当年《上海市普通高等学校招生专业目录》/高校简章",
     sourceUrl: reminderSource.url,
     requiredFields: ["year", "schoolSlug", "schoolName", "plannedCount", "sourceLabel", "sourceUrl"],
     optionalFields: ["majorName", "groupName"],

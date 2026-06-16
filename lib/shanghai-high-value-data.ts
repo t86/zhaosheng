@@ -55,13 +55,13 @@ export function getShanghaiHighValueDataStatus(): ShanghaiHighValueDataCard[] {
     },
     {
       metricLabel: "在沪计划数",
-      sourceTitle: "《2025 年上海市普通高等学校招生专业目录》",
+      sourceTitle: "当年《上海市普通高等学校招生专业目录》/高校简章",
       sourceUrl: sourceReminder.url,
       statusLabel: plansStatus?.status ?? "待导入",
       importedCount: `${shanghaiMajorPlanRecords.length} 条`,
       coverageLabel: `${planSchoolCount} 所学校`,
       summary:
-        "在沪计划数要回到《招生专业目录》核对。专业目录是上海填志愿时核计划数的正式口径，当前还没导入，所以本站现阶段更适合先做学校池、风险和公开组线判断。",
+        "在沪计划数要回到当年《招生专业目录》和高校简章核对。当前只保留少量综合评价计划样例，还没有按全量专业目录系统导入，所以本站现阶段更适合先做学校池、风险和公开组线判断。",
     },
   ];
 }
