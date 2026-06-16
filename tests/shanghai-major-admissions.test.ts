@@ -67,3 +67,31 @@ test("contains top Shanghai major-admission examples for page previews", () => {
   ));
   assert.ok(preview[0].averageRank <= preview.at(-1)!.averageRank);
 });
+
+test("shows which majors were admitted inside Fudan 2025 Shanghai group 01", () => {
+  const fudanGroup01 = records.filter((record) =>
+    record.schoolSlug === "fudan-university" &&
+    record.batch === "本科普通批次" &&
+    record.groupCode === "10101"
+  );
+
+  assert.equal(fudanGroup01.length, 12);
+  assert.ok(fudanGroup01.every((record) => record.subjectRequirement === "不限"));
+  assert.deepEqual(
+    fudanGroup01.map((record) => record.majorName),
+    [
+      "中国语言文学类",
+      "历史学类",
+      "哲学类",
+      "新闻传播学类",
+      "新闻学(望道新闻卓越班)",
+      "法学",
+      "法学(涉外法治拔尖人才班)",
+      "社会科学试验班(国务学院)",
+      "社会科学试验班(社政学院)",
+      "经济学类",
+      "经济学类(数理经济拔尖班)",
+      "英语",
+    ],
+  );
+});

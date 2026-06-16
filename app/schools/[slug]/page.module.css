@@ -635,6 +635,95 @@
   border: 1px solid var(--border);
 }
 
+.groupSummaryBlock {
+  margin-top: 18px;
+}
+
+.groupSummaryHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.groupSummaryHeader h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.groupSummaryHeader p {
+  margin: 0;
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.groupSummaryGrid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.groupSummaryCard {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.groupSummaryTopline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.groupSummaryTopline span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.groupSummaryTopline strong {
+  font-size: 15px;
+}
+
+.groupFacts {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.groupFacts span {
+  display: inline-flex;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(31, 95, 139, 0.08);
+  color: var(--accent-deep);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.majorChipList {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.majorChip {
+  display: inline-flex;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(248, 250, 252, 0.96);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
 .majorCard {
   padding: 18px;
   border-radius: var(--radius-md);
@@ -1109,6 +1198,7 @@
   .routeGuideGrid,
   .trackGrid,
   .trackProfileGrid,
+  .groupSummaryGrid,
   .listCard ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1128,6 +1218,10 @@
     flex-direction: column;
   }
 
+  .groupSummaryHeader {
+    flex-direction: column;
+  }
+
   .header,
   .factGrid,
   .metricGrid,
@@ -1141,6 +1235,7 @@
   .routeGuideGrid,
   .trackGrid,
   .trackProfileGrid,
+  .groupSummaryGrid,
   .outcomeFlowGrid,
   .outcomeMajorGrid,
   .listCard ul {

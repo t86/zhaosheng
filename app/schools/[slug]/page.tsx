@@ -3,7 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
 import { getMajorLineAnalysesForSchool } from "@/data/major-line-analyses";
-import { getShanghaiMajorAdmissionsForSchool } from "@/data/shanghai-major-admissions";
+import {
+  getShanghaiMajorAdmissionsForSchool,
+  type ShanghaiAdmissionBatch,
+  type ShanghaiMajorAdmissionRecord,
+} from "@/data/shanghai-major-admissions";
 import { buildSchoolRiskCard, type SchoolRiskTone } from "@/lib/school-risk-card";
 import {
   getTrackFitProfile,
@@ -87,6 +91,61 @@ function getRiskToneClassName(tone: SchoolRiskTone) {
   }
 }
 
+const shanghaiMajorBatchOrder: Record<ShanghaiAdmissionBatch, number> = {
+  综合评价批次: 1,
+  零志愿批次: 2,
+  本科提前批次: 3,
+  本科普通批次: 4,
+};
+
+function formatShanghaiMajorGroupName(groupName: string) {
+  return groupName.replace(/(\))\d+$/, "$1");
+}
+
+function getShanghaiMajorGroupSummaries(records: ShanghaiMajorAdmissionRecord[]) {
+  const groupMap = new Map<
+    string,
+    {
+      batch: ShanghaiAdmissionBatch;
+      groupCode: string;
+      groupName: string;
+      subjectRequirement: string;
+      admittedCount: number;
+      majorNames: string[];
+      sourceLabel: string;
+      sourceUrl: string;
+    }
+  >();
+
+  for (const record of records) {
+    const key = `${record.batch}-${record.groupCode}-${record.subjectRequirement}`;
+    const current =
+      groupMap.get(key) ??
+      {
+        batch: record.batch,
+        groupCode: record.groupCode,
+        groupName: formatShanghaiMajorGroupName(record.groupName),
+        subjectRequirement: record.subjectRequirement,
+        admittedCount: 0,
+        majorNames: [],
+        sourceLabel: record.sourceLabel,
+        sourceUrl: record.sourceUrl,
+      };
+
+    current.admittedCount += record.admittedCount;
+    if (!current.majorNames.includes(record.majorName)) {
+      current.majorNames.push(record.majorName);
+    }
+    groupMap.set(key, current);
+  }
+
+  return Array.from(groupMap.values()).sort(
+    (left, right) =>
+      shanghaiMajorBatchOrder[left.batch] - shanghaiMajorBatchOrder[right.batch] ||
+      left.groupCode.localeCompare(right.groupCode),
+  );
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const school = getSchool(slug);
@@ -136,6 +195,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
     )
     .slice(0, 12);
   const shanghaiMajorBatches = Array.from(new Set(shanghaiMajorRecords.map((record) => record.batch)));
+  const shanghaiMajorGroupSummaries = getShanghaiMajorGroupSummaries(shanghaiMajorRecords);
   const shanghaiFocus = getShanghaiFocusSchool(slug);
   const schoolRiskCard = buildSchoolRiskCard({
     slug,
@@ -391,6 +451,46 @@ export default async function SchoolDetailPage({ params }: PageProps) {
                   例如“≥580”不代表精确最低分就是 580。
                 </p>
               </div>
+              {shanghaiMajorGroupSummaries.length > 0 ? (
+                <div className={styles.groupSummaryBlock}>
+                  <div className={styles.groupSummaryHeader}>
+                    <h4>2025 专业组包含专业</h4>
+                    <p>
+                      这里按考试院 2025 专业录取结果回看每个专业组实际录取到的专业。正式填报时，还要回到当年《招生专业目录》
+                      核对完整计划、限制条件和可调剂范围。
+                    </p>
+                  </div>
+                  <div className={styles.groupSummaryGrid}>
+                    {shanghaiMajorGroupSummaries.map((group) => (
+                      <article
+                        className={styles.groupSummaryCard}
+                        key={`${group.batch}-${group.groupCode}-${group.subjectRequirement}`}
+                      >
+                        <div className={styles.groupSummaryTopline}>
+                          <span>{group.batch}</span>
+                          <strong>{group.groupName}</strong>
+                        </div>
+                        <div className={styles.groupFacts}>
+                          <span>代码 {group.groupCode}</span>
+                          <span>选科 {group.subjectRequirement}</span>
+                          <span>录取 {group.admittedCount} 人</span>
+                          <span>{group.majorNames.length} 个专业/大类</span>
+                        </div>
+                        <div className={styles.majorChipList}>
+                          {group.majorNames.map((majorName) => (
+                            <span className={styles.majorChip} key={`${group.groupCode}-${majorName}`}>
+                              {majorName}
+                            </span>
+                          ))}
+                        </div>
+                        <a className={styles.tableLink} href={group.sourceUrl} rel="noreferrer" target="_blank">
+                          {group.sourceLabel} →
+                        </a>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
               <div className={styles.tableWrap}>
                 <table className={styles.scoreTable}>
                   <thead>
