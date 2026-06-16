@@ -432,6 +432,80 @@
   line-height: 1.75;
 }
 
+.majorAdmissionPanel {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(22, 50, 79, 0.12);
+  background: rgba(246, 249, 255, 0.9);
+}
+
+.majorAdmissionHeader {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.majorAdmissionHeader span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.majorAdmissionHeader h3 {
+  margin-top: 8px;
+  font-size: 26px;
+}
+
+.majorAdmissionHeader p {
+  margin-top: 8px;
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.majorAdmissionHeader a {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.tableWrap {
+  margin-top: 16px;
+  overflow-x: auto;
+}
+
+.majorAdmissionTable {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.majorAdmissionTable th,
+.majorAdmissionTable td {
+  padding: 13px 12px;
+  border-bottom: 1px solid rgba(21, 23, 28, 0.08);
+  text-align: left;
+  vertical-align: top;
+}
+
+.majorAdmissionTable th {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.majorAdmissionTable td strong,
+.majorAdmissionTable td span {
+  display: block;
+}
+
+.majorAdmissionTable td span {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .dataStatusCard a {
   display: inline-flex;
   margin-top: 14px;
@@ -641,6 +715,10 @@
   .sectionHeader {
     flex-direction: column;
     align-items: start;
+  }
+
+  .majorAdmissionHeader {
+    flex-direction: column;
   }
 
   .focusHeader {

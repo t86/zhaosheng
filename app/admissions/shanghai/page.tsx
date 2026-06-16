@@ -4,6 +4,10 @@ import { ShanghaiAdmissionsExplorer } from "@/components/ShanghaiAdmissionsExplo
 import { ScoreLocator } from "@/components/ScoreLocator";
 import { RankConverter } from "@/components/RankConverter";
 import { shanghaiDecisionGuide, shanghaiFillStrategy } from "@/data/shanghai-decision-guide";
+import {
+  getShanghaiMajorAdmissionPreviewRecords,
+  getShanghaiMajorAdmissionSummary,
+} from "@/data/shanghai-major-admissions";
 import { getShanghaiHighValueDataStatus } from "@/lib/shanghai-high-value-data";
 import { getShanghaiHighValueImportManifest } from "@/lib/shanghai-high-value-imports";
 import { getShanghaiFocusAdmissions } from "@/lib/shanghai-focus";
@@ -27,6 +31,8 @@ export default function ShanghaiAdmissionsPage() {
   const coverage = getShanghaiAdmissionsCoverage();
   const highValueDataStatus = getShanghaiHighValueDataStatus();
   const highValueImportManifest = getShanghaiHighValueImportManifest();
+  const majorAdmissionSummary = getShanghaiMajorAdmissionSummary();
+  const majorAdmissionPreviewRecords = getShanghaiMajorAdmissionPreviewRecords(10);
   const focusSchools = getShanghaiFocusAdmissions().map((item) => ({
     ...item,
     school: item.schoolSlug ? schoolsBySlug.get(item.schoolSlug) : undefined,
@@ -154,12 +160,14 @@ export default function ShanghaiAdmissionsPage() {
         </p>
 
         <details className={styles.governanceDetails}>
-          <summary>数据口径与尚未接入的三层数据（点击展开）</summary>
+          <summary>数据口径、已接入专业考分与待补计划数（点击展开）</summary>
           <div className={styles.governanceBody}>
             <p>
-              本站当前公开接入的是可回链的上海市教育考试院组线，口径为“院校专业组”，更适合先做学校池和风险判断，而不是直接替代最终冲稳保决策。
-              上海市教育考试院在 2025 本科阶段志愿填报特别提醒里，明确把《2024 年上海市普通高等学校招生各专业录取人数及考分》列为核心参考资料，
-              其中包含最低分、平均分和平均分位次；《2025 年上海市普通高等学校招生专业目录》则用于核对在沪招生院校、专业和计划数。这三层书册数据尚未结构化进来。
+              本站当前公开接入的是可回链的上海市教育考试院组线，口径为“院校专业组”，更适合先做学校池和风险判断。
+              本次已把用户提供的考试院版《2025 年上海市普通高等学校招生各专业录取人数及考分》首批结构化到站内，
+              当前覆盖 {majorAdmissionSummary.schoolCount} 所重点学校、{majorAdmissionSummary.recordCount} 条专业层记录。
+              表内保留“≥580”“≤4096”等官方阈值标签，不把被隐藏的高分最低分反推成具体分数；在沪计划数仍需等待
+              《2026 年上海市普通高等学校招生专业目录》核对。
             </p>
 
             <div className={styles.dataStatusGrid}>
@@ -188,11 +196,65 @@ export default function ShanghaiAdmissionsPage() {
             </div>
 
             <div className={styles.importReadyNote}>
-              <strong>导入入口已预留</strong>
+              <strong>导入口径说明</strong>
               <p>
-                仓库已经为 {highValueImportManifest.length} 份上海官方资料留好了结构化数据槽位。后续只在逐条核对《各专业录取人数及考分》和
-                《招生专业目录》后再导入，不会先把未核实的平均分位次、专业录取人数或计划数直接挂到页面上。
+                仓库仍保留 {highValueImportManifest.length} 份上海高价值资料的数据槽位。专业录取考分已经先导入重点学校池；
+                招生专业目录和计划数尚未导入，后续会在逐条核对后再上站。
               </p>
+            </div>
+
+            <div className={styles.majorAdmissionPanel}>
+              <div className={styles.majorAdmissionHeader}>
+                <div>
+                  <span>{majorAdmissionSummary.year} · 专业层样例</span>
+                  <h3>2025 专业录取考分样例</h3>
+                  <p>
+                    这张表用于帮助家长理解“组线之外，组内专业的录取人数、平均分和平均分位次”。完整数据会按学校进入详情页。
+                  </p>
+                </div>
+                <a href={majorAdmissionSummary.sourceUrl} rel="noreferrer" target="_blank">
+                  {majorAdmissionSummary.sourceLabel} →
+                </a>
+              </div>
+
+              <div className={styles.tableWrap}>
+                <table className={styles.majorAdmissionTable}>
+                  <thead>
+                    <tr>
+                      <th>学校/批次</th>
+                      <th>专业与专业组</th>
+                      <th>录取数</th>
+                      <th>最低分</th>
+                      <th>平均分位次</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {majorAdmissionPreviewRecords.map((record) => (
+                      <tr key={`${record.schoolSlug}-${record.batch}-${record.groupCode}-${record.majorName}`}>
+                        <td>
+                          <strong>{record.schoolName}</strong>
+                          <span>{record.batch}</span>
+                        </td>
+                        <td>
+                          <strong>{record.majorName}</strong>
+                          <span>
+                            {record.groupCode} · {record.groupName}
+                          </span>
+                        </td>
+                        <td>{record.admittedCount}</td>
+                        <td>
+                          {record.minScoreLabel}
+                          <span>{record.minRankLabel}</span>
+                        </td>
+                        <td>
+                          {record.averageScore}
+                          <span>{record.averageRank}</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </details>

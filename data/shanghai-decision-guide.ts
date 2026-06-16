@@ -172,9 +172,9 @@ export const shanghaiDecisionGuide = {
         "2026 本科阶段只有本科艺体类批次和本科普通批次设征求志愿，其他批次不设征求志愿；普通批录取完毕后开展两次征求志愿。",
     },
     {
-      title: "先用 2024 专业录取数据校准预期",
+      title: "先用 2025 专业录取数据校准预期",
       description:
-        "上海市 2025 本科阶段志愿填报特别提醒里，考试院专门把《2024 年上海市普通高等学校招生各专业录取人数及考分》列为核心参考资料，里面有最低分、平均分和平均分位次。",
+        "本次已把《2025 年上海市普通高等学校招生各专业录取人数及考分》里的重点学校专业层录取人数、最低分标签、平均分和平均分位次结构化进站，适合先校准专业热度和分数层级。",
     },
   ] satisfies ShanghaiDecisionCheck[],
   resources: [
@@ -224,11 +224,11 @@ export const shanghaiDecisionGuide = {
       actionLabel: "查看提醒页 →",
     },
     {
-      title: "《2024 年上海市普通高等学校招生各专业录取人数及考分》",
-      description: "可查看 2024 年各校录取最低分、平均分和平均分位次，是做“冲稳保”的核心参考。",
-      note: "上海市教育考试院 2025 特别提醒里专门点名推荐。",
-      url: "https://www.shmeea.edu.cn/page/02200/20250623/19543.html",
-      actionLabel: "查看提醒页 →",
+      title: "《2025 年上海市普通高等学校招生各专业录取人数及考分》",
+      description: "可查看 2025 年各校录取人数、最低分标签、平均分和平均分位次，是做专业层比较的核心参考。",
+      note: "站内首批已按用户提供的考试院版 PDF 结构化接入重点学校池；正式填报仍需以考试院和高校最新材料核对。",
+      url: "https://www.shmeea.edu.cn/",
+      actionLabel: "打开上海招考热线 →",
     },
   ] satisfies ShanghaiDecisionResource[],
   channels: [

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
 import { getMajorLineAnalysesForSchool } from "@/data/major-line-analyses";
+import { getShanghaiMajorAdmissionsForSchool } from "@/data/shanghai-major-admissions";
 import { buildSchoolRiskCard, type SchoolRiskTone } from "@/lib/school-risk-card";
 import {
   getTrackFitProfile,
@@ -125,6 +126,16 @@ export default async function SchoolDetailPage({ params }: PageProps) {
     new Set(featuredTracks.map((track) => getTrackRouteType(track))),
   );
   const shanghaiRecords = getShanghaiAdmissionsForSchool(slug);
+  const shanghaiMajorRecords = getShanghaiMajorAdmissionsForSchool(slug);
+  const shanghaiMajorPreviewRecords = [...shanghaiMajorRecords]
+    .filter((record) => record.averageRank != null)
+    .sort(
+      (left, right) =>
+        (left.averageRank ?? Number.MAX_SAFE_INTEGER) - (right.averageRank ?? Number.MAX_SAFE_INTEGER) ||
+        (right.averageScore ?? 0) - (left.averageScore ?? 0),
+    )
+    .slice(0, 12);
+  const shanghaiMajorBatches = Array.from(new Set(shanghaiMajorRecords.map((record) => record.batch)));
   const shanghaiFocus = getShanghaiFocusSchool(slug);
   const schoolRiskCard = buildSchoolRiskCard({
     slug,
@@ -133,7 +144,9 @@ export default async function SchoolDetailPage({ params }: PageProps) {
     shanghaiRecords,
     shanghaiFocus,
   });
-  const showShanghaiSection = Boolean(shanghaiFocus || shanghaiRecords.length > 0);
+  const showShanghaiSection = Boolean(
+    shanghaiFocus || shanghaiRecords.length > 0 || shanghaiMajorRecords.length > 0,
+  );
   const ranking = school.majorRanking;
   const majorLineAnalyses = getMajorLineAnalysesForSchool({
     schoolSlug: school.slug,
@@ -339,7 +352,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
         <section className={styles.section}>
           <div className={styles.majorHeader}>
             <div>
-              <h2>上海 2021-2025 官方公开线</h2>
+              <h2>上海 2021-2025 官方公开线与专业考分</h2>
               <p className={styles.majorLead}>
                 这里把学校官网公开线和上海市教育考试院专业组线拆开显示。它们都是真实口径，但粒度不同，不能直接当成“单个专业最低分”。
               </p>
@@ -364,6 +377,54 @@ export default async function SchoolDetailPage({ params }: PageProps) {
                     {source.label} →
                   </a>
                 ))}
+              </div>
+            </>
+          ) : null}
+
+          {shanghaiMajorPreviewRecords.length > 0 ? (
+            <>
+              <h3 className={styles.subheading}>上海 2025 专业录取考分</h3>
+              <div className={styles.methodCard}>
+                <p className={styles.note}>
+                  已从《2025 年上海市普通高等学校招生各专业录取人数及考分》录入 {shanghaiMajorRecords.length}
+                  条该校专业层记录，覆盖 {shanghaiMajorBatches.join("、")}。表内“最低分”保留考试院阈值标签；
+                  例如“≥580”不代表精确最低分就是 580。
+                </p>
+              </div>
+              <div className={styles.tableWrap}>
+                <table className={styles.scoreTable}>
+                  <thead>
+                    <tr>
+                      <th>批次</th>
+                      <th>专业</th>
+                      <th>专业组</th>
+                      <th>录取数</th>
+                      <th>最低分</th>
+                      <th>平均分位次</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {shanghaiMajorPreviewRecords.map((record) => (
+                      <tr key={`${record.batch}-${record.groupCode}-${record.majorName}-${record.sourcePage}`}>
+                        <td>{record.batch}</td>
+                        <td>{record.majorName}</td>
+                        <td>
+                          <strong>{record.groupName}</strong>
+                          <span className={styles.tableMeta}>{record.groupCode}</span>
+                        </td>
+                        <td>{record.admittedCount}</td>
+                        <td>
+                          {record.minScoreLabel}
+                          <span className={styles.tableMeta}>{record.minRankLabel}</span>
+                        </td>
+                        <td>
+                          {record.averageScore}
+                          <span className={styles.tableMeta}>{record.averageRank}</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </>
           ) : null}
@@ -413,7 +474,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
           ) : null}
 
           <p className={styles.note}>
-            如果你需要的是“某个本科专业的精确最低分”，还要继续补上海版《招生各专业录取人数及考分》或学校公开到专业层的材料；当前这批学校稳定公开的通常还是学校线、分类线或专业组线。
+            专业录取考分已经首批接入 2025 书册，但高分段最低分会按考试院规则显示为阈值标签；真正填报前还要回到当年专业目录、招生章程和计划数确认。
           </p>
 
           <div className={styles.inlineLinks}>

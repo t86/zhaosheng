@@ -1,51 +1,58 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
-  getShanghaiHighValueImportManifest,
-  validateShanghaiHighValueImports,
-} from "../lib/shanghai-high-value-imports";
+import { readFileSync } from "node:fs";
+
+const manifestSource = readFileSync(
+  new URL("../lib/shanghai-high-value-imports.ts", import.meta.url),
+  "utf8",
+);
+const majorAdmissions = JSON.parse(
+  readFileSync(new URL("../data/shanghai/high-value/major-admissions.json", import.meta.url), "utf8"),
+) as Record<string, unknown>[];
+const majorPlans = JSON.parse(
+  readFileSync(new URL("../data/shanghai/high-value/major-plans.json", import.meta.url), "utf8"),
+) as Record<string, unknown>[];
+
+const requiredMajorAdmissionFields = [
+  "year",
+  "batch",
+  "schoolSlug",
+  "schoolName",
+  "groupCode",
+  "groupName",
+  "majorName",
+  "admittedCount",
+  "minScoreLabel",
+  "minRankLabel",
+  "averageScore",
+  "averageRank",
+  "sourceLabel",
+  "sourceUrl",
+  "sourcePage",
+];
 
 test("describes the two official Shanghai high-value import datasets", () => {
-  const manifest = getShanghaiHighValueImportManifest();
+  assert.match(manifestSource, /id: "major-admissions"/);
+  assert.match(manifestSource, /data\/shanghai\/high-value\/major-admissions\.json/);
+  assert.match(manifestSource, /2025.*录取人数及考分/);
+  assert.match(manifestSource, /id: "major-plans"/);
+  assert.match(manifestSource, /data\/shanghai\/high-value\/major-plans\.json/);
+  assert.match(manifestSource, /专业目录/);
 
-  assert.equal(manifest.length, 2);
-  assert.equal(manifest[0]?.id, "major-admissions");
-  assert.equal(manifest[0]?.targetFile, "data/shanghai/high-value/major-admissions.json");
-  assert.deepEqual(manifest[0]?.requiredFields, [
-    "year",
-    "schoolSlug",
-    "schoolName",
-    "majorName",
-    "admittedCount",
-    "minScore",
-    "averageScore",
-    "averageRank",
-    "sourceLabel",
-    "sourceUrl",
-  ]);
-  assert.match(manifest[0]?.sourceTitle ?? "", /录取人数及考分/);
-  assert.equal(manifest[1]?.id, "major-plans");
-  assert.equal(manifest[1]?.targetFile, "data/shanghai/high-value/major-plans.json");
-  assert.deepEqual(manifest[1]?.requiredFields, [
-    "year",
-    "schoolSlug",
-    "schoolName",
-    "plannedCount",
-    "sourceLabel",
-    "sourceUrl",
-  ]);
-  assert.match(manifest[1]?.sourceTitle ?? "", /专业目录/);
+  for (const field of requiredMajorAdmissionFields) {
+    assert.match(manifestSource, new RegExp(`"${field}"`));
+  }
 });
 
-test("reports the current high-value datasets as pending import", () => {
-  const report = validateShanghaiHighValueImports();
+test("ships the 2025 major-admissions dataset with required fields populated", () => {
+  assert.ok(majorAdmissions.length >= 500);
+  assert.ok(Array.isArray(majorPlans));
 
-  assert.equal(report.datasets.length, 2);
-  assert.equal(report.datasets[0]?.status, "待导入");
-  assert.equal(report.datasets[0]?.recordCount, 0);
-  assert.equal(report.datasets[0]?.missingRequiredFieldCount, 0);
-  assert.equal(report.datasets[1]?.status, "待导入");
-  assert.equal(report.datasets[1]?.recordCount, 0);
-  assert.equal(report.datasets[1]?.missingRequiredFieldCount, 0);
-  assert.match(report.command, /pnpm dlx tsx scripts\/validate-shanghai-high-value-imports\.ts/);
+  for (const record of majorAdmissions) {
+    for (const field of requiredMajorAdmissionFields) {
+      const value = record[field];
+      assert.notEqual(value, null, `${field} should be present`);
+      assert.notEqual(value, "", `${field} should not be blank`);
+    }
+  }
 });

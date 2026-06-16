@@ -1,5 +1,8 @@
 import { shanghaiDecisionGuide } from "@/data/shanghai-decision-guide";
-import { shanghaiMajorAdmissionsRecords } from "@/data/shanghai-major-admissions";
+import {
+  getShanghaiMajorAdmissionSummary,
+  shanghaiMajorAdmissionsRecords,
+} from "@/data/shanghai-major-admissions";
 import { shanghaiMajorPlanRecords } from "@/data/shanghai-major-plans";
 import { validateShanghaiHighValueImports } from "@/lib/shanghai-high-value-imports";
 
@@ -24,6 +27,7 @@ export function getShanghaiHighValueDataStatus(): ShanghaiHighValueDataCard[] {
   const plansStatus = validation.datasets.find((item) => item.id === "major-plans");
   const admissionsSchoolCount = uniqueSchoolCount(shanghaiMajorAdmissionsRecords);
   const planSchoolCount = uniqueSchoolCount(shanghaiMajorPlanRecords);
+  const majorAdmissionSummary = getShanghaiMajorAdmissionSummary();
   const averageRankCount = shanghaiMajorAdmissionsRecords.filter(
     (record) => record.averageRank != null,
   ).length;
@@ -31,23 +35,23 @@ export function getShanghaiHighValueDataStatus(): ShanghaiHighValueDataCard[] {
   return [
     {
       metricLabel: "平均分位次",
-      sourceTitle: "《2024 年上海市普通高等学校招生各专业录取人数及考分》",
-      sourceUrl: sourceReminder.url,
+      sourceTitle: "《2025 年上海市普通高等学校招生各专业录取人数及考分》",
+      sourceUrl: majorAdmissionSummary.sourceUrl,
       statusLabel: admissionsStatus?.status ?? "待导入",
       importedCount: `${averageRankCount} 条`,
       coverageLabel: `${admissionsSchoolCount} 所学校`,
       summary:
-        "这层真源来自上海市教育考试院特别提醒点名的《各专业录取人数及考分》。当前仓库还没导入书册或官方系统导出的结构化数据，所以不能假装已经有平均分位次。",
+        "这层来自上海市教育考试院《2025 年上海市普通高等学校招生各专业录取人数及考分》。站内首批已结构化导入 985 重点学校池，保留平均分位次用于比较专业热度和录取难度。",
     },
     {
       metricLabel: "各专业录取人数",
-      sourceTitle: "《2024 年上海市普通高等学校招生各专业录取人数及考分》",
-      sourceUrl: sourceReminder.url,
+      sourceTitle: "《2025 年上海市普通高等学校招生各专业录取人数及考分》",
+      sourceUrl: majorAdmissionSummary.sourceUrl,
       statusLabel: admissionsStatus?.status ?? "待导入",
       importedCount: `${shanghaiMajorAdmissionsRecords.length} 条`,
       coverageLabel: `${admissionsSchoolCount} 所学校`,
       summary:
-        "同一本《各专业录取人数及考分》会给出专业层录取人数、最低分、平均分等硬字段。真正接入后，才有资格做更细的专业层冲稳保判断。",
+        "同一本书册给出专业层录取人数、最低分标签、最低分位次、平均分和平均分位次。站内当前按学校池首批接入，不把 OCR 待复核数据扩大成全量官方库。",
     },
     {
       metricLabel: "在沪计划数",
