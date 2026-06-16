@@ -2,6 +2,34 @@
   padding: 28px 0 88px;
 }
 
+.guideCallout {
+  display: block;
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: rgba(31, 95, 139, 0.07);
+  border: 1px solid var(--border);
+  transition: border-color 0.15s ease;
+}
+
+.guideCallout:hover {
+  border-color: var(--accent-deep);
+}
+
+.guideCallout strong {
+  display: block;
+  color: var(--accent-deep);
+  font-size: 16px;
+}
+
+.guideCallout span {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
 .hero,
 .section {
   border-radius: var(--radius-lg);

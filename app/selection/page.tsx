@@ -442,6 +442,13 @@ export default function SelectionPage() {
 
         <div className={styles.disclaimerCard}>{qiangji.disclaimer}</div>
 
+        <Link className={styles.guideCallout} href="/selection/tsinghua">
+          <strong>清华强基实战指南（过来人经验）→</strong>
+          <span>
+            完整流程时间线、报名材料准备的实操技巧、校测笔试得分预期与答题战术，并标注 2025 简章变化。经验参考、非官方。
+          </span>
+        </Link>
+
         <div className={styles.sectionHeaderCompact}>
           <div>
             <span className={styles.sectionKicker}>状态区</span>
