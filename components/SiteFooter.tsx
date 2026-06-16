@@ -13,6 +13,7 @@ const columnLinks = [
   { href: "/directions", label: "热门方向" },
   { href: "/careers", label: "毕业去向" },
   { href: "/advancement", label: "保研深造" },
+  { href: "/top-schools", label: "四校升学真相" },
   { href: "/salary", label: "专业薪资" },
   { href: "/advice", label: "专业建议" },
   { href: "/sources", label: "数据来源" },

@@ -12,6 +12,7 @@ const staticPaths = [
   "/compare",
   "/pitfalls",
   "/tradeoffs",
+  "/top-schools",
   "/admissions/shanghai",
   "/selection",
   "/timeline",
