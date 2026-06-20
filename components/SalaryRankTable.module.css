@@ -120,13 +120,30 @@
   color: var(--accent-deep);
 }
 
-.official {
+.official,
+.web {
   display: inline-flex;
+  align-items: center;
+  gap: 3px;
   padding: 2px 8px;
   border-radius: 999px;
+  font-weight: 700;
+}
+
+.official {
   background: rgba(31, 122, 68, 0.12);
   color: #1f7a44;
-  font-weight: 700;
+}
+
+.web {
+  background: rgba(180, 120, 20, 0.14);
+  color: #8a5a00;
+}
+
+.tierMark {
+  font-style: normal;
+  font-size: 10px;
+  opacity: 0.8;
 }
 
 .na {

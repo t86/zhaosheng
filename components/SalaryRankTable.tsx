@@ -3,8 +3,40 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { salaryRankRows, type SalaryRankRow } from "@/data/salary-rank";
+import { salaryRankExtra } from "@/data/salary-rank-extra";
 import { getAdvancementStat } from "@/lib/advancement";
 import styles from "./SalaryRankTable.module.css";
+
+type ResolvedRates = {
+  advanceRate: number | null;
+  abroadRate: number | null;
+  employmentRate: number | null;
+  tier: "official" | "web";
+};
+
+// 深造/出国/就业率：985 优先用站内官方就业报告口径(advancement-stats)，
+// 其余用本次研究的 extra（官方或网传，已分层标注）。
+function resolveRates(row: SalaryRankRow): ResolvedRates | null {
+  const stat = row.slug ? getAdvancementStat(row.slug) : undefined;
+  if (stat && (stat.advanceRate != null || stat.abroadRate != null)) {
+    return {
+      advanceRate: stat.advanceRate,
+      abroadRate: stat.abroadRate,
+      employmentRate: null,
+      tier: "official",
+    };
+  }
+  const extra = salaryRankExtra[row.name];
+  if (extra && extra.tier !== "none") {
+    return {
+      advanceRate: extra.advanceRate,
+      abroadRate: extra.abroadRate,
+      employmentRate: extra.employmentRate,
+      tier: extra.tier,
+    };
+  }
+  return null;
+}
 
 type SortKey = "rank" | "salaryIndex" | "avgMonthlySalary";
 
@@ -87,7 +119,9 @@ export function SalaryRankTable() {
               <th>层次</th>
               <th>薪酬指数</th>
               <th>平均月薪（网传）</th>
-              <th>深造率（官方）</th>
+              <th>深造率</th>
+              <th>出国率</th>
+              <th>就业率</th>
             </tr>
           </thead>
           <tbody>
@@ -101,8 +135,19 @@ export function SalaryRankTable() {
   );
 }
 
+function RateCell({ value, tier }: { value: number | null; tier?: "official" | "web" }) {
+  if (value == null) {
+    return <span className={styles.na}>—</span>;
+  }
+  return (
+    <span className={tier === "official" ? styles.official : styles.web}>
+      {value}%<em className={styles.tierMark}>{tier === "official" ? "官" : "传"}</em>
+    </span>
+  );
+}
+
 function Row({ row }: { row: SalaryRankRow }) {
-  const adv = row.slug ? getAdvancementStat(row.slug) : undefined;
+  const rates = resolveRates(row);
   return (
     <tr>
       <td className={styles.rank}>{row.rank}</td>
@@ -125,11 +170,13 @@ function Row({ row }: { row: SalaryRankRow }) {
         <strong>{row.avgMonthlySalary.toLocaleString()}</strong> 元
       </td>
       <td>
-        {adv?.advanceRate != null ? (
-          <span className={styles.official}>{adv.advanceRate}%</span>
-        ) : (
-          <span className={styles.na}>—</span>
-        )}
+        <RateCell value={rates?.advanceRate ?? null} tier={rates?.tier} />
+      </td>
+      <td>
+        <RateCell value={rates?.abroadRate ?? null} tier={rates?.tier} />
+      </td>
+      <td>
+        <RateCell value={rates?.employmentRate ?? null} tier={rates?.tier} />
       </td>
     </tr>
   );

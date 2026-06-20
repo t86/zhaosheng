@@ -28,8 +28,9 @@ export default function SalaryRankPage() {
       <section className={styles.section}>
         <SalaryRankTable />
         <p className={styles.note}>
-          带绿色“深造率（官方）”的数字来自各校官方就业质量报告（仅站内收录的 985 院校有），和这份网传薪资是两套不同来源——
-          一个官方、一个网传，放在一起方便你交叉看，别混为一谈。更可靠的薪资参考见{" "}
+          深造率 / 出国率 / 就业率三列和“网传薪资”是<strong>两套不同来源</strong>，已分层标注：绿色带“官”=各校官方就业质量报告口径，
+          橙色带“传”=第三方/网传未核实。就业率官方普遍 90%+ 且口径宽松（含升学、灵活就业），<strong>参考价值低</strong>，重点看深造率与出国率。
+          缺数据显示“—”，不编造。更可靠的薪资参考见{" "}
           <Link className={styles.inlineLink} href="/salary">
             专业薪资参考（麦可思口径）
           </Link>
