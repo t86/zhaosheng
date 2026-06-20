@@ -35,6 +35,14 @@ export default function SalaryPage() {
             {ref.nationalAverage.cohort} · {ref.nationalAverage.sourceLabel}
           </p>
         </div>
+
+        <p className={styles.note}>
+          想看按学校排的“薪酬榜”？站内另收录了一份{" "}
+          <Link className={styles.rankLink} href="/salary-rank">
+            网传高校薪酬榜 TOP100 →
+          </Link>
+          （含 2025 届平均月薪，可筛选排序）。注意它是<strong>网传、非官方</strong>，来源不可考、仅作量级参考；本页的麦可思口径更可靠。
+        </p>
       </section>
 
       <section className={styles.section}>

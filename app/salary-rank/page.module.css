@@ -1,0 +1,77 @@
+.page {
+  padding: 28px 0 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero,
+.section {
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.hero {
+  background:
+    radial-gradient(circle at top right, rgba(22, 50, 79, 0.12), transparent 28%),
+    linear-gradient(150deg, rgba(255, 249, 240, 0.98), rgba(242, 233, 219, 0.94));
+}
+
+.back {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+
+.eyebrow {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(180, 120, 20, 0.14);
+  color: #8a5a00;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.hero h1 {
+  margin-top: 18px;
+  font-size: clamp(24px, 3.6vw, 40px);
+  line-height: 1.12;
+}
+
+.warnCard {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: rgba(180, 120, 20, 0.09);
+  border: 1px solid var(--border);
+}
+
+.warnCard strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #8a5a00;
+}
+
+.warnCard p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.note {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.inlineLink {
+  color: var(--accent-deep);
+  font-weight: 700;
+}

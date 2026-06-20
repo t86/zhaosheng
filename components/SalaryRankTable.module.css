@@ -1,0 +1,134 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.search,
+.select {
+  padding: 9px 12px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+}
+
+.search {
+  min-width: 180px;
+  flex: 1 1 180px;
+}
+
+.tierBtns {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.tierBtn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-deep);
+  cursor: pointer;
+}
+
+.tierActive {
+  background: var(--accent-deep);
+  color: #fff;
+  border-color: var(--accent-deep);
+}
+
+.count {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.tableScroll {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 660px;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  background: rgba(22, 50, 79, 0.06);
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.left {
+  text-align: left;
+}
+
+.table td a {
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+
+.rank {
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.badge985,
+.badge211 {
+  display: inline-flex;
+  margin: 0 2px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.badge985 {
+  background: rgba(178, 59, 46, 0.12);
+  color: #b23b2e;
+}
+
+.badge211 {
+  background: rgba(31, 95, 139, 0.12);
+  color: var(--accent-deep);
+}
+
+.official {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(31, 122, 68, 0.12);
+  color: #1f7a44;
+  font-weight: 700;
+}
+
+.na {
+  color: var(--muted);
+}
