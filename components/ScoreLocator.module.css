@@ -35,7 +35,8 @@
   color: var(--muted);
 }
 
-.input {
+.input,
+.select {
   width: 130px;
   padding: 10px 14px;
   font-size: 20px;
@@ -44,6 +45,12 @@
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.9);
   color: var(--accent-deep);
+}
+
+.select {
+  width: 170px;
+  appearance: none;
+  font-size: 18px;
 }
 
 .placeholder {
@@ -130,17 +137,31 @@
   gap: 8px;
 }
 
-.groupList li {
+.groupCard {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px;
-  padding-bottom: 8px;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
   border-bottom: 1px dashed var(--border);
+  border-radius: var(--radius-sm, 6px);
+  background: rgba(248, 250, 252, 0.76);
   font-size: 13px;
 }
 
-.groupList li a {
+.groupTopline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.groupTopline div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.groupCard a {
   font-weight: 700;
   color: var(--accent-deep);
 }
@@ -149,10 +170,69 @@
   color: var(--muted);
 }
 
-.groupScore {
-  margin-left: auto;
+.diffBadge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(22, 50, 79, 0.08);
+  color: var(--accent-deep);
   font-weight: 700;
   white-space: nowrap;
+}
+
+.groupFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.groupFacts span {
+  display: inline-flex;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(21, 23, 28, 0.07);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.majorExamples {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.majorExample {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 7px 8px;
+  border-radius: var(--radius-sm, 6px);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.majorExample strong {
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.majorExample span,
+.majorEmpty {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.majorEmpty {
+  margin: 0;
+}
+
+.detailLink {
+  align-self: flex-start;
+  font-size: 12px;
 }
 
 .empty,
