@@ -22,9 +22,9 @@ import type { Metadata } from "next";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "上海近 5 年院校专业组投档线查询 | 查分数",
+  title: "上海高考查分数与位次换算 | 2026 成绩分布 + 近 5 年投档线",
   description:
-    "按学校和年份筛选上海市教育考试院公开的 2021-2025 本科普通批平行志愿投档线（院校专业组口径），并附官方规则、填报核对清单和原始来源。",
+    "已接入 2026 上海高考成绩分布和位次换算；同时按学校和年份筛选上海市教育考试院公开的 2021-2025 本科普通批平行志愿投档线。",
 };
 
 export default function ShanghaiAdmissionsPage() {
@@ -65,33 +65,35 @@ export default function ShanghaiAdmissionsPage() {
         <Link className={styles.back} href="/">
           ← 返回首页
         </Link>
-        <span className={styles.eyebrow}>上海 · 2021-2025 官方公开录取线</span>
-        <h1>先看清上海最近 5 年的院校专业组投档线，再谈专业填报。</h1>
+        <span className={styles.eyebrow}>上海 · 2026 成绩分布已录入 · 2021-2025 投档线</span>
+        <h1>先用 2026 成绩分布定位位次，再看近 5 年院校专业组投档线。</h1>
         <p className={styles.lead}>
-          这里展示的是上海市教育考试院公开的本科普通批次平行志愿投档数据，当前口径是
-          “院校专业组”，不是单个本科专业最低分。对上海考生来说，这个口径比“学校平均分”更接近实际填报。
+          本页分两层看：2026 成绩分布用于把分数换成全市位次和历年等效分；2021-2025 投档线用于回看院校专业组的真实录取门槛。
+          2026 院校专业组投档线要等正式投档后才会公布，当前不把它伪造成已录取数据。
         </p>
 
         <div className={styles.stats}>
           <div className={styles.statCard}>
-            <span>年份范围</span>
+            <span>2026 成绩分布</span>
+            <strong>位次表已录入</strong>
+          </div>
+          <div className={styles.statCard}>
+            <span>投档线范围</span>
             <strong>{coverage.years[0]}-{coverage.years.at(-1)}</strong>
           </div>
           <div className={styles.statCard}>
-            <span>已检出学校</span>
-            <strong>{coverage.coveredSchoolCount}</strong>
-          </div>
-          <div className={styles.statCard}>
-            <span>公开记录数</span>
+            <span>投档线记录</span>
             <strong>{coverage.totalRecords}</strong>
           </div>
           <div className={styles.statCard}>
-            <span>当前口径</span>
+            <span>投档线口径</span>
             <strong>{shanghaiAdmissionsMeta.grain}</strong>
           </div>
         </div>
 
         <div className={styles.noteCard}>
+          <p>2026 上海成绩分布表已进入“位次 / 等效分换算”：例如 572 分对应全市累计约 4,460 名。</p>
+          <p>2026 院校专业组投档线尚未进入当前表格；公布后再按考试院原始 PDF 补入。</p>
           {shanghaiAdmissionsMeta.notes.map((note) => (
             <p key={note}>{note}</p>
           ))}
@@ -101,10 +103,10 @@ export default function ShanghaiAdmissionsPage() {
       <section className={styles.section} id="explorer">
         <div className={styles.sectionHeader}>
           <div>
-            <h2>上海近 5 年组线（可按学校和年份筛选）</h2>
+            <h2>先查 2026 位次，再看近 5 年组线</h2>
           </div>
           <p>
-            这是本页的核心查询工具。Q组与考试院单独公布的组别也一并列进来了，避免把 2025 这类拆表年份漏掉。
+            输入分数后先看 2026 全市位次和跨年等效分；下方学校表仍是 2021-2025 投档线，Q组与考试院单独公布的组别也一并列入。
           </p>
         </div>
 

@@ -25,6 +25,10 @@ const scoreRankData = JSON.parse(
 ) as ScoreRankData;
 const rankConverterSource = readFileSync(new URL("../components/RankConverter.tsx", import.meta.url), "utf8");
 const scoreRankSource = readFileSync(new URL("../lib/score-rank.ts", import.meta.url), "utf8");
+const shanghaiAdmissionsPageSource = readFileSync(
+  new URL("../app/admissions/shanghai/page.tsx", import.meta.url),
+  "utf8",
+);
 
 test("includes the 2026 Shanghai score distribution as an official per-score table", () => {
   const meta2026 = scoreRankData.meta.years["2026"];
@@ -65,4 +69,11 @@ test("rank converter copy and comments reflect the 2021-2026 per-score source se
   assert.match(scoreRankData.meta.desc, /2021-2026/);
   assert.match(rankConverterSource, /2021-2026 成绩分布表/);
   assert.match(scoreRankSource, /2021-2026 均为逐分/);
+});
+
+test("Shanghai admissions page separates 2026 rank data from 2021-2025 admission lines", () => {
+  assert.match(shanghaiAdmissionsPageSource, /2026 成绩分布/);
+  assert.match(shanghaiAdmissionsPageSource, /位次表已录入/);
+  assert.match(shanghaiAdmissionsPageSource, /2021-2025 投档线/);
+  assert.match(shanghaiAdmissionsPageSource, /2026 院校专业组投档线/);
 });
