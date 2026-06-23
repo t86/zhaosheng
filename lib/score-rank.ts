@@ -1,15 +1,14 @@
 import table from "@/data/shanghai/score-rank-table.json";
+import { rankToScoreInRows, scoreToRankInRows, type ScoreRankRow } from "./score-rank-core";
 
 // 上海高考"位次/等效分"换算。基于各年成绩分布表（一分一段）：
 // cumulative = 该分数及以上累计人数 = 该分的最低位次。
-// 2021-2024 逐分，2025 为每 10 分锚点（线性插值，结果为近似）。
+// 2021-2026 均为逐分；各年覆盖到站内已录入的最低公开锚点。
 // 重要：官方成绩分布表顶端只公布到约 615-623 分（约全市前 50 名）"及以上"为一个桶，
 // 再往上不逐分公布——因此高分段（约 620 分以上）无法精确定位位次，本工具对超出范围的
 // 输入一律返回 null（如实显示"无法定位"），不向上外推、不假装能算。
 
-type Row = [number, number]; // [score, cumulative]
-
-const RANK_TABLE = (table as unknown as { table: Record<string, Row[]> }).table;
+const RANK_TABLE = (table as unknown as { table: Record<string, ScoreRankRow[]> }).table;
 const YEAR_META = (
   table as unknown as {
     meta: { years: Record<string, { controlLine: number | null; sparse: boolean }> };
@@ -36,50 +35,12 @@ export function getTopScore(year: number): number | null {
 
 // 分数 → 该年最低位次（线性插值）。超出数据范围（高于最高锚点或低于最低锚点）返回 null。
 export function scoreToRank(year: number, score: number): number | null {
-  const rows = RANK_TABLE[String(year)];
-  if (!rows || rows.length === 0) {
-    return null;
-  }
-  if (score > rows[0][0]) {
-    return null; // 高于成绩分布表上限，官方未公布、不外推
-  }
-  const last = rows[rows.length - 1];
-  if (score < last[0]) {
-    return null; // 低于数据范围
-  }
-  for (let i = 0; i < rows.length - 1; i++) {
-    const hi = rows[i]; // 高分、位次小
-    const lo = rows[i + 1]; // 低分、位次大
-    if (score <= hi[0] && score > lo[0]) {
-      const frac = (hi[0] - score) / (hi[0] - lo[0]);
-      return Math.round(hi[1] + frac * (lo[1] - hi[1]));
-    }
-  }
-  return rows[0][1]; // score === 最高锚点
+  return scoreToRankInRows(RANK_TABLE[String(year)], score);
 }
 
 // 位次 → 该年对应分数（线性插值）。位次优于最高锚点（即在前 ~50 名内、超出数据）返回 null。
 export function rankToScore(year: number, rank: number): number | null {
-  const rows = RANK_TABLE[String(year)];
-  if (!rows || rows.length === 0) {
-    return null;
-  }
-  if (rank < rows[0][1]) {
-    return null; // 比该年最高锚点还靠前，超出数据范围
-  }
-  const last = rows[rows.length - 1];
-  if (rank > last[1]) {
-    return null; // 超出数据范围（太靠后）
-  }
-  for (let i = 0; i < rows.length - 1; i++) {
-    const hi = rows[i]; // 位次小、分高
-    const lo = rows[i + 1]; // 位次大、分低
-    if (rank >= hi[1] && rank <= lo[1]) {
-      const frac = (rank - hi[1]) / (lo[1] - hi[1]);
-      return Math.round(hi[0] - frac * (hi[0] - lo[0]));
-    }
-  }
-  return rows[0][0];
+  return rankToScoreInRows(RANK_TABLE[String(year)], rank);
 }
 
 // 等效分：某年某分 → 另一年同位次大约对应多少分（任一端超范围返回 null）

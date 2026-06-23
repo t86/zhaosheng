@@ -17,7 +17,7 @@ export function RankConverter() {
   const [year, setYear] = useState(DEFAULT_YEAR);
 
   const score = Number(input);
-  const valid = input.trim() !== "" && Number.isFinite(score) && score >= 490 && score <= 660;
+  const valid = input.trim() !== "" && Number.isFinite(score) && score >= 0 && score <= 660;
 
   const result = useMemo(
     () => (valid ? equivalentAcrossYears(year, score) : null),
@@ -68,7 +68,7 @@ export function RankConverter() {
 
       {!valid ? (
         <p className={styles.placeholder}>
-          输入一个 490–660 之间的分数试试。{input.trim() !== "" ? "（请输入有效分数）" : ""}
+          输入一个 0–660 之间的分数试试。{input.trim() !== "" ? "（请输入有效分数）" : ""}
         </p>
       ) : aboveRange ? (
         <p className={styles.outRange}>
@@ -114,8 +114,8 @@ export function RankConverter() {
           </div>
           <p className={styles.note}>
             读法：同一行是“竞争位置相同”的等效分——比如 {year} 年 {score} 分，和上表其它年份对应分数处在同一个位次。
-            用它把往年投档线换算到同一把位次尺子上比较，比直接比裸分准。数据来自上海市教育考试院 2021-2025 成绩分布表（逐分），
-            约 623 分以上官方只公布到“及以上”区间、无法逐分定位。
+            用它把往年投档线换算到同一把位次尺子上比较，比直接比裸分准。数据来自上海市教育考试院 2021-2026 成绩分布表（逐分），
+            各年最高分段官方只公布到“及以上”区间、无法逐分定位。
           </p>
         </>
       ) : (
