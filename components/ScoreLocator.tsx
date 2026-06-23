@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { shanghaiMajorAdmissionsRecords } from "@/data/shanghai-major-admissions";
+import scoreRankTable from "@/data/shanghai/score-rank-table.json";
 import { shanghaiAdmissionsRecords } from "@/lib/shanghai-admissions";
 import {
   recommendShanghaiGroupsByScore,
@@ -28,13 +29,17 @@ const SUBJECT_OPTIONS = [
 ] as const;
 
 const CANDIDATE_LIMIT_PER_TIER = 8;
+const CURRENT_SCORE_YEAR = 2026;
 
-function getDiffLabel(diff: number) {
-  if (diff > 0) {
-    return `线高 ${diff} 分`;
+function getDiffLabel(candidate: ShanghaiScoreRecommendationCandidate) {
+  if (candidate.scoreType === "threshold") {
+    return `${candidate.scoreLabel} 待核`;
   }
-  if (diff < 0) {
-    return `线低 ${Math.abs(diff)} 分`;
+  if (candidate.diff > 0) {
+    return `线高 ${candidate.diff} 分`;
+  }
+  if (candidate.diff < 0) {
+    return `线低 ${Math.abs(candidate.diff)} 分`;
   }
   return "同分";
 }
@@ -60,7 +65,7 @@ function TierColumn({
       {groups.length > 0 ? (
         <ul className={styles.groupList}>
           {groups.map((g) => (
-            <li className={styles.groupCard} key={`${g.schoolSlug}-${g.groupCode}`}>
+            <li className={styles.groupCard} key={`${g.schoolSlug}-${g.groupCode}-${g.year}-${g.scoreType}`}>
               <div className={styles.groupTopline}>
                 <div>
                   <Link href={`/schools/${g.schoolSlug}`}>{g.schoolName}</Link>
@@ -68,10 +73,13 @@ function TierColumn({
                     {g.groupName} · {g.groupCode}
                   </span>
                 </div>
-                <span className={styles.diffBadge}>{getDiffLabel(g.diff)}</span>
+                <span className={styles.diffBadge}>{getDiffLabel(g)}</span>
               </div>
               <div className={styles.groupFacts}>
-                <span>{g.year} 组线 {g.lineScore} 分</span>
+                <span>{g.year} 组线 {g.scoreType === "threshold" ? g.scoreLabel : `${g.lineScore} 分`}</span>
+                <span>
+                  {CURRENT_SCORE_YEAR} 位次折算到 {g.year} ≈ {g.comparisonScore} 分
+                </span>
                 <span>选科 {g.subjectRequirement ?? "待核"}</span>
               </div>
               {g.majorExamples.length > 0 ? (
@@ -120,6 +128,8 @@ export function ScoreLocator() {
             options: {
               candidateLimitPerTier: CANDIDATE_LIMIT_PER_TIER,
               subjectRequirement: subjectRequirement === "all" ? undefined : subjectRequirement,
+              scoreYear: CURRENT_SCORE_YEAR,
+              scoreRankTable,
             },
           })
         : null,
@@ -169,9 +179,9 @@ export function ScoreLocator() {
             <TierColumn tier="safe" groups={result.safe} totalCount={result.totalCounts.safe} />
           </div>
           <p className={styles.caveat}>
-            口径：以上按各院校专业组最近一年的<strong>精确投档线</strong>分层，专业样例来自 2025 年专业层录取考分。
-            它能帮你快速知道“这个组大概有哪些专业”，但正式填报还要回到当年《招生专业目录》核对完整计划、限制条件和调剂范围。
-            当前另有 {result.thresholdSchoolCount} 所学校存在“580 分及以上”等阈值记录，无法纳入精确冲稳保计算。
+            口径：先按 {CURRENT_SCORE_YEAR} 成绩分布换算到往年同位次等效分，再和各院校专业组最近一年投档线比较。
+            精确线可分冲/稳/保；“580 分及以上”属于考试院隐藏高分段精确线，只放入冲刺待核，不当作稳保结论。
+            专业样例来自 2025 年专业层录取考分，正式填报还要回到当年《招生专业目录》核对完整计划、限制条件和调剂范围。
           </p>
         </>
       ) : (

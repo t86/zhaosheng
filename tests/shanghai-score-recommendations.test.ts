@@ -9,6 +9,9 @@ const admissionsDataset = JSON.parse(
 const majorAdmissionRecords = JSON.parse(
   readFileSync(new URL("../data/shanghai/high-value/major-admissions.json", import.meta.url), "utf8"),
 ) as Record<string, unknown>[];
+const scoreRankTable = JSON.parse(
+  readFileSync(new URL("../data/shanghai/score-rank-table.json", import.meta.url), "utf8"),
+) as Record<string, unknown>;
 
 function recommend(score: number, options: Parameters<typeof recommendShanghaiGroupsByScore>[0]["options"] = {}) {
   return recommendShanghaiGroupsByScore({
@@ -19,8 +22,16 @@ function recommend(score: number, options: Parameters<typeof recommendShanghaiGr
   });
 }
 
+function recommendFor2026(score: number, options: Parameters<typeof recommendShanghaiGroupsByScore>[0]["options"] = {}) {
+  return recommend(score, {
+    ...options,
+    scoreRankTable,
+    scoreYear: 2026,
+  });
+}
+
 test("recommends Shanghai groups by score and attaches 2025 major examples", () => {
-  const result = recommend(572);
+  const result = recommend(572, { candidateLimitPerTier: 200 });
 
   assert.equal(result.targetScore, 572);
   assert.ok(result.reach.some((candidate) => candidate.lineScore === 573 && candidate.diff === 1));
@@ -52,11 +63,45 @@ test("caps major examples and keeps candidates display-friendly", () => {
 });
 
 test("filters candidates by subject requirement when requested", () => {
-  const result = recommend(572, { subjectRequirement: "不限" });
+  const result = recommend(572, { subjectRequirement: "不限", candidateLimitPerTier: 200 });
   const allCandidates = [...result.reach, ...result.match, ...result.safe];
 
   assert.ok(allCandidates.length > 0);
   assert.ok(allCandidates.every((candidate) => candidate.subjectRequirement === "不限"));
   assert.ok(result.match.some((candidate) => candidate.schoolName === "华东师范大学" && candidate.groupCode === "10401"));
   assert.ok(!allCandidates.some((candidate) => candidate.schoolName === "东南大学" && candidate.groupCode === "42201"));
+});
+
+test("uses 2026 rank equivalence instead of raw score when comparing historical exact lines", () => {
+  const result = recommendFor2026(588, { candidateLimitPerTier: 200 });
+  const allCandidates = [...result.reach, ...result.match, ...result.safe];
+  const beihang = allCandidates.find(
+    (candidate) =>
+      candidate.schoolName === "北京航空航天大学" &&
+      candidate.groupCode === "22102" &&
+      candidate.scoreType === "exact",
+  );
+
+  assert.equal(result.scoreYear, 2026);
+  assert.equal(result.targetRank, 1786);
+  assert.deepEqual(result.equivalentScores.find((item) => item.year === 2025), { year: 2025, score: 595 });
+  assert.ok(beihang);
+  assert.equal(beihang.comparisonScore, 595);
+  assert.equal(beihang.diff, -16);
+  assert.equal(beihang.tier, "safe");
+});
+
+test("surfaces 580-plus elite Shanghai groups as high-score reach candidates that need manual verification", () => {
+  const result = recommendFor2026(588, { candidateLimitPerTier: 8 });
+  const fudan = result.reach.find((candidate) => candidate.schoolName === "复旦大学");
+  const sjtu = result.reach.find((candidate) => candidate.schoolName === "上海交通大学");
+
+  assert.ok(fudan);
+  assert.ok(sjtu);
+  assert.equal(fudan.scoreType, "threshold");
+  assert.equal(sjtu.scoreType, "threshold");
+  assert.equal(fudan.scoreLabel, "580分及以上");
+  assert.equal(sjtu.scoreLabel, "580分及以上");
+  assert.equal(fudan.comparisonScore, 595);
+  assert.equal(sjtu.comparisonScore, 595);
 });
