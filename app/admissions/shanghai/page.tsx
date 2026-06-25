@@ -22,9 +22,9 @@ import type { Metadata } from "next";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "上海高考查分数与位次换算 | 2026 成绩分布 + 近 5 年投档线",
+  title: "上海高考查分数与位次换算 | 2026 成绩分布 + 预估专业组 + 近 5 年投档线",
   description:
-    "已接入 2026 上海高考成绩分布和位次换算；同时按学校和年份筛选上海市教育考试院公开的 2021-2025 本科普通批平行志愿投档线。",
+    "已接入 2026 上海高考成绩分布、用户提供的普通批专业组预估线和位次换算；同时按学校和年份筛选上海市教育考试院公开的 2021-2025 本科普通批平行志愿投档线。",
 };
 
 export default function ShanghaiAdmissionsPage() {
@@ -65,10 +65,11 @@ export default function ShanghaiAdmissionsPage() {
         <Link className={styles.back} href="/">
           ← 返回首页
         </Link>
-        <span className={styles.eyebrow}>上海 · 2026 成绩分布已录入 · 2021-2025 投档线</span>
+        <span className={styles.eyebrow}>上海 · 2026 成绩分布已录入 · 预估专业组匹配 · 2021-2025 投档线</span>
         <h1>先用 2026 成绩分布定位位次，再看近 5 年院校专业组投档线。</h1>
         <p className={styles.lead}>
-          本页分两层看：2026 成绩分布用于把分数换成全市位次和历年等效分；2021-2025 投档线用于回看院校专业组的真实录取门槛。
+          本页分三层看：2026 成绩分布用于把分数换成全市位次和历年等效分；用户提供的预估表用于快速定位同分/附近分专业组；
+          2021-2025 投档线用于回看院校专业组的真实录取门槛。
           2026 院校专业组投档线要等正式投档后才会公布，当前不把它伪造成已录取数据。
         </p>
 
@@ -93,7 +94,7 @@ export default function ShanghaiAdmissionsPage() {
 
         <div className={styles.noteCard}>
           <p>2026 上海成绩分布表已进入“位次 / 等效分换算”：例如 572 分对应全市累计约 4,460 名。</p>
-          <p>2026 院校专业组投档线尚未进入当前表格；公布后再按考试院原始 PDF 补入。</p>
+          <p>2026 预估专业组线已单独进入“填分数”匹配区；正式 2026 投档线公布后，再按考试院原始 PDF 补入官方表格。</p>
           {shanghaiAdmissionsMeta.notes.map((note) => (
             <p key={note}>{note}</p>
           ))}

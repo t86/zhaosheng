@@ -2,8 +2,14 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import estimated2026Groups from "@/data/shanghai/estimated-2026-groups.json";
 import { shanghaiMajorAdmissionsRecords } from "@/data/shanghai-major-admissions";
 import scoreRankTable from "@/data/shanghai/score-rank-table.json";
+import {
+  findShanghaiEstimatedGroupsByScore,
+  getShanghaiEstimatedGroupSummary,
+  type ShanghaiEstimatedGroupMatch,
+} from "@/lib/shanghai-estimated-groups";
 import { shanghaiAdmissionsRecords } from "@/lib/shanghai-admissions";
 import {
   recommendShanghaiGroupsByScore,
@@ -29,7 +35,10 @@ const SUBJECT_OPTIONS = [
 ] as const;
 
 const CANDIDATE_LIMIT_PER_TIER = 8;
+const ESTIMATED_CANDIDATE_LIMIT = 12;
+const ESTIMATED_SCORE_WINDOW = 3;
 const CURRENT_SCORE_YEAR = 2026;
+const estimatedGroupSummary = getShanghaiEstimatedGroupSummary(estimated2026Groups);
 
 function getDiffLabel(candidate: ShanghaiScoreRecommendationCandidate) {
   if (candidate.scoreType === "threshold") {
@@ -42,6 +51,66 @@ function getDiffLabel(candidate: ShanghaiScoreRecommendationCandidate) {
     return `线低 ${Math.abs(candidate.diff)} 分`;
   }
   return "同分";
+}
+
+function getEstimatedDiffLabel(candidate: ShanghaiEstimatedGroupMatch) {
+  if (candidate.diff > 0) {
+    return `预估线高 ${candidate.diff} 分`;
+  }
+  if (candidate.diff < 0) {
+    return `预估线低 ${Math.abs(candidate.diff)} 分`;
+  }
+  return "预估同分";
+}
+
+function EstimatedGroupPanel({ groups }: { groups: ShanghaiEstimatedGroupMatch[] }) {
+  if (groups.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className={styles.estimatePanel} aria-label="2026预估专业组匹配">
+      <div className={styles.estimateHead}>
+        <div>
+          <span className={styles.estimateEyebrow}>新增 · 2026 预估</span>
+          <h4>按你填的分数直接命中的院校专业组</h4>
+        </div>
+        <span className={styles.estimateCount}>{groups.length} 个附近专业组</span>
+      </div>
+      <p className={styles.estimateNote}>
+        这组来自用户提供图片资料的第三方预估表，当前先录入上海本地院校专业组列。它适合快速定位同分/附近分组，
+        正式填报仍以考试院 2026 投档结果和招生专业目录为准。
+      </p>
+      <ul className={styles.estimateList}>
+        {groups.map((group) => {
+          const schoolName = group.schoolSlug ? (
+            <Link href={`/schools/${group.schoolSlug}`}>{group.schoolName}</Link>
+          ) : (
+            <strong>{group.schoolName}</strong>
+          );
+
+          return (
+            <li className={styles.estimateCard} key={`${group.estimatedScore}-${group.groupName}`}>
+              <div className={styles.estimateTopline}>
+                <div>
+                  {schoolName}
+                  <span>
+                    {group.groupName} · {group.groupCode}
+                  </span>
+                </div>
+                <span className={styles.estimateBadge}>{getEstimatedDiffLabel(group)}</span>
+              </div>
+              <div className={styles.groupFacts}>
+                <span>{CURRENT_SCORE_YEAR} 预估 {group.estimatedScore} 分</span>
+                <span>{group.line2025 == null ? "2025线待核" : `2025线 ${group.line2025} 分`}</span>
+                <span>{estimatedGroupSummary.sourceType === "third-party-estimate" ? "第三方预估" : "预估资料"}</span>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
 }
 
 function TierColumn({
@@ -135,6 +204,17 @@ export function ScoreLocator() {
         : null,
     [subjectRequirement, target, valid],
   );
+  const estimatedGroups = useMemo(
+    () =>
+      valid
+        ? findShanghaiEstimatedGroupsByScore(estimated2026Groups, {
+            score: target,
+            window: ESTIMATED_SCORE_WINDOW,
+            limit: ESTIMATED_CANDIDATE_LIMIT,
+          })
+        : [],
+    [target, valid],
+  );
 
   return (
     <div className={styles.locator}>
@@ -173,13 +253,15 @@ export function ScoreLocator() {
 
       {result ? (
         <>
+          <EstimatedGroupPanel groups={estimatedGroups} />
           <div className={styles.grid}>
             <TierColumn tier="reach" groups={result.reach} totalCount={result.totalCounts.reach} />
             <TierColumn tier="match" groups={result.match} totalCount={result.totalCounts.match} />
             <TierColumn tier="safe" groups={result.safe} totalCount={result.totalCounts.safe} />
           </div>
           <p className={styles.caveat}>
-            口径：先按 {CURRENT_SCORE_YEAR} 成绩分布换算到往年同位次等效分，再和各院校专业组最近一年投档线比较。
+            口径：上方“2026 预估专业组”来自用户提供图片资料，当前覆盖 {estimatedGroupSummary.recordCount} 条上海本地院校专业组预估线，
+            只作考后初筛。下方冲/稳/保仍按 {CURRENT_SCORE_YEAR} 成绩分布换算到往年同位次等效分，再和各院校专业组最近一年投档线比较。
             精确线可分冲/稳/保；“580 分及以上”属于考试院隐藏高分段精确线，只放入冲刺待核，不当作稳保结论。
             专业样例来自 2025 年专业层录取考分，正式填报还要回到当年《招生专业目录》核对完整计划、限制条件和调剂范围。
           </p>

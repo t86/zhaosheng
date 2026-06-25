@@ -1,0 +1,1446 @@
+{
+  "meta": {
+    "year": 2026,
+    "title": "2026上海高考普通批分数线预估",
+    "sourceLabel": "用户提供图片资料（升学道路水印）：2026上海高考普通批分数线预估",
+    "sourceType": "third-party-estimate",
+    "scope": "上海本地院校专业组列；外省列因图片 OCR 误差较高，暂不自动入库",
+    "notes": [
+      "这是第三方预估资料，不是上海市教育考试院正式2026投档线。",
+      "estimatedScore 为图片中的2026预估分数；line2025 为同图列出的2025投档线或录取平均分，识别不清时保留为 null。",
+      "红字中外合作办学标记暂未全量结构化，正式填报仍需回到招生专业目录核对。"
+    ]
+  },
+  "records": [
+    {
+      "estimatedScore": 605,
+      "schoolName": "上海交通大学",
+      "schoolAlias": "上海交大",
+      "schoolSlug": "shanghai-jiao-tong-university",
+      "groupName": "上海交大(01)",
+      "groupCode": "01",
+      "line2025": 615,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 600,
+      "schoolName": "上海交通大学",
+      "schoolAlias": "交大医学",
+      "schoolSlug": "shanghai-jiao-tong-university",
+      "groupName": "交大医学(01)",
+      "groupCode": "01",
+      "line2025": 614,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 598,
+      "schoolName": "复旦大学",
+      "schoolAlias": "复旦医学",
+      "schoolSlug": "fudan-university",
+      "groupName": "复旦医学(01)",
+      "groupCode": "01",
+      "line2025": 605,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 598,
+      "schoolName": "复旦大学",
+      "schoolAlias": "复旦大学",
+      "schoolSlug": "fudan-university",
+      "groupName": "复旦大学(02)",
+      "groupCode": "02",
+      "line2025": 605,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 595,
+      "schoolName": "复旦大学",
+      "schoolAlias": "复旦大学",
+      "schoolSlug": "fudan-university",
+      "groupName": "复旦大学(01)",
+      "groupCode": "01",
+      "line2025": 599,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 595,
+      "schoolName": "复旦大学",
+      "schoolAlias": "复旦大学",
+      "schoolSlug": "fudan-university",
+      "groupName": "复旦大学(Q3)",
+      "groupCode": "Q3",
+      "line2025": 599,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 592,
+      "schoolName": "上海交通大学",
+      "schoolAlias": "上海交大",
+      "schoolSlug": "shanghai-jiao-tong-university",
+      "groupName": "上海交大(Q2)",
+      "groupCode": "Q2",
+      "line2025": 598,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 590,
+      "schoolName": "上海交通大学",
+      "schoolAlias": "上海交大",
+      "schoolSlug": "shanghai-jiao-tong-university",
+      "groupName": "上海交大(02)",
+      "groupCode": "02",
+      "line2025": null,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 590,
+      "schoolName": "复旦大学",
+      "schoolAlias": "复旦医学",
+      "schoolSlug": "fudan-university",
+      "groupName": "复旦医学(Q2)",
+      "groupCode": "Q2",
+      "line2025": 595,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 589,
+      "schoolName": "上海交通大学",
+      "schoolAlias": "上海交大",
+      "schoolSlug": "shanghai-jiao-tong-university",
+      "groupName": "上海交大(Q3)",
+      "groupCode": "Q3",
+      "line2025": 594,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 589,
+      "schoolName": "同济大学",
+      "schoolAlias": "同济大学",
+      "schoolSlug": "tongji-university",
+      "groupName": "同济大学(01)",
+      "groupCode": "01",
+      "line2025": 594,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 582,
+      "schoolName": "上海交通大学",
+      "schoolAlias": "交大医学",
+      "schoolSlug": "shanghai-jiao-tong-university",
+      "groupName": "交大医学(Q2)",
+      "groupCode": "Q2",
+      "line2025": 588,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 582,
+      "schoolName": "同济大学",
+      "schoolAlias": "同济大学",
+      "schoolSlug": "tongji-university",
+      "groupName": "同济大学(03)",
+      "groupCode": "03",
+      "line2025": 588,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 580,
+      "schoolName": "同济大学",
+      "schoolAlias": "同济大学",
+      "schoolSlug": "tongji-university",
+      "groupName": "同济大学(02)",
+      "groupCode": "02",
+      "line2025": 586,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 580,
+      "schoolName": "复旦大学",
+      "schoolAlias": "复旦医学",
+      "schoolSlug": "fudan-university",
+      "groupName": "复旦医学(Q3)",
+      "groupCode": "Q3",
+      "line2025": 586,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 578,
+      "schoolName": "华东师范大学",
+      "schoolAlias": "华东师大",
+      "schoolSlug": "east-china-normal-university",
+      "groupName": "华东师大(03)-02",
+      "groupCode": "03-02",
+      "line2025": 585,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 575,
+      "schoolName": "华东师范大学",
+      "schoolAlias": "华东师大",
+      "schoolSlug": "east-china-normal-university",
+      "groupName": "华东师大(02)-01",
+      "groupCode": "02-01",
+      "line2025": 582,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 573,
+      "schoolName": "同济大学",
+      "schoolAlias": "同济大学",
+      "schoolSlug": "tongji-university",
+      "groupName": "同济大学(Q4)",
+      "groupCode": "Q4",
+      "line2025": 580,
+      "sourceImage": "image1"
+    },
+    {
+      "estimatedScore": 572,
+      "schoolName": "上海交通大学",
+      "schoolAlias": "交大医学",
+      "schoolSlug": "shanghai-jiao-tong-university",
+      "groupName": "交大医学(Q3)",
+      "groupCode": "Q3",
+      "line2025": 577,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 571,
+      "schoolName": "上海财经大学",
+      "schoolAlias": "上海财大",
+      "schoolSlug": null,
+      "groupName": "上海财大(03)",
+      "groupCode": "03",
+      "line2025": 576,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 571,
+      "schoolName": "华东师范大学",
+      "schoolAlias": "华东师大",
+      "schoolSlug": "east-china-normal-university",
+      "groupName": "华东师大(Q4)",
+      "groupCode": "Q4",
+      "line2025": 576,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 569,
+      "schoolName": "华东师范大学",
+      "schoolAlias": "华东师大",
+      "schoolSlug": "east-china-normal-university",
+      "groupName": "华东师大(Q5)",
+      "groupCode": "Q5",
+      "line2025": 575,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 567,
+      "schoolName": "上海财经大学",
+      "schoolAlias": "上海财大",
+      "schoolSlug": null,
+      "groupName": "上海财大(01)",
+      "groupCode": "01",
+      "line2025": 573,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 567,
+      "schoolName": "上海财经大学",
+      "schoolAlias": "上海财大",
+      "schoolSlug": null,
+      "groupName": "上海财大(02)",
+      "groupCode": "02",
+      "line2025": 573,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 567,
+      "schoolName": "上海财经大学",
+      "schoolAlias": "上海财大",
+      "schoolSlug": null,
+      "groupName": "上海财大(Q5)",
+      "groupCode": "Q5",
+      "line2025": 573,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 565,
+      "schoolName": "上海外国语大学",
+      "schoolAlias": "上海外大",
+      "schoolSlug": null,
+      "groupName": "上海外大(05)",
+      "groupCode": "05",
+      "line2025": 570,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 563,
+      "schoolName": "华东理工大学",
+      "schoolAlias": "华东理工",
+      "schoolSlug": null,
+      "groupName": "华东理工(02)",
+      "groupCode": "02",
+      "line2025": 568,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 562,
+      "schoolName": "上海外国语大学",
+      "schoolAlias": "上海外大",
+      "schoolSlug": null,
+      "groupName": "上海外大(01)",
+      "groupCode": "01",
+      "line2025": 567,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 562,
+      "schoolName": "华东政法大学",
+      "schoolAlias": "华东政法",
+      "schoolSlug": null,
+      "groupName": "华东政法(01)",
+      "groupCode": "01",
+      "line2025": 567,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 558,
+      "schoolName": "上海中医药大学",
+      "schoolAlias": "上海中医",
+      "schoolSlug": null,
+      "groupName": "上海中医(01)",
+      "groupCode": "01",
+      "line2025": 563,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 557,
+      "schoolName": "同济大学",
+      "schoolAlias": "同济大学",
+      "schoolSlug": "tongji-university",
+      "groupName": "同济大学(Q6)",
+      "groupCode": "Q6",
+      "line2025": 562,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 555,
+      "schoolName": "华东理工大学",
+      "schoolAlias": "华东理工",
+      "schoolSlug": null,
+      "groupName": "华东理工(01)",
+      "groupCode": "01",
+      "line2025": 560,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 554,
+      "schoolName": "上海中医药大学",
+      "schoolAlias": "上海中医",
+      "schoolSlug": null,
+      "groupName": "上海中医(02)",
+      "groupCode": "02",
+      "line2025": 559,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 550,
+      "schoolName": "上海大学",
+      "schoolAlias": "上海大学",
+      "schoolSlug": null,
+      "groupName": "上海大学(02)",
+      "groupCode": "02",
+      "line2025": 555,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 550,
+      "schoolName": "海军军医大学",
+      "schoolAlias": "海医大",
+      "schoolSlug": null,
+      "groupName": "海医大(02)",
+      "groupCode": "02",
+      "line2025": 556,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 547,
+      "schoolName": "东华大学",
+      "schoolAlias": "东华大学",
+      "schoolSlug": null,
+      "groupName": "东华大学(01)",
+      "groupCode": "01",
+      "line2025": 553,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 547,
+      "schoolName": "东华大学",
+      "schoolAlias": "东华大学",
+      "schoolSlug": null,
+      "groupName": "东华大学(02)",
+      "groupCode": "02",
+      "line2025": 553,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 545,
+      "schoolName": "上海大学",
+      "schoolAlias": "上海大学",
+      "schoolSlug": null,
+      "groupName": "上海大学(05)",
+      "groupCode": "05",
+      "line2025": 549,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 545,
+      "schoolName": "上海理工大学",
+      "schoolAlias": "上海理工",
+      "schoolSlug": null,
+      "groupName": "上海理工(01)",
+      "groupCode": "01",
+      "line2025": 549,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 543,
+      "schoolName": "华东理工大学",
+      "schoolAlias": "华东理工",
+      "schoolSlug": null,
+      "groupName": "华东理工(03)",
+      "groupCode": "03",
+      "line2025": 548,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 543,
+      "schoolName": "同济大学",
+      "schoolAlias": "同济大学",
+      "schoolSlug": "tongji-university",
+      "groupName": "同济大学(Q5)",
+      "groupCode": "Q5",
+      "line2025": 550,
+      "sourceImage": "image2"
+    },
+    {
+      "estimatedScore": 541,
+      "schoolName": "东华大学",
+      "schoolAlias": "东华大学",
+      "schoolSlug": null,
+      "groupName": "东华大学(03)",
+      "groupCode": "03",
+      "line2025": 546,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 541,
+      "schoolName": "华东政法大学",
+      "schoolAlias": "华东政法",
+      "schoolSlug": null,
+      "groupName": "华东政法(02)",
+      "groupCode": "02",
+      "line2025": 546,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 540,
+      "schoolName": "上海大学",
+      "schoolAlias": "上海大学",
+      "schoolSlug": null,
+      "groupName": "上海大学(04)",
+      "groupCode": "04",
+      "line2025": 546,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 540,
+      "schoolName": "海军军医大学",
+      "schoolAlias": "海医大",
+      "schoolSlug": null,
+      "groupName": "海医大(03)",
+      "groupCode": "03",
+      "line2025": 544,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 539,
+      "schoolName": "上海大学",
+      "schoolAlias": "上海大学",
+      "schoolSlug": null,
+      "groupName": "上海大学(03)",
+      "groupCode": "03",
+      "line2025": 545,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 538,
+      "schoolName": "上海大学",
+      "schoolAlias": "上海大学",
+      "schoolSlug": null,
+      "groupName": "上海大学(Q6)",
+      "groupCode": "Q6",
+      "line2025": 544,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 537,
+      "schoolName": "上海中医药大学",
+      "schoolAlias": "上海中医",
+      "schoolSlug": null,
+      "groupName": "上海中医(03)",
+      "groupCode": "03",
+      "line2025": 542,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 537,
+      "schoolName": "上海大学",
+      "schoolAlias": "上海大学",
+      "schoolSlug": null,
+      "groupName": "上海大学(Q7)",
+      "groupCode": "Q7",
+      "line2025": 543,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 536,
+      "schoolName": "上海海事大学",
+      "schoolAlias": "上海海事",
+      "schoolSlug": null,
+      "groupName": "上海海事(01)",
+      "groupCode": "01",
+      "line2025": 542,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 535,
+      "schoolName": "上海对外经贸大学",
+      "schoolAlias": "上经贸大",
+      "schoolSlug": null,
+      "groupName": "上经贸大(01)",
+      "groupCode": "01",
+      "line2025": 540,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 530,
+      "schoolName": "上海戏剧学院",
+      "schoolAlias": "上海戏剧",
+      "schoolSlug": null,
+      "groupName": "上海戏剧(01)",
+      "groupCode": "01",
+      "line2025": 531,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 530,
+      "schoolName": "上海理工大学",
+      "schoolAlias": "上海理工",
+      "schoolSlug": null,
+      "groupName": "上海理工(03)",
+      "groupCode": "03",
+      "line2025": 534,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 530,
+      "schoolName": "上海电力大学",
+      "schoolAlias": "上海电力",
+      "schoolSlug": null,
+      "groupName": "上海电力(01)",
+      "groupCode": "01",
+      "line2025": 532,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 529,
+      "schoolName": "上海理工大学",
+      "schoolAlias": "上海理工",
+      "schoolSlug": null,
+      "groupName": "上海理工(04)",
+      "groupCode": "04",
+      "line2025": 533,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 529,
+      "schoolName": "上海理工大学",
+      "schoolAlias": "上海理工",
+      "schoolSlug": null,
+      "groupName": "上海理工(06)",
+      "groupCode": "06",
+      "line2025": 533,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 527,
+      "schoolName": "上海理工大学",
+      "schoolAlias": "上海理工",
+      "schoolSlug": null,
+      "groupName": "上海理工(02)",
+      "groupCode": "02",
+      "line2025": 531,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 526,
+      "schoolName": "上海师范大学",
+      "schoolAlias": "上海师大",
+      "schoolSlug": null,
+      "groupName": "上海师大(01)",
+      "groupCode": "01",
+      "line2025": 531,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 526,
+      "schoolName": "华东政法大学",
+      "schoolAlias": "华东政法",
+      "schoolSlug": null,
+      "groupName": "华东政法(03)",
+      "groupCode": "03",
+      "line2025": 531,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 522,
+      "schoolName": "上海师范大学",
+      "schoolAlias": "上海师大",
+      "schoolSlug": null,
+      "groupName": "上海师大(05)",
+      "groupCode": "05",
+      "line2025": 528,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 520,
+      "schoolName": "上海中医药大学",
+      "schoolAlias": "上海中医",
+      "schoolSlug": null,
+      "groupName": "上海中医(06)",
+      "groupCode": "06",
+      "line2025": 525,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 520,
+      "schoolName": "上海中医药大学",
+      "schoolAlias": "上海中医",
+      "schoolSlug": null,
+      "groupName": "上海中医(08)",
+      "groupCode": "08",
+      "line2025": 525,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 520,
+      "schoolName": "上海对外经贸大学",
+      "schoolAlias": "上经贸大",
+      "schoolSlug": null,
+      "groupName": "上经贸大(05)",
+      "groupCode": "05",
+      "line2025": 525,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 519,
+      "schoolName": "上海理工大学",
+      "schoolAlias": "上海理工",
+      "schoolSlug": null,
+      "groupName": "上海理工(05)",
+      "groupCode": "05",
+      "line2025": 524,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 518,
+      "schoolName": "上海中医药大学",
+      "schoolAlias": "上海中医",
+      "schoolSlug": null,
+      "groupName": "上海中医(04)",
+      "groupCode": "04",
+      "line2025": 523,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 518,
+      "schoolName": "上海对外经贸大学",
+      "schoolAlias": "上经贸大",
+      "schoolSlug": null,
+      "groupName": "上经贸大(02)",
+      "groupCode": "02",
+      "line2025": 523,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 518,
+      "schoolName": "上海海关学院",
+      "schoolAlias": "海关学院",
+      "schoolSlug": null,
+      "groupName": "海关学院(03)",
+      "groupCode": "03",
+      "line2025": 520,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 517,
+      "schoolName": "上海海关学院",
+      "schoolAlias": "海关学院",
+      "schoolSlug": null,
+      "groupName": "海关学院(02)",
+      "groupCode": "02",
+      "line2025": 519,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 513,
+      "schoolName": "上海师范大学",
+      "schoolAlias": "上海师大",
+      "schoolSlug": null,
+      "groupName": "上海师大(07)",
+      "groupCode": "07",
+      "line2025": 518,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 512,
+      "schoolName": "上海健康医学院",
+      "schoolAlias": "健康医学",
+      "schoolSlug": null,
+      "groupName": "健康医学(01)",
+      "groupCode": "01",
+      "line2025": 517,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 512,
+      "schoolName": "上海师范大学",
+      "schoolAlias": "上海师大",
+      "schoolSlug": null,
+      "groupName": "上海师大(03)",
+      "groupCode": "03",
+      "line2025": 517,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 511,
+      "schoolName": "上海体育大学",
+      "schoolAlias": "上海体大",
+      "schoolSlug": null,
+      "groupName": "上海体大(01)",
+      "groupCode": "01",
+      "line2025": 516,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 511,
+      "schoolName": "上海对外经贸大学",
+      "schoolAlias": "上经贸大",
+      "schoolSlug": null,
+      "groupName": "上经贸大(03)",
+      "groupCode": "03",
+      "line2025": 516,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 511,
+      "schoolName": "上海海关学院",
+      "schoolAlias": "海关学院",
+      "schoolSlug": null,
+      "groupName": "海关学院(01)",
+      "groupCode": "01",
+      "line2025": 515,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 510,
+      "schoolName": "上海对外经贸大学",
+      "schoolAlias": "上经贸大",
+      "schoolSlug": null,
+      "groupName": "上经贸大(06)",
+      "groupCode": "06",
+      "line2025": 514,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 510,
+      "schoolName": "上海海事大学",
+      "schoolAlias": "上海海事",
+      "schoolSlug": null,
+      "groupName": "上海海事(03)",
+      "groupCode": "03",
+      "line2025": 515,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 509,
+      "schoolName": "上海师范大学",
+      "schoolAlias": "上海师大",
+      "schoolSlug": null,
+      "groupName": "上海师大(02)",
+      "groupCode": "02",
+      "line2025": 513,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 507,
+      "schoolName": "上海师范大学",
+      "schoolAlias": "上海师大",
+      "schoolSlug": null,
+      "groupName": "上海师大(Q1)",
+      "groupCode": "Q1",
+      "line2025": 511,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 506,
+      "schoolName": "上海应用技术大学",
+      "schoolAlias": "上应大",
+      "schoolSlug": null,
+      "groupName": "上应大(03)",
+      "groupCode": "03",
+      "line2025": 508,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 506,
+      "schoolName": "上海海事大学",
+      "schoolAlias": "上海海事",
+      "schoolSlug": null,
+      "groupName": "上海海事(04)",
+      "groupCode": "04",
+      "line2025": 510,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 506,
+      "schoolName": "上海海洋大学",
+      "schoolAlias": "上海海大",
+      "schoolSlug": null,
+      "groupName": "上海海大(03)",
+      "groupCode": "03",
+      "line2025": 510,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 505,
+      "schoolName": "上海师范大学",
+      "schoolAlias": "上海师大",
+      "schoolSlug": null,
+      "groupName": "上海师大(10)",
+      "groupCode": "10",
+      "line2025": 507,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 504,
+      "schoolName": "上海师范大学",
+      "schoolAlias": "上海师大",
+      "schoolSlug": null,
+      "groupName": "上海师大(06)",
+      "groupCode": "06",
+      "line2025": 505,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 504,
+      "schoolName": "上海海事大学",
+      "schoolAlias": "上海海事",
+      "schoolSlug": null,
+      "groupName": "上海海事(02)",
+      "groupCode": "02",
+      "line2025": 505,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 500,
+      "schoolName": "上海中医药大学",
+      "schoolAlias": "上海中医",
+      "schoolSlug": null,
+      "groupName": "上海中医(07)",
+      "groupCode": "07",
+      "line2025": 504,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 497,
+      "schoolName": "上海电力大学",
+      "schoolAlias": "上海电力",
+      "schoolSlug": null,
+      "groupName": "上海电力(02)",
+      "groupCode": "02",
+      "line2025": 500,
+      "sourceImage": "image3"
+    },
+    {
+      "estimatedScore": 493,
+      "schoolName": "上海工程技术大学",
+      "schoolAlias": "上工程",
+      "schoolSlug": null,
+      "groupName": "上工程(01)",
+      "groupCode": "01",
+      "line2025": 498,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 492,
+      "schoolName": "上海体育大学",
+      "schoolAlias": "上海体大",
+      "schoolSlug": null,
+      "groupName": "上海体大(03)",
+      "groupCode": "03",
+      "line2025": 496,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 491,
+      "schoolName": "上海师范大学",
+      "schoolAlias": "上海师大",
+      "schoolSlug": null,
+      "groupName": "上海师大(08)",
+      "groupCode": "08",
+      "line2025": 494,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 490,
+      "schoolName": "上海体育大学",
+      "schoolAlias": "上海体大",
+      "schoolSlug": null,
+      "groupName": "上海体大(05)",
+      "groupCode": "05",
+      "line2025": 493,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 490,
+      "schoolName": "上海海事大学",
+      "schoolAlias": "上海海事",
+      "schoolSlug": null,
+      "groupName": "上海海事(05)",
+      "groupCode": "05",
+      "line2025": 493,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 490,
+      "schoolName": "上海海洋大学",
+      "schoolAlias": "上海海大",
+      "schoolSlug": null,
+      "groupName": "上海海大(02)",
+      "groupCode": "02",
+      "line2025": 493,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 488,
+      "schoolName": "上海师范大学",
+      "schoolAlias": "上海师大",
+      "schoolSlug": null,
+      "groupName": "上海师大(09)",
+      "groupCode": "09",
+      "line2025": 491,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 488,
+      "schoolName": "上海海洋大学",
+      "schoolAlias": "上海海大",
+      "schoolSlug": null,
+      "groupName": "上海海大(01)",
+      "groupCode": "01",
+      "line2025": 491,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 488,
+      "schoolName": "上海海洋大学",
+      "schoolAlias": "上海海大",
+      "schoolSlug": null,
+      "groupName": "上海海大(05)",
+      "groupCode": "05",
+      "line2025": 491,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 487,
+      "schoolName": "上海电力大学",
+      "schoolAlias": "上海电力",
+      "schoolSlug": null,
+      "groupName": "上海电力(04)",
+      "groupCode": "04",
+      "line2025": 490,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 483,
+      "schoolName": "上海工程技术大学",
+      "schoolAlias": "上工程",
+      "schoolSlug": null,
+      "groupName": "上工程(02)",
+      "groupCode": "02",
+      "line2025": 486,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 482,
+      "schoolName": "上海立信会计金融学院",
+      "schoolAlias": "立信金融",
+      "schoolSlug": null,
+      "groupName": "立信金融(02)",
+      "groupCode": "02",
+      "line2025": 485,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 480,
+      "schoolName": "上海工程技术大学",
+      "schoolAlias": "上工程",
+      "schoolSlug": null,
+      "groupName": "上工程(04)",
+      "groupCode": "04",
+      "line2025": 483,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 480,
+      "schoolName": "上海电力大学",
+      "schoolAlias": "上海电力",
+      "schoolSlug": null,
+      "groupName": "上海电力(05)",
+      "groupCode": "05",
+      "line2025": 483,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 480,
+      "schoolName": "上海第二工业大学",
+      "schoolAlias": "二工大",
+      "schoolSlug": null,
+      "groupName": "二工大(01)",
+      "groupCode": "01",
+      "line2025": 483,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 476,
+      "schoolName": "上海电机学院",
+      "schoolAlias": "上海电机",
+      "schoolSlug": null,
+      "groupName": "上海电机(01)",
+      "groupCode": "01",
+      "line2025": 478,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 476,
+      "schoolName": "上海立信会计金融学院",
+      "schoolAlias": "立信金融",
+      "schoolSlug": null,
+      "groupName": "立信金融(01)",
+      "groupCode": "01",
+      "line2025": 478,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 475,
+      "schoolName": "上海应用技术大学",
+      "schoolAlias": "上应大",
+      "schoolSlug": null,
+      "groupName": "上应大(01)",
+      "groupCode": "01",
+      "line2025": 477,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 474,
+      "schoolName": "上海工程技术大学",
+      "schoolAlias": "上工程",
+      "schoolSlug": null,
+      "groupName": "上工程(06)",
+      "groupCode": "06",
+      "line2025": 475,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 472,
+      "schoolName": "上海健康医学院",
+      "schoolAlias": "健康医学",
+      "schoolSlug": null,
+      "groupName": "健康医学(06)",
+      "groupCode": "06",
+      "line2025": 473,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 472,
+      "schoolName": "上海商学院",
+      "schoolAlias": "上海商院",
+      "schoolSlug": null,
+      "groupName": "上海商院(01)",
+      "groupCode": "01",
+      "line2025": 473,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 470,
+      "schoolName": "上海健康医学院",
+      "schoolAlias": "健康医学",
+      "schoolSlug": null,
+      "groupName": "健康医学(03)",
+      "groupCode": "03",
+      "line2025": 471,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 466,
+      "schoolName": "上海工程技术大学",
+      "schoolAlias": "上工程",
+      "schoolSlug": null,
+      "groupName": "上工程(03)",
+      "groupCode": "03",
+      "line2025": 466,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 466,
+      "schoolName": "上海应用技术大学",
+      "schoolAlias": "上应大",
+      "schoolSlug": null,
+      "groupName": "上应大(05)",
+      "groupCode": "05",
+      "line2025": 468,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 465,
+      "schoolName": "上海健康医学院",
+      "schoolAlias": "健康医学",
+      "schoolSlug": null,
+      "groupName": "健康医学(08)",
+      "groupCode": "08",
+      "line2025": 465,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 464,
+      "schoolName": "上海健康医学院",
+      "schoolAlias": "健康医学",
+      "schoolSlug": null,
+      "groupName": "健康医学(04)",
+      "groupCode": "04",
+      "line2025": 464,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 463,
+      "schoolName": "上海第二工业大学",
+      "schoolAlias": "二工大",
+      "schoolSlug": null,
+      "groupName": "二工大(06)",
+      "groupCode": "06",
+      "line2025": 463,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 460,
+      "schoolName": "上海商学院",
+      "schoolAlias": "上海商院",
+      "schoolSlug": null,
+      "groupName": "上海商院(02)",
+      "groupCode": "02",
+      "line2025": 460,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 460,
+      "schoolName": "上海电机学院",
+      "schoolAlias": "上海电机",
+      "schoolSlug": null,
+      "groupName": "上海电机(03)",
+      "groupCode": "03",
+      "line2025": 460,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 459,
+      "schoolName": "上海健康医学院",
+      "schoolAlias": "健康医学",
+      "schoolSlug": null,
+      "groupName": "健康医学(05)",
+      "groupCode": "05",
+      "line2025": 459,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 459,
+      "schoolName": "上海工程技术大学",
+      "schoolAlias": "上工程",
+      "schoolSlug": null,
+      "groupName": "上工程(05)",
+      "groupCode": "05",
+      "line2025": 459,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 456,
+      "schoolName": "上海第二工业大学",
+      "schoolAlias": "二工大",
+      "schoolSlug": null,
+      "groupName": "二工大(02)",
+      "groupCode": "02",
+      "line2025": 456,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 452,
+      "schoolName": "上海电机学院",
+      "schoolAlias": "上海电机",
+      "schoolSlug": null,
+      "groupName": "上海电机(06)",
+      "groupCode": "06",
+      "line2025": 452,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 451,
+      "schoolName": "上海立信会计金融学院",
+      "schoolAlias": "立信金融",
+      "schoolSlug": null,
+      "groupName": "立信金融(03)",
+      "groupCode": "03",
+      "line2025": 451,
+      "sourceImage": "image4"
+    },
+    {
+      "estimatedScore": 450,
+      "schoolName": "上海电机学院",
+      "schoolAlias": "上海电机",
+      "schoolSlug": null,
+      "groupName": "上海电机(05)",
+      "groupCode": "05",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 448,
+      "schoolName": "上海商学院",
+      "schoolAlias": "上海商院",
+      "schoolSlug": null,
+      "groupName": "上海商院(Q5)",
+      "groupCode": "Q5",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 448,
+      "schoolName": "上海师范大学天华学院",
+      "schoolAlias": "上师天华",
+      "schoolSlug": null,
+      "groupName": "上师天华(04)",
+      "groupCode": "04",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 448,
+      "schoolName": "上海立信会计金融学院",
+      "schoolAlias": "立信金融",
+      "schoolSlug": null,
+      "groupName": "立信金融(04)",
+      "groupCode": "04",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 444,
+      "schoolName": "上海应用技术大学",
+      "schoolAlias": "上应大",
+      "schoolSlug": null,
+      "groupName": "上应大(02)",
+      "groupCode": "02",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 443,
+      "schoolName": "上海商学院",
+      "schoolAlias": "上海商院",
+      "schoolSlug": null,
+      "groupName": "上海商院(03)",
+      "groupCode": "03",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 443,
+      "schoolName": "上海电机学院",
+      "schoolAlias": "上海电机",
+      "schoolSlug": null,
+      "groupName": "上海电机(02)",
+      "groupCode": "02",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 441,
+      "schoolName": "上海第二工业大学",
+      "schoolAlias": "二工大",
+      "schoolSlug": null,
+      "groupName": "二工大(03)",
+      "groupCode": "03",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 439,
+      "schoolName": "上海商学院",
+      "schoolAlias": "上海商院",
+      "schoolSlug": null,
+      "groupName": "上海商院(04)",
+      "groupCode": "04",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 439,
+      "schoolName": "上海师范大学天华学院",
+      "schoolAlias": "上师天华",
+      "schoolSlug": null,
+      "groupName": "上师天华(03)",
+      "groupCode": "03",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 438,
+      "schoolName": "上海杉达学院",
+      "schoolAlias": "上海杉达",
+      "schoolSlug": null,
+      "groupName": "上海杉达(03)",
+      "groupCode": "03",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 438,
+      "schoolName": "上海视觉艺术学院",
+      "schoolAlias": "上海视觉",
+      "schoolSlug": null,
+      "groupName": "上海视觉(02)",
+      "groupCode": "02",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 437,
+      "schoolName": "上海杉达学院",
+      "schoolAlias": "上海杉达",
+      "schoolSlug": null,
+      "groupName": "上海杉达(05)",
+      "groupCode": "05",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 435,
+      "schoolName": "上海杉达学院",
+      "schoolAlias": "上海杉达",
+      "schoolSlug": null,
+      "groupName": "上海杉达(04)",
+      "groupCode": "04",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 432,
+      "schoolName": "上海师范大学天华学院",
+      "schoolAlias": "上师天华",
+      "schoolSlug": null,
+      "groupName": "上师天华(01)",
+      "groupCode": "01",
+      "line2025": null,
+      "sourceImage": "image5"
+    },
+    {
+      "estimatedScore": 406,
+      "schoolName": "上海中侨职业技术大学",
+      "schoolAlias": "中侨大学",
+      "schoolSlug": null,
+      "groupName": "中侨大学(02)",
+      "groupCode": "02",
+      "line2025": null,
+      "sourceImage": "image6"
+    },
+    {
+      "estimatedScore": 403,
+      "schoolName": "上海中侨职业技术大学",
+      "schoolAlias": "中侨大学",
+      "schoolSlug": null,
+      "groupName": "中侨大学(01)",
+      "groupCode": "01",
+      "line2025": null,
+      "sourceImage": "image6"
+    },
+    {
+      "estimatedScore": 403,
+      "schoolName": "上海中侨职业技术大学",
+      "schoolAlias": "中侨大学",
+      "schoolSlug": null,
+      "groupName": "中侨大学(03)",
+      "groupCode": "03",
+      "line2025": null,
+      "sourceImage": "image6"
+    },
+    {
+      "estimatedScore": 403,
+      "schoolName": "上海外国语大学贤达经济人文学院",
+      "schoolAlias": "上外贤达",
+      "schoolSlug": null,
+      "groupName": "上外贤达(01)",
+      "groupCode": "01",
+      "line2025": null,
+      "sourceImage": "image6"
+    },
+    {
+      "estimatedScore": 403,
+      "schoolName": "上海外国语大学贤达经济人文学院",
+      "schoolAlias": "上外贤达",
+      "schoolSlug": null,
+      "groupName": "上外贤达(03)",
+      "groupCode": "03",
+      "line2025": null,
+      "sourceImage": "image6"
+    },
+    {
+      "estimatedScore": 403,
+      "schoolName": "上海外国语大学贤达经济人文学院",
+      "schoolAlias": "上外贤达",
+      "schoolSlug": null,
+      "groupName": "上外贤达(04)",
+      "groupCode": "04",
+      "line2025": null,
+      "sourceImage": "image6"
+    },
+    {
+      "estimatedScore": 403,
+      "schoolName": "上海立达学院",
+      "schoolAlias": "立达学院",
+      "schoolSlug": null,
+      "groupName": "立达学院(01)",
+      "groupCode": "01",
+      "line2025": null,
+      "sourceImage": "image6"
+    },
+    {
+      "estimatedScore": 403,
+      "schoolName": "上海立达学院",
+      "schoolAlias": "立达学院",
+      "schoolSlug": null,
+      "groupName": "立达学院(03)",
+      "groupCode": "03",
+      "line2025": null,
+      "sourceImage": "image6"
+    }
+  ]
+}
