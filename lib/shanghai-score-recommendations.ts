@@ -59,6 +59,7 @@ type AdmissionRecordLike = {
   score?: unknown;
   minScore?: unknown;
   scoreType?: unknown;
+  sourceTrust?: unknown;
   sourceUrl?: unknown;
   sourceLabel?: unknown;
 };
@@ -104,6 +105,7 @@ export type ShanghaiScoreRecommendationCandidate = {
   subjectRequirement: string | null;
   sourceUrl: string;
   sourceLabel: string;
+  sourceTrust: string;
   majorExamples: ShanghaiMajorExample[];
 };
 
@@ -448,6 +450,7 @@ export function recommendShanghaiGroupsByScore({
       subjectRequirement,
       sourceUrl: asString(record.sourceUrl),
       sourceLabel: asString(record.sourceLabel),
+      sourceTrust: asString(record.sourceTrust) || "official",
       majorExamples: toMajorExamples(relatedMajors, majorExampleLimit),
     });
   }

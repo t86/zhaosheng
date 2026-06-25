@@ -10,7 +10,7 @@ import {
   getShanghaiEstimatedGroupSummary,
   type ShanghaiEstimatedGroupMatch,
 } from "@/lib/shanghai-estimated-groups";
-import { shanghaiAdmissionsRecords } from "@/lib/shanghai-admissions";
+import { shanghaiAllAdmissionsRecords, shanghaiAllAdmissionsMeta } from "@/lib/shanghai-all-admissions";
 import {
   recommendShanghaiGroupsByScore,
   type ShanghaiScoreRecommendationCandidate,
@@ -61,6 +61,16 @@ function getEstimatedDiffLabel(candidate: ShanghaiEstimatedGroupMatch) {
     return `预估线低 ${Math.abs(candidate.diff)} 分`;
   }
   return "预估同分";
+}
+
+function getSourceTrustLabel(sourceTrust: string) {
+  if (sourceTrust === "official") {
+    return "官方投档线";
+  }
+  if (sourceTrust.includes("third-party")) {
+    return "第三方参考";
+  }
+  return "来源待核";
 }
 
 function EstimatedGroupPanel({ groups }: { groups: ShanghaiEstimatedGroupMatch[] }) {
@@ -137,7 +147,11 @@ function TierColumn({
             <li className={styles.groupCard} key={`${g.schoolSlug}-${g.groupCode}-${g.year}-${g.scoreType}`}>
               <div className={styles.groupTopline}>
                 <div>
-                  <Link href={`/schools/${g.schoolSlug}`}>{g.schoolName}</Link>
+                  {g.schoolSlug ? (
+                    <Link href={`/schools/${g.schoolSlug}`}>{g.schoolName}</Link>
+                  ) : (
+                    <strong className={styles.schoolNameText}>{g.schoolName}</strong>
+                  )}
                   <span className={styles.groupName}>
                     {g.groupName} · {g.groupCode}
                   </span>
@@ -150,6 +164,7 @@ function TierColumn({
                   {CURRENT_SCORE_YEAR} 位次折算到 {g.year} ≈ {g.comparisonScore} 分
                 </span>
                 <span>选科 {g.subjectRequirement ?? "待核"}</span>
+                <span>{getSourceTrustLabel(g.sourceTrust)}</span>
               </div>
               {g.majorExamples.length > 0 ? (
                 <div className={styles.majorExamples}>
@@ -168,9 +183,11 @@ function TierColumn({
               ) : (
                 <p className={styles.majorEmpty}>暂未接入该组 2025 专业层样例，需回到当年专业目录核对。</p>
               )}
-              <Link className={styles.detailLink} href={`/schools/${g.schoolSlug}`}>
-                看学校详情 →
-              </Link>
+              {g.schoolSlug ? (
+                <Link className={styles.detailLink} href={`/schools/${g.schoolSlug}`}>
+                  看学校详情 →
+                </Link>
+              ) : null}
             </li>
           ))}
         </ul>
@@ -192,7 +209,7 @@ export function ScoreLocator() {
       valid
         ? recommendShanghaiGroupsByScore({
             score: target,
-            admissionRecords: shanghaiAdmissionsRecords,
+            admissionRecords: shanghaiAllAdmissionsRecords,
             majorAdmissionRecords: shanghaiMajorAdmissionsRecords,
             options: {
               candidateLimitPerTier: CANDIDATE_LIMIT_PER_TIER,
@@ -262,6 +279,8 @@ export function ScoreLocator() {
           <p className={styles.caveat}>
             口径：上方“2026 预估专业组”来自用户提供图片资料，当前覆盖 {estimatedGroupSummary.recordCount} 条上海本地院校专业组预估线，
             只作考后初筛。下方冲/稳/保仍按 {CURRENT_SCORE_YEAR} 成绩分布换算到往年同位次等效分，再和各院校专业组最近一年投档线比较。
+            2021-2025 官方组线已扩展为上海考试院全量本科普通批数据，共 {shanghaiAllAdmissionsRecords.length} 条，覆盖
+            {shanghaiAllAdmissionsMeta.scope}。
             精确线可分冲/稳/保；“580 分及以上”属于考试院隐藏高分段精确线，只放入冲刺待核，不当作稳保结论。
             专业样例来自 2025 年专业层录取考分，正式填报还要回到当年《招生专业目录》核对完整计划、限制条件和调剂范围。
           </p>

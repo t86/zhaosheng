@@ -14,6 +14,7 @@ from pypdf import PdfReader
 ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOT / "data" / "shanghai" / "raw"
 OUT_FILE = ROOT / "data" / "shanghai-admissions.json"
+ALL_OUT_FILE = ROOT / "data" / "shanghai" / "all-admissions.json"
 SEED_FILE = ROOT / "data" / "school-seed.json"
 
 
@@ -151,6 +152,126 @@ SCHOOL_ALIASES = {
 }
 
 
+SCHOOL_DISPLAY_ALIASES = {
+    "上海财大": "上海财经大学",
+    "上海外大": "上海外国语大学",
+    "上海海关": "上海海关学院",
+    "上海海事": "上海海事大学",
+    "上海海洋": "上海海洋大学",
+    "上海中医": "上海中医药大学",
+    "上海应技大": "上海应用技术大学",
+    "上海电力": "上海电力大学",
+    "上海电机": "上海电机学院",
+    "上海立信": "上海立信会计金融学院",
+    "上海政法": "上海政法学院",
+    "上海商院": "上海商学院",
+    "上海健康": "上海健康医学院",
+    "上海师大": "上海师范大学",
+    "上海理工": "上海理工大学",
+    "华东政法": "华东政法大学",
+    "华东理工": "华东理工大学",
+    "上纽大": "上海纽约大学",
+    "上科大": "上海科技大学",
+    "上戏": "上海戏剧学院",
+    "上音": "上海音乐学院",
+    "公安学院": "上海公安学院",
+    "海军军医": "海军军医大学",
+    "北大医学": "北京大学医学部",
+    "浙大医学": "浙江大学医学院",
+    "复旦医学": "复旦大学上海医学院",
+    "交大医学": "上海交通大学医学院",
+    "哈工大": "哈尔滨工业大学",
+    "哈工威海": "哈尔滨工业大学(威海)",
+    "北师大": "北京师范大学",
+    "北师港浸大": "北京师范大学-香港浸会大学联合国际学院",
+    "北京航大": "北京航空航天大学",
+    "北京邮电": "北京邮电大学",
+    "北京交大": "北京交通大学",
+    "北京化工": "北京化工大学",
+    "北京中医": "北京中医药大学",
+    "北京林大": "北京林业大学",
+    "北京工大": "北京工业大学",
+    "中国人大": "中国人民大学",
+    "人大苏州": "中国人民大学(苏州校区)",
+    "中国科大": "中国科学技术大学",
+    "中国药大": "中国药科大学",
+    "中国政法": "中国政法大学",
+    "中国矿大": "中国矿业大学",
+    "中国传媒": "中国传媒大学",
+    "中国海洋": "中国海洋大学",
+    "中国农大": "中国农业大学",
+    "中国地大": "中国地质大学",
+    "中国石油": "中国石油大学",
+    "中央民族": "中央民族大学",
+    "中央财大": "中央财经大学",
+    "中央美院": "中央美术学院",
+    "南大": "南京大学",
+    "南师大": "南京师范大学",
+    "南京理工": "南京理工大学",
+    "南京航空": "南京航空航天大学",
+    "南京邮电": "南京邮电大学",
+    "南京医大": "南京医科大学",
+    "南京中医": "南京中医药大学",
+    "南京审计": "南京审计大学",
+    "南京财大": "南京财经大学",
+    "东华大学": "东华大学",
+    "东南大学": "东南大学",
+    "东北大学": "东北大学",
+    "东北师大": "东北师范大学",
+    "东北财大": "东北财经大学",
+    "东北林大": "东北林业大学",
+    "大连理工": "大连理工大学",
+    "大连海事": "大连海事大学",
+    "天津大学": "天津大学",
+    "天津医大": "天津医科大学",
+    "天津中医": "天津中医药大学",
+    "天津工大": "天津工业大学",
+    "天津财经": "天津财经大学",
+    "河北工大": "河北工业大学",
+    "山大威海": "山东大学(威海)",
+    "山西医大": "山西医科大学",
+    "厦门大学": "厦门大学",
+    "厦门医大": "厦门医学院",
+    "集美大学": "集美大学",
+    "福建医大": "福建医科大学",
+    "江西财大": "江西财经大学",
+    "武汉大学": "武汉大学",
+    "武汉理工": "武汉理工大学",
+    "华中科大": "华中科技大学",
+    "华中师大": "华中师范大学",
+    "华中农大": "华中农业大学",
+    "中南大学": "中南大学",
+    "中南财大": "中南财经政法大学",
+    "湖南大学": "湖南大学",
+    "湖南师大": "湖南师范大学",
+    "华南理工": "华南理工大学",
+    "华南师大": "华南师范大学",
+    "广州中医": "广州中医药大学",
+    "深圳大学": "深圳大学",
+    "南方科大": "南方科技大学",
+    "港中深": "香港中文大学(深圳)",
+    "广西大学": "广西大学",
+    "重庆大学": "重庆大学",
+    "重庆医大": "重庆医科大学",
+    "西南大学": "西南大学",
+    "西南交大": "西南交通大学",
+    "西南财大": "西南财经大学",
+    "西南政法": "西南政法大学",
+    "川大华西": "四川大学华西医学中心",
+    "四川大学": "四川大学",
+    "电子科大": "电子科技大学",
+    "西北工大": "西北工业大学",
+    "西北农林": "西北农林科技大学",
+    "西安交大": "西安交通大学",
+    "西安电子": "西安电子科技大学",
+    "西安财大": "西安财经大学",
+    "兰州大学": "兰州大学",
+    "云南大学": "云南大学",
+    "宁夏大学": "宁夏大学",
+    "新疆大学": "新疆大学",
+}
+
+
 ROW_PATTERN = re.compile(r"(\d{5}|\d{3}Q\d+)\s+([^\s\d]+?\((?:\d{2}|Q\d+)\))\s+")
 TIE_KEYS = [
     "chineseMathTotal",
@@ -241,6 +362,12 @@ def match_school_slug(base_name: str) -> str | None:
     return None
 
 
+def get_display_school_name(base_name: str, school_slug: str | None, school_names: dict[str, str]) -> str:
+    if school_slug:
+        return school_names[school_slug]
+    return SCHOOL_DISPLAY_ALIASES.get(base_name, base_name)
+
+
 def get_record_source_type(source: SourceConfig, group_code: str) -> str:
     if source.source_type != "q-group":
         return source.source_type
@@ -249,43 +376,69 @@ def get_record_source_type(source: SourceConfig, group_code: str) -> str:
     return "supplemental-group"
 
 
+def parse_min_score(score: str) -> int | None:
+    if not score:
+        return None
+    if score == "580分及以上":
+        return 580
+    if score.isdigit():
+        return int(score)
+    return None
+
+
+def to_admission_record(
+    row: dict[str, Any],
+    source: SourceConfig,
+    school_slug: str | None,
+    school_name: str,
+    base_name: str,
+) -> dict[str, Any]:
+    min_score = parse_min_score(row["score"])
+    if min_score is None:
+        raise ValueError(f"Invalid score {row['score']!r} for {source.filename} {row['groupName']}")
+    tie_breakers = (
+        dict(zip(TIE_KEYS, row["tieBreakers"], strict=False))
+        if len(row["tieBreakers"]) == len(TIE_KEYS)
+        else None
+    )
+
+    return {
+        "schoolSlug": school_slug,
+        "schoolName": school_name,
+        "schoolAlias": base_name,
+        "year": source.year,
+        "groupCode": row["groupCode"],
+        "groupName": row["groupName"],
+        "score": row["score"],
+        "minScore": min_score,
+        "scoreType": "threshold" if row["score"].endswith("分及以上") else "exact",
+        "sourceType": get_record_source_type(source, row["groupCode"]),
+        "sourceTrust": "official",
+        "sourceLabel": source.label,
+        "sourceUrl": source.url,
+        "tieBreakers": tie_breakers,
+    }
+
+
 def build_dataset() -> dict[str, Any]:
     school_names = load_seed_names()
     records: list[dict[str, Any]] = []
     covered_slugs: set[str] = set()
+    skipped_invalid_rows: list[dict[str, Any]] = []
 
     for source in SOURCES:
         path = ensure_raw_pdf(source)
         for row in extract_rows(path):
+            if parse_min_score(row["score"]) is None:
+                skipped_invalid_rows.append({"year": source.year, "filename": source.filename, **row})
+                continue
             base_name = row["groupName"].split("(")[0]
             school_slug = match_school_slug(base_name)
             if not school_slug:
                 continue
 
             covered_slugs.add(school_slug)
-            min_score = int(row["score"].replace("分及以上", "")) if row["score"] else None
-            tie_breakers = (
-                dict(zip(TIE_KEYS, row["tieBreakers"], strict=False))
-                if len(row["tieBreakers"]) == len(TIE_KEYS)
-                else None
-            )
-
-            records.append(
-                {
-                    "schoolSlug": school_slug,
-                    "schoolName": school_names[school_slug],
-                    "year": source.year,
-                    "groupCode": row["groupCode"],
-                    "groupName": row["groupName"],
-                    "score": row["score"],
-                    "minScore": min_score,
-                    "scoreType": "threshold" if row["score"].endswith("分及以上") else "exact",
-                    "sourceType": get_record_source_type(source, row["groupCode"]),
-                    "sourceLabel": source.label,
-                    "sourceUrl": source.url,
-                    "tieBreakers": tie_breakers,
-                }
-            )
+            records.append(to_admission_record(row, source, school_slug, school_names[school_slug], base_name))
 
     records.sort(
         key=lambda item: (
@@ -311,6 +464,7 @@ def build_dataset() -> dict[str, Any]:
             "region": "上海",
             "years": [2021, 2022, 2023, 2024, 2025],
             "grain": "院校专业组",
+            "sourceTrust": "official",
             "generatedAt": date.today().isoformat(),
             "notes": [
                 "当前公开口径为院校专业组投档线，不是单个本科专业最低分。",
@@ -327,9 +481,70 @@ def build_dataset() -> dict[str, Any]:
                 }
                 for source in SOURCES
             ],
+            "skippedInvalidRowCount": len(skipped_invalid_rows),
         },
         "records": records,
         "missingSchools": missing_schools,
+    }
+
+
+def build_all_dataset() -> dict[str, Any]:
+    school_names = load_seed_names()
+    records: list[dict[str, Any]] = []
+    matched_seed_slugs: set[str] = set()
+    skipped_invalid_rows: list[dict[str, Any]] = []
+
+    for source in SOURCES:
+        path = ensure_raw_pdf(source)
+        for row in extract_rows(path):
+            if parse_min_score(row["score"]) is None:
+                skipped_invalid_rows.append({"year": source.year, "filename": source.filename, **row})
+                continue
+            base_name = row["groupName"].split("(")[0]
+            school_slug = match_school_slug(base_name)
+            if school_slug:
+                matched_seed_slugs.add(school_slug)
+            school_name = get_display_school_name(base_name, school_slug, school_names)
+            records.append(to_admission_record(row, source, school_slug, school_name, base_name))
+
+    records.sort(
+        key=lambda item: (
+            -item["year"],
+            item["sourceType"] != "regular",
+            item["schoolName"],
+            item["groupCode"],
+        )
+    )
+
+    return {
+        "meta": {
+            "region": "上海",
+            "years": [2021, 2022, 2023, 2024, 2025],
+            "grain": "院校专业组",
+            "scope": "全国高校在上海招生的本科普通批次院校专业组投档线",
+            "sourceTrust": "official",
+            "generatedAt": date.today().isoformat(),
+            "notes": [
+                "本数据集来自上海市教育考试院公开 PDF，口径为上海考生本科普通批院校专业组投档线。",
+                "schoolSlug 仅对站内已有重点学校填写；没有站内详情页的学校保留 schoolName 和原始 groupName。",
+                "580分及以上表示考试院只公开阈值，没有进一步披露精确分数。",
+                "第三方预测资料不写入本官方数据集，需使用独立 sourceTrust 或 sourceType 标注。",
+            ],
+            "sources": [
+                {
+                    "year": source.year,
+                    "filename": source.filename,
+                    "label": source.label,
+                    "url": source.url,
+                    "sourceType": source.source_type,
+                }
+                for source in SOURCES
+            ],
+            "matchedSeedSchoolCount": len(matched_seed_slugs),
+            "skippedInvalidRowCount": len(skipped_invalid_rows),
+            "skippedInvalidRows": skipped_invalid_rows,
+        },
+        "records": records,
     }
 
 
@@ -339,8 +554,14 @@ def main() -> None:
         json.dumps(dataset, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
+    all_dataset = build_all_dataset()
+    ALL_OUT_FILE.write_text(
+        json.dumps(all_dataset, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     print(f"Wrote {len(dataset['records'])} records to {OUT_FILE}")
     print(f"Missing schools: {len(dataset['missingSchools'])}")
+    print(f"Wrote {len(all_dataset['records'])} records to {ALL_OUT_FILE}")
 
 
 if __name__ == "__main__":

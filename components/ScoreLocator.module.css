@@ -261,6 +261,11 @@
   color: var(--accent-deep);
 }
 
+.schoolNameText {
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+
 .groupName {
   color: var(--muted);
 }

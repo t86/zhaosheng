@@ -18,6 +18,7 @@ import {
   shanghaiAdmissionsMeta,
   shanghaiAdmissionsMissingSchools,
 } from "@/lib/shanghai-admissions";
+import { getShanghaiAllAdmissionsCoverage, shanghaiAllAdmissionsMeta } from "@/lib/shanghai-all-admissions";
 import type { Metadata } from "next";
 import styles from "./page.module.css";
 
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
 
 export default function ShanghaiAdmissionsPage() {
   const coverage = getShanghaiAdmissionsCoverage();
+  const allCoverage = getShanghaiAllAdmissionsCoverage();
   const highValueDataStatus = getShanghaiHighValueDataStatus();
   const highValueImportManifest = getShanghaiHighValueImportManifest();
   const majorAdmissionSummary = getShanghaiMajorAdmissionSummary();
@@ -80,20 +82,24 @@ export default function ShanghaiAdmissionsPage() {
           </div>
           <div className={styles.statCard}>
             <span>投档线范围</span>
-            <strong>{coverage.years[0]}-{coverage.years.at(-1)}</strong>
+            <strong>{allCoverage.years[0]}-{allCoverage.years.at(-1)}</strong>
           </div>
           <div className={styles.statCard}>
-            <span>投档线记录</span>
-            <strong>{coverage.totalRecords}</strong>
+            <span>官方组线记录</span>
+            <strong>{allCoverage.totalRecords}</strong>
           </div>
           <div className={styles.statCard}>
             <span>投档线口径</span>
-            <strong>{shanghaiAdmissionsMeta.grain}</strong>
+            <strong>{shanghaiAllAdmissionsMeta.grain}</strong>
           </div>
         </div>
 
         <div className={styles.noteCard}>
           <p>2026 上海成绩分布表已进入“位次 / 等效分换算”：例如 572 分对应全市累计约 4,460 名。</p>
+          <p>
+            2021-2025 上海考试院本科普通批全量组线已进入“填分数”匹配区，当前覆盖 {allCoverage.schoolCount} 个学校名称、
+            {allCoverage.totalRecords} 条院校专业组记录。
+          </p>
           <p>2026 预估专业组线已单独进入“填分数”匹配区；正式 2026 投档线公布后，再按考试院原始 PDF 补入官方表格。</p>
           {shanghaiAdmissionsMeta.notes.map((note) => (
             <p key={note}>{note}</p>
@@ -107,7 +113,8 @@ export default function ShanghaiAdmissionsPage() {
             <h2>先查 2026 位次，再看近 5 年组线</h2>
           </div>
           <p>
-            输入分数后先看 2026 全市位次和跨年等效分；下方学校表仍是 2021-2025 投档线，Q组与考试院单独公布的组别也一并列入。
+            输入分数后先看 2026 全市位次和跨年等效分；填分数区使用 2021-2025 全量官方组线匹配全国高校在上海招生的专业组，
+            下方学校表继续聚焦重点学校，Q组与考试院单独公布的组别也一并列入。
           </p>
         </div>
 
