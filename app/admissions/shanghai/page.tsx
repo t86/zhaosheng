@@ -8,6 +8,12 @@ import {
   getShanghaiMajorAdmissionPreviewRecords,
   getShanghaiMajorAdmissionSummary,
 } from "@/data/shanghai-major-admissions";
+import {
+  getShanghaiComprehensiveEvaluationSummary,
+  shanghaiComprehensiveEvaluationRows,
+  shanghaiComprehensiveEvaluationSource,
+  shanghaiComprehensiveEvaluationUniversities,
+} from "@/data/shanghai-comprehensive-evaluation";
 import { getShanghaiHighValueDataStatus } from "@/lib/shanghai-high-value-data";
 import { getShanghaiHighValueImportManifest } from "@/lib/shanghai-high-value-imports";
 import { getShanghaiFocusAdmissions } from "@/lib/shanghai-focus";
@@ -35,6 +41,7 @@ export default function ShanghaiAdmissionsPage() {
   const highValueImportManifest = getShanghaiHighValueImportManifest();
   const majorAdmissionSummary = getShanghaiMajorAdmissionSummary();
   const majorAdmissionPreviewRecords = getShanghaiMajorAdmissionPreviewRecords(10);
+  const comprehensiveEvaluationSummary = getShanghaiComprehensiveEvaluationSummary();
   const focusSchools = getShanghaiFocusAdmissions().map((item) => ({
     ...item,
     school: item.schoolSlug ? schoolsBySlug.get(item.schoolSlug) : undefined,
@@ -140,6 +147,97 @@ export default function ShanghaiAdmissionsPage() {
           <p className={styles.note}>
             调剂只在被投档的这个组内进行：组内 4 个专业没录上又不服从，会被退档；服从则可能被调到组内任意专业。
           </p>
+        </div>
+      </section>
+
+      <section className={styles.section} id="comprehensive-evaluation">
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>2026 综评录取高中统计</h2>
+          </div>
+          <p>
+            先录入用户提供的闵行区样表，用来看不同高中在复旦、交大、同济等综合评价批次里的出口结构。
+            数据为第三方图片转录，后续拿到其它区或可核验名单后继续补。
+          </p>
+        </div>
+
+        <div className={styles.compEvalStats}>
+          <div>
+            <span>已录入区县</span>
+            <strong>{comprehensiveEvaluationSummary.districtCount}</strong>
+          </div>
+          <div>
+            <span>高中校</span>
+            <strong>{comprehensiveEvaluationSummary.highSchoolCount}</strong>
+          </div>
+          <div>
+            <span>录取合计</span>
+            <strong>{comprehensiveEvaluationSummary.totalAdmissions}</strong>
+          </div>
+          <div>
+            <span>来源口径</span>
+            <strong>第三方参考</strong>
+          </div>
+        </div>
+
+        <div className={styles.compEvalLayout}>
+          <article className={styles.compEvalNote}>
+            <span>{shanghaiComprehensiveEvaluationSource.year} · {shanghaiComprehensiveEvaluationSource.sourceLabel}</span>
+            <h3>闵行区已结构化</h3>
+            <p>{shanghaiComprehensiveEvaluationSource.note}</p>
+            <div className={styles.compEvalTopSchools}>
+              {comprehensiveEvaluationSummary.topSchools.map((school) => (
+                <div key={school.highSchool}>
+                  <strong>{school.highSchool}</strong>
+                  <span>
+                    {school.district} · {school.total} 人
+                  </span>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <div className={styles.compEvalUniversityTotals}>
+            {comprehensiveEvaluationSummary.universityTotals.map((university) => (
+              <div key={university.key}>
+                <span>{university.label}</span>
+                <strong>{university.total}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.tableWrap}>
+          <table className={styles.compEvalTable}>
+            <thead>
+              <tr>
+                <th>区</th>
+                <th>高中校</th>
+                {shanghaiComprehensiveEvaluationUniversities.map((university) => (
+                  <th key={university.key}>{university.label}</th>
+                ))}
+                <th>总计</th>
+              </tr>
+            </thead>
+            <tbody>
+              {shanghaiComprehensiveEvaluationRows.map((row) => (
+                <tr key={`${row.district}-${row.highSchool}`}>
+                  <td>{row.district}</td>
+                  <td>
+                    <strong>{row.highSchool}</strong>
+                  </td>
+                  {shanghaiComprehensiveEvaluationUniversities.map((university) => (
+                    <td key={`${row.highSchool}-${university.key}`}>
+                      {row.counts[university.key] > 0 ? row.counts[university.key] : ""}
+                    </td>
+                  ))}
+                  <td>
+                    <strong>{row.total}</strong>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
