@@ -14,6 +14,12 @@ import {
   type QiangjiDisciplineRating,
   type QiangjiShanghaiSchool,
 } from "@/data/qiangji-shanghai-2026";
+import {
+  getShanghaiZongpingInterviewTimelineSummary,
+  shanghaiZongpingInterviewTimeline,
+  shanghaiZongpingInterviewTimelineMeta,
+  type ZongpingInterviewSourceTrust,
+} from "@/data/shanghai-zongping-interview-timeline";
 import styles from "./page.module.css";
 
 const shanghaiQiangjiSchools = qiangjiShanghai2026.schools as readonly QiangjiShanghaiSchool[];
@@ -260,6 +266,75 @@ function DisciplineRatingTable() {
   );
 }
 
+function getZongpingSourceTrustLabel(sourceTrust: ZongpingInterviewSourceTrust) {
+  switch (sourceTrust) {
+    case "official":
+      return "官网";
+    case "official-dynamic":
+      return "官网动态";
+    case "official-reposted":
+      return "高校信息转引";
+    default:
+      return "来源";
+  }
+}
+
+function ZongpingInterviewTimelineTable() {
+  return (
+    <div className={styles.tableShell}>
+      <table className={`${styles.cutoffTable} ${styles.zongpingTimelineTable}`}>
+        <thead>
+          <tr>
+            <th>学校</th>
+            <th>校测日期</th>
+            <th>时间 / 报到</th>
+            <th>地点</th>
+            <th>形式</th>
+            <th>准考证 / 提醒</th>
+            <th>来源</th>
+          </tr>
+        </thead>
+        <tbody>
+          {shanghaiZongpingInterviewTimeline.map((entry) => (
+            <tr key={entry.school}>
+              <th>
+                {entry.school}
+                {entry.includes ? <span className={styles.timelineSubText}>{entry.includes}</span> : null}
+              </th>
+              <td>
+                <strong className={styles.timelineDateText}>{entry.dateLabel}</strong>
+              </td>
+              <td>
+                <strong>{entry.timeLabel}</strong>
+                <span className={styles.timelineSubText}>{entry.reportLabel}</span>
+              </td>
+              <td>{entry.location}</td>
+              <td>{entry.format}</td>
+              <td>
+                <span>{entry.admitTicket}</span>
+                <span className={styles.timelineSubText}>{entry.keyReminder}</span>
+              </td>
+              <td>
+                <div className={styles.timelineSourceStack}>
+                  <span className={styles.timelineTrustBadge}>{getZongpingSourceTrustLabel(entry.sourceTrust)}</span>
+                  <a href={entry.sourceUrl} target="_blank" rel="noreferrer">
+                    {entry.sourceLabel}
+                  </a>
+                  {entry.secondarySourceUrl ? (
+                    <a href={entry.secondarySourceUrl} target="_blank" rel="noreferrer">
+                      {entry.secondarySourceLabel ?? "补充来源"}
+                    </a>
+                  ) : null}
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 function ModeCard({ mode }: { mode: SchoolMode }) {
   return (
     <article className={`${styles.modeCard} ${getToneClassName(mode.tone)}`}>
@@ -344,6 +419,7 @@ function TimelineCase({ item }: { item: GuideTimelineCase }) {
 
 export default function SelectionPage() {
   const { hero, decisionPanels, actionPanels, qiangji, zongping } = selectionGuide;
+  const zongpingInterviewSummary = getShanghaiZongpingInterviewTimelineSummary();
 
   return (
     <main className={styles.page}>
@@ -683,6 +759,47 @@ export default function SelectionPage() {
           {zongping.interviewImportance.map((panel) => (
             <BulletCard key={panel.title} panel={panel} />
           ))}
+        </div>
+
+        <div className={styles.sectionHeaderCompact} id="zongping-interview-timeline">
+          <div>
+            <span className={styles.sectionKicker}>2026 校测时间线</span>
+            <h3>上海综评各校面试集中在 7月6日-7日</h3>
+            <p>
+              {shanghaiZongpingInterviewTimelineMeta.summary}
+              表格优先采用学校官网；动态页不便直接抓取或由第三方完整转录的，已在来源列单独标注。
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.zongpingTimelineStats}>
+          <article>
+            <span>覆盖学校</span>
+            <strong>{zongpingInterviewSummary.schoolCount}</strong>
+          </article>
+          <article>
+            <span>时间范围</span>
+            <strong>7/6-7/7</strong>
+          </article>
+          <article>
+            <span>官网直接确认</span>
+            <strong>{zongpingInterviewSummary.officialCount}</strong>
+          </article>
+          <article>
+            <span>来源已标注</span>
+            <strong>{zongpingInterviewSummary.sourceCheckedCount}</strong>
+          </article>
+        </div>
+
+        <ZongpingInterviewTimelineTable />
+
+        <div className={styles.noteCard}>
+          <strong>读表提醒</strong>
+          <ul className={styles.bulletList}>
+            <li>{shanghaiZongpingInterviewTimelineMeta.commonReminder}</li>
+            <li>同一天可能有多校面试，真正能不能参加要看准考证上的具体时段、校区和入场要求。</li>
+            <li>复旦、交大等 7月6日-7日跨两天安排的学校，不能简单理解为考生任选一天。</li>
+          </ul>
         </div>
       </section>
 
