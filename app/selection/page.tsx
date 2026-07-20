@@ -20,6 +20,7 @@ import {
   shanghaiZongpingInterviewTimelineMeta,
   type ZongpingInterviewSourceTrust,
 } from "@/data/shanghai-zongping-interview-timeline";
+import { ZongpingCutoffTable } from "./ZongpingCutoffTable";
 import styles from "./page.module.css";
 
 const shanghaiQiangjiSchools = qiangjiShanghai2026.schools as readonly QiangjiShanghaiSchool[];
@@ -845,26 +846,7 @@ export default function SelectionPage() {
           </div>
         </div>
 
-        <div className={styles.tableShell}>
-          <table className={styles.cutoffTable}>
-            <thead>
-              <tr>
-                {zongping.cutoffTable.columns.map((column) => (
-                  <th key={column.key}>{column.label}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {zongping.cutoffTable.rows.map((row) => (
-                <tr key={`${row.school}-${row.group}`}>
-                  {zongping.cutoffTable.columns.map((column) => (
-                    <td key={`${row.school}-${row.group}-${column.key}`}>{row[column.key] || "-"}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ZongpingCutoffTable table={zongping.cutoffTable} />
 
         <div className={styles.noteCard}>
           <strong>数据备注</strong>

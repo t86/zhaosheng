@@ -939,6 +939,157 @@
   color: var(--text);
 }
 
+.groupDetailButton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(22, 50, 79, 0.08);
+  color: var(--accent-deep);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.groupDetailButton:hover,
+.groupDetailButton:focus-visible {
+  background: rgba(22, 50, 79, 0.14);
+  outline: 2px solid rgba(22, 50, 79, 0.24);
+  outline-offset: 2px;
+}
+
+.groupDetailButton small {
+  border-radius: 999px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.dialogBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(11, 23, 38, 0.52);
+}
+
+.groupDialog {
+  width: min(760px, 100%);
+  max-height: min(760px, calc(100vh - 44px));
+  overflow: auto;
+  border: 1px solid rgba(22, 50, 79, 0.14);
+  border-radius: 18px;
+  padding: 24px;
+  background: #fffaf1;
+  box-shadow: 0 24px 70px rgba(11, 23, 38, 0.28);
+}
+
+.dialogHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.dialogHeader span {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.dialogHeader h3 {
+  margin-top: 6px;
+  font-size: 28px;
+}
+
+.dialogCloseButton {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(22, 50, 79, 0.14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--accent-deep);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dialogCloseButton:hover,
+.dialogCloseButton:focus-visible {
+  background: rgba(22, 50, 79, 0.08);
+  outline: 2px solid rgba(22, 50, 79, 0.24);
+  outline-offset: 2px;
+}
+
+.dialogDescription {
+  margin-top: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.dialogMetaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.dialogMetaGrid div {
+  border: 1px solid rgba(22, 50, 79, 0.08);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.dialogMetaGrid dt {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dialogMetaGrid dd {
+  margin-top: 6px;
+  color: var(--text);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.majorListBlock {
+  margin-top: 20px;
+}
+
+.majorListBlock strong {
+  color: var(--accent-deep);
+}
+
+.majorListBlock ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.majorListBlock li {
+  border: 1px solid rgba(22, 50, 79, 0.1);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text);
+  line-height: 1.45;
+}
+
 .toneWarm {
   background: linear-gradient(180deg, rgba(255, 242, 219, 0.98), rgba(248, 232, 198, 0.92));
   color: #7d3308;
@@ -989,6 +1140,25 @@
   .modeHeader {
     flex-direction: column;
     align-items: start;
+  }
+
+  .dialogBackdrop {
+    align-items: end;
+    padding: 12px;
+  }
+
+  .groupDialog {
+    max-height: calc(100vh - 24px);
+    border-radius: 18px 18px 10px 10px;
+    padding: 20px;
+  }
+
+  .dialogHeader h3 {
+    font-size: 24px;
+  }
+
+  .dialogMetaGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .statGrid,

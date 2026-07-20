@@ -130,17 +130,31 @@ test("imports 2026 Shanghai strong foundation spreadsheet data into selection pa
 test("uses 2026 Shanghai comprehensive evaluation cutoff lines", () => {
   const { cutoffTable } = selectionGuide.zongping;
   const byGroup = new Map(cutoffTable.rows.map((row) => [row.group, row]));
+  const selectionPageSource = readFileSync(new URL("../app/selection/page.tsx", import.meta.url), "utf8");
+  const dialogComponentSource = readFileSync(
+    new URL("../app/selection/ZongpingCutoffTable.tsx", import.meta.url),
+    "utf8",
+  );
 
   assert.equal(cutoffTable.year, 2026);
   assert.equal(byGroup.get("复旦大学(01)")?.cutoff, "583");
   assert.equal(byGroup.get("上海交大(01)")?.cutoff, "612");
+  assert.ok(byGroup.get("上海交大(01)")?.majors.includes("人工智能(拔尖英才试点班)"));
+  assert.ok(byGroup.get("上海交大(02)")?.majors.some((item) => item.includes("工科试验班类")));
+  assert.ok(byGroup.get("交大医学(01)")?.majors.some((item) => item.includes("临床医学")));
   assert.equal(byGroup.get("上海财大(01)")?.cutoff, "569");
   assert.equal(byGroup.get("上海财大(02)")?.cutoff, "570");
   assert.equal(byGroup.get("上海财大(03)")?.cutoff, "573");
+  assert.ok(byGroup.get("上海财大(03)")?.majors.includes("统计学类"));
   assert.equal(byGroup.get("上海外大(01)")?.cutoff, "560");
   assert.equal(byGroup.get("上海外大(02)")?.cutoff, "560");
   assert.equal(byGroup.get("上海外大(03)")?.cutoff, "561");
   assert.equal(byGroup.get("浙江大学(01)")?.cutoff, "未公布");
+  assert.ok(cutoffTable.rows.every((row) => row.majors.length > 0));
+  assert.ok(cutoffTable.rows.every((row) => row.detailNote.length > 0));
   assert.match(cutoffTable.notes.join(" "), /上海考试院/);
   assert.match(cutoffTable.notes.join(" "), /第三方汇总/);
+  assert.match(selectionPageSource, /ZongpingCutoffTable/);
+  assert.match(dialogComponentSource, /role="dialog"/);
+  assert.match(dialogComponentSource, /看专业/);
 });
