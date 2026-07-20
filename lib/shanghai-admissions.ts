@@ -84,3 +84,15 @@ export function getShanghaiAdmissionsCoverage() {
     years: shanghaiAdmissionsMeta.years,
   };
 }
+
+export function getShanghaiAdmissionsYearCoverage(year: number) {
+  const records = shanghaiAdmissionsRecords.filter((record) => record.year === year);
+  return {
+    year,
+    totalRecords: records.length,
+    coveredSchoolCount: new Set(records.map((record) => record.schoolSlug)).size,
+    regularCount: records.filter((record) => record.sourceType === "regular").length,
+    qGroupCount: records.filter((record) => record.sourceType === "q-group").length,
+    supplementalGroupCount: records.filter((record) => record.sourceType === "supplemental-group").length,
+  };
+}

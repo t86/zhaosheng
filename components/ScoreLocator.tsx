@@ -82,14 +82,14 @@ function EstimatedGroupPanel({ groups }: { groups: ShanghaiEstimatedGroupMatch[]
     <section className={styles.estimatePanel} aria-label="2026预估专业组匹配">
       <div className={styles.estimateHead}>
         <div>
-          <span className={styles.estimateEyebrow}>新增 · 2026 预估</span>
-          <h4>按你填的分数直接命中的院校专业组</h4>
+          <span className={styles.estimateEyebrow}>补充 · 第三方预估</span>
+          <h4>同分附近的预估专业组查漏</h4>
         </div>
         <span className={styles.estimateCount}>{groups.length} 个附近专业组</span>
       </div>
       <p className={styles.estimateNote}>
-        这组来自用户提供图片资料的第三方预估表，当前先录入上海本地院校专业组列。它适合快速定位同分/附近分组，
-        正式填报仍以考试院 2026 投档结果和招生专业目录为准。
+        2026 官方普通批投档线已接入上方冲/稳/保清单；这组来自用户提供图片资料的第三方预估表，只用于同分附近回看和查漏，
+        不替代考试院投档线和招生专业目录。
       </p>
       <ul className={styles.estimateList}>
         {groups.map((group) => {
@@ -270,18 +270,19 @@ export function ScoreLocator() {
 
       {result ? (
         <>
-          <EstimatedGroupPanel groups={estimatedGroups} />
           <div className={styles.grid}>
             <TierColumn tier="reach" groups={result.reach} totalCount={result.totalCounts.reach} />
             <TierColumn tier="match" groups={result.match} totalCount={result.totalCounts.match} />
             <TierColumn tier="safe" groups={result.safe} totalCount={result.totalCounts.safe} />
           </div>
+          <EstimatedGroupPanel groups={estimatedGroups} />
           <p className={styles.caveat}>
-            口径：上方“2026 预估专业组”来自用户提供图片资料，当前覆盖 {estimatedGroupSummary.recordCount} 条上海本地院校专业组预估线，
-            只作考后初筛。下方冲/稳/保仍按 {CURRENT_SCORE_YEAR} 成绩分布换算到往年同位次等效分，再和各院校专业组最近一年投档线比较。
-            2021-2025 官方组线已扩展为上海考试院全量本科普通批数据，共 {shanghaiAllAdmissionsRecords.length} 条，覆盖
+            口径：上方冲/稳/保优先使用上海考试院 2026 官方普通批投档线；比较历史年份时，按 {CURRENT_SCORE_YEAR}
+            成绩分布换算到同位次等效分，再和各院校专业组最近一年投档线比较。2021-2026 官方组线已扩展为上海考试院全量本科普通批数据，
+            共 {shanghaiAllAdmissionsRecords.length} 条，覆盖
             {shanghaiAllAdmissionsMeta.scope}。
-            精确线可分冲/稳/保；“580 分及以上”属于考试院隐藏高分段精确线，只放入冲刺待核，不当作稳保结论。
+            精确线可分冲/稳/保；“580 分及以上”属于考试院隐藏高分段，只在考生等效分达到 580 后放入冲刺待核，不当作稳保结论。
+            下方“第三方预估”来自用户提供图片资料，当前覆盖 {estimatedGroupSummary.recordCount} 条上海本地院校专业组预估线，只作查漏。
             专业样例来自 2025 年专业层录取考分，正式填报还要回到当年《招生专业目录》核对完整计划、限制条件和调剂范围。
           </p>
         </>

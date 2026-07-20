@@ -98,6 +98,20 @@ SOURCES = [
         url="https://www.shmeea.edu.cn/download/20250719/185.pdf",
         source_type="q-group",
     ),
+    SourceConfig(
+        filename="2026.pdf",
+        year=2026,
+        label="上海市2026年普通高校招生本科普通批次院校专业组投档分数线",
+        url="https://cdn.shmeea.edu.cn/resource/upload/www/20260706/53767.pdf",
+        source_type="regular",
+    ),
+    SourceConfig(
+        filename="2026-q.pdf",
+        year=2026,
+        label="上海市2026年普通高校招生本科普通批次院校Q组及部分中外合作办学等院校专业组投档分数线",
+        url="https://cdn.shmeea.edu.cn/resource/upload/www/20260706/1635.pdf",
+        source_type="q-group",
+    ),
 ]
 
 
@@ -453,7 +467,7 @@ def build_dataset() -> dict[str, Any]:
         {
             "schoolSlug": slug,
             "schoolName": school_names[slug],
-            "note": "2021-2025 年上海市教育考试院公开的本科普通批次平行志愿表中未检出该校记录。",
+            "note": "2021-2026 年上海市教育考试院公开的本科普通批次平行志愿表中未检出该校记录。",
         }
         for slug in school_names
         if slug not in covered_slugs
@@ -462,7 +476,7 @@ def build_dataset() -> dict[str, Any]:
     return {
         "meta": {
             "region": "上海",
-            "years": [2021, 2022, 2023, 2024, 2025],
+            "years": [2021, 2022, 2023, 2024, 2025, 2026],
             "grain": "院校专业组",
             "sourceTrust": "official",
             "generatedAt": date.today().isoformat(),
@@ -519,7 +533,7 @@ def build_all_dataset() -> dict[str, Any]:
     return {
         "meta": {
             "region": "上海",
-            "years": [2021, 2022, 2023, 2024, 2025],
+            "years": [2021, 2022, 2023, 2024, 2025, 2026],
             "grain": "院校专业组",
             "scope": "全国高校在上海招生的本科普通批次院校专业组投档线",
             "sourceTrust": "official",

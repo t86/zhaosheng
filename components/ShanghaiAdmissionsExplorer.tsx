@@ -229,7 +229,7 @@ export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
               <div>
                 <h3>{summary.school.name}</h3>
                 <p>
-                  {summary.school.city} · {summary.school.schoolType} · 最近 5 年官方公开组线{" "}
+                  {summary.school.city} · {summary.school.schoolType} · 2021-2026 官方公开组线{" "}
                   {summary.records.length} 条
                 </p>
               </div>
@@ -324,7 +324,7 @@ export function ShanghaiAdmissionsExplorer({ summaries, years }: Props) {
             ) : (
               <p className={styles.empty}>
                 {summary.records.length === 0
-                  ? "2021-2025 年上海市教育考试院公开的本科普通批次平行志愿表中，当前没有检出这所学校的匹配记录。"
+                  ? "2021-2026 年上海市教育考试院公开的本科普通批次平行志愿表中，当前没有检出这所学校的匹配记录。"
                   : "当前筛选条件下没有命中记录。该校如果确实在本页列表中，先尝试切回“全部年份”。"}
               </p>
             )}

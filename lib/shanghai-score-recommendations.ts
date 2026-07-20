@@ -185,7 +185,7 @@ function classifyDiff(diff: number): ShanghaiScoreRecommendationTier | null {
 
 function classifyRecord(scoreType: ShanghaiScoreRecommendationScoreType, diff: number): ShanghaiScoreRecommendationTier | null {
   if (scoreType === "threshold") {
-    return diff <= SHANGHAI_RECOMMENDATION_WINDOWS.reachMax ? "reach" : null;
+    return diff <= 0 ? "reach" : null;
   }
   return classifyDiff(diff);
 }

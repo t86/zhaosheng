@@ -412,7 +412,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
         <section className={styles.section}>
           <div className={styles.majorHeader}>
             <div>
-              <h2>上海 2021-2025 官方公开线与专业考分</h2>
+              <h2>上海 2021-2026 官方公开线与专业考分</h2>
               <p className={styles.majorLead}>
                 这里把学校官网公开线和上海市教育考试院专业组线拆开显示。它们都是真实口径，但粒度不同，不能直接当成“单个专业最低分”。
               </p>

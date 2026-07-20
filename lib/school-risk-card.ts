@@ -182,7 +182,7 @@ export function buildSchoolRiskCard(input: SchoolRiskCardInput): SchoolRiskCard 
   if ((insight?.exactRecordCount ?? 0) > 0) {
     pushEvidence(evidences, {
       title: "上海考试院已公开院校专业组线",
-      detail: `近 5 年已经能直接看到上海考试院公开的院校专业组线，适合先做学校池筛选和年份对照，但仍不能把它直接当成单个本科专业最低分。`,
+      detail: `2021-2026 年已经能直接看到上海考试院公开的院校专业组线，适合先做学校池筛选和年份对照，但仍不能把它直接当成单个本科专业最低分。`,
       tone: "teal",
       source: buildRecordSource(
         input.shanghaiRecords,

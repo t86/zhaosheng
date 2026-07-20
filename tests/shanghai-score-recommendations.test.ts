@@ -72,7 +72,7 @@ test("filters candidates by subject requirement when requested", () => {
   assert.ok(!allCandidates.some((candidate) => candidate.schoolName === "东南大学" && candidate.groupCode === "42201"));
 });
 
-test("uses 2026 rank equivalence instead of raw score when comparing historical exact lines", () => {
+test("uses 2026 official lines directly while still exposing historical equivalent scores", () => {
   const result = recommendFor2026(588, { candidateLimitPerTier: 200 });
   const allCandidates = [...result.reach, ...result.match, ...result.safe];
   const beihang = allCandidates.find(
@@ -86,7 +86,8 @@ test("uses 2026 rank equivalence instead of raw score when comparing historical 
   assert.equal(result.targetRank, 1786);
   assert.deepEqual(result.equivalentScores.find((item) => item.year === 2025), { year: 2025, score: 595 });
   assert.ok(beihang);
-  assert.equal(beihang.comparisonScore, 595);
+  assert.equal(beihang.year, 2026);
+  assert.equal(beihang.comparisonScore, 588);
   assert.equal(beihang.diff, -16);
   assert.equal(beihang.tier, "safe");
 });
@@ -102,6 +103,18 @@ test("surfaces 580-plus elite Shanghai groups as high-score reach candidates tha
   assert.equal(sjtu.scoreType, "threshold");
   assert.equal(fudan.scoreLabel, "580分及以上");
   assert.equal(sjtu.scoreLabel, "580分及以上");
-  assert.equal(fudan.comparisonScore, 595);
-  assert.equal(sjtu.comparisonScore, 595);
+  assert.equal(fudan.comparisonScore, 588);
+  assert.equal(sjtu.comparisonScore, 588);
+});
+
+test("does not show hidden 580-plus elite groups below the public threshold", () => {
+  const result = recommendFor2026(572, { candidateLimitPerTier: 200 });
+  const allCandidates = [...result.reach, ...result.match, ...result.safe];
+
+  assert.ok(!allCandidates.some((candidate) => candidate.schoolName === "复旦大学" && candidate.scoreType === "threshold"));
+  assert.ok(
+    !allCandidates.some(
+      (candidate) => candidate.schoolName === "上海交通大学" && candidate.scoreType === "threshold",
+    ),
+  );
 });

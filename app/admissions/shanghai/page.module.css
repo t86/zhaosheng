@@ -639,6 +639,122 @@
   color: var(--text);
 }
 
+.batchLineStats {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.batchLineStats div {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.batchLineStats span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.batchLineStats strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--accent-deep);
+  font-size: 26px;
+}
+
+.batchLineGrid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.batchLineCard {
+  padding: 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.batchLineCard[data-tone="official-lines"] {
+  border-top: 4px solid #178462;
+}
+
+.batchLineCard[data-tone="official-status"] {
+  border-top: 4px solid #1f5f8b;
+}
+
+.batchLineCard[data-tone="third-party-reference"] {
+  border-top: 4px solid #b56b1b;
+}
+
+.batchLineTopline {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.batchLineTopline span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.batchLineTopline strong {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(22, 50, 79, 0.08);
+  color: var(--accent-deep);
+  font-size: 12px;
+}
+
+.batchLineType {
+  margin-top: 12px;
+  color: var(--text);
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.batchLineSummary {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.batchLineFacts {
+  margin: 14px 0 0;
+  padding-left: 18px;
+  color: rgba(21, 23, 28, 0.78);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.batchLineSources {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+}
+
+.batchLineSources a {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.batchLineSources a[data-trust="third-party"] {
+  color: #9a5a12;
+}
+
 .dataStatusCard a {
   display: inline-flex;
   margin-top: 14px;
@@ -811,6 +927,8 @@
   .resourceGrid,
   .dataStatusGrid,
   .compEvalStats,
+  .batchLineStats,
+  .batchLineGrid,
   .stats,
   .missingRow,
   .sourceGrid {
@@ -839,6 +957,8 @@
   .resourceGrid,
   .dataStatusGrid,
   .compEvalStats,
+  .batchLineStats,
+  .batchLineGrid,
   .stats,
   .missingRow,
   .sourceGrid {

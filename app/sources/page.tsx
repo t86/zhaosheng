@@ -159,7 +159,7 @@ export default function SourcesPage() {
       </section>
 
       <section className={styles.section}>
-        <h2>上海 2021-2025 官方投档线来源</h2>
+        <h2>上海 2021-2026 官方投档线来源</h2>
         <div className={styles.sourceGrid}>
           {shanghaiAdmissionsMeta.sources.map((source) => (
             <div className={styles.sourceCard} key={source.filename}>
@@ -218,7 +218,7 @@ export default function SourcesPage() {
         <h2>各数据板块整理截止时间</h2>
         <ol className={styles.list}>
           <li>985 主表、专业档案、公开报告快照：以各板块页面标注为准。</li>
-          <li>上海 2021-2025 官方投档线：以各原始 PDF 公布年份为准，详见上方来源回链。</li>
+          <li>上海 2021-2026 官方投档线：以各原始 PDF 公布年份为准，详见上方来源回链。</li>
           <li>强基计划数据：整理截至 2026-04-15（以强基·综评页标注为准）。</li>
           <li>综合评价数据：整理截至 2026-04-15（以强基·综评页标注为准）。</li>
           <li>时间线专题（春考、外语一考、小三门等级考等）：以各时间线页面标注为准。</li>

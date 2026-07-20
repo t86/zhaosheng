@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const entries = [
   { href: "/", label: "首页", hint: "先判断路径，再下钻学校" },
-  { href: "/admissions/shanghai", label: "查分数", hint: "上海近 5 年院校专业组线" },
+  { href: "/admissions/shanghai", label: "查分数", hint: "上海 2021-2026 院校专业组线" },
   { href: "/selection", label: "强基·综评", hint: "两条特殊招生路径判断" },
   { href: "/timeline", label: "时间线", hint: "高三下春考到录取节奏" },
   { href: "/schools", label: "学校库", hint: "39 所 985 学校索引" },

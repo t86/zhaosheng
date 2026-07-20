@@ -71,9 +71,9 @@ test("rank converter copy and comments reflect the 2021-2026 per-score source se
   assert.match(scoreRankSource, /2021-2026 均为逐分/);
 });
 
-test("Shanghai admissions page separates 2026 rank data from 2021-2025 admission lines", () => {
+test("Shanghai admissions page uses 2026 rank data and 2021-2026 admission lines", () => {
   assert.match(shanghaiAdmissionsPageSource, /2026 成绩分布/);
   assert.match(shanghaiAdmissionsPageSource, /位次表已录入/);
-  assert.match(shanghaiAdmissionsPageSource, /2021-2025 投档线/);
-  assert.match(shanghaiAdmissionsPageSource, /2026 院校专业组投档线/);
+  assert.match(shanghaiAdmissionsPageSource, /2021-2026 官方普通批投档线/);
+  assert.match(shanghaiAdmissionsPageSource, /2026 官方普通批已结构化/);
 });

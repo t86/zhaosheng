@@ -14,6 +14,10 @@ import {
   shanghaiComprehensiveEvaluationSource,
   shanghaiComprehensiveEvaluationUniversities,
 } from "@/data/shanghai-comprehensive-evaluation";
+import {
+  getShanghai2026BatchLineStatusSummary,
+  shanghai2026BatchLineStatuses,
+} from "@/data/shanghai-2026-batch-line-status";
 import { getShanghaiHighValueDataStatus } from "@/lib/shanghai-high-value-data";
 import { getShanghaiHighValueImportManifest } from "@/lib/shanghai-high-value-imports";
 import { getShanghaiFocusAdmissions } from "@/lib/shanghai-focus";
@@ -21,22 +25,30 @@ import { schools, schoolsBySlug } from "@/lib/schools";
 import {
   getShanghaiAdmissionsCoverage,
   getShanghaiAdmissionsForSchool,
+  getShanghaiAdmissionsYearCoverage,
   shanghaiAdmissionsMeta,
   shanghaiAdmissionsMissingSchools,
 } from "@/lib/shanghai-admissions";
-import { getShanghaiAllAdmissionsCoverage, shanghaiAllAdmissionsMeta } from "@/lib/shanghai-all-admissions";
+import {
+  getShanghaiAllAdmissionsCoverage,
+  getShanghaiAllAdmissionsYearCoverage,
+  shanghaiAllAdmissionsMeta,
+} from "@/lib/shanghai-all-admissions";
 import type { Metadata } from "next";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "上海高考查分数与位次换算 | 2026 成绩分布 + 预估专业组 + 近 5 年投档线",
+  title: "上海高考查分数与位次换算 | 2026 成绩分布 + 官方普通批投档线",
   description:
-    "已接入 2026 上海高考成绩分布、用户提供的普通批专业组预估线和位次换算；同时按学校和年份筛选上海市教育考试院公开的 2021-2025 本科普通批平行志愿投档线。",
+    "已接入 2026 上海高考成绩分布、上海市教育考试院 2021-2026 本科普通批院校专业组投档线，并标注综合评价、零志愿等批次公开状态。",
 };
 
 export default function ShanghaiAdmissionsPage() {
   const coverage = getShanghaiAdmissionsCoverage();
   const allCoverage = getShanghaiAllAdmissionsCoverage();
+  const coverage2026 = getShanghaiAdmissionsYearCoverage(2026);
+  const allCoverage2026 = getShanghaiAllAdmissionsYearCoverage(2026);
+  const batchLineStatusSummary = getShanghai2026BatchLineStatusSummary();
   const highValueDataStatus = getShanghaiHighValueDataStatus();
   const highValueImportManifest = getShanghaiHighValueImportManifest();
   const majorAdmissionSummary = getShanghaiMajorAdmissionSummary();
@@ -74,12 +86,11 @@ export default function ShanghaiAdmissionsPage() {
         <Link className={styles.back} href="/">
           ← 返回首页
         </Link>
-        <span className={styles.eyebrow}>上海 · 2026 成绩分布已录入 · 预估专业组匹配 · 2021-2025 投档线</span>
-        <h1>先用 2026 成绩分布定位位次，再看近 5 年院校专业组投档线。</h1>
+        <span className={styles.eyebrow}>上海 · 2026 成绩分布 · 2021-2026 官方普通批投档线</span>
+        <h1>先用 2026 成绩分布定位位次，再看官方院校专业组投档线。</h1>
         <p className={styles.lead}>
-          本页分三层看：2026 成绩分布用于把分数换成全市位次和历年等效分；用户提供的预估表用于快速定位同分/附近分专业组；
-          2021-2025 投档线用于回看院校专业组的真实录取门槛。
-          2026 院校专业组投档线要等正式投档后才会公布，当前不把它伪造成已录取数据。
+          本页分三层看：2026 成绩分布用于把分数换成全市位次和历年等效分；2021-2026 普通批官方投档线用于匹配冲稳保；
+          综评、零志愿等批次则按官方已经公开到哪一步单独标注。第三方资料只作参考，不混进考试院官方组线数据集。
         </p>
 
         <div className={styles.stats}>
@@ -104,12 +115,71 @@ export default function ShanghaiAdmissionsPage() {
         <div className={styles.noteCard}>
           <p>2026 上海成绩分布表已进入“位次 / 等效分换算”：例如 572 分对应全市累计约 4,460 名。</p>
           <p>
-            2021-2025 上海考试院本科普通批全量组线已进入“填分数”匹配区，当前覆盖 {allCoverage.schoolCount} 个学校名称、
+            2021-2026 上海考试院本科普通批全量组线已进入“填分数”匹配区，当前覆盖 {allCoverage.schoolCount} 个学校名称、
             {allCoverage.totalRecords} 条院校专业组记录。
           </p>
-          <p>2026 预估专业组线已单独进入“填分数”匹配区；正式 2026 投档线公布后，再按考试院原始 PDF 补入官方表格。</p>
+          <p>
+            2026 官方普通批已结构化 {allCoverage2026.totalRecords} 条，其中常规表 {allCoverage2026.regularCount}
+            条、Q组 {allCoverage2026.qGroupCount} 条、单独公布组 {allCoverage2026.supplementalGroupCount} 条。
+          </p>
+          <p>2026 预估专业组线仍单独保留为第三方参考，只用于官方线之外的同分附近查漏。</p>
           {shanghaiAdmissionsMeta.notes.map((note) => (
             <p key={note}>{note}</p>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.section} id="batch-lines-2026">
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2>2026 各批次公开状态</h2>
+          </div>
+          <p>
+            普通批已经能按官方院校专业组线直接匹配；综评和零志愿目前公开口径不同，先把“已公开什么、能不能当分数线用”说清楚。
+          </p>
+        </div>
+
+        <div className={styles.batchLineStats}>
+          <div>
+            <span>已跟踪批次</span>
+            <strong>{batchLineStatusSummary.batchCount}</strong>
+          </div>
+          <div>
+            <span>官方线可匹配</span>
+            <strong>{batchLineStatusSummary.officialLineBatchCount}</strong>
+          </div>
+          <div>
+            <span>2026 普通批组线</span>
+            <strong>{allCoverage2026.totalRecords}</strong>
+          </div>
+          <div>
+            <span>重点学校 2026 组线</span>
+            <strong>{coverage2026.totalRecords}</strong>
+          </div>
+        </div>
+
+        <div className={styles.batchLineGrid}>
+          {shanghai2026BatchLineStatuses.map((item) => (
+            <article className={styles.batchLineCard} data-tone={item.tone} key={item.batch}>
+              <div className={styles.batchLineTopline}>
+                <span>{item.batch}</span>
+                <strong>{item.statusLabel}</strong>
+              </div>
+              <p className={styles.batchLineType}>{item.lineLabel}</p>
+              <p className={styles.batchLineSummary}>{item.summary}</p>
+              <ul className={styles.batchLineFacts}>
+                {item.facts.map((fact) => (
+                  <li key={fact}>{fact}</li>
+                ))}
+              </ul>
+              <div className={styles.batchLineSources}>
+                {item.sources.map((source) => (
+                  <a data-trust={source.trust} href={source.url} key={source.url} rel="noreferrer" target="_blank">
+                    {source.label} →
+                  </a>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
       </section>
@@ -117,10 +187,10 @@ export default function ShanghaiAdmissionsPage() {
       <section className={styles.section} id="explorer">
         <div className={styles.sectionHeader}>
           <div>
-            <h2>先查 2026 位次，再看近 5 年组线</h2>
+            <h2>先查 2026 位次，再看 2021-2026 组线</h2>
           </div>
           <p>
-            输入分数后先看 2026 全市位次和跨年等效分；填分数区使用 2021-2025 全量官方组线匹配全国高校在上海招生的专业组，
+            输入分数后先看 2026 全市位次和跨年等效分；填分数区使用 2021-2026 全量官方组线匹配全国高校在上海招生的专业组，
             下方学校表继续聚焦重点学校，Q组与考试院单独公布的组别也一并列入。
           </p>
         </div>
@@ -527,7 +597,7 @@ export default function ShanghaiAdmissionsPage() {
             <h2>未检出学校</h2>
           </div>
           <p>
-            这几所学校在 2021 年到 2025 年上海市教育考试院公开的本科普通批次平行志愿表中，没有检出匹配记录。
+            这几所学校在 2021 年到 2026 年上海市教育考试院公开的本科普通批次平行志愿表中，没有检出匹配记录。
           </p>
         </div>
         <div className={styles.missingRow}>
