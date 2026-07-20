@@ -75,12 +75,29 @@ export type HeadlineSchoolCard = {
 };
 
 export type CutoffTable = {
-  columns: string[];
-  rows: Array<{
-    school: string;
-    values: Record<string, string>;
+  year: number;
+  title: string;
+  description: string;
+  sourceLabel: string;
+  sourceUrl: string;
+  officialReferenceLabel: string;
+  officialReferenceUrl: string;
+  columns: Array<{
+    key: keyof CutoffTableRow;
+    label: string;
   }>;
+  rows: CutoffTableRow[];
   notes: string[];
+};
+
+export type CutoffTableRow = {
+  school: string;
+  group: string;
+  subject: string;
+  plan: string;
+  cutoff: string;
+  rank: string;
+  source: string;
 };
 
 export const selectionGuide = {
@@ -125,8 +142,8 @@ export const selectionGuide = {
       {
         href: "#zongping-lines",
         label: "分数线",
-        title: "2025 上海综评入围线",
-        description: "把你图里的 2025 综评批入围线直接做成表。",
+        title: "2026 上海综评入围线",
+        description: "补入 2026 综评批校测入围资格线，按院校专业组逐行展示。",
       },
     ] satisfies SelectionAnchor[],
   },
@@ -866,11 +883,11 @@ export const selectionGuide = {
   },
   zongping: {
     disclaimer:
-      "本区主要围绕上海综评批，既包含图片里明确的 2025 学校名单、流程、计划数和入围线，也包含图片里的经验判断，比如“适合谁”“优缺点”“策略”。",
+      "本区主要围绕上海综评批，既包含 2026 学校名单、流程、计划数和入围线，也保留图片里的经验判断，比如“适合谁”“优缺点”“策略”。",
     overviewPanels: [
       {
         title: "上海综评高校",
-        subtitle: "图片里点名的 2025 上海综评高校",
+        subtitle: "2026 上海综评批试点高校",
         tone: "cool",
         bullets: [
           "上海交大、复旦大学、浙江大学（海宁校区）、同济大学。",
@@ -938,25 +955,61 @@ export const selectionGuide = {
       },
     ] satisfies BulletPanel[],
     cutoffTable: {
-      columns: ["不限组 01", "不限组 02", "物理组", "物化组 01", "物化组 02", "物化组 03", "政"],
+      year: 2026,
+      title: "2026 上海综评批校测入围资格线",
+      description:
+        "这张表按 2026 年各校院校专业组重排，分数线指 7 月 3 日前后公布的校测入围资格线，不是 6 月 23 日上海考试院发布的入围考生成绩分布表。",
+      sourceLabel: "自主选拔在线 · 2026 上海综评入围分数线汇总",
+      sourceUrl: "https://www.zizzs.com/gk/baokao/224513.html",
+      officialReferenceLabel: "上海考试院 · 2026 综评批入围考生成绩分布表",
+      officialReferenceUrl: "https://www.shmeea.edu.cn/page/02200/20260623/20374.html",
+      columns: [
+        { key: "school", label: "高校" },
+        { key: "group", label: "院校专业组" },
+        { key: "subject", label: "选科要求" },
+        { key: "plan", label: "计划数" },
+        { key: "cutoff", label: "入围线" },
+        { key: "rank", label: "全市位次" },
+        { key: "source", label: "来源口径" },
+      ],
       rows: [
-        { school: "复旦", values: { "不限组 01": "593", "物化组 01": "598" } },
-        { school: "复旦医学院", values: { "物化组 01": "593" } },
-        { school: "交大", values: { "不限组 01": "590", "物化组 01": "594" } },
-        { school: "交大医学院", values: { "物化组 01": "590" } },
-        { school: "浙大", values: { "物化组 01": "592", "物化组 02": "589" } },
-        { school: "同济", values: { "不限组 01": "583", "物化组 01": "587" } },
-        { school: "华师大", values: { "不限组 01": "582", "不限组 02": "580", "物化组 01": "585", "物化组 02": "580", "政": "579" } },
-        { school: "上财", values: { "不限组 01": "574", "物理组": "575", "物化组 01": "577" } },
-        { school: "中医药", values: { "物化组 01": "572" } },
-        { school: "华理", values: { "不限组 01": "558", "物化组 01": "567", "物化组 02": "571", "物化组 03": "559" } },
-        { school: "上大", values: { "不限组 01": "566", "物化组 01": "569" } },
-        { school: "上外", values: { "不限组 01": "565", "不限组 02": "563", "政": "569" } },
-        { school: "东华", values: { "不限组 01": "555", "物化组 01": "560", "物化组 02": "557" } },
+        { school: "复旦大学", group: "复旦大学(01)", subject: "不限", plan: "180", cutoff: "583", rank: "2495", source: "第三方汇总" },
+        { school: "复旦大学", group: "复旦大学(02)", subject: "物和化", plan: "330", cutoff: "588", rank: "1786", source: "第三方汇总" },
+        { school: "复旦大学", group: "复旦大学(03)", subject: "物和化", plan: "30", cutoff: "未公布", rank: "-", source: "第三方汇总" },
+        { school: "复旦大学医学院", group: "复旦医学(01)", subject: "物和化", plan: "60", cutoff: "583", rank: "2495", source: "第三方汇总" },
+        { school: "上海交通大学", group: "上海交大(01)", subject: "物和化", plan: "20", cutoff: "612", rank: "125", source: "第三方汇总" },
+        { school: "上海交通大学", group: "上海交大(02)", subject: "物和化", plan: "510", cutoff: "589", rank: "1667", source: "第三方汇总" },
+        { school: "上海交通大学", group: "上海交大(03)", subject: "不限", plan: "90", cutoff: "581", rank: "2819", source: "第三方汇总" },
+        { school: "上海交通大学医学院", group: "交大医学(01)", subject: "物和化", plan: "90", cutoff: "583", rank: "2495", source: "第三方汇总" },
+        { school: "同济大学", group: "同济大学(01)", subject: "物和化", plan: "177", cutoff: "581", rank: "2819", source: "第三方汇总" },
+        { school: "同济大学", group: "同济大学(02)", subject: "物和化", plan: "20", cutoff: "578", rank: "3338", source: "第三方汇总" },
+        { school: "同济大学", group: "同济大学(03)", subject: "不限", plan: "38", cutoff: "577", rank: "3521", source: "第三方汇总" },
+        { school: "同济大学", group: "同济大学(04)", subject: "政治", plan: "5", cutoff: "575", rank: "3891", source: "第三方汇总" },
+        { school: "华东师范大学", group: "华东师大(01)", subject: "不限", plan: "55", cutoff: "574", rank: "4069", source: "第三方汇总" },
+        { school: "华东师范大学", group: "华东师大(02)", subject: "物和化", plan: "80", cutoff: "578", rank: "3338", source: "第三方汇总" },
+        { school: "华东师范大学", group: "华东师大(03)", subject: "政治", plan: "6", cutoff: "573", rank: "4277", source: "第三方汇总" },
+        { school: "华东理工大学", group: "华东理工(01)", subject: "物和化", plan: "35", cutoff: "566", rank: "5753", source: "学校官网+第三方位次" },
+        { school: "华东理工大学", group: "华东理工(02)", subject: "物和化", plan: "16", cutoff: "563", rank: "6419", source: "学校官网+第三方位次" },
+        { school: "华东理工大学", group: "华东理工(03)", subject: "物和化", plan: "64", cutoff: "562", rank: "6648", source: "学校官网+第三方位次" },
+        { school: "华东理工大学", group: "华东理工(04)", subject: "物和化", plan: "31", cutoff: "551", rank: "9381", source: "学校官网+第三方位次" },
+        { school: "华东理工大学", group: "华东理工(05)", subject: "不限", plan: "28", cutoff: "550", rank: "9637", source: "学校官网+第三方位次" },
+        { school: "东华大学", group: "东华大学(01)", subject: "不限", plan: "18", cutoff: "550", rank: "9637", source: "学校官网+第三方位次" },
+        { school: "东华大学", group: "东华大学(02)", subject: "物和化", plan: "40", cutoff: "553", rank: "8821", source: "学校官网+第三方位次" },
+        { school: "东华大学", group: "东华大学(03)", subject: "物和化", plan: "24", cutoff: "552", rank: "9092", source: "学校官网+第三方位次" },
+        { school: "上海财经大学", group: "上海财大(01)", subject: "不限", plan: "68", cutoff: "569", rank: "5122", source: "学校官网+第三方位次" },
+        { school: "上海财经大学", group: "上海财大(02)", subject: "物理", plan: "10", cutoff: "570", rank: "4886", source: "学校官网+第三方位次" },
+        { school: "上海财经大学", group: "上海财大(03)", subject: "物和化", plan: "22", cutoff: "573", rank: "4277", source: "学校官网+第三方位次" },
+        { school: "上海外国语大学", group: "上海外大(01)", subject: "不限", plan: "38", cutoff: "560", rank: "7131", source: "学校官网+第三方位次" },
+        { school: "上海外国语大学", group: "上海外大(02)", subject: "不限", plan: "36", cutoff: "560", rank: "7131", source: "学校官网+第三方位次" },
+        { school: "上海外国语大学", group: "上海外大(03)", subject: "政治", plan: "6", cutoff: "561", rank: "6888", source: "学校官网+第三方位次" },
+        { school: "上海大学", group: "上海大学(01)", subject: "物和化", plan: "80", cutoff: "567", rank: "5517", source: "第三方转引学校官网" },
+        { school: "上海中医药大学", group: "上海中医(01)", subject: "物和化", plan: "25", cutoff: "564", rank: "6183", source: "公开汇总" },
+        { school: "浙江大学", group: "浙江大学(01)", subject: "物和化", plan: "5", cutoff: "未公布", rank: "-", source: "学校官网名单未列分数线" },
       ],
       notes: [
-        "图片里明确标了两端：复旦物化组 01 为 598（最高分），东华不限组 01 为 555（最低分）。",
-        "这张表整理自 2025 综评批入围分数线的公开资料，不等于所有专业的普通批投档线。",
+        "上海考试院 2026-06-23 发布的是综评批“入围考生成绩分布表”，用于志愿填报前定位；本表整理的是 2026-07-03 前后各校公布的“校测入围资格线”。",
+        "复旦、上交、同济、华师大等部分学校官网页面只提示考生登录系统查询或未在正文列出分组线，本表用第三方汇总补足，并在来源口径列明确标注。",
+        "浙江大学 2026 上海综评官网公布入围考核名单和面试安排，但未在正文列出入围资格线；站内暂按“未公布”处理。",
       ],
     } satisfies CutoffTable,
     shanghaiSchoolCase: {

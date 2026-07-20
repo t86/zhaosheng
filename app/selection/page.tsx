@@ -839,9 +839,9 @@ export default function SelectionPage() {
       <section className={styles.section} id="zongping-lines">
         <div className={styles.sectionHeader}>
           <div>
-            <span className={styles.sectionKicker}>2025 分数线</span>
-            <h2>上海综评批入围线</h2>
-            <p>这张表按各校公开的 2025 入围线重排，方便横向看哪一组最高、哪一组更低。</p>
+            <span className={styles.sectionKicker}>{zongping.cutoffTable.year} 分数线</span>
+            <h2>{zongping.cutoffTable.title}</h2>
+            <p>{zongping.cutoffTable.description}</p>
           </div>
         </div>
 
@@ -849,18 +849,16 @@ export default function SelectionPage() {
           <table className={styles.cutoffTable}>
             <thead>
               <tr>
-                <th>学校</th>
                 {zongping.cutoffTable.columns.map((column) => (
-                  <th key={column}>{column}</th>
+                  <th key={column.key}>{column.label}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {zongping.cutoffTable.rows.map((row) => (
-                <tr key={row.school}>
-                  <th>{row.school}</th>
+                <tr key={`${row.school}-${row.group}`}>
                   {zongping.cutoffTable.columns.map((column) => (
-                    <td key={`${row.school}-${column}`}>{row.values[column as keyof typeof row.values] ?? "-"}</td>
+                    <td key={`${row.school}-${row.group}-${column.key}`}>{row[column.key] || "-"}</td>
                   ))}
                 </tr>
               ))}
@@ -871,6 +869,20 @@ export default function SelectionPage() {
         <div className={styles.noteCard}>
           <strong>数据备注</strong>
           <ul className={styles.bulletList}>
+            <li>
+              主要汇总来源：
+              <a href={zongping.cutoffTable.sourceUrl} rel="noreferrer" target="_blank">
+                {zongping.cutoffTable.sourceLabel}
+              </a>
+              。
+            </li>
+            <li>
+              官方参考：
+              <a href={zongping.cutoffTable.officialReferenceUrl} rel="noreferrer" target="_blank">
+                {zongping.cutoffTable.officialReferenceLabel}
+              </a>
+              。
+            </li>
             {zongping.cutoffTable.notes.map((item) => (
               <li key={item}>{item}</li>
             ))}

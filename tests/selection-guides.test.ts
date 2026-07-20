@@ -126,3 +126,21 @@ test("imports 2026 Shanghai strong foundation spreadsheet data into selection pa
   assert.match(selectionPageSource, /qiangjiShanghai2026/);
   assert.match(selectionPageSource, /2026 对沪招生汇总/);
 });
+
+test("uses 2026 Shanghai comprehensive evaluation cutoff lines", () => {
+  const { cutoffTable } = selectionGuide.zongping;
+  const byGroup = new Map(cutoffTable.rows.map((row) => [row.group, row]));
+
+  assert.equal(cutoffTable.year, 2026);
+  assert.equal(byGroup.get("复旦大学(01)")?.cutoff, "583");
+  assert.equal(byGroup.get("上海交大(01)")?.cutoff, "612");
+  assert.equal(byGroup.get("上海财大(01)")?.cutoff, "569");
+  assert.equal(byGroup.get("上海财大(02)")?.cutoff, "570");
+  assert.equal(byGroup.get("上海财大(03)")?.cutoff, "573");
+  assert.equal(byGroup.get("上海外大(01)")?.cutoff, "560");
+  assert.equal(byGroup.get("上海外大(02)")?.cutoff, "560");
+  assert.equal(byGroup.get("上海外大(03)")?.cutoff, "561");
+  assert.equal(byGroup.get("浙江大学(01)")?.cutoff, "未公布");
+  assert.match(cutoffTable.notes.join(" "), /上海考试院/);
+  assert.match(cutoffTable.notes.join(" "), /第三方汇总/);
+});
