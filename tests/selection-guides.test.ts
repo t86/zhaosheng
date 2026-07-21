@@ -158,3 +158,25 @@ test("uses 2026 Shanghai comprehensive evaluation cutoff lines", () => {
   assert.match(dialogComponentSource, /role="dialog"/);
   assert.match(dialogComponentSource, /看专业/);
 });
+
+test("records 2026 Fudan and SJTU comprehensive evaluation admission structure", () => {
+  const stats = selectionGuide.zongping.majorAdmissionStats;
+  const selectionPageSource = readFileSync(new URL("../app/selection/page.tsx", import.meta.url), "utf8");
+  const bySchool = new Map(stats.schools.map((school) => [school.school, school]));
+  const fudan = bySchool.get("复旦大学");
+  const sjtu = bySchool.get("上海交通大学");
+
+  assert.equal(stats.year, 2026);
+  assert.match(stats.sourceLabel, /InfCoding/);
+  assert.equal(fudan?.total, 600);
+  assert.equal(fudan?.items.reduce((sum, item) => sum + item.count, 0), 600);
+  assert.equal(fudan?.items[0]?.major, "工科试验班");
+  assert.equal(fudan?.items[0]?.count, 172);
+  assert.equal(sjtu?.total, 710);
+  assert.equal(sjtu?.items.reduce((sum, item) => sum + item.count, 0), 710);
+  assert.equal(sjtu?.items[0]?.major, "工科试验班类（机电类）");
+  assert.equal(sjtu?.items[0]?.count, 169);
+  assert.ok(sjtu?.items.some((item) => item.major.includes("计算机永强试验班") && item.count === 2));
+  assert.match(selectionPageSource, /zongping-admission-structure/);
+  assert.match(selectionPageSource, /MajorAdmissionStructureSection/);
+});

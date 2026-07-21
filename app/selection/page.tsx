@@ -418,6 +418,89 @@ function TimelineCase({ item }: { item: GuideTimelineCase }) {
   );
 }
 
+function MajorAdmissionStructureSection() {
+  const stats = selectionGuide.zongping.majorAdmissionStats;
+
+  return (
+    <section className={styles.section} id="zongping-admission-structure">
+      <div className={styles.sectionHeader}>
+        <div>
+          <span className={styles.sectionKicker}>{stats.year} 录取结构</span>
+          <h2>{stats.title}</h2>
+          <p>{stats.description}</p>
+        </div>
+      </div>
+
+      <div className={styles.admissionStructureGrid}>
+        {stats.schools.map((school) => {
+          const top = school.items[0];
+          const countedTotal = school.items.reduce((sum, item) => sum + item.count, 0);
+
+          return (
+            <article className={styles.admissionStructureCard} key={school.school}>
+              <div className={styles.admissionStructureHeader}>
+                <div>
+                  <span>{school.school}</span>
+                  <h3>{school.total} 人</h3>
+                  {top ? (
+                    <p>
+                      最大录取方向：{top.major}，{top.count} 人，占 {top.share}
+                    </p>
+                  ) : null}
+                </div>
+                <strong>{school.items.length} 个专业/大类</strong>
+              </div>
+
+              <div className={styles.tableShell}>
+                <table className={`${styles.cutoffTable} ${styles.admissionStructureTable}`}>
+                  <thead>
+                    <tr>
+                      <th>排名</th>
+                      <th>录取专业/大类</th>
+                      <th>人数</th>
+                      <th>占比</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {school.items.map((item) => (
+                      <tr key={`${school.school}-${item.rank}-${item.major}`}>
+                        <td>{item.rank}</td>
+                        <th>{item.major}</th>
+                        <td>{item.count}</td>
+                        <td>{item.share}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <p className={styles.admissionStructureFootnote}>
+                表内合计 {countedTotal} 人；原文统计总数 {school.total} 人。
+              </p>
+            </article>
+          );
+        })}
+      </div>
+
+      <div className={styles.noteCard}>
+        <strong>数据备注</strong>
+        <ul className={styles.bulletList}>
+          <li>
+            来源：
+            <a href={stats.sourceUrl} rel="noreferrer" target="_blank">
+              {stats.sourceLabel}
+            </a>
+            ，作者 {stats.sourceAuthor}，发布时间 {stats.publishedAt}。
+          </li>
+          {stats.notes.map((note) => (
+            <li key={note}>{note}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 export default function SelectionPage() {
   const { hero, decisionPanels, actionPanels, qiangji, zongping } = selectionGuide;
   const zongpingInterviewSummary = getShanghaiZongpingInterviewTimelineSummary();
@@ -836,6 +919,8 @@ export default function SelectionPage() {
           ))}
         </div>
       </section>
+
+      <MajorAdmissionStructureSection />
 
       <section className={styles.section} id="zongping-lines">
         <div className={styles.sectionHeader}>

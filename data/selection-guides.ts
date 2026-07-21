@@ -103,6 +103,27 @@ export type CutoffTableRow = {
   detailNote: string;
 };
 
+export type ZongpingMajorAdmissionStats = {
+  year: number;
+  title: string;
+  description: string;
+  sourceLabel: string;
+  sourceUrl: string;
+  sourceAuthor: string;
+  publishedAt: string;
+  notes: string[];
+  schools: Array<{
+    school: string;
+    total: number;
+    items: Array<{
+      rank: number;
+      major: string;
+      count: number;
+      share: string;
+    }>;
+  }>;
+};
+
 export const selectionGuide = {
   hero: {
     title: "强基与综评板块",
@@ -147,6 +168,12 @@ export const selectionGuide = {
         label: "分数线",
         title: "2026 上海综评入围线",
         description: "补入 2026 综评批校测入围资格线，按院校专业组逐行展示。",
+      },
+      {
+        href: "#zongping-admission-structure",
+        label: "录取结构",
+        title: "复交综评专业录取数",
+        description: "记录 2026 复旦、上交综评各专业/大类录取人数统计。",
       },
     ] satisfies SelectionAnchor[],
   },
@@ -957,6 +984,101 @@ export const selectionGuide = {
         ],
       },
     ] satisfies BulletPanel[],
+    majorAdmissionStats: {
+      year: 2026,
+      title: "2026 复旦、上交综评各专业录取人数统计",
+      description:
+        "这组数据记录的是综评批最终录取到各专业/大类的人数结构，适合判断专业热度和招生体量；它不是校测入围线，也不是普通批专业录取分数。",
+      sourceLabel: "微信公众号 InfCoding · 2026复交综评各专业录取数统计",
+      sourceUrl: "https://mp.weixin.qq.com/s/dMK9jEbmHC1uVG7hD1DHow",
+      sourceAuthor: "nth_element",
+      publishedAt: "2026-07-09 22:06",
+      notes: [
+        "原文说明：作者依据复旦大学和上海交通大学公众号公示的综评录取情况，统计各专业录取人数。",
+        "原文同时提示表格数据通过 OCR 提取，难免出现纰漏；站内按第三方统计资料记录，正式结果仍应回到两校公示名单核验。",
+        "复旦表合计 600 人，上交表合计 710 人；人数结构可用于理解专业热度，不可替代当年招生计划或专业志愿填报口径。",
+      ],
+      schools: [
+        {
+          school: "复旦大学",
+          total: 600,
+          items: [
+            { rank: 1, major: "工科试验班", count: 172, share: "28.67%" },
+            { rank: 2, major: "经济学类", count: 66, share: "11.00%" },
+            { rank: 3, major: "临床医学", count: 58, share: "9.67%" },
+            { rank: 4, major: "数学类", count: 56, share: "9.33%" },
+            { rank: 5, major: "社会科学试验班", count: 42, share: "7.00%" },
+            { rank: 6, major: "经济管理试验班", count: 40, share: "6.67%" },
+            { rank: 7, major: "软件工程", count: 21, share: "3.50%" },
+            { rank: 8, major: "数据科学与大数据技术", count: 20, share: "3.33%" },
+            { rank: 9, major: "新闻传播学类", count: 20, share: "3.33%" },
+            { rank: 10, major: "哲学类", count: 15, share: "2.50%" },
+            { rank: 11, major: "物理学类", count: 13, share: "2.17%" },
+            { rank: 12, major: "法学", count: 10, share: "1.67%" },
+            { rank: 13, major: "英语", count: 10, share: "1.67%" },
+            { rank: 14, major: "理科试验班", count: 9, share: "1.50%" },
+            { rank: 15, major: "化学类", count: 8, share: "1.33%" },
+            { rank: 16, major: "中国语言文学类", count: 7, share: "1.17%" },
+            { rank: 17, major: "生物科学类", count: 6, share: "1.00%" },
+            { rank: 18, major: "计算机科学与技术", count: 5, share: "0.83%" },
+            { rank: 19, major: "历史学类", count: 4, share: "0.67%" },
+            { rank: 20, major: "文物与博物馆学", count: 4, share: "0.67%" },
+            { rank: 21, major: "核工程与核技术", count: 4, share: "0.67%" },
+            { rank: 22, major: "金融科技", count: 3, share: "0.50%" },
+            { rank: 23, major: "考古学", count: 2, share: "0.33%" },
+            { rank: 24, major: "口腔医学", count: 2, share: "0.33%" },
+            { rank: 25, major: "高分子材料与工程", count: 1, share: "0.17%" },
+            { rank: 26, major: "大气科学", count: 1, share: "0.17%" },
+            { rank: 27, major: "心理学", count: 1, share: "0.17%" },
+          ],
+        },
+        {
+          school: "上海交通大学",
+          total: 710,
+          items: [
+            { rank: 1, major: "工科试验班类（机电类）", count: 169, share: "23.80%" },
+            { rank: 2, major: "工科试验班类（信息类）", count: 122, share: "17.18%" },
+            { rank: 3, major: "电子信息类（中外合作办学）（浦江国际学院，依托张江国际理工学院）", count: 68, share: "9.58%" },
+            { rank: 4, major: "临床医学（八年制）", count: 47, share: "6.62%" },
+            { rank: 5, major: "人文科学试验班（国际与公共事务学院）", count: 24, share: "3.38%" },
+            { rank: 6, major: "英语（语言科工试点班）", count: 20, share: "2.82%" },
+            { rank: 7, major: "金融学（金融学、计算机双学士学位项目）", count: 19, share: "2.68%" },
+            { rank: 8, major: "临床医学（法语班）", count: 18, share: "2.54%" },
+            { rank: 9, major: "理科试验班类（数学方向）", count: 16, share: "2.25%" },
+            { rank: 10, major: "理科试验班类（物理方向）", count: 16, share: "2.25%" },
+            { rank: 11, major: "海洋智能与无人技术", count: 15, share: "2.11%" },
+            { rank: 12, major: "人工智能（拔尖英才试点班）", count: 14, share: "1.97%" },
+            { rank: 13, major: "法学试验班", count: 12, share: "1.69%" },
+            { rank: 14, major: "电子信息类（中外合作办学）（巴黎卓越工程师学院，含笛卡尔班）", count: 11, share: "1.55%" },
+            { rank: 15, major: "人文科学试验班（媒体与传播学院，传播专业）", count: 10, share: "1.41%" },
+            { rank: 16, major: "人文科学试验班（人文学院）", count: 10, share: "1.41%" },
+            { rank: 17, major: "电子信息类（IEEE试点班）", count: 10, share: "1.41%" },
+            { rank: 18, major: "工科试验班类（生医工学院）", count: 9, share: "1.27%" },
+            { rank: 19, major: "法学试验班（涉外法治特班）", count: 8, share: "1.13%" },
+            { rank: 20, major: "临床医学（口腔方向）", count: 8, share: "1.13%" },
+            { rank: 21, major: "生物科学类", count: 8, share: "1.13%" },
+            { rank: 22, major: "口腔医学（5+3一体化）", count: 7, share: "0.99%" },
+            { rank: 23, major: "工科试验班类（溥渊未来技术学院，健康方向）", count: 7, share: "0.99%" },
+            { rank: 24, major: "金融学（上海交大港中文Fintech双学士学位项目）", count: 7, share: "0.99%" },
+            { rank: 25, major: "工业设计（智能人机交互试验班）", count: 6, share: "0.85%" },
+            { rank: 26, major: "经济管理试验班", count: 5, share: "0.70%" },
+            { rank: 27, major: "电子信息类（集成电路英才班）", count: 5, share: "0.70%" },
+            { rank: 28, major: "机器人工程（智能系统拔尖班）", count: 5, share: "0.70%" },
+            { rank: 29, major: "临床医学（英语班）", count: 5, share: "0.70%" },
+            { rank: 30, major: "具身智能（拔尖英才试点班）", count: 5, share: "0.70%" },
+            { rank: 31, major: "人文科学试验班（媒体与传播学院，文产管理专业）", count: 5, share: "0.70%" },
+            { rank: 32, major: "临床医学（五年制）", count: 4, share: "0.56%" },
+            { rank: 33, major: "工科试验班类（生医工学院，智能医工试点班）", count: 4, share: "0.56%" },
+            { rank: 34, major: "机械类（钱学森工程科学试点班）", count: 3, share: "0.42%" },
+            { rank: 35, major: "电气工程及其自动化（思源试点班）", count: 2, share: "0.28%" },
+            { rank: 36, major: "电子信息类（计算机永强试验班）", count: 2, share: "0.28%" },
+            { rank: 37, major: "机器人工程（自主智能领军班）", count: 2, share: "0.28%" },
+            { rank: 38, major: "人文科学试验班（媒体与传播学院，编导专业）", count: 1, share: "0.14%" },
+            { rank: 39, major: "临床医学（眼视光医学方向）", count: 1, share: "0.14%" },
+          ],
+        },
+      ],
+    } satisfies ZongpingMajorAdmissionStats,
     cutoffTable: {
       year: 2026,
       title: "2026 上海综评批校测入围资格线",

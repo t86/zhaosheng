@@ -939,6 +939,67 @@
   color: var(--text);
 }
 
+.admissionStructureGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.admissionStructureCard {
+  min-width: 0;
+  border: 1px solid rgba(22, 50, 79, 0.1);
+  border-radius: 18px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.admissionStructureHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admissionStructureHeader span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.admissionStructureHeader h3 {
+  margin-top: 5px;
+  font-size: 34px;
+}
+
+.admissionStructureHeader p {
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.admissionStructureHeader strong {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(22, 50, 79, 0.08);
+  color: var(--accent-deep);
+  font-size: 13px;
+}
+
+.admissionStructureTable {
+  min-width: 640px;
+}
+
+.admissionStructureTable tbody th {
+  text-align: left;
+  line-height: 1.55;
+}
+
+.admissionStructureFootnote {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .groupDetailButton {
   display: inline-flex;
   min-height: 42px;
@@ -1120,6 +1181,7 @@
   .headlineNoteGrid,
   .qiangjiDataStats,
   .zongpingTimelineStats,
+  .admissionStructureGrid,
   .qiangjiDetailGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1173,9 +1235,14 @@
   .headlineNoteGrid,
   .qiangjiDataStats,
   .zongpingTimelineStats,
+  .admissionStructureGrid,
   .qiangjiDetailGrid,
   .qiangjiMetaGrid,
   .pathTocGrid {
     grid-template-columns: 1fr;
+  }
+
+  .admissionStructureHeader {
+    flex-direction: column;
   }
 }
