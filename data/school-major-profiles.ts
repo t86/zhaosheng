@@ -775,7 +775,7 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
     scopeLabel: "第一批：C9 + 华五并集",
     description:
       "以上海交大的传统强工科为主线，补齐船海、电气、计算机和医学方向，强调平台完整度而不是只看单一热门专业。",
-    updatedAt: "2026-03-12",
+    updatedAt: "2026-07-22",
     sources: [
       {
         label: "上海交通大学本科教学页面",
@@ -786,6 +786,12 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
         label: "上海交通大学信息公开网",
         url: "https://gk.sjtu.edu.cn/",
         note: "用于后续继续补本科教学质量报告和就业质量报告入口。",
+      },
+      {
+        label: "上交大公众号·2026年“致远荣誉计划”招生报名通知",
+        url: "https://mp.weixin.qq.com/s/T79ybSD3ErAdyjc3Azysfw",
+        note: "2026年7月21日发布，给出致远荣誉计划招生方向、报名窗口、考核环节和结果公示时间。",
+        sourceType: "official_story",
       },
     ],
     majors: [
@@ -847,7 +853,7 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
         route: "校内荣誉方向/二次选拔",
         tags: ["计算机", "算法竞赛", "科研导向", "致远学院"],
         note:
-          "这不是普通本科专业名，更接近致远学院计算机科学方向中的拔尖培养项目。报考时不能把它直接等同于全国统一招生专业。",
+          "这不是普通本科专业名，更接近致远荣誉计划计算机科学方向中的拔尖培养项目。2026年通知给出的主线是先进交大本部，再在7月22日-7月31日参加校内报名和8月线下考核。",
         graduateOutcome: {
           mode: "stat",
           updatedAt: "2023-04",
@@ -871,6 +877,12 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
         },
         sources: [
           {
+            label: "上交大公众号·2026年“致远荣誉计划”招生报名通知",
+            url: "https://mp.weixin.qq.com/s/T79ybSD3ErAdyjc3Azysfw",
+            note: "2026年通知把计算机科学（ACM班）列入致远荣誉计划理科专业方向，并给出报名、面试和结果公示节点。",
+            sourceType: "official_story",
+          },
+          {
             label: "上海交通大学 ACM 班成立 20 周年纪念大会",
             url: "https://news.sjtu.edu.cn/jdyw/20230412/181121.html",
             note: "官方新闻明确 ACM 班创办于 2002 年，并披露了培养成果和继续深造数据。",
@@ -888,7 +900,7 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
         route: "校内招生/校内选拔",
         tags: ["计算机", "系统能力", "理论训练", "致远学院"],
         note:
-          "这是上交致远学院计算机科学方向中的另一条高辨识度拔尖培养路径。当前抓到的官方口径是校内招生，不应被误读成普通高考直接专业。",
+          "这是上交致远荣誉计划计算机科学方向中的另一条高辨识度拔尖培养路径。2026年通知同样把它列入理科方向，入口是校内报名和线下考核，不应被误读成普通高考直接专业。",
         graduateOutcome: {
           mode: "reference",
           summary:
@@ -922,6 +934,12 @@ export const schoolMajorProfiles: Partial<Record<string, SchoolMajorProfile>> = 
           ],
         },
         sources: [
+          {
+            label: "上交大公众号·2026年“致远荣誉计划”招生报名通知",
+            url: "https://mp.weixin.qq.com/s/T79ybSD3ErAdyjc3Azysfw",
+            note: "2026年通知把计算机科学（约翰·霍普克罗夫特班）列入致远荣誉计划理科专业方向，并明确报名和线下考核时间线。",
+            sourceType: "official_story",
+          },
           {
             label: "2025年致远荣誉计划计算机科学方向（ACM班）、约翰班校内招生启动",
             url: "https://affairs.zhiyuan.sjtu.edu.cn/info/1026/3023.htm",
