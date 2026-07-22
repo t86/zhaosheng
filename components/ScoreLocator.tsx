@@ -3,7 +3,10 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import estimated2026Groups from "@/data/shanghai/estimated-2026-groups.json";
-import { shanghaiMajorAdmissionsRecords } from "@/data/shanghai-major-admissions";
+import {
+  getShanghaiRegularPlanReferenceSummary,
+  shanghaiRegularPlanReferenceMajorRecords,
+} from "@/data/shanghai-regular-plan-reference";
 import scoreRankTable from "@/data/shanghai/score-rank-table.json";
 import {
   findShanghaiEstimatedGroupsByScore,
@@ -13,6 +16,7 @@ import {
 import { shanghaiAllAdmissionsRecords, shanghaiAllAdmissionsMeta } from "@/lib/shanghai-all-admissions";
 import {
   recommendShanghaiGroupsByScore,
+  type ShanghaiMajorExample,
   type ShanghaiScoreRecommendationCandidate,
 } from "@/lib/shanghai-score-recommendations";
 import styles from "./ScoreLocator.module.css";
@@ -39,6 +43,7 @@ const ESTIMATED_CANDIDATE_LIMIT = 12;
 const ESTIMATED_SCORE_WINDOW = 3;
 const CURRENT_SCORE_YEAR = 2026;
 const estimatedGroupSummary = getShanghaiEstimatedGroupSummary(estimated2026Groups);
+const regularPlanReferenceSummary = getShanghaiRegularPlanReferenceSummary();
 
 function getDiffLabel(candidate: ShanghaiScoreRecommendationCandidate) {
   if (candidate.scoreType === "threshold") {
@@ -71,6 +76,25 @@ function getSourceTrustLabel(sourceTrust: string) {
     return "第三方参考";
   }
   return "来源待核";
+}
+
+function formatTuition(tuition: number | null) {
+  return tuition == null ? "" : `学费 ${tuition.toLocaleString("zh-CN")} 元/年`;
+}
+
+function getMajorFactText(major: ShanghaiMajorExample) {
+  const facts = [
+    major.plan2026 == null ? "" : `2026计划 ${major.plan2026} 人`,
+    formatTuition(major.tuition),
+    major.admittedCount != null && major.admittedCount > 0
+      ? `${major.referenceAdmissionYear ?? 2025}录取 ${major.admittedCount} 人`
+      : "",
+    major.averageScore != null && major.averageRank != null
+      ? `均分 ${major.averageScore} / 位次 ${major.averageRank}`
+      : "",
+  ].filter(Boolean);
+
+  return facts.length > 0 ? facts.join(" · ") : "2026计划项，2025录取参考待核";
 }
 
 function EstimatedGroupPanel({ groups }: { groups: ShanghaiEstimatedGroupMatch[] }) {
@@ -171,17 +195,12 @@ function TierColumn({
                   {g.majorExamples.map((major) => (
                     <div className={styles.majorExample} key={`${g.groupCode}-${major.majorName}`}>
                       <strong>{major.majorName}</strong>
-                      <span>
-                        录取 {major.admittedCount} 人
-                        {major.averageScore != null && major.averageRank != null
-                          ? ` · 均分 ${major.averageScore} / 位次 ${major.averageRank}`
-                          : ""}
-                      </span>
+                      <span>{getMajorFactText(major)}</span>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className={styles.majorEmpty}>暂未接入该组 2025 专业层样例，需回到当年专业目录核对。</p>
+                <p className={styles.majorEmpty}>暂未接入该组 2026 专业计划，需回到当年专业目录核对。</p>
               )}
               {g.schoolSlug ? (
                 <Link className={styles.detailLink} href={`/schools/${g.schoolSlug}`}>
@@ -210,7 +229,7 @@ export function ScoreLocator() {
         ? recommendShanghaiGroupsByScore({
             score: target,
             admissionRecords: shanghaiAllAdmissionsRecords,
-            majorAdmissionRecords: shanghaiMajorAdmissionsRecords,
+            majorAdmissionRecords: shanghaiRegularPlanReferenceMajorRecords,
             options: {
               candidateLimitPerTier: CANDIDATE_LIMIT_PER_TIER,
               subjectRequirement: subjectRequirement === "all" ? undefined : subjectRequirement,
@@ -283,7 +302,10 @@ export function ScoreLocator() {
             {shanghaiAllAdmissionsMeta.scope}。
             精确线可分冲/稳/保；“580 分及以上”属于考试院隐藏高分段，只在考生等效分达到 580 后放入冲刺待核，不当作稳保结论。
             下方“第三方预估”来自用户提供图片资料，当前覆盖 {estimatedGroupSummary.recordCount} 条上海本地院校专业组预估线，只作查漏。
-            专业样例来自 2025 年专业层录取考分，正式填报还要回到当年《招生专业目录》核对完整计划、限制条件和调剂范围。
+            组内专业、2026 计划数和 2025 专业录取参考来自 {regularPlanReferenceSummary.sourceLabel}，
+            已结构化 {regularPlanReferenceSummary.recordCount} 条专业、{regularPlanReferenceSummary.groupCount} 个专业组，
+            其中 {regularPlanReferenceSummary.matchedOfficialGroupCount} 个已匹配官方组线；这部分属于第三方参考，
+            正式填报还要回到当年《招生专业目录》核对完整计划、限制条件和调剂范围。
           </p>
         </>
       ) : (

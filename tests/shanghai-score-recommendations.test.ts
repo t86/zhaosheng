@@ -9,9 +9,35 @@ const admissionsDataset = JSON.parse(
 const majorAdmissionRecords = JSON.parse(
   readFileSync(new URL("../data/shanghai/high-value/major-admissions.json", import.meta.url), "utf8"),
 ) as Record<string, unknown>[];
+const regularPlanReferenceDataset = JSON.parse(
+  readFileSync(new URL("../data/shanghai/regular-2026-plan-reference.json", import.meta.url), "utf8"),
+) as { meta: Record<string, unknown>; groups: (Record<string, unknown> & { majors: Record<string, unknown>[] })[] };
 const scoreRankTable = JSON.parse(
   readFileSync(new URL("../data/shanghai/score-rank-table.json", import.meta.url), "utf8"),
 ) as Record<string, unknown>;
+
+const regularPlanMajorRecords = regularPlanReferenceDataset.groups.flatMap((group) =>
+  group.majors.map((major) => ({
+    year: regularPlanReferenceDataset.meta.year,
+    referenceAdmissionYear: regularPlanReferenceDataset.meta.referenceAdmissionYear,
+    sourceTrust: regularPlanReferenceDataset.meta.sourceTrust,
+    sourceLabel: regularPlanReferenceDataset.meta.sourceLabel,
+    sourceUrl: "",
+    schoolSlug: group.schoolSlug,
+    schoolName: group.schoolName,
+    groupCode: group.groupCode,
+    groupName: group.groupName,
+    subjectRequirement: group.subjectRequirement,
+    majorName: major.majorName,
+    plan2026: major.plan2026,
+    tuition: major.tuition,
+    admittedCount: major.admittedCount2025,
+    minScoreLabel: major.minScoreLabel,
+    minRankLabel: major.minRankLabel,
+    averageScore: major.averageScore2025,
+    averageRank: major.averageRank2025,
+  })),
+);
 
 function recommend(score: number, options: Parameters<typeof recommendShanghaiGroupsByScore>[0]["options"] = {}) {
   return recommendShanghaiGroupsByScore({
@@ -105,6 +131,32 @@ test("surfaces 580-plus elite Shanghai groups as high-score reach candidates tha
   assert.equal(sjtu.scoreLabel, "580分及以上");
   assert.equal(fudan.comparisonScore, 588);
   assert.equal(sjtu.comparisonScore, 588);
+});
+
+test("attaches 2026 regular plan details to score recommendation major examples", () => {
+  const result = recommendShanghaiGroupsByScore({
+    score: 588,
+    admissionRecords: admissionsDataset.records,
+    majorAdmissionRecords: regularPlanMajorRecords,
+    options: {
+      candidateLimitPerTier: 8,
+      scoreRankTable,
+      scoreYear: 2026,
+    },
+  });
+  const sjtu = result.reach.find(
+    (candidate) => candidate.schoolName === "上海交通大学" && candidate.groupCode === "10201",
+  );
+  const ai = sjtu?.majorExamples.find((major) => major.majorName === "人工智能(拔尖英才试点班)");
+
+  assert.ok(sjtu);
+  assert.ok(ai);
+  assert.equal(ai.plan2026, 2);
+  assert.equal(ai.tuition, 7700);
+  assert.equal(ai.referenceAdmissionYear, 2025);
+  assert.equal(ai.admittedCount, 3);
+  assert.equal(ai.averageScore, 620);
+  assert.equal(ai.sourceTrust, "third-party-reference");
 });
 
 test("does not show hidden 580-plus elite groups below the public threshold", () => {

@@ -65,28 +65,41 @@ type AdmissionRecordLike = {
 };
 
 type MajorAdmissionRecordLike = {
+  year?: unknown;
+  referenceAdmissionYear?: unknown;
   schoolSlug?: unknown;
   schoolName?: unknown;
   groupCode?: unknown;
   groupName?: unknown;
   subjectRequirement?: unknown;
+  plan2026?: unknown;
+  tuition?: unknown;
   majorName?: unknown;
   admittedCount?: unknown;
+  admittedCount2025?: unknown;
   averageScore?: unknown;
+  averageScore2025?: unknown;
   averageRank?: unknown;
+  averageRank2025?: unknown;
   minScoreLabel?: unknown;
   minRankLabel?: unknown;
   sourceUrl?: unknown;
   sourceLabel?: unknown;
+  sourceTrust?: unknown;
 };
 
 export type ShanghaiMajorExample = {
   majorName: string;
-  admittedCount: number;
+  plan2026: number | null;
+  tuition: number | null;
+  admittedCount: number | null;
+  referenceAdmissionYear: number | null;
   averageScore: number | null;
   averageRank: number | null;
   minScoreLabel: string;
   minRankLabel: string;
+  sourceTrust: string;
+  sourceLabel: string;
 };
 
 export type ShanghaiScoreRecommendationCandidate = {
@@ -283,13 +296,7 @@ function buildMajorIndex(records: MajorAdmissionRecordLike[]) {
   }
 
   for (const majors of majorIndex.values()) {
-    majors.sort((left, right) => {
-      const leftRank = asNumber(left.averageRank) ?? Number.MAX_SAFE_INTEGER;
-      const rightRank = asNumber(right.averageRank) ?? Number.MAX_SAFE_INTEGER;
-      const leftScore = asNumber(left.averageScore) ?? 0;
-      const rightScore = asNumber(right.averageScore) ?? 0;
-      return leftRank - rightRank || rightScore - leftScore;
-    });
+    majors.sort(compareMajorExampleRecords);
   }
 
   return majorIndex;
@@ -322,14 +329,57 @@ function getLatestGroups(records: AdmissionRecordLike[]) {
   return Array.from(latest.values());
 }
 
+function hasPlanReference(record: MajorAdmissionRecordLike) {
+  return asNumber(record.plan2026) != null;
+}
+
+function getMajorRecordAverageRank(record: MajorAdmissionRecordLike) {
+  return asNumber(record.averageRank) ?? asNumber(record.averageRank2025);
+}
+
+function getMajorRecordAverageScore(record: MajorAdmissionRecordLike) {
+  return asNumber(record.averageScore) ?? asNumber(record.averageScore2025);
+}
+
+function compareMajorExampleRecords(left: MajorAdmissionRecordLike, right: MajorAdmissionRecordLike) {
+  const leftRank = getMajorRecordAverageRank(left) ?? Number.MAX_SAFE_INTEGER;
+  const rightRank = getMajorRecordAverageRank(right) ?? Number.MAX_SAFE_INTEGER;
+  const leftScore = getMajorRecordAverageScore(left) ?? 0;
+  const rightScore = getMajorRecordAverageScore(right) ?? 0;
+  const leftPlanPriority = hasPlanReference(left) ? 0 : 1;
+  const rightPlanPriority = hasPlanReference(right) ? 0 : 1;
+
+  return leftRank - rightRank || rightScore - leftScore || leftPlanPriority - rightPlanPriority;
+}
+
+function dedupeMajorExampleRecords(records: MajorAdmissionRecordLike[]) {
+  const byMajorName = new Map<string, MajorAdmissionRecordLike>();
+  for (const record of records) {
+    const majorName = asString(record.majorName);
+    if (!majorName) {
+      continue;
+    }
+    const current = byMajorName.get(majorName);
+    if (!current || compareMajorExampleRecords(record, current) < 0) {
+      byMajorName.set(majorName, record);
+    }
+  }
+  return Array.from(byMajorName.values()).sort(compareMajorExampleRecords);
+}
+
 function toMajorExamples(records: MajorAdmissionRecordLike[], limit: number): ShanghaiMajorExample[] {
-  return records.slice(0, limit).map((record) => ({
+  return dedupeMajorExampleRecords(records).slice(0, limit).map((record) => ({
     majorName: asString(record.majorName),
-    admittedCount: asNumber(record.admittedCount) ?? 0,
-    averageScore: asNumber(record.averageScore),
-    averageRank: asNumber(record.averageRank),
+    plan2026: asNumber(record.plan2026),
+    tuition: asNumber(record.tuition),
+    admittedCount: asNumber(record.admittedCount) ?? asNumber(record.admittedCount2025),
+    referenceAdmissionYear: asNumber(record.referenceAdmissionYear) ?? asNumber(record.year),
+    averageScore: getMajorRecordAverageScore(record),
+    averageRank: getMajorRecordAverageRank(record),
     minScoreLabel: asString(record.minScoreLabel),
     minRankLabel: asString(record.minRankLabel),
+    sourceTrust: asString(record.sourceTrust),
+    sourceLabel: asString(record.sourceLabel),
   }));
 }
 
