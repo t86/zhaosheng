@@ -74,6 +74,9 @@ type MajorAdmissionRecordLike = {
   subjectRequirement?: unknown;
   plan2026?: unknown;
   tuition?: unknown;
+  duration?: unknown;
+  languageRequirement?: unknown;
+  remarks?: unknown;
   majorName?: unknown;
   admittedCount?: unknown;
   admittedCount2025?: unknown;
@@ -86,12 +89,19 @@ type MajorAdmissionRecordLike = {
   sourceUrl?: unknown;
   sourceLabel?: unknown;
   sourceTrust?: unknown;
+  planSourceLabel?: unknown;
+  referenceSourceLabel?: unknown;
+  planSourceTrust?: unknown;
+  referenceSourceTrust?: unknown;
 };
 
 export type ShanghaiMajorExample = {
   majorName: string;
   plan2026: number | null;
   tuition: number | null;
+  duration: string;
+  languageRequirement: string;
+  remarks: string;
   admittedCount: number | null;
   referenceAdmissionYear: number | null;
   averageScore: number | null;
@@ -100,6 +110,10 @@ export type ShanghaiMajorExample = {
   minRankLabel: string;
   sourceTrust: string;
   sourceLabel: string;
+  planSourceTrust: string;
+  planSourceLabel: string;
+  referenceSourceTrust: string;
+  referenceSourceLabel: string;
 };
 
 export type ShanghaiScoreRecommendationCandidate = {
@@ -372,6 +386,9 @@ function toMajorExamples(records: MajorAdmissionRecordLike[], limit: number): Sh
     majorName: asString(record.majorName),
     plan2026: asNumber(record.plan2026),
     tuition: asNumber(record.tuition),
+    duration: asString(record.duration),
+    languageRequirement: asString(record.languageRequirement),
+    remarks: asString(record.remarks),
     admittedCount: asNumber(record.admittedCount) ?? asNumber(record.admittedCount2025),
     referenceAdmissionYear: asNumber(record.referenceAdmissionYear) ?? asNumber(record.year),
     averageScore: getMajorRecordAverageScore(record),
@@ -380,6 +397,10 @@ function toMajorExamples(records: MajorAdmissionRecordLike[], limit: number): Sh
     minRankLabel: asString(record.minRankLabel),
     sourceTrust: asString(record.sourceTrust),
     sourceLabel: asString(record.sourceLabel),
+    planSourceTrust: asString(record.planSourceTrust),
+    planSourceLabel: asString(record.planSourceLabel),
+    referenceSourceTrust: asString(record.referenceSourceTrust),
+    referenceSourceLabel: asString(record.referenceSourceLabel),
   }));
 }
 

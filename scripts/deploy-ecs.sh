@@ -10,6 +10,7 @@ REMOTE_SERVICE="${REMOTE_SERVICE:-zhaosheng.service}"
 REMOTE_NODE_BIN="${REMOTE_NODE_BIN:-/opt/node-v20.19.0-linux-x64/bin}"
 ARCHIVE_PATH="${ARCHIVE_PATH:-/tmp/zhaosheng-deploy.tgz}"
 REMOTE_ARCHIVE_PATH="${REMOTE_ARCHIVE_PATH:-/root/zhaosheng-deploy.tgz}"
+REMOTE_BUILD="${REMOTE_BUILD:-1}"
 
 echo "Deploying ${ROOT_DIR} -> ${HOST}:${REMOTE_APP_DIR}"
 
@@ -39,14 +40,20 @@ echo "2/5 Build"
 ${PNPM_CMD} build
 
 echo "3/5 Pack"
-COPYFILE_DISABLE=1 tar \
-  --exclude='.git' \
-  --exclude='node_modules' \
-  --exclude='.next' \
-  --exclude='.DS_Store' \
-  -czf "${ARCHIVE_PATH}" \
-  -C "${ROOT_DIR}" \
-  .
+TAR_EXCLUDES=(
+  --exclude='.git'
+  --exclude='node_modules'
+  --exclude='.playwright-cli'
+  --exclude='.DS_Store'
+)
+
+if [[ "${REMOTE_BUILD}" == "1" ]]; then
+  TAR_EXCLUDES+=(--exclude='.next')
+else
+  TAR_EXCLUDES+=(--exclude='.next/cache' --exclude='.next/dev')
+fi
+
+COPYFILE_DISABLE=1 tar "${TAR_EXCLUDES[@]}" -czf "${ARCHIVE_PATH}" -C "${ROOT_DIR}" .
 
 echo "4/5 Upload"
 scp "${ARCHIVE_PATH}" "${HOST}:${REMOTE_ARCHIVE_PATH}"
@@ -58,7 +65,11 @@ cd '${REMOTE_APP_DIR}'
 rm -rf app components data lib public scripts .next
 tar -xzf '${REMOTE_ARCHIVE_PATH}' -C '${REMOTE_APP_DIR}'
 '${REMOTE_NODE_BIN}/corepack' pnpm install --frozen-lockfile
-'${REMOTE_NODE_BIN}/corepack' pnpm build
+if [[ '${REMOTE_BUILD}' == '1' ]]; then
+  '${REMOTE_NODE_BIN}/corepack' pnpm build
+else
+  test -f '${REMOTE_APP_DIR}/.next/BUILD_ID'
+fi
 systemctl restart '${REMOTE_SERVICE}'
 systemctl is-active '${REMOTE_SERVICE}'
 sleep 2

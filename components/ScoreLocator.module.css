@@ -326,6 +326,10 @@
   line-height: 1.5;
 }
 
+.majorExample .majorRemark {
+  color: #5d6675;
+}
+
 .majorEmpty {
   margin: 0;
 }

@@ -4,9 +4,9 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import estimated2026Groups from "@/data/shanghai/estimated-2026-groups.json";
 import {
-  getShanghaiRegularPlanReferenceSummary,
-  shanghaiRegularPlanReferenceMajorRecords,
-} from "@/data/shanghai-regular-plan-reference";
+  getShanghaiOfficialMajorCatalogSummary,
+  shanghaiOfficialMajorCatalogMajorRecords,
+} from "@/data/shanghai-official-major-catalog";
 import scoreRankTable from "@/data/shanghai/score-rank-table.json";
 import {
   findShanghaiEstimatedGroupsByScore,
@@ -43,7 +43,7 @@ const ESTIMATED_CANDIDATE_LIMIT = 12;
 const ESTIMATED_SCORE_WINDOW = 3;
 const CURRENT_SCORE_YEAR = 2026;
 const estimatedGroupSummary = getShanghaiEstimatedGroupSummary(estimated2026Groups);
-const regularPlanReferenceSummary = getShanghaiRegularPlanReferenceSummary();
+const officialMajorCatalogSummary = getShanghaiOfficialMajorCatalogSummary();
 
 function getDiffLabel(candidate: ShanghaiScoreRecommendationCandidate) {
   if (candidate.scoreType === "threshold") {
@@ -82,10 +82,16 @@ function formatTuition(tuition: number | null) {
   return tuition == null ? "" : `学费 ${tuition.toLocaleString("zh-CN")} 元/年`;
 }
 
+function shortenText(text: string, limit = 88) {
+  return text.length > limit ? `${text.slice(0, limit)}...` : text;
+}
+
 function getMajorFactText(major: ShanghaiMajorExample) {
   const facts = [
     major.plan2026 == null ? "" : `2026计划 ${major.plan2026} 人`,
+    major.duration ? `学制 ${major.duration}` : "",
     formatTuition(major.tuition),
+    major.languageRequirement ? `外语 ${major.languageRequirement}` : "",
     major.admittedCount != null && major.admittedCount > 0
       ? `${major.referenceAdmissionYear ?? 2025}录取 ${major.admittedCount} 人`
       : "",
@@ -196,6 +202,9 @@ function TierColumn({
                     <div className={styles.majorExample} key={`${g.groupCode}-${major.majorName}`}>
                       <strong>{major.majorName}</strong>
                       <span>{getMajorFactText(major)}</span>
+                      {major.remarks ? (
+                        <span className={styles.majorRemark}>目录备注：{shortenText(major.remarks)}</span>
+                      ) : null}
                     </div>
                   ))}
                 </div>
@@ -229,7 +238,7 @@ export function ScoreLocator() {
         ? recommendShanghaiGroupsByScore({
             score: target,
             admissionRecords: shanghaiAllAdmissionsRecords,
-            majorAdmissionRecords: shanghaiRegularPlanReferenceMajorRecords,
+            majorAdmissionRecords: shanghaiOfficialMajorCatalogMajorRecords,
             options: {
               candidateLimitPerTier: CANDIDATE_LIMIT_PER_TIER,
               subjectRequirement: subjectRequirement === "all" ? undefined : subjectRequirement,
@@ -302,10 +311,11 @@ export function ScoreLocator() {
             {shanghaiAllAdmissionsMeta.scope}。
             精确线可分冲/稳/保；“580 分及以上”属于考试院隐藏高分段，只在考生等效分达到 580 后放入冲刺待核，不当作稳保结论。
             下方“第三方预估”来自用户提供图片资料，当前覆盖 {estimatedGroupSummary.recordCount} 条上海本地院校专业组预估线，只作查漏。
-            组内专业、2026 计划数和 2025 专业录取参考来自 {regularPlanReferenceSummary.sourceLabel}，
-            已结构化 {regularPlanReferenceSummary.recordCount} 条专业、{regularPlanReferenceSummary.groupCount} 个专业组，
-            其中 {regularPlanReferenceSummary.matchedOfficialGroupCount} 个已匹配官方组线；这部分属于第三方参考，
-            正式填报还要回到当年《招生专业目录》核对完整计划、限制条件和调剂范围。
+            组内专业目录已接入 {officialMajorCatalogSummary.sourceLabel}，当前结构化
+            {officialMajorCatalogSummary.recordCount} 条专业、{officialMajorCatalogSummary.groupCount} 个专业组；
+            学制、外语语种和目录备注来自 PDF 文字层匹配，已直接匹配 {officialMajorCatalogSummary.parsedPdfRecordCount}
+            条，少量粘连单元格用结构化参考表校验。2025 专业录取参考来自
+            {officialMajorCatalogSummary.referenceSourceLabel}，只作历史参考；正式填报仍要回到当年《招生专业目录》核对完整计划、限制条件和调剂范围。
           </p>
         </>
       ) : (

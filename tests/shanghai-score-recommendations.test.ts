@@ -12,6 +12,9 @@ const majorAdmissionRecords = JSON.parse(
 const regularPlanReferenceDataset = JSON.parse(
   readFileSync(new URL("../data/shanghai/regular-2026-plan-reference.json", import.meta.url), "utf8"),
 ) as { meta: Record<string, unknown>; groups: (Record<string, unknown> & { majors: Record<string, unknown>[] })[] };
+const officialCatalogDataset = JSON.parse(
+  readFileSync(new URL("../data/shanghai/official-2026-major-catalog.json", import.meta.url), "utf8"),
+) as { meta: Record<string, unknown>; groups: (Record<string, unknown> & { majors: Record<string, unknown>[] })[] };
 const scoreRankTable = JSON.parse(
   readFileSync(new URL("../data/shanghai/score-rank-table.json", import.meta.url), "utf8"),
 ) as Record<string, unknown>;
@@ -36,6 +39,27 @@ const regularPlanMajorRecords = regularPlanReferenceDataset.groups.flatMap((grou
     minRankLabel: major.minRankLabel,
     averageScore: major.averageScore2025,
     averageRank: major.averageRank2025,
+  })),
+);
+
+const officialCatalogMajorRecords = officialCatalogDataset.groups.flatMap((group) =>
+  group.majors.map((major) => ({
+    year: officialCatalogDataset.meta.year,
+    referenceAdmissionYear: 2025,
+    sourceTrust: officialCatalogDataset.meta.sourceTrust,
+    sourceLabel: officialCatalogDataset.meta.sourceLabel,
+    sourceUrl: group.officialSourceUrl,
+    schoolSlug: group.schoolSlug,
+    schoolName: group.schoolName,
+    groupCode: group.groupCode,
+    groupName: group.groupName,
+    subjectRequirement: group.subjectRequirement,
+    majorName: major.majorName,
+    duration: major.duration,
+    plan2026: major.plan2026,
+    tuition: major.tuition,
+    languageRequirement: major.languageRequirement,
+    remarks: major.remarks,
   })),
 );
 
@@ -157,6 +181,31 @@ test("attaches 2026 regular plan details to score recommendation major examples"
   assert.equal(ai.admittedCount, 3);
   assert.equal(ai.averageScore, 620);
   assert.equal(ai.sourceTrust, "third-party-reference");
+});
+
+test("attaches official catalog duration and remarks to score recommendation major examples", () => {
+  const result = recommendShanghaiGroupsByScore({
+    score: 588,
+    admissionRecords: admissionsDataset.records,
+    majorAdmissionRecords: officialCatalogMajorRecords,
+    options: {
+      candidateLimitPerTier: 8,
+      scoreRankTable,
+      scoreYear: 2026,
+    },
+  });
+  const sjtu = result.reach.find(
+    (candidate) => candidate.schoolName === "上海交通大学" && candidate.groupCode === "10201",
+  );
+  const ieee = sjtu?.majorExamples.find((major) => major.majorName === "电子信息类(IEEE试点班)");
+
+  assert.ok(sjtu);
+  assert.ok(ieee);
+  assert.equal(ieee.plan2026, 1);
+  assert.equal(ieee.duration, "4");
+  assert.equal(ieee.languageRequirement, "不限");
+  assert.match(ieee.remarks, /计算机科学与技术/);
+  assert.equal(ieee.sourceTrust, "official");
 });
 
 test("does not show hidden 580-plus elite groups below the public threshold", () => {
