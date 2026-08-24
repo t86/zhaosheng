@@ -59,9 +59,9 @@ type AdmissionRecordLike = {
   score?: unknown;
   minScore?: unknown;
   scoreType?: unknown;
-  sourceTrust?: unknown;
   sourceUrl?: unknown;
   sourceLabel?: unknown;
+  sourceTrust?: unknown;
 };
 
 type MajorAdmissionRecordLike = {
@@ -97,28 +97,28 @@ type MajorAdmissionRecordLike = {
 
 export type ShanghaiMajorExample = {
   majorName: string;
-  plan2026: number | null;
-  tuition: number | null;
-  duration: string;
-  languageRequirement: string;
-  remarks: string;
-  admittedCount: number | null;
-  referenceAdmissionYear: number | null;
-  averageScore: number | null;
-  averageRank: number | null;
-  minScoreLabel: string;
-  minRankLabel: string;
-  sourceTrust: string;
-  sourceLabel: string;
-  planSourceTrust: string;
-  planSourceLabel: string;
-  referenceSourceTrust: string;
-  referenceSourceLabel: string;
+  plan2026?: number | null;
+  tuition?: number | null;
+  duration?: string;
+  languageRequirement?: string;
+  remarks?: string;
+  admittedCount?: number | null;
+  referenceAdmissionYear?: number | null;
+  averageScore?: number | null;
+  averageRank?: number | null;
+  minScoreLabel?: string;
+  minRankLabel?: string;
+  sourceTrust?: string;
+  sourceLabel?: string;
+  planSourceTrust?: string;
+  planSourceLabel?: string;
+  referenceSourceTrust?: string;
+  referenceSourceLabel?: string;
 };
 
 export type ShanghaiScoreRecommendationCandidate = {
   tier: ShanghaiScoreRecommendationTier;
-  schoolSlug: string;
+  schoolSlug?: string;
   schoolName: string;
   groupCode: string;
   groupName: string;
@@ -129,9 +129,9 @@ export type ShanghaiScoreRecommendationCandidate = {
   diff: number;
   comparisonScore: number;
   comparisonYear: number;
-  subjectRequirement: string | null;
-  sourceUrl: string;
-  sourceLabel: string;
+  subjectRequirement?: string | null;
+  sourceUrl?: string;
+  sourceLabel?: string;
   sourceTrust: string;
   majorExamples: ShanghaiMajorExample[];
 };
@@ -139,9 +139,9 @@ export type ShanghaiScoreRecommendationCandidate = {
 export type ShanghaiScoreRecommendationOptions = {
   majorExampleLimit?: number;
   candidateLimitPerTier?: number;
-  subjectRequirement?: string;
+  scoreRankTable?: Record<string, unknown>;
   scoreYear?: number;
-  scoreRankTable?: unknown;
+  subjectRequirement?: string;
 };
 
 export type ShanghaiScoreRecommendationInput = {
@@ -153,127 +153,185 @@ export type ShanghaiScoreRecommendationInput = {
 
 export type ShanghaiScoreRecommendationResult = {
   targetScore: number;
-  scoreYear: number | null;
+  scoreYear: number;
   targetRank: number | null;
-  equivalentScores: { year: number; score: number | null }[];
+  equivalentScores: {
+    year: number;
+    score: number | null;
+  }[];
   reach: ShanghaiScoreRecommendationCandidate[];
   match: ShanghaiScoreRecommendationCandidate[];
   safe: ShanghaiScoreRecommendationCandidate[];
-  totalCounts: Record<ShanghaiScoreRecommendationTier, number>;
+  totalCounts: {
+    reach: number;
+    match: number;
+    safe: number;
+  };
   thresholdSchoolCount: number;
 };
 
-export const SHANGHAI_RECOMMENDATION_WINDOWS = {
-  reachMax: 15,
-  matchMin: -10,
-  safeMin: -30,
-} as const;
-
 const DEFAULT_MAJOR_EXAMPLE_LIMIT = 3;
-const DEFAULT_CANDIDATE_LIMIT_PER_TIER = 14;
+const DEFAULT_CANDIDATE_LIMIT_PER_TIER = 8;
+const DEFAULT_SCORE_YEAR = 2026;
 
-function asString(value: unknown) {
-  return typeof value === "string" ? value : "";
+const PRIORITY_SLUGS = [
+  "fudan-university",
+  "shanghai-jiao-tong-university",
+  "tsinghua-university",
+  "peking-university",
+  "tongji-university",
+  "zhejiang-university",
+  "nanjing-university",
+  "university-of-science-and-technology-of-china",
+  "beihang-university",
+];
+
+function getPriority(slug?: string) {
+  const idx = PRIORITY_SLUGS.indexOf(slug ?? "");
+  return idx >= 0 ? idx : 999;
 }
 
-function asNumber(value: unknown) {
-  return typeof value === "number" && Number.isFinite(value) ? value : null;
+function asString(value: unknown): string | undefined {
+  return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
 }
 
-function asScoreType(value: unknown): ShanghaiScoreRecommendationScoreType | null {
-  return value === "exact" || value === "threshold" ? value : null;
-}
-
-function getRecordKey(record: { schoolSlug?: unknown; groupCode?: unknown }) {
-  return `${asString(record.schoolSlug)}::${asString(record.groupCode)}`;
-}
-
-function getNormalizedRecordKey(record: { schoolSlug?: unknown; groupCode?: unknown }) {
-  const schoolSlug = asString(record.schoolSlug);
-  const groupCode = asString(record.groupCode);
-  if (!schoolSlug || groupCode.length < 3) {
-    return "";
+function asNumber(value: unknown): number | null {
+  if (typeof value === "number" && !Number.isNaN(value)) {
+    return value;
   }
-  return `${schoolSlug}::${groupCode.slice(-3)}`;
+  if (typeof value === "string") {
+    const parsed = Number(value.trim());
+    return Number.isNaN(parsed) ? null : parsed;
+  }
+  return null;
 }
 
-function classifyDiff(diff: number): ShanghaiScoreRecommendationTier | null {
-  if (diff > 0 && diff <= SHANGHAI_RECOMMENDATION_WINDOWS.reachMax) {
+function asScoreType(value: unknown): ShanghaiScoreRecommendationScoreType | undefined {
+  if (value === "exact" || value === "threshold") {
+    return value;
+  }
+  return undefined;
+}
+
+function getRecordKey(record: AdmissionRecordLike | MajorAdmissionRecordLike) {
+  const schoolSlug = asString(record.schoolSlug) ?? "";
+  const groupCode = asString(record.groupCode) ?? "";
+  return `${schoolSlug}::${groupCode}`;
+}
+
+function getNormalizedRecordKey(record: AdmissionRecordLike | MajorAdmissionRecordLike) {
+  const schoolSlug = asString(record.schoolSlug) ?? "";
+  const groupCode = asString(record.groupCode) ?? "";
+  const normalizedGroupCode = groupCode.replace(/^0+/, "");
+  return `${schoolSlug}::${normalizedGroupCode}`;
+}
+
+function classifyRecord(scoreType: ShanghaiScoreRecommendationScoreType, diff: number): ShanghaiScoreRecommendationTier | null {
+  if (scoreType === "threshold") {
+    // 580分及以上门槛高校（如复旦、交大）：仅当考生换算分在 580 附近（分差 diff <= 10，即约 570分以上）时才作为冲刺推荐
+    if (diff <= 10) {
+      return "reach";
+    }
+    return null;
+  }
+  if (diff >= 1 && diff <= 10) {
     return "reach";
   }
-  if (diff <= 0 && diff >= SHANGHAI_RECOMMENDATION_WINDOWS.matchMin) {
+  if (diff >= -5 && diff <= 0) {
     return "match";
   }
-  if (diff < SHANGHAI_RECOMMENDATION_WINDOWS.matchMin && diff >= SHANGHAI_RECOMMENDATION_WINDOWS.safeMin) {
+  if (diff >= -20 && diff < -5) {
     return "safe";
   }
   return null;
 }
 
-function classifyRecord(scoreType: ShanghaiScoreRecommendationScoreType, diff: number): ShanghaiScoreRecommendationTier | null {
-  if (scoreType === "threshold") {
-    return diff <= 0 ? "reach" : null;
-  }
-  return classifyDiff(diff);
+function sortCandidates(
+  tier: ShanghaiScoreRecommendationTier,
+  candidates: ShanghaiScoreRecommendationCandidate[],
+) {
+  candidates.sort((left, right) => {
+    if (tier === "reach") {
+      const leftThreshold = left.scoreType === "threshold" ? 1 : 0;
+      const rightThreshold = right.scoreType === "threshold" ? 1 : 0;
+      if (leftThreshold !== rightThreshold) {
+        return rightThreshold - leftThreshold;
+      }
+      if (left.scoreType === "threshold" && right.scoreType === "threshold") {
+        const pLeft = getPriority(left.schoolSlug);
+        const pRight = getPriority(right.schoolSlug);
+        if (pLeft !== pRight) {
+          return pLeft - pRight;
+        }
+      }
+      return left.diff - right.diff || right.year - left.year || left.schoolName.localeCompare(right.schoolName);
+    }
+    if (tier === "match") {
+      return right.diff - left.diff || right.year - left.year || left.schoolName.localeCompare(right.schoolName);
+    }
+    return right.diff - left.diff || right.year - left.year || left.schoolName.localeCompare(right.schoolName);
+  });
 }
 
-const THRESHOLD_SCHOOL_PRIORITY = [
-  "fudan-university",
-  "shanghai-jiao-tong-university",
-  "renmin-university-of-china",
-  "zhejiang-university",
-  "nanjing-university",
-  "university-of-science-and-technology-of-china",
-  "beihang-university",
-  "beijing-normal-university",
-  "tongji-university",
-  "east-china-normal-university",
-] as const;
+function takeDisplayCandidates(
+  tier: ShanghaiScoreRecommendationTier,
+  candidates: ShanghaiScoreRecommendationCandidate[],
+  limit: number,
+) {
+  if (tier !== "reach") {
+    return candidates.slice(0, limit);
+  }
 
-function getThresholdPriority(candidate: ShanghaiScoreRecommendationCandidate) {
-  const priority = THRESHOLD_SCHOOL_PRIORITY.indexOf(candidate.schoolSlug as (typeof THRESHOLD_SCHOOL_PRIORITY)[number]);
-  return priority === -1 ? Number.MAX_SAFE_INTEGER : priority;
-}
+  const thresholdCandidates = candidates.filter((candidate) => candidate.scoreType === "threshold");
+  const exactCandidates = candidates.filter((candidate) => candidate.scoreType === "exact");
 
-function getGroupPriority(candidate: ShanghaiScoreRecommendationCandidate) {
-  if (candidate.groupCode.includes("Q")) {
-    return 2;
+  if (exactCandidates.length === 0) {
+    return thresholdCandidates.slice(0, limit);
   }
-  if (candidate.groupName.includes("医学")) {
-    return 1;
-  }
-  return 0;
-}
 
-function getScoreRankRows(scoreRankTable: unknown): Record<string, ScoreRankRow[]> | null {
-  if (typeof scoreRankTable !== "object" || scoreRankTable == null) {
-    return null;
+  if (thresholdCandidates.length === 0) {
+    return exactCandidates.slice(0, limit);
   }
-  const table = (scoreRankTable as { table?: unknown }).table;
-  if (typeof table !== "object" || table == null) {
-    return null;
+
+  // 保证门槛线候选高校多样化（如复旦、交大各占前列名额）
+  const uniqueThresholdBySchool: ShanghaiScoreRecommendationCandidate[] = [];
+  const seenThresholdSchools = new Set<string>();
+  const remainingThreshold: ShanghaiScoreRecommendationCandidate[] = [];
+  for (const c of thresholdCandidates) {
+    if (!seenThresholdSchools.has(c.schoolName)) {
+      seenThresholdSchools.add(c.schoolName);
+      uniqueThresholdBySchool.push(c);
+    } else {
+      remainingThreshold.push(c);
+    }
   }
-  return table as Record<string, ScoreRankRow[]>;
+  const orderedThreshold = [...uniqueThresholdBySchool, ...remainingThreshold];
+
+  const thresholdLimit = Math.min(orderedThreshold.length, Math.max(1, Math.floor(limit / 2)));
+  const exactLimit = limit - thresholdLimit;
+  const picked = [...orderedThreshold.slice(0, thresholdLimit), ...exactCandidates.slice(0, exactLimit)];
+  sortCandidates(tier, picked);
+  return picked;
 }
 
 function buildComparisonContext(score: number, options: ShanghaiScoreRecommendationOptions) {
-  const scoreYear = options.scoreYear ?? null;
-  const rowsByYear = getScoreRankRows(options.scoreRankTable);
-
-  if (scoreYear == null || !rowsByYear) {
+  const scoreYear = options.scoreYear ?? DEFAULT_SCORE_YEAR;
+  const scoreRankTable = options.scoreRankTable;
+  if (!scoreRankTable) {
     return {
       scoreYear,
       targetRank: null,
-      equivalentScores: [] as { year: number; score: number | null }[],
+      equivalentScores: [],
       getComparisonScore: () => score,
     };
   }
 
+  const rowsByYear = ((scoreRankTable.rowsByYear ?? scoreRankTable.table ?? {}) as Record<string, ScoreRankRow[] | undefined>);
+  const years = Array.isArray(scoreRankTable.years)
+    ? (scoreRankTable.years as number[])
+    : Object.keys(rowsByYear).map(Number).filter((year) => !Number.isNaN(year)).sort();
   const targetRank = scoreToRankInRows(rowsByYear[String(scoreYear)], score);
-  const years = Object.keys(rowsByYear)
-    .map(Number)
-    .filter(Number.isFinite)
-    .sort((left, right) => right - left);
+
   const equivalentScores = years.map((year) => ({
     year,
     score: targetRank == null ? null : rankToScoreInRows(rowsByYear[String(year)], targetRank),
@@ -383,13 +441,13 @@ function dedupeMajorExampleRecords(records: MajorAdmissionRecordLike[]) {
 
 function toMajorExamples(records: MajorAdmissionRecordLike[], limit: number): ShanghaiMajorExample[] {
   return dedupeMajorExampleRecords(records).slice(0, limit).map((record) => ({
-    majorName: asString(record.majorName),
+    majorName: asString(record.majorName) ?? "",
     plan2026: asNumber(record.plan2026),
     tuition: asNumber(record.tuition),
     duration: asString(record.duration),
     languageRequirement: asString(record.languageRequirement),
     remarks: asString(record.remarks),
-    admittedCount: asNumber(record.admittedCount) ?? asNumber(record.admittedCount2025),
+    admittedCount: asNumber(record.admittedCount) ?? asNumber(record.admittedCount2025) ?? 0,
     referenceAdmissionYear: asNumber(record.referenceAdmissionYear) ?? asNumber(record.year),
     averageScore: getMajorRecordAverageScore(record),
     averageRank: getMajorRecordAverageRank(record),
@@ -402,71 +460,6 @@ function toMajorExamples(records: MajorAdmissionRecordLike[], limit: number): Sh
     referenceSourceTrust: asString(record.referenceSourceTrust),
     referenceSourceLabel: asString(record.referenceSourceLabel),
   }));
-}
-
-function sortCandidates(
-  tier: ShanghaiScoreRecommendationTier,
-  candidates: ShanghaiScoreRecommendationCandidate[],
-) {
-  candidates.sort((left, right) => {
-    if (tier === "reach") {
-      if (left.scoreType !== right.scoreType) {
-        return left.scoreType === "threshold" ? -1 : 1;
-      }
-      if (left.scoreType === "threshold" && right.scoreType === "threshold") {
-        return (
-          getThresholdPriority(left) - getThresholdPriority(right) ||
-          getGroupPriority(left) - getGroupPriority(right) ||
-          right.comparisonScore - left.comparisonScore ||
-          left.groupCode.localeCompare(right.groupCode)
-        );
-      }
-      return left.diff - right.diff || right.lineScore - left.lineScore || left.schoolName.localeCompare(right.schoolName);
-    }
-    return right.lineScore - left.lineScore || Math.abs(left.diff) - Math.abs(right.diff) || left.schoolName.localeCompare(right.schoolName);
-  });
-}
-
-function takeDisplayCandidates(
-  tier: ShanghaiScoreRecommendationTier,
-  candidates: ShanghaiScoreRecommendationCandidate[],
-  limit: number,
-) {
-  if (tier !== "reach") {
-    return candidates.slice(0, limit);
-  }
-
-  const schoolOrder: string[] = [];
-  const bySchool = new Map<string, ShanghaiScoreRecommendationCandidate[]>();
-  for (const candidate of candidates) {
-    const key = candidate.schoolSlug || candidate.schoolName;
-    if (!bySchool.has(key)) {
-      schoolOrder.push(key);
-      bySchool.set(key, []);
-    }
-    bySchool.get(key)?.push(candidate);
-  }
-
-  const selected: ShanghaiScoreRecommendationCandidate[] = [];
-  while (selected.length < limit) {
-    let added = false;
-    for (const school of schoolOrder) {
-      const next = bySchool.get(school)?.shift();
-      if (!next) {
-        continue;
-      }
-      selected.push(next);
-      added = true;
-      if (selected.length >= limit) {
-        break;
-      }
-    }
-    if (!added) {
-      break;
-    }
-  }
-
-  return selected;
 }
 
 export function recommendShanghaiGroupsByScore({
@@ -508,9 +501,9 @@ export function recommendShanghaiGroupsByScore({
     buckets[tier].push({
       tier,
       schoolSlug: asString(record.schoolSlug),
-      schoolName: asString(record.schoolName),
-      groupCode: asString(record.groupCode),
-      groupName: asString(record.groupName),
+      schoolName: asString(record.schoolName) ?? "",
+      groupCode: asString(record.groupCode) ?? "",
+      groupName: asString(record.groupName) ?? "",
       scoreType,
       scoreLabel: asString(record.score) || `${lineScore}`,
       lineScore,
@@ -533,7 +526,10 @@ export function recommendShanghaiGroupsByScore({
   const thresholdSchools = new Set<string>();
   for (const record of admissionRecords) {
     if (record.scoreType === "threshold") {
-      thresholdSchools.add(asString(record.schoolSlug));
+      const slug = asString(record.schoolSlug);
+      if (slug) {
+        thresholdSchools.add(slug);
+      }
     }
   }
 

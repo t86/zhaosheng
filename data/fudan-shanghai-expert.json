@@ -1,0 +1,3282 @@
+{
+  "meta": {
+    "title": "上海 2026 年志愿填报大数据（专家版）",
+    "sourceLabel": "上海-2026-专家版数据（23-26）-1(1).xlsx",
+    "sourceType": "user-provided-third-party-workbook",
+    "scope": "上海考生；复旦大学及复旦大学医学院；2026 招生计划与 2023-2025 同专业历史录取映射",
+    "notes": [
+      "2026 字段是招生计划及第三方预估位次，不是正式录取结果。",
+      "2023-2025 数据按 2026 专业条目映射，专业新增、改名或批次变化会造成历史缺失，不能据此反推完整年度招生总量。",
+      "填报前须以上海市教育考试院正式招生专业目录、投档结果和复旦大学招生章程为准。"
+    ]
+  },
+  "rows": [
+    {
+      "school": "复旦大学",
+      "batch": "本科提前批",
+      "collegeCode": "00101",
+      "groupCode": "01",
+      "majorCode": "01",
+      "majorName": "俄语",
+      "majorFullName": "俄语(含：俄语-计算机科学与技术双学士学位；含：英语复语班。只录取有专业志愿的考生。入学后转专业范围限外国语言文学学院内)",
+      "subjectRequirement": "不限",
+      "plan2026": 3,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 589,
+          "averageRank": 2641,
+          "batch": "本科提前批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科提前批",
+      "collegeCode": "00101",
+      "groupCode": "01",
+      "majorCode": "02",
+      "majorName": "朝鲜语",
+      "majorFullName": "朝鲜语(含：朝鲜语-计算机科学与技术双学士学位。只录取有专业志愿的考生。入学后转专业范围限外国语言文学学院内)",
+      "subjectRequirement": "不限",
+      "plan2026": 2,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 4511,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 589,
+          "averageRank": 2641,
+          "batch": "本科提前批"
+        },
+        {
+          "year": 2024,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 582,
+          "averageRank": 2424,
+          "batch": "本科提前批"
+        },
+        {
+          "year": 2023,
+          "admitted": 3,
+          "minScore": 546,
+          "minRank": 8464,
+          "averageScore": 566,
+          "averageRank": 4600,
+          "batch": "本科提前批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科提前批",
+      "collegeCode": "00102",
+      "groupCode": "02",
+      "majorCode": "03",
+      "majorName": "马克思主义理论",
+      "majorFullName": "马克思主义理论(望道班)(入学后不实行校内转专业政策)",
+      "subjectRequirement": "政治",
+      "plan2026": 2,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 594,
+          "averageRank": 1939,
+          "batch": "本科提前批"
+        },
+        {
+          "year": 2024,
+          "admitted": 4,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 586,
+          "averageRank": 1980,
+          "batch": "本科提前批"
+        },
+        {
+          "year": 2023,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 585,
+          "averageRank": 1780,
+          "batch": "本科提前批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "12",
+      "majorName": "经济学类",
+      "majorFullName": "经济学类(含：经济学(数理经济方向)、经济学、经济学(国际项目UIPE)、金融学、国际经济与贸易(国际经济学、全球大数据与AI)、财政学(智慧税务与数智财政)、保险学(精算学与智能风险管理)专业。含：数理经济拔尖班、经济学国际项目UIPE。含：国际经济与贸易-数据科学与大数据技术、经济学(数理经济方向)-人工智能、经济学-人工智能、金融学-人工智能、财政学-人工智能、保险学-人工智能双学士学位)",
+      "subjectRequirement": "不限",
+      "plan2026": 5,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 6,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 598,
+          "averageRank": 1465,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 14,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 592,
+          "averageRank": 1376,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 12,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 591,
+          "averageRank": 1199,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "08",
+      "majorName": "社会科学试验班",
+      "majorFullName": "社会科学试验班(国务学院)(含：政治学与行政学、行政管理、国际政治、国际组织与全球治理(全英文专业)专业。含：国务学院博英班。含：卓越学术创新力计划、国家治理与全球治理领导力计划、国家治理与全球治理实务计划。含：行政管理(公共政策)-人工智能双学士学位)",
+      "subjectRequirement": "不限",
+      "plan2026": 8,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 596,
+          "averageRank": 1671,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 586,
+          "averageRank": 1980,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 587,
+          "averageRank": 1573,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "09",
+      "majorName": "社会科学试验班",
+      "majorFullName": "社会科学试验班(社政学院)(含：社会学、社会学(社会数据分析与挖掘)、社会工作、社会工作(社会数据分析与挖掘)专业。含：社会学博英班、社会工作菁英班。社会数据分析与挖掘项目含：大数据分析与计算社会科学方向、应用统计与社会洞察方向、实地调研与人际互动方向,三个方向可重叠修读。含：社会学-人工智能、社会工作-人工智能双学士学位)",
+      "subjectRequirement": "不限",
+      "plan2026": 5,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 597,
+          "averageRank": 1566,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "10",
+      "majorName": "法学",
+      "majorFullName": "法学(涉外法治拔尖人才班)",
+      "subjectRequirement": "不限",
+      "plan2026": 3,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3672,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 606,
+          "averageRank": 726,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 607,
+          "averageRank": 334,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "11",
+      "majorName": "法学",
+      "majorFullName": "法学(含：法学-经济学、法学-人工智能双学士学位)",
+      "subjectRequirement": "不限",
+      "plan2026": 3,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 600,
+          "averageRank": 1250,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 594,
+          "averageRank": 1175,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 4,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 595,
+          "averageRank": 902,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "02",
+      "majorName": "中国语言文学类",
+      "majorFullName": "中国语言文学类(含：汉语言文学、汉语言专业。含：中国语言文学博雅班。含：汉语言-人工智能双学士学位)",
+      "subjectRequirement": "不限",
+      "plan2026": 3,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3146,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 602,
+          "averageRank": 1048,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 592,
+          "averageRank": 1130,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "03",
+      "majorName": "英语",
+      "majorFullName": "英语(含：英语、翻译专业。含：英语-数据语言学博雅班。含：英语/翻译-计算机科学与技术双学士学位)",
+      "subjectRequirement": "不限",
+      "plan2026": 1,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3297,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 596,
+          "averageRank": 1671,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 4,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 586,
+          "averageRank": 1980,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 589,
+          "averageRank": 1366,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "04",
+      "majorName": "历史学类",
+      "majorFullName": "历史学类(含：历史学专业。含：历史学博雅班。含：历史学-旅游管理双学士学位)",
+      "subjectRequirement": "不限",
+      "plan2026": 2,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3146,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 595,
+          "averageRank": 1795,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 4,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 587,
+          "averageRank": 1573,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "06",
+      "majorName": "哲学类",
+      "majorFullName": "哲学类(含：哲学、哲学(国学方向)、哲学(科学哲学与逻辑学方向)、哲学(艺术哲学方向)、宗教学专业。含：哲学博雅班。含：哲学-人工智能双学士学位)",
+      "subjectRequirement": "不限",
+      "plan2026": 4,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3146,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 596,
+          "averageRank": 1671,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 594,
+          "averageRank": 964,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "07",
+      "majorName": "新闻传播学类",
+      "majorFullName": "新闻传播学类(含：新闻学、传播学、广告学(商业传播)、广播电视学(数字视听)专业。含：望道新闻卓越班、战略传播菁英班、数字视听菁英班、智能传播菁英班。含：新闻学-人工智能、传播学-人工智能、新闻学-经济学、新闻学-国际政治(全球领导力)、新闻学-社会学、新闻学-法学、传播学-社会学双学士学位)",
+      "subjectRequirement": "不限",
+      "plan2026": 7,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 4,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 597,
+          "averageRank": 1566,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 588,
+          "averageRank": 1750,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 588,
+          "averageRank": 1468,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "01",
+      "majorName": "社会科学试验班",
+      "majorFullName": "社会科学试验班(相辉学堂长水计划)(含：政治学-经济学-哲学(PPE方向)、国际政治、经济学(数理经济方向)专业。含：政治学-经济学-哲学博英班,国际政治卓越学术创新力计划,数理经济拔尖班)",
+      "subjectRequirement": "不限",
+      "plan2026": 2,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10101",
+      "groupCode": "01",
+      "majorCode": "05",
+      "majorName": "考古学",
+      "majorFullName": "考古学(含：考古学博雅班)",
+      "subjectRequirement": "不限",
+      "plan2026": 2,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3146,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "42",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(变革性材料与能源)(含：材料科学与工程、新能源科学与工程专业)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 9,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 601,
+          "averageRank": 1146,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "27",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(相辉学堂香农计划)(含：集成电路科学与工程、人工智能、智能科学与技术、生物医学工程、电子信息科学与技术、材料科学与工程专业。含：集成电路、计算与智能、智能机器人与先进制造、生物医学工程、未来信息、智能材料与未来能源领军人才班)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3672,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 8,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 619,
+          "averageRank": 119,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 617,
+          "averageRank": 75,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "28",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(集成电路领军人才班)(含：集成电路科学与工程专业。含：集成电路“星陈”计划(含：集成芯片与高算力系统方向))",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 616,
+          "averageRank": 203,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "31",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(计算与智能创新学院)(含：人工智能、计算机科学与技术、信息安全、保密技术专业。含：计算与智能产教融合班(含：下一代多模态大模型与智能体体系方向、数字安全方向))",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 4,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3502,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 606,
+          "averageRank": 726,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 595,
+          "averageRank": 1089,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 603,
+          "averageRank": 437,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "29",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(集成电路与微纳电子创新学院)(含：微电子科学与工程专业。含：微电子科学与工程(集成电路方向)-信息与计算科学专业双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3416,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 605,
+          "averageRank": 789,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 602,
+          "averageRank": 595,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "30",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(计算与智能领军人才班)(含：人工智能专业。含：下一代多模态大模型与智能体体系方向、数字安全方向)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 611,
+          "averageRank": 399,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "33",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(智能机器人与先进制造领军人才班)(含：智能科学与技术专业)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 602,
+          "averageRank": 1048,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "35",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(智能机器人与先进制造创新学院)(含：智能科学与技术、理论与应用力学、飞行器设计与工程专业。含：智能机器人与先进制造产教融合班。含：飞行器设计与工程-信息与计算科学双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 5,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3496,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 602,
+          "averageRank": 1048,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 4,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 610,
+          "averageRank": 240,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "36",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(生物医学工程领军人才班)(含：生物医学工程专业。含：脑机智能学方向)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3672,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 602,
+          "averageRank": 1048,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 6,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 600,
+          "averageRank": 714,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "38",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(未来信息领军人才班)(含：电子信息科学与技术专业。含：“光子计划”院士班)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3672,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 606,
+          "averageRank": 726,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 7,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 603,
+          "averageRank": 541,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "41",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(智能材料与未来能源领军人才班)(含：电子科学与技术、材料科学与工程、新能源科学与工程专业)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 605,
+          "averageRank": 789,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "20",
+      "majorName": "生物科学类",
+      "majorFullName": "生物科学类(英才班)(含：生物科学、生物技术、生态学专业。含：生物科学-人工智能、生态学-人工智能双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 601,
+          "averageRank": 1146,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "37",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(生物医学工程与技术创新学院)(含：生物医学工程专业。含：生物医学工程-信息与计算科学(人工智能方向)双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 7,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 600,
+          "averageRank": 1250,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "40",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(未来信息创新学院)(含：电子信息科学与技术、通信工程、光电信息科学与工程专业。含：未来信息产教融合班。含：光电信息科学与工程-信息与计算科学(人工智能方向)、电子信息科学与技术-信息与计算科学(人工智能方向)双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 4,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3672,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 603,
+          "averageRank": 952,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 594,
+          "averageRank": 1175,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "25",
+      "majorName": "数据科学与大数据技术",
+      "majorFullName": "数据科学与大数据技术(英才班)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 5,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 607,
+          "averageRank": 656,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "26",
+      "majorName": "数据科学与大数据技术",
+      "majorFullName": "数据科学与大数据技术(含：全英文项目)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 604,
+          "averageRank": 878,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "13",
+      "majorName": "理科试验班",
+      "majorFullName": "理科试验班(相辉学堂相辉计划)(含：数学与应用数学、物理学、化学、生物科学专业。含：数学、物理、化学、生物科学英才班)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 5,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3672,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 618,
+          "averageRank": 137,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 611,
+          "averageRank": 201,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "14",
+      "majorName": "金融科技",
+      "majorFullName": "金融科技(全英文课程班)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 602,
+          "averageRank": 1048,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "15",
+      "majorName": "经济管理试验班",
+      "majorFullName": "经济管理试验班(统计、运筹与AI)(含：统计学、财务管理、信息管理与信息系统(商业AI应用、AI系统开发)、会计学、市场营销、工商管理(战略管理、国际经营、人力资源)、管理科学(智能决策、智慧供应链)专业。含：管理科学与商业智能卓研博英班。含：财务管理(金融与财务)-人工智能、市场营销-人工智能双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 6,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 19,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 601,
+          "averageRank": 1146,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 594,
+          "averageRank": 1175,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 9,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 593,
+          "averageRank": 1039,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "17",
+      "majorName": "数学类",
+      "majorFullName": "数学类(数学智能英才班)(含：信息与计算科学专业)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 604,
+          "averageRank": 878,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 607,
+          "averageRank": 334,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 12,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 606,
+          "averageRank": 300,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "18",
+      "majorName": "物理学类",
+      "majorFullName": "物理学类(物理英才班)(含：物理学专业。含：量子科技方向)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 604,
+          "averageRank": 878,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "19",
+      "majorName": "化学类",
+      "majorFullName": "化学类(英才班)(含：化学、能源化学专业)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 1,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 601,
+          "averageRank": 1146,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "32",
+      "majorName": "计算机科学与技术",
+      "majorFullName": "计算机科学与技术(拔尖人才试验班)(含：下一代多模态大模型与智能体体系方向、数字安全方向)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3297,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 604,
+          "averageRank": 878,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 598,
+          "averageRank": 834,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 4,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 601,
+          "averageRank": 535,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "16",
+      "majorName": "心理学",
+      "majorFullName": "心理学(含：心理学菁英班。含：认知与智能方向、健康与社会应用方向)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "21",
+      "majorName": "生物科学类",
+      "majorFullName": "生物科学类(含：生物科学、生物技术、生态学专业。含：生物科学-人工智能、生态学-人工智能双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 2289,
+      "isNew2026": true,
+      "history": [
+        {
+          "year": 2023,
+          "admitted": 9,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 590,
+          "averageRank": 1288,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "22",
+      "majorName": "高分子材料与工程",
+      "majorFullName": "高分子材料与工程(智能穿戴于同隐班)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "23",
+      "majorName": "环境科学",
+      "majorFullName": "环境科学(含：环境科学-智能科学与技术(人工智能方向)、环境科学-国际政治(全球领导力)、环境科学-经济学双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 1,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "24",
+      "majorName": "大气科学",
+      "majorFullName": "大气科学(含：海洋监测与预报方向。含：大气科学-人工智能双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 1,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "34",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(具身智能机器人班)(含：智能科学与技术专业)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3672,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "39",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(智能电子信息班)(含：电子信息科学与技术专业)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 2684,
+      "isNew2026": true,
+      "history": [
+        {
+          "year": 2024,
+          "admitted": 4,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 596,
+          "averageRank": 996,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "10102",
+      "groupCode": "02",
+      "majorCode": "43",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(未来生物智造领军人才班)(含：生物技术专业)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3672,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "101Q3",
+      "groupCode": "Q3",
+      "majorCode": "45",
+      "majorName": "核工程与核技术",
+      "majorFullName": "核工程与核技术(含：聚变方向,含：核物理拔尖班。含：核工程与核技术-国际政治(全球领导力)双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 11,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3297,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 8,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 599,
+          "averageRank": 1346,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 8,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 589,
+          "averageRank": 1649,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 587,
+          "averageRank": 1573,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "本科普通批",
+      "collegeCode": "101Q3",
+      "groupCode": "Q3",
+      "majorCode": "44",
+      "majorName": "核工程与核技术",
+      "majorFullName": "核工程与核技术(聚变领军人才班)(含：核工程与核技术-国际政治(全球领导力)双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3297,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学医学院",
+      "batch": "本科普通批",
+      "collegeCode": "11401",
+      "groupCode": "01",
+      "majorCode": "01",
+      "majorName": "临床医学",
+      "majorFullName": "临床医学(八年制正谊明道班)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 8140,
+      "duration": 8,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 613,
+          "averageRank": 322,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学医学院",
+      "batch": "本科普通批",
+      "collegeCode": "11401",
+      "groupCode": "01",
+      "majorCode": "02",
+      "majorName": "临床医学",
+      "majorFullName": "临床医学(八年制临床医师班)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 14,
+      "tuition": 8140,
+      "duration": 8,
+      "estimatedRank2026": 2855,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 6,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 601,
+          "averageRank": 1146,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 595,
+          "averageRank": 1089,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 5,
+          "minScore": 588,
+          "minRank": 1468,
+          "averageScore": 589,
+          "averageRank": 1366,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学医学院",
+      "batch": "本科普通批",
+      "collegeCode": "114Q2",
+      "groupCode": "Q2",
+      "majorCode": "03",
+      "majorName": "预防医学",
+      "majorFullName": "预防医学(含：预防医学拔尖班。含：预防医学-人工智能、预防医学-公共事业管理双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 8140,
+      "duration": 5,
+      "estimatedRank2026": 4096,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学医学院",
+      "batch": "本科普通批",
+      "collegeCode": "114Q2",
+      "groupCode": "Q2",
+      "majorCode": "04",
+      "majorName": "公共事业管理",
+      "majorFullName": "公共事业管理(含：公共事业管理拔尖班、菁英班。含：公共事业管理-人工智能、预防医学-公共事业管理双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 3,
+      "tuition": 7400,
+      "duration": 4,
+      "estimatedRank2026": 4702,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学医学院",
+      "batch": "本科普通批",
+      "collegeCode": "114Q2",
+      "groupCode": "Q2",
+      "majorCode": "05",
+      "majorName": "药学",
+      "majorFullName": "药学(含：药学拔尖班、药学产教融合班。含：创新药物转化方向、药品监管科学方向。含：药学-人工智能、药学-经济学双学士学位)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 8140,
+      "duration": 4,
+      "estimatedRank2026": 3696,
+      "isNew2026": true,
+      "history": []
+    },
+    {
+      "school": "复旦大学医学院",
+      "batch": "本科普通批",
+      "collegeCode": "114Q3",
+      "groupCode": "Q3",
+      "majorCode": "06",
+      "majorName": "护理学",
+      "majorFullName": "护理学(含：护理学卓越班。含：智慧康复方向、健康管理方向。含：护理学-人工智能双学士学位)",
+      "subjectRequirement": "生物",
+      "plan2026": 10,
+      "tuition": 7400,
+      "duration": 4,
+      "estimatedRank2026": 5614,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 586,
+          "averageRank": 3078,
+          "batch": "本科批"
+        },
+        {
+          "year": 2024,
+          "admitted": 20,
+          "minScore": 565,
+          "minRank": 5019,
+          "averageScore": 571,
+          "averageRank": 3998,
+          "batch": "本科批"
+        },
+        {
+          "year": 2023,
+          "admitted": 30,
+          "minScore": 557,
+          "minRank": 6238,
+          "averageScore": 565,
+          "averageRank": 4750,
+          "batch": "本科批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "01",
+      "majorName": "社会科学试验班",
+      "majorFullName": "社会科学试验班(相辉学堂长水计划)(含：政治学-经济学-哲学(PPE方向)、国际政治、经济学(数理经济方向)专业。含：政治学-经济学-哲学博英班,国际政治卓越学术创新力计划,数理经济拔尖班)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 3,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3326,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 602,
+          "averageRank": 1048,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "13",
+      "majorName": "经济学类",
+      "majorFullName": "经济学类(含：经济学(数理经济方向)、经济学、经济学(国际项目UIPE)、金融学、国际经济与贸易(国际经济学、全球大数据与AI)、财政学(智慧税务与数智财政)、保险学(精算学与智能风险管理)专业。含：数理经济拔尖班、经济学国际项目UIPE。含：国际经济与贸易-数据科学与大数据技术、经济学(数理经济方向)-人工智能、经济学-人工智能、金融学-人工智能、财政学-人工智能、保险学-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 66,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3154,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 60,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 599,
+          "averageRank": 1346,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 80,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 592,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 75,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 598,
+          "averageRank": 705,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "09",
+      "majorName": "社会科学试验班",
+      "majorFullName": "社会科学试验班(国务学院)(含：政治学与行政学、行政管理、国际政治、国际组织与全球治理(全英文专业)专业。含：国务学院博英班。含：卓越学术创新力计划、国家治理与全球治理领导力计划、国家治理与全球治理实务计划。含：行政管理(公共政策)-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 25,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 16,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 596,
+          "averageRank": 1671,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 25,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 591,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 21,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 595,
+          "averageRank": 902,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "10",
+      "majorName": "社会科学试验班",
+      "majorFullName": "社会科学试验班(社政学院)(含：社会学、社会学(社会数据分析与挖掘)、社会工作、社会工作(社会数据分析与挖掘)专业。含：社会学博英班、社会工作菁英班。社会数据分析与挖掘项目含：大数据分析与计算社会科学方向、应用统计与社会洞察方向、实地调研与人际互动方向,三个方向可重叠修读。含：社会学-人工智能、社会工作-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 18,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3326,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 11,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 596,
+          "averageRank": 1671,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "05",
+      "majorName": "文物与博物馆学",
+      "majorFullName": "文物与博物馆学(含：文物与博物馆学博雅班)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 2,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3502,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 618,
+          "averageRank": 137,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 20,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 592,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 19,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 593,
+          "averageRank": 1039,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "11",
+      "majorName": "法学",
+      "majorFullName": "法学(涉外法治拔尖人才班)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 5,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3326,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 612,
+          "averageRank": 365,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "12",
+      "majorName": "法学",
+      "majorFullName": "法学(含：法学-经济学、法学-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 5,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 604,
+          "averageRank": 878,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 13,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 602,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 20,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 600,
+          "averageRank": 591,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "02",
+      "majorName": "中国语言文学类",
+      "majorFullName": "中国语言文学类(含：汉语言文学、汉语言专业。含：中国语言文学博雅班。含：汉语言-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 7,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 7,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 614,
+          "averageRank": 272,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 601,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 16,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 599,
+          "averageRank": 645,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "03",
+      "majorName": "英语",
+      "majorFullName": "英语(含：英语、翻译专业。含：英语-数据语言学博雅班。含：英语/翻译-计算机科学与技术双学士学位)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 10,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 7,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 597,
+          "averageRank": 1566,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 12,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 590,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 9,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 585,
+          "averageRank": 1780,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "04",
+      "majorName": "历史学类",
+      "majorFullName": "历史学类(含：历史学专业。含：历史学博雅班。含：历史学-旅游管理双学士学位)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 2,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 602,
+          "averageRank": 1048,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 20,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 592,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 19,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 593,
+          "averageRank": 1039,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "07",
+      "majorName": "哲学类",
+      "majorFullName": "哲学类(含：哲学、哲学(国学方向)、哲学(科学哲学与逻辑学方向)、哲学(艺术哲学方向)、宗教学专业。含：哲学博雅班。含：哲学-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 15,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 15,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 600,
+          "averageRank": 1250,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 15,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 594,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 22,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 590,
+          "averageRank": 1288,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "08",
+      "majorName": "新闻传播学类",
+      "majorFullName": "新闻传播学类(含：新闻学、传播学、广告学(商业传播)、广播电视学(数字视听)专业。含：望道新闻卓越班、战略传播菁英班、数字视听菁英班、智能传播菁英班。含：新闻学-人工智能、传播学-人工智能、新闻学-经济学、新闻学-国际政治(全球领导力)、新闻学-社会学、新闻学-法学、传播学-社会学双学士学位)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 20,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 20,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 601,
+          "averageRank": 1146,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 25,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 594,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 23,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 593,
+          "averageRank": 1039,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0101",
+      "groupCode": "01",
+      "majorCode": "06",
+      "majorName": "考古学",
+      "majorFullName": "考古学(含：考古学博雅班)(综合评价)",
+      "subjectRequirement": "不限",
+      "plan2026": 2,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3502,
+      "isNew2026": false,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "30",
+      "majorName": "数据科学与大数据技术",
+      "majorFullName": "数据科学与大数据技术(数字孪生)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 25,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 605,
+          "averageRank": 789,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "23",
+      "majorName": "化学类",
+      "majorFullName": "化学类(化学智能与计算)(含：化学、能源化学专业)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 4,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 601,
+          "averageRank": 1146,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "31",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(相辉学堂香农计划)(含：集成电路科学与工程、人工智能、智能科学与技术、生物医学工程、电子信息科学与技术、材料科学与工程专业。含：集成电路、计算与智能、智能机器人与先进制造、生物医学工程、未来信息、智能材料与未来能源领军人才班)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 5,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3326,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 2,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 619,
+          "averageRank": 119,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "32",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(集成电路领军人才班)(含：集成电路科学与工程专业。含：集成电路“星陈”计划(含：集成芯片与高算力系统方向))(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3326,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 614,
+          "averageRank": 272,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "35",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(计算与智能创新学院)(含：人工智能、计算机科学与技术、信息安全、保密技术专业。含：计算与智能产教融合班(含：下一代多模态大模型与智能体体系方向、数字安全方向))(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3216,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 606,
+          "averageRank": 726,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 20,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 600,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 20,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 607,
+          "averageRank": 271,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "19",
+      "majorName": "数学类",
+      "majorFullName": "数学类(含：数学与应用数学、信息与计算科学专业。含：数学与应用数学-人工智能、信息与计算科学-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 20,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 25,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 609,
+          "averageRank": 537,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 24,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 609,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 25,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 608,
+          "averageRank": 244,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "20",
+      "majorName": "物理学类",
+      "majorFullName": "物理学类(物理英才班)(含：物理学专业。含：量子科技方向)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 6,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 608,
+          "averageRank": 600,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "33",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(集成电路与微纳电子创新学院)(含：微电子科学与工程专业。含：微电子科学与工程(集成电路方向)-信息与计算科学专业双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3416,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 613,
+          "averageRank": 322,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 17,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 604,
+          "averageRank": null,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "34",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(计算与智能领军人才班)(含：人工智能专业。含：下一代多模态大模型与智能体体系方向、数字安全方向)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3416,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 614,
+          "averageRank": 272,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 21,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 609,
+          "averageRank": null,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "38",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(智能机器人与先进制造领军人才班)(含：智能科学与技术专业)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 15,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3416,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 9,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 610,
+          "averageRank": 460,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 7,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 603,
+          "averageRank": null,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "40",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(智能机器人与先进制造创新学院)(含：智能科学与技术、理论与应用力学、飞行器设计与工程专业。含：智能机器人与先进制造产教融合班。含：飞行器设计与工程-信息与计算科学双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 15,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3326,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 29,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 604,
+          "averageRank": 878,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "41",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(生物医学工程领军人才班)(含：生物医学工程专业。含：脑机智能学方向)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3326,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 15,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 606,
+          "averageRank": 726,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "46",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(智能材料与未来能源领军人才班)(含：电子科学与技术、材料科学与工程、新能源科学与工程专业)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 15,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3326,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 604,
+          "averageRank": 878,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "47",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(智能材料与未来能源创新学院)(含：电子科学与技术、材料科学与工程、新能源科学与工程专业。含：智能材料与未来能源产教融合班)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 12,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3311,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 7,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 604,
+          "averageRank": 878,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "18",
+      "majorName": "数学类",
+      "majorFullName": "数学类(数学智能英才班)(含：信息与计算科学专业)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 6,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 3328,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 612,
+          "averageRank": 365,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2023,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 600,
+          "averageRank": 591,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "21",
+      "majorName": "物理学类",
+      "majorFullName": "物理学类(量子与智能英才班)(含：物理学专业。含：物理学-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 5,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 607,
+          "averageRank": 656,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "22",
+      "majorName": "化学类",
+      "majorFullName": "化学类(英才班)(含：化学、能源化学专业)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 6,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 609,
+          "averageRank": 537,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "24",
+      "majorName": "生物科学类",
+      "majorFullName": "生物科学类(英才班)(含：生物科学、生物技术、生态学专业。含：生物科学-人工智能、生态学-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 6,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 606,
+          "averageRank": 726,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "42",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(生物医学工程与技术创新学院)(含：生物医学工程专业。含：生物医学工程-信息与计算科学(人工智能方向)双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3326,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 4,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 603,
+          "averageRank": 952,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "43",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(未来信息领军人才班)(含：电子信息科学与技术专业。含：“光子计划”院士班)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3416,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 6,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 611,
+          "averageRank": 399,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 8,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 606,
+          "averageRank": null,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "45",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(未来信息创新学院)(含：电子信息科学与技术、通信工程、光电信息科学与工程专业。含：未来信息产教融合班。含：光电信息科学与工程-信息与计算科学(人工智能方向)、电子信息科学与技术-信息与计算科学(人工智能方向)双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3416,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 26,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 605,
+          "averageRank": 789,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 16,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 601,
+          "averageRank": null,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "29",
+      "majorName": "数据科学与大数据技术",
+      "majorFullName": "数据科学与大数据技术(英才班)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 609,
+          "averageRank": 537,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "14",
+      "majorName": "理科试验班",
+      "majorFullName": "理科试验班(相辉学堂相辉计划)(含：数学与应用数学、物理学、化学、生物科学专业。含：数学、物理、化学、生物科学英才班)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 6,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 10,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 617,
+          "averageRank": 171,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "15",
+      "majorName": "金融科技",
+      "majorFullName": "金融科技(全英文课程班)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 5,
+      "tuition": 7150,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 612,
+          "averageRank": 365,
+          "batch": "综合评价"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "16",
+      "majorName": "经济管理试验班",
+      "majorFullName": "经济管理试验班(统计、运筹与AI)(含：统计学、财务管理、信息管理与信息系统(商业AI应用、AI系统开发)、会计学、市场营销、工商管理(战略管理、国际经营、人力资源)、管理科学(智能决策、智慧供应链)专业。含：管理科学与商业智能卓研博英班。含：财务管理(金融与财务)-人工智能、市场营销-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 50,
+      "tuition": 6500,
+      "duration": 4,
+      "estimatedRank2026": 3098,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 28,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 605,
+          "averageRank": 789,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 30,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 599,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 50,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 601,
+          "averageRank": 535,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "36",
+      "majorName": "计算机科学与技术",
+      "majorFullName": "计算机科学与技术(拔尖人才试验班)(含：下一代多模态大模型与智能体体系方向、数字安全方向)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 5,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3409,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 612,
+          "averageRank": 365,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2023,
+          "admitted": 5,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 606,
+          "averageRank": 300,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "37",
+      "majorName": "软件工程",
+      "majorFullName": "软件工程(国家示范性软件学院)(含：计算与智能产教融合班(含：下一代多模态大模型与智能体体系方向、数字安全方向)。四年总学费31000元)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 25,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 3079,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 17,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 601,
+          "averageRank": 1146,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 30,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 594,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 31,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 592,
+          "averageRank": 1130,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "17",
+      "majorName": "心理学",
+      "majorFullName": "心理学(含：心理学菁英班。含：认知与智能方向、健康与社会应用方向)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 1,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "25",
+      "majorName": "核工程与核技术",
+      "majorFullName": "核工程与核技术(聚变领军人才班)(含：核工程与核技术-国际政治(全球领导力)双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "26",
+      "majorName": "高分子材料与工程",
+      "majorFullName": "高分子材料与工程(智能穿戴于同隐班)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 1,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "27",
+      "majorName": "环境科学",
+      "majorFullName": "环境科学(含：环境科学-智能科学与技术(人工智能方向)、环境科学-国际政治(全球领导力)、环境科学-经济学双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 1,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "28",
+      "majorName": "大气科学",
+      "majorFullName": "大气科学(含：海洋监测与预报方向。含：大气科学-人工智能双学士学位)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 1,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 4096,
+      "isNew2026": false,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "39",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(具身智能机器人班)(含：智能科学与技术专业)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 5,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 1529,
+      "isNew2026": false,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "44",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(智能电子信息班)(含：电子信息科学与技术专业)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 5,
+      "tuition": 7000,
+      "duration": 4,
+      "estimatedRank2026": 2338,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2024,
+          "admitted": 38,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 597,
+          "averageRank": null,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0102",
+      "groupCode": "02",
+      "majorCode": "48",
+      "majorName": "工科试验班",
+      "majorFullName": "工科试验班(未来生物智造领军人才班)(含：生物技术专业)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 10,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 1529,
+      "isNew2026": false,
+      "history": []
+    },
+    {
+      "school": "复旦大学",
+      "batch": "综合评价",
+      "collegeCode": "Z0103",
+      "groupCode": "03",
+      "majorCode": "49",
+      "majorName": "数学类",
+      "majorFullName": "数学类(数学英才班)(含：数学与应用数学专业)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 30,
+      "tuition": 7700,
+      "duration": 4,
+      "estimatedRank2026": 11453,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 28,
+          "minScore": 527,
+          "minRank": 16655,
+          "averageScore": 583,
+          "averageRank": 3567,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 28,
+          "minScore": 536,
+          "minRank": 10760,
+          "averageScore": 588,
+          "averageRank": null,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学医学院",
+      "batch": "综合评价",
+      "collegeCode": "Z3201",
+      "groupCode": "01",
+      "majorCode": "01",
+      "majorName": "临床医学",
+      "majorFullName": "临床医学(八年制正谊明道班)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 7,
+      "tuition": 8140,
+      "duration": 8,
+      "estimatedRank2026": 3212,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 616,
+          "averageRank": 203,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 33,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 588,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 25,
+          "minScore": 578,
+          "minRank": 2668,
+          "averageScore": 582,
+          "averageRank": 2134,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学医学院",
+      "batch": "综合评价",
+      "collegeCode": "Z3201",
+      "groupCode": "01",
+      "majorCode": "02",
+      "majorName": "临床医学",
+      "majorFullName": "临床医学(八年制临床医师班)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 51,
+      "tuition": 8140,
+      "duration": 8,
+      "estimatedRank2026": 3068,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 64,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 602,
+          "averageRank": 1048,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 47,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 598,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 40,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 591,
+          "averageRank": 1199,
+          "batch": "综合评价批"
+        }
+      ]
+    },
+    {
+      "school": "复旦大学医学院",
+      "batch": "综合评价",
+      "collegeCode": "Z3201",
+      "groupCode": "01",
+      "majorCode": "03",
+      "majorName": "口腔医学",
+      "majorFullName": "口腔医学(拔尖班)(综合评价)",
+      "subjectRequirement": "物理和化学",
+      "plan2026": 2,
+      "tuition": 7400,
+      "duration": 5,
+      "estimatedRank2026": 3040,
+      "isNew2026": false,
+      "history": [
+        {
+          "year": 2025,
+          "admitted": 3,
+          "minScore": 580,
+          "minRank": 4096,
+          "averageScore": 596,
+          "averageRank": 1671,
+          "batch": "综合评价"
+        },
+        {
+          "year": 2024,
+          "admitted": 6,
+          "minScore": 580,
+          "minRank": 2684,
+          "averageScore": 587,
+          "averageRank": null,
+          "batch": "综合评价批"
+        },
+        {
+          "year": 2023,
+          "admitted": 7,
+          "minScore": 580,
+          "minRank": 2393,
+          "averageScore": 597,
+          "averageRank": 770,
+          "batch": "综合评价批"
+        }
+      ]
+    }
+  ]
+}

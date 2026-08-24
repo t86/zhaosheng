@@ -211,11 +211,29 @@ function TierColumn({
               ) : (
                 <p className={styles.majorEmpty}>暂未接入该组 2026 专业计划，需回到当年专业目录核对。</p>
               )}
-              {g.schoolSlug ? (
-                <Link className={styles.detailLink} href={`/schools/${g.schoolSlug}`}>
-                  看学校详情 →
-                </Link>
-              ) : null}
+              <div className={styles.cardBottomLinks}>
+                {g.schoolSlug ? (
+                  <Link className={styles.detailLink} href={`/schools/${g.schoolSlug}`}>
+                    学校详情 →
+                  </Link>
+                ) : null}
+                <a
+                  className={styles.worksheetJumpLink}
+                  href="#volunteer-worksheet"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(
+                        new CustomEvent("append-candidate-to-worksheet", { detail: g }),
+                      );
+                    }
+                  }}
+                >
+                  + 加入24志愿表 ↓
+                </a>
+                <a className={styles.riskJumpLink} href="#adjustment-risk-calculator">
+                  调剂风险自检 ↓
+                </a>
+              </div>
             </li>
           ))}
         </ul>

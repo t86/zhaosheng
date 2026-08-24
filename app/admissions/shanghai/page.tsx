@@ -3,6 +3,8 @@ import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecor
 import { ShanghaiAdmissionsExplorer } from "@/components/ShanghaiAdmissionsExplorer";
 import { ScoreLocator } from "@/components/ScoreLocator";
 import { RankConverter } from "@/components/RankConverter";
+import { VolunteerWorksheet } from "@/components/VolunteerWorksheet";
+import { MajorAdjustmentRiskCalculator } from "@/components/MajorAdjustmentRiskCalculator";
 import { shanghaiDecisionGuide, shanghaiFillStrategy } from "@/data/shanghai-decision-guide";
 import {
   getShanghaiMajorAdmissionPreviewRecords,
@@ -198,6 +200,10 @@ export default function ShanghaiAdmissionsPage() {
         <ScoreLocator />
 
         <RankConverter />
+
+        <VolunteerWorksheet />
+
+        <MajorAdjustmentRiskCalculator />
 
         <div className={styles.bridgeNote}>
           看到冲 / 稳 / 保清单只是第一步。平行志愿真正要做的，是把这三档<strong>合并成一张从高到低的 24 行有序表</strong>，

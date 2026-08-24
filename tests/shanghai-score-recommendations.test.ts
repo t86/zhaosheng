@@ -219,3 +219,13 @@ test("does not show hidden 580-plus elite groups below the public threshold", ()
     ),
   );
 });
+
+test("does not recommend 580-plus elite threshold groups to candidates with 520 score", () => {
+  const result = recommendFor2026(520, { candidateLimitPerTier: 20 });
+  const allCandidates = [...result.reach, ...result.match, ...result.safe];
+
+  assert.ok(!allCandidates.some((c) => c.schoolName === "复旦大学"));
+  assert.ok(!allCandidates.some((c) => c.schoolName === "上海交通大学"));
+  assert.ok(result.reach.every((c) => c.lineScore >= 521 && c.lineScore <= 530));
+  assert.ok(result.match.every((c) => c.lineScore >= 515 && c.lineScore <= 520));
+});

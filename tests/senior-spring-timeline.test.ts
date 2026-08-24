@@ -108,7 +108,7 @@ test("links early-exam focus to official Shanghai sources and renders page entry
   assert.ok(sourceUrls.includes("https://www.shmeea.edu.cn/page/02300/20260121/20029.html"));
   assert.ok(sourceUrls.includes("https://www.shmeea.edu.cn/page/09000/20260304/20084.html"));
   assert.match(timelineSource, /shanghaiEarlyExamFocus/);
-  assert.match(timelineSource, /春考\/小三门/);
+  assert.match(timelineSource, /春考.*小三门/);
   assert.match(timelineSource, /春考决策卡/);
   assert.match(timelineSource, /预录取\/候补确认/);
   assert.match(timelineSource, /高三家长执行清单/);

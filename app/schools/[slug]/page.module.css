@@ -2,6 +2,39 @@
   padding: 28px 0 80px;
 }
 
+.expertBatchGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.expertBatchGrid > div {
+  display: grid;
+  gap: 5px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, .72);
+}
+
+.expertBatchGrid span,
+.expertBatchGrid small { color: var(--muted); }
+.expertBatchGrid strong { font-size: 22px; color: var(--accent-deep); }
+
+.expertNotes {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(180, 120, 20, .25);
+  border-radius: var(--radius-md);
+  background: rgba(180, 120, 20, .06);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.expertNotes ul { margin: 8px 0; padding-left: 20px; }
+.expertNotes p { margin: 8px 0 0; color: var(--muted); }
+
 .prosConsGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -191,7 +224,8 @@
 
 @media (max-width: 720px) {
   .prosConsGrid,
-  .multiPathGrid {
+  .multiPathGrid,
+  .expertBatchGrid {
     grid-template-columns: 1fr;
   }
 }

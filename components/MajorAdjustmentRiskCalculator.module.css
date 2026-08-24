@@ -1,0 +1,436 @@
+.container {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.head {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #c0392b;
+  background: rgba(192, 57, 43, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.4rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: var(--text);
+  margin-bottom: 0.35rem;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.selectorBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding: 0.75rem 1rem;
+  background: #fbf9f5;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.selectGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.selectGroup label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.select {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.quickSchoolButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.quickBtn {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.15s ease;
+}
+.quickBtn:hover {
+  background: #f0f3f8;
+}
+.quickBtnActive {
+  background: var(--accent-deep);
+  color: #fff;
+  border-color: var(--accent-deep);
+}
+
+.calculatorLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.majorsSelectionPanel {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: 0.6rem;
+}
+.panelHeader h3 {
+  font-size: 1.1rem;
+  color: var(--text);
+}
+.panelHeader p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+.majorsCount {
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: #f4efe6;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.majorsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.majorCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  transition: all 0.15s ease;
+}
+
+.cardDesired {
+  border-color: #27ae60;
+  background: #f4faf6;
+}
+
+.cardUnacceptable {
+  border-color: #e74c3c;
+  background: #fdf5f5;
+}
+
+.majorMainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.majorTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.majorTitle {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.hotTag {
+  font-size: 0.65rem;
+  color: #c0392b;
+  background: #fde8e4;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.majorDataRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.reqTag {
+  color: var(--accent-deep);
+}
+
+.majorActionBtns {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.btnDesired,
+.btnUnacceptable {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: #fff;
+  transition: all 0.15s ease;
+}
+
+.btnDesired:hover {
+  border-color: #27ae60;
+  color: #27ae60;
+}
+.btnDesiredActive {
+  background: #27ae60;
+  color: #fff;
+  border-color: #27ae60;
+}
+
+.btnUnacceptable:hover {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+.btnUnacceptableActive {
+  background: #e74c3c;
+  color: #fff;
+  border-color: #e74c3c;
+}
+
+.adjustmentToggleWrap {
+  margin-top: 0.5rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.textSafe {
+  color: #27ae60;
+  font-weight: 600;
+}
+.textDanger {
+  color: #c0392b;
+  font-weight: 700;
+}
+
+.emptyMajors {
+  padding: 2rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* 诊断仪表盘 */
+.diagnosisPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.riskHeader {
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.riskLow {
+  background: #eafaf1;
+  border: 1px solid #a9dfbf;
+  color: #1e8449;
+}
+.riskMedium {
+  background: #fcf3cf;
+  border: 1px solid #f9e79f;
+  color: #7d6608;
+}
+.riskHigh {
+  background: #fdebd0;
+  border: 1px solid #f5cba7;
+  color: #b9770e;
+}
+.riskCritical {
+  background: #fadbd8;
+  border: 1px solid #f5b7b1;
+  color: #922b21;
+}
+
+.riskTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.riskPill {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.riskScoreVal {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.riskHeader h4 {
+  font-size: 1.15rem;
+}
+.riskHeader p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+.diagSection {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+}
+.diagSection strong {
+  font-size: 0.85rem;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.selectedBullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.unacceptableAlert {
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+}
+.unacceptableAlert strong {
+  color: #c53030;
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.unacceptableAlert p {
+  font-size: 0.8rem;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+.hitTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.hitTag {
+  font-size: 0.75rem;
+  background: #e53e3e;
+  color: #fff;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.fallbackPool {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.poolNote {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.poolTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.fallbackTag {
+  font-size: 0.75rem;
+  background: #f4efe6;
+  color: var(--text);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+.poolEmpty {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.adviceSection {
+  background: #fbf9f5;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+}
+.adviceSection strong {
+  font-size: 0.85rem;
+  color: var(--accent-deep);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+.adviceList {
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+@media (max-width: 860px) {
+  .calculatorLayout {
+    grid-template-columns: 1fr;
+  }
+}

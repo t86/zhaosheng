@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { CompareRow } from "@/lib/build-compare-row";
+import { SchoolCompareVisuals } from "./SchoolCompareVisuals";
 import styles from "./SchoolCompare.module.css";
 
 export type SchoolOption = {
@@ -341,6 +342,10 @@ export default function SchoolCompare({
           </table>
         </div>
       )}
+
+      {selectedRows.length >= 2 ? (
+        <SchoolCompareVisuals rows={selectedRows} />
+      ) : null}
     </div>
   );
 }

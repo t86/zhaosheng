@@ -85,6 +85,16 @@ const entryCards = [
     actionLabel: "看热门方向 →",
     tone: "slate",
   },
+  {
+    kicker: "专业建议",
+    title: "专业建议笔记库",
+    description:
+      "把视频来源里的专业判断整理成结构化笔记，先做专业体感判断，再回到学校与专业组。",
+    stats: ["视频来源整理", "已整理 3 条", "工科/电子/收益"],
+    href: "/advice",
+    actionLabel: "打开专业建议 →",
+    tone: "teal",
+  },
 ];
 
 export default function Home() {

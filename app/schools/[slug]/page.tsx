@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShanghaiOfficialRecordsTable } from "@/components/ShanghaiOfficialRecordsTable";
+import { FudanExpertAdmissions } from "@/components/FudanExpertAdmissions";
+import {
+  fudanShanghaiExpertData,
+  getFudanShanghaiExpertSummary,
+} from "@/data/fudan-shanghai-expert";
 import { getMajorLineAnalysesForSchool } from "@/data/major-line-analyses";
 import {
   getShanghaiMajorAdmissionsForSchool,
@@ -204,6 +209,7 @@ export default async function SchoolDetailPage({ params }: PageProps) {
     shanghaiRecords,
     shanghaiFocus,
   });
+  const fudanExpertSummary = slug === "fudan-university" ? getFudanShanghaiExpertSummary() : null;
   const showShanghaiSection = Boolean(
     shanghaiFocus || shanghaiRecords.length > 0 || shanghaiMajorRecords.length > 0,
   );
@@ -405,6 +411,43 @@ export default async function SchoolDetailPage({ params }: PageProps) {
           <p className={styles.note}>
             优势与短板基于学科评估、双一流学科、地域与行业地位等公开信息整理，短板均为“要权衡”的中性提醒，不构成对学校的负面评价；请结合孩子的兴趣与目标判断。
           </p>
+        </section>
+      ) : null}
+
+      {fudanExpertSummary ? (
+        <section className={styles.section} id="fudan-2026-expert-data">
+          <div className={styles.majorHeader}>
+            <div>
+              <h2>复旦在沪 2026 招生计划与近 3 年专业录取参考</h2>
+              <p className={styles.majorLead}>
+                已把用户提供的专家版表格结构化：2026 看招生计划与预估位次，2023-2025
+                仅展示表内能映射到当前专业条目的历史录取结果。
+              </p>
+            </div>
+            <span className={styles.scopePill}>第三方专家表 · 非官方结果</span>
+          </div>
+
+          <div className={styles.metricGrid}>
+            <div className={styles.metricCard}><span>专业条目</span><strong>{fudanExpertSummary.majorCount}</strong><p className={styles.sourceMeta}>含复旦大学医学院</p></div>
+            <div className={styles.metricCard}><span>2026 计划</span><strong>{fudanExpertSummary.plan2026} 人</strong><p className={styles.sourceMeta}>表内复旦相关计划合计</p></div>
+            <div className={styles.metricCard}><span>其中综评</span><strong>{fudanExpertSummary.byBatch.find((item) => item.batch === "综合评价")?.plan ?? 0} 人</strong><p className={styles.sourceMeta}>占计划主体</p></div>
+            <div className={styles.metricCard}><span>医学院计划</span><strong>{fudanExpertSummary.medicalPlan2026} 人</strong><p className={styles.sourceMeta}>含普通批与综评</p></div>
+          </div>
+
+          <div className={styles.expertBatchGrid}>
+            {fudanExpertSummary.byBatch.map((item) => (
+              <div key={item.batch}><span>{item.batch}</span><strong>{item.plan} 人</strong><small>{item.majorCount} 个专业条目</small></div>
+            ))}
+            <div><span>2026 新增标记</span><strong>{fudanExpertSummary.newMajorCount} 个</strong><small>历史数据可能为空</small></div>
+          </div>
+
+          <FudanExpertAdmissions rows={fudanShanghaiExpertData.rows} />
+
+          <div className={styles.expertNotes}>
+            <strong>怎么读这张表</strong>
+            <ul>{fudanShanghaiExpertData.meta.notes.map((note) => <li key={note}>{note}</li>)}</ul>
+            <p>数据来源：{fudanShanghaiExpertData.meta.sourceLabel}（用户提供，第三方整理）。</p>
+          </div>
         </section>
       ) : null}
 
