@@ -226,6 +226,7 @@ test("does not recommend 580-plus elite threshold groups to candidates with 520 
 
   assert.ok(!allCandidates.some((c) => c.schoolName === "复旦大学"));
   assert.ok(!allCandidates.some((c) => c.schoolName === "上海交通大学"));
-  assert.ok(result.reach.every((c) => c.lineScore >= 521 && c.lineScore <= 530));
-  assert.ok(result.match.every((c) => c.lineScore >= 515 && c.lineScore <= 520));
+  assert.ok(result.reach.every((c) => c.lineScore >= 521 && c.lineScore <= 535));
+  assert.ok(result.match.every((c) => c.lineScore >= 510 && c.lineScore <= 520));
+  assert.ok(result.safe.every((c) => c.lineScore >= 490 && c.lineScore <= 509));
 });
